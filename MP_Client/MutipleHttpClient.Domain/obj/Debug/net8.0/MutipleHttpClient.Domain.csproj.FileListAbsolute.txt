@@ -1,0 +1,12 @@
+C:\Users\A.Dihbaouri\Desktop\MiddlwareAPI_BFF\MP_Client\MP_Client\MutipleHttpClient.Domain\bin\Debug\net8.0\MutipleHttpClient.Domain.deps.json
+C:\Users\A.Dihbaouri\Desktop\MiddlwareAPI_BFF\MP_Client\MP_Client\MutipleHttpClient.Domain\bin\Debug\net8.0\MutipleHttpClient.Domain.dll
+C:\Users\A.Dihbaouri\Desktop\MiddlwareAPI_BFF\MP_Client\MP_Client\MutipleHttpClient.Domain\bin\Debug\net8.0\MutipleHttpClient.Domain.pdb
+C:\Users\A.Dihbaouri\Desktop\MiddlwareAPI_BFF\MP_Client\MP_Client\MutipleHttpClient.Domain\obj\Debug\net8.0\MutipleHttpClient.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\A.Dihbaouri\Desktop\MiddlwareAPI_BFF\MP_Client\MP_Client\MutipleHttpClient.Domain\obj\Debug\net8.0\MutipleHttpClient.Domain.AssemblyInfoInputs.cache
+C:\Users\A.Dihbaouri\Desktop\MiddlwareAPI_BFF\MP_Client\MP_Client\MutipleHttpClient.Domain\obj\Debug\net8.0\MutipleHttpClient.Domain.AssemblyInfo.cs
+C:\Users\A.Dihbaouri\Desktop\MiddlwareAPI_BFF\MP_Client\MP_Client\MutipleHttpClient.Domain\obj\Debug\net8.0\MutipleHttpClient.Domain.csproj.CoreCompileInputs.cache
+C:\Users\A.Dihbaouri\Desktop\MiddlwareAPI_BFF\MP_Client\MP_Client\MutipleHttpClient.Domain\obj\Debug\net8.0\MutipleHttpClient.Domain.sourcelink.json
+C:\Users\A.Dihbaouri\Desktop\MiddlwareAPI_BFF\MP_Client\MP_Client\MutipleHttpClient.Domain\obj\Debug\net8.0\MutipleHttpClient.Domain.dll
+C:\Users\A.Dihbaouri\Desktop\MiddlwareAPI_BFF\MP_Client\MP_Client\MutipleHttpClient.Domain\obj\Debug\net8.0\refint\MutipleHttpClient.Domain.dll
+C:\Users\A.Dihbaouri\Desktop\MiddlwareAPI_BFF\MP_Client\MP_Client\MutipleHttpClient.Domain\obj\Debug\net8.0\MutipleHttpClient.Domain.pdb
+C:\Users\A.Dihbaouri\Desktop\MiddlwareAPI_BFF\MP_Client\MP_Client\MutipleHttpClient.Domain\obj\Debug\net8.0\ref\MutipleHttpClient.Domain.dll
