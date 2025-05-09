@@ -1,4 +1,5 @@
 ﻿using System.Net.Http.Headers;
+using System.Reflection.Metadata.Ecma335;
 using Microsoft.AspNetCore.Mvc;
 using MultipleHtppClient.Infrastructure;
 
@@ -48,7 +49,7 @@ public class PresentationController : ControllerBase
         return Ok(response.Data);
     }
     [HttpPost("Canlogin")]
-    public async Task<ActionResult<ApiResponse<Aglou10001Response<AglouUser>>>> CanLogin([FromBody] CanTryLoginRequestBody email)
+    public async Task<ActionResult<Aglou10001Response<AglouUser>>> CanLogin([FromBody] CanTryLoginRequestBody email)
     {
         var response = await _useHttpService.CanTryLoginAsync(email);
         if (!response.IsSuccess)
@@ -67,4 +68,5 @@ public class PresentationController : ControllerBase
         }
         return Ok(response.Data);
     }
+
 }

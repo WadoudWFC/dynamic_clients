@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MultipleHtppClient.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+18256f5f5db2e229f40adc368fbe3d61ddd7e110")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bd0bf437e7f058d8035224e9eb206c9116dbbc61")]
 [assembly: System.Reflection.AssemblyProductAttribute("MultipleHtppClient.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MultipleHtppClient.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
