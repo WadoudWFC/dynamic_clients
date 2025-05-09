@@ -68,5 +68,14 @@ public class PresentationController : ControllerBase
         }
         return Ok(response.Data);
     }
-
+    [HttpPost("DossierCounts")]
+    public async Task<ActionResult<Aglou10001Response<DossierCounts>>> GetCounts([FromBody] GetDossierCountRequestBody requestBody)
+    {
+        var response = await _useHttpService.GetCountsAsync(requestBody.userId, requestBody.idRole);
+        if (!response.IsSuccess)
+        {
+            return StatusCode((int)response.StatusCode, response.ErrorMessage);
+        }
+        return Ok(response.Data);
+    }
 }

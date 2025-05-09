@@ -6,7 +6,12 @@ namespace MultipleHtppClient.API;
 public class UseHttpService : IUseHttpService
 {
     private readonly IHttpClientService _clientService;
-    public UseHttpService(IHttpClientService clientService) => _clientService = clientService;
+    private readonly ITokenManager _tokenManager;
+    public UseHttpService(IHttpClientService clientService, ITokenManager tokenManager)
+    {
+        _clientService = clientService;
+        _tokenManager = tokenManager;
+    }
 
     public async Task<ApiResponse<Aglou10001Response<AglouUser>>> CanTryLoginAsync(CanTryLoginRequestBody email)
     {
@@ -15,7 +20,7 @@ public class UseHttpService : IUseHttpService
             ApiName = "aglou-q-monopp-extern",
             Endpoint = "/api/v2/utilisateur/Cantrylogin",
             Method = HttpMethod.Post,
-            Data = email
+            Data = email,
         };
         return await _clientService.SendAsync<CanTryLoginRequestBody, Aglou10001Response<AglouUser>>(request);
     }
@@ -26,7 +31,8 @@ public class UseHttpService : IUseHttpService
         {
             ApiName = "rest-dev-api",
             Endpoint = "/objects",
-            Method = HttpMethod.Get
+            Method = HttpMethod.Get,
+            RequiresApiKey = false
         };
         return await _clientService.SendAsync<object, IEnumerable<Product>>(request);
     }
@@ -37,7 +43,8 @@ public class UseHttpService : IUseHttpService
         {
             ApiName = "rest-dev-api",
             Endpoint = $"/objects/{id}",
-            Method = HttpMethod.Get
+            Method = HttpMethod.Get,
+            RequiresApiKey = false
         };
         return await _clientService.SendAsync<object, Product>(request);
     }
@@ -49,9 +56,35 @@ public class UseHttpService : IUseHttpService
             ApiName = "aglou-q-monopp-extern",
             Endpoint = "/api/v2/utilisateur/Login",
             Method = HttpMethod.Post,
-            Data = loginRequestBody
+            Data = loginRequestBody,
+            RequiresApiKey = true,
+            RequiresBearerToken = false
         };
-        return await _clientService.SendAsync<LoginRequestBody, Aglou10001Response<AglouLoginResponse>>(request);
+        var response = await _clientService.SendAsync<LoginRequestBody, Aglou10001Response<AglouLoginResponse>>(request);
+        if (response.IsSuccess && response.Data?.Data?.BearerKey != null)
+        {
+            _tokenManager.SetToken(response.Data.Data.BearerKey);
+        }
+        return response;
+    }
+
+    public async Task<ApiResponse<Aglou10001Response<DossierCounts>>> GetCountsAsync(string userId, string roleId)
+    {
+        ApiRequest<DossierCountRequest> request = new ApiRequest<DossierCountRequest>
+        {
+            ApiName = "aglou-q-monopp-extern",
+            Endpoint = "/api/v2/dossier/getCounts",
+            Method = HttpMethod.Post,
+            Data = new DossierCountRequest
+            {
+                UserId = userId,
+                RoleId = roleId,
+                ApplyFilter = true
+            },
+            RequiresApiKey = true,
+            RequiresBearerToken = true
+        };
+        return await _clientService.SendAsync<DossierCountRequest, Aglou10001Response<DossierCounts>>(request);
     }
 
     public async Task<ApiResponse<object>> TickerAsync()
@@ -65,5 +98,5 @@ public class UseHttpService : IUseHttpService
         return await _clientService.SendAsync<object, object>(request);
     }
 
-    
+
 }

@@ -3,11 +3,16 @@ namespace MultipleHtppClient.Infrastructure;
 
 public class BearerTokenAuthHandler : IAuthenticationHandler
 {
+    private readonly ITokenManager _tokenManager;
+    public BearerTokenAuthHandler(ITokenManager tokenManager)
+    {
+        _tokenManager = tokenManager;
+    }
     public Task AuthenticateAsync(HttpClient client, ApiAuthConfig apiAuthConfig)
     {
-        if (apiAuthConfig.Parameters.TryGetValue("token", out var token))
+        var token = _tokenManager.GetToken();
+        if (!string.IsNullOrEmpty(token))
         {
-            // client.DefaultRequestHeaders.Add("Bearer", token);
             client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
         }
         return Task.CompletedTask;

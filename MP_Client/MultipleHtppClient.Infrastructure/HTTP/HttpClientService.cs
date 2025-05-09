@@ -13,6 +13,7 @@ public class HttpClientService : IHttpClientService
     private readonly ILogger<HttpClientService> _logger;
     private readonly IEnumerable<IAuthenticationHandler> _authenticationHandlers;
     private readonly Configuration _configuration;
+    private readonly ITokenManager _tokenManager;
     private static readonly JsonSerializerOptions _jsonOptions = new JsonSerializerOptions
     {
         PropertyNameCaseInsensitive = true,
@@ -22,12 +23,13 @@ public class HttpClientService : IHttpClientService
             new StringToIntConverter()
         }
     };
-    public HttpClientService(IHttpClientFactory httpClientFactory, ILogger<HttpClientService> logger, IEnumerable<IAuthenticationHandler> authenticationHandlers, IOptions<Configuration> configurtions)
+    public HttpClientService(IHttpClientFactory httpClientFactory, ILogger<HttpClientService> logger, IEnumerable<IAuthenticationHandler> authenticationHandlers, IOptions<Configuration> configurtions, ITokenManager tokenManager)
     {
         _httpClientFactory = httpClientFactory;
         _logger = logger;
         _authenticationHandlers = authenticationHandlers;
         _configuration = configurtions.Value;
+        _tokenManager = tokenManager;
     }
     public async Task<ApiResponse<TResponse>> SendAsync<TRequest, TResponse>(ApiRequest<TRequest> apiRequest, CancellationToken cancellationToken = default)
     {
@@ -35,21 +37,19 @@ public class HttpClientService : IHttpClientService
         var apiConfig = _configuration.Apis.FirstOrDefault(a => a.Name == apiName) ?? throw new ArgumentException($"No API configuration found for {apiName}");
         using (var client = _httpClientFactory.CreateClient(apiName))
         {
-            // Add ApiKey header if required
-            // if (apiConfig.AuthConfig?.AuthType == AuthenticationType.ApiKey && apiConfig.AuthConfig.Parameters != null)
-            // {
-            //     var headerName = apiConfig.AuthConfig.Parameters["HeaderName"];
-            //     var headerValue = apiConfig.AuthConfig.Parameters["HeaderValue"];
-            //     if (!client.DefaultRequestHeaders.Contains(headerName))
-            //     {
-            //         client.DefaultRequestHeaders.Add(headerName, headerValue);
-            //     }
-            // }
             using (var requestMessage = CreateHttpMessage(apiRequest, apiConfig))
             {
                 try
                 {
-                    await ApplyAuthentication(client, apiConfig);
+                    // await ApplyAuthentication(client, apiConfig);
+                    if (apiRequest.RequiresApiKey)
+                    {
+                        await ApplyApiKeyAuth(client, apiConfig);
+                    }
+                    if (apiRequest.RequiresBearerToken)
+                    {
+                        await ApplyBearerTokenAuth(client, apiConfig);
+                    }
                     ApplyHeaders(client, apiConfig, apiRequest);
                     _logger.LogDebug("Sending {0} request to {1}: {2}", apiRequest.Method, apiRequest.ApiName, apiRequest.Endpoint);
                     var response = await client.SendAsync(requestMessage, cancellationToken);
@@ -84,6 +84,25 @@ public class HttpClientService : IHttpClientService
         var handler = _authenticationHandlers.FirstOrDefault(ah => ah.CanHandle(apiConfig.AuthConfig.AuthType));
         if (handler is null) throw new InvalidOperationException($"No Authentication handler found for {apiConfig.AuthConfig.AuthType}");
         await handler.AuthenticateAsync(client, apiConfig.AuthConfig);
+    }
+    private async Task ApplyApiKeyAuth(HttpClient client, ApiConfig apiConfig)
+    {
+        if (apiConfig.AuthConfig?.AuthType == AuthenticationType.ApiKey)
+        {
+            var handler = _authenticationHandlers.FirstOrDefault(h => h.CanHandle(AuthenticationType.ApiKey));
+            if (handler != null)
+            {
+                await handler.AuthenticateAsync(client, apiConfig.AuthConfig);
+            }
+        }
+    }
+    private async Task ApplyBearerTokenAuth(HttpClient client, ApiConfig apiConfig)
+    {
+        var token = _tokenManager.GetToken();
+        if (!string.IsNullOrEmpty(token))
+        {
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+        }
     }
     private static void ApplyHeaders<TRequest>(HttpClient client, ApiConfig apiConfig, ApiRequest<TRequest> apiRequest)
     {

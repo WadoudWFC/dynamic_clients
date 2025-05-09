@@ -28,6 +28,7 @@ public static class HttpClientExtensions
             // Register authentication headers
             services.AddSingleton<IAuthenticationHandler, ApiKeyAuthHandler>();
             services.AddSingleton<IAuthenticationHandler, BearerTokenAuthHandler>();
+            services.AddSingleton<ITokenManager, TokenManager>();
             // Register main service
             services.AddSingleton<IHttpClientService, HttpClientService>();
         }
