@@ -1,0 +1,410 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|c:\\users\\a.dihbaouri\\desktop\\middlwareapi_bff\\mp_client\\mp_client\\multiplehtppclient.infrastructure\\models\\gestion\\responses\\partner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|solutionrelative:multiplehtppclient.infrastructure\\models\\gestion\\responses\\partner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|c:\\users\\a.dihbaouri\\desktop\\middlwareapi_bff\\mp_client\\mp_client\\multiplehtppclient.infrastructure\\models\\gestion\\responses\\partnerstype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|solutionrelative:multiplehtppclient.infrastructure\\models\\gestion\\responses\\partnerstype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB9CF8CB-7706-4A7E-BE55-9C248077B832}|MultipleHtppClient.API\\MultipleHtppClient.API.csproj|c:\\users\\a.dihbaouri\\desktop\\middlwareapi_bff\\mp_client\\mp_client\\multiplehtppclient.api\\services\\usehttpservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB9CF8CB-7706-4A7E-BE55-9C248077B832}|MultipleHtppClient.API\\MultipleHtppClient.API.csproj|solutionrelative:multiplehtppclient.api\\services\\usehttpservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB9CF8CB-7706-4A7E-BE55-9C248077B832}|MultipleHtppClient.API\\MultipleHtppClient.API.csproj|c:\\users\\a.dihbaouri\\desktop\\middlwareapi_bff\\mp_client\\mp_client\\multiplehtppclient.api\\controllers\\presentationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB9CF8CB-7706-4A7E-BE55-9C248077B832}|MultipleHtppClient.API\\MultipleHtppClient.API.csproj|solutionrelative:multiplehtppclient.api\\controllers\\presentationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB9CF8CB-7706-4A7E-BE55-9C248077B832}|MultipleHtppClient.API\\MultipleHtppClient.API.csproj|c:\\users\\a.dihbaouri\\desktop\\middlwareapi_bff\\mp_client\\mp_client\\multiplehtppclient.api\\services\\iusehttpservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB9CF8CB-7706-4A7E-BE55-9C248077B832}|MultipleHtppClient.API\\MultipleHtppClient.API.csproj|solutionrelative:multiplehtppclient.api\\services\\iusehttpservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|c:\\users\\a.dihbaouri\\desktop\\middlwareapi_bff\\mp_client\\mp_client\\multiplehtppclient.infrastructure\\interfaces\\ihttpclientservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|solutionrelative:multiplehtppclient.infrastructure\\interfaces\\ihttpclientservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|c:\\users\\a.dihbaouri\\desktop\\middlwareapi_bff\\mp_client\\mp_client\\multiplehtppclient.infrastructure\\models\\gestion\\responses\\dossierall.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|solutionrelative:multiplehtppclient.infrastructure\\models\\gestion\\responses\\dossierall.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|c:\\users\\a.dihbaouri\\desktop\\middlwareapi_bff\\mp_client\\mp_client\\multiplehtppclient.infrastructure\\models\\gestion\\requests\\profilerolerequestbody.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|solutionrelative:multiplehtppclient.infrastructure\\models\\gestion\\requests\\profilerolerequestbody.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|c:\\users\\a.dihbaouri\\desktop\\middlwareapi_bff\\mp_client\\mp_client\\multiplehtppclient.infrastructure\\models\\gestion\\responses\\commercialcutting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|solutionrelative:multiplehtppclient.infrastructure\\models\\gestion\\responses\\commercialcutting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|c:\\users\\a.dihbaouri\\desktop\\middlwareapi_bff\\mp_client\\mp_client\\multiplehtppclient.infrastructure\\models\\gestion\\responses\\finalcounts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|solutionrelative:multiplehtppclient.infrastructure\\models\\gestion\\responses\\finalcounts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|c:\\users\\a.dihbaouri\\desktop\\middlwareapi_bff\\mp_client\\mp_client\\multiplehtppclient.infrastructure\\models\\gestion\\responses\\dossierstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|solutionrelative:multiplehtppclient.infrastructure\\models\\gestion\\responses\\dossierstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|c:\\users\\a.dihbaouri\\desktop\\middlwareapi_bff\\mp_client\\mp_client\\multiplehtppclient.infrastructure\\models\\gestion\\responses\\debuginfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|solutionrelative:multiplehtppclient.infrastructure\\models\\gestion\\responses\\debuginfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|c:\\users\\a.dihbaouri\\desktop\\middlwareapi_bff\\mp_client\\mp_client\\multiplehtppclient.infrastructure\\models\\gestion\\responses\\demandtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|solutionrelative:multiplehtppclient.infrastructure\\models\\gestion\\responses\\demandtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|c:\\users\\a.dihbaouri\\desktop\\middlwareapi_bff\\mp_client\\mp_client\\multiplehtppclient.infrastructure\\models\\gestion\\responses\\dossiercounts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|solutionrelative:multiplehtppclient.infrastructure\\models\\gestion\\responses\\dossiercounts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A2D3ED3-7B5D-4534-A2B8-637E5F30D477}|MutipleHttpClient.Domain\\MutipleHttpClient.Domain.csproj|c:\\users\\a.dihbaouri\\desktop\\middlwareapi_bff\\mp_client\\mp_client\\mutiplehttpclient.domain\\converters\\stringtoboolconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A2D3ED3-7B5D-4534-A2B8-637E5F30D477}|MutipleHttpClient.Domain\\MutipleHttpClient.Domain.csproj|solutionrelative:mutiplehttpclient.domain\\converters\\stringtoboolconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|c:\\users\\a.dihbaouri\\desktop\\middlwareapi_bff\\mp_client\\mp_client\\multiplehtppclient.infrastructure\\models\\responses\\aglou-q-10001\\aglou10001response.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|solutionrelative:multiplehtppclient.infrastructure\\models\\responses\\aglou-q-10001\\aglou10001response.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|c:\\users\\a.dihbaouri\\desktop\\middlwareapi_bff\\mp_client\\mp_client\\multiplehtppclient.infrastructure\\models\\gestion\\requests\\dossiercountrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|solutionrelative:multiplehtppclient.infrastructure\\models\\gestion\\requests\\dossiercountrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|c:\\users\\a.dihbaouri\\desktop\\middlwareapi_bff\\mp_client\\mp_client\\multiplehtppclient.infrastructure\\models\\requests\\aglou-q-10001\\aglou10001requests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|solutionrelative:multiplehtppclient.infrastructure\\models\\requests\\aglou-q-10001\\aglou10001requests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|c:\\users\\a.dihbaouri\\desktop\\middlwareapi_bff\\mp_client\\mp_client\\multiplehtppclient.infrastructure\\models\\responses\\aglou-q-10001\\aglouloginresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|solutionrelative:multiplehtppclient.infrastructure\\models\\responses\\aglou-q-10001\\aglouloginresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB9CF8CB-7706-4A7E-BE55-9C248077B832}|MultipleHtppClient.API\\MultipleHtppClient.API.csproj|c:\\users\\a.dihbaouri\\desktop\\middlwareapi_bff\\mp_client\\mp_client\\multiplehtppclient.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB9CF8CB-7706-4A7E-BE55-9C248077B832}|MultipleHtppClient.API\\MultipleHtppClient.API.csproj|solutionrelative:multiplehtppclient.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB9CF8CB-7706-4A7E-BE55-9C248077B832}|MultipleHtppClient.API\\MultipleHtppClient.API.csproj|c:\\users\\a.dihbaouri\\desktop\\middlwareapi_bff\\mp_client\\mp_client\\multiplehtppclient.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{EB9CF8CB-7706-4A7E-BE55-9C248077B832}|MultipleHtppClient.API\\MultipleHtppClient.API.csproj|solutionrelative:multiplehtppclient.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|c:\\users\\a.dihbaouri\\desktop\\middlwareapi_bff\\mp_client\\mp_client\\multiplehtppclient.infrastructure\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|solutionrelative:multiplehtppclient.infrastructure\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|c:\\users\\a.dihbaouri\\desktop\\middlwareapi_bff\\mp_client\\mp_client\\multiplehtppclient.infrastructure\\models\\responses\\aglou-q-10001\\aglouuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF9B28D3-E601-460B-9CCB-2F951DB43CDA}|MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj|solutionrelative:multiplehtppclient.infrastructure\\models\\responses\\aglou-q-10001\\aglouuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IHttpClientService.cs",
+              "DocumentMoniker": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Interfaces\\IHttpClientService.cs",
+              "RelativeDocumentMoniker": "MultipleHtppClient.Infrastructure\\Interfaces\\IHttpClientService.cs",
+              "ToolTip": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Interfaces\\IHttpClientService.cs",
+              "RelativeToolTip": "MultipleHtppClient.Infrastructure\\Interfaces\\IHttpClientService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T14:51:36.458Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Partner.cs",
+              "DocumentMoniker": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\Partner.cs",
+              "RelativeDocumentMoniker": "MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\Partner.cs",
+              "ToolTip": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\Partner.cs",
+              "RelativeToolTip": "MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\Partner.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAswAAAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T14:49:59.515Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "DossierStatus.cs",
+              "DocumentMoniker": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\DossierStatus.cs",
+              "RelativeDocumentMoniker": "MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\DossierStatus.cs",
+              "ToolTip": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\DossierStatus.cs",
+              "RelativeToolTip": "MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\DossierStatus.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAA5wAQAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T11:16:36.632Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "FinalCounts.cs",
+              "DocumentMoniker": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\FinalCounts.cs",
+              "RelativeDocumentMoniker": "MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\FinalCounts.cs",
+              "ToolTip": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\FinalCounts.cs",
+              "RelativeToolTip": "MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\FinalCounts.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAQAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T09:44:20.017Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PartnersType.cs",
+              "DocumentMoniker": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\PartnersType.cs",
+              "RelativeDocumentMoniker": "MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\PartnersType.cs",
+              "ToolTip": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\PartnersType.cs",
+              "RelativeToolTip": "MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\PartnersType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T11:05:21.641Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IUseHttpService.cs",
+              "DocumentMoniker": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.API\\Services\\IUseHttpService.cs",
+              "RelativeDocumentMoniker": "MultipleHtppClient.API\\Services\\IUseHttpService.cs",
+              "ToolTip": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.API\\Services\\IUseHttpService.cs",
+              "RelativeToolTip": "MultipleHtppClient.API\\Services\\IUseHttpService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T09:45:45.345Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PresentationController.cs",
+              "DocumentMoniker": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.API\\Controllers\\PresentationController.cs",
+              "RelativeDocumentMoniker": "MultipleHtppClient.API\\Controllers\\PresentationController.cs",
+              "ToolTip": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.API\\Controllers\\PresentationController.cs",
+              "RelativeToolTip": "MultipleHtppClient.API\\Controllers\\PresentationController.cs",
+              "ViewState": "AgIAAHoAAAAAAAAAAAAowIAAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T10:54:14.887Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UseHttpService.cs",
+              "DocumentMoniker": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.API\\Services\\UseHttpService.cs",
+              "RelativeDocumentMoniker": "MultipleHtppClient.API\\Services\\UseHttpService.cs",
+              "ToolTip": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.API\\Services\\UseHttpService.cs",
+              "RelativeToolTip": "MultipleHtppClient.API\\Services\\UseHttpService.cs",
+              "ViewState": "AgIAAKUAAAAAAAAAAAAswLEAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T09:46:02.435Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DossierAll.cs",
+              "DocumentMoniker": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\DossierAll.cs",
+              "RelativeDocumentMoniker": "MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\DossierAll.cs",
+              "ToolTip": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\DossierAll.cs",
+              "RelativeToolTip": "MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\DossierAll.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAswAAAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T14:37:20.721Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CommercialCutting.cs",
+              "DocumentMoniker": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\CommercialCutting.cs",
+              "RelativeDocumentMoniker": "MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\CommercialCutting.cs",
+              "ToolTip": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\CommercialCutting.cs",
+              "RelativeToolTip": "MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\CommercialCutting.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T14:24:21.736Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ProfileRoleRequestBody.cs",
+              "DocumentMoniker": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Models\\Gestion\\Requests\\ProfileRoleRequestBody.cs",
+              "RelativeDocumentMoniker": "MultipleHtppClient.Infrastructure\\Models\\Gestion\\Requests\\ProfileRoleRequestBody.cs",
+              "ToolTip": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Models\\Gestion\\Requests\\ProfileRoleRequestBody.cs",
+              "RelativeToolTip": "MultipleHtppClient.Infrastructure\\Models\\Gestion\\Requests\\ProfileRoleRequestBody.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T13:40:25.523Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "DebugInfo.cs",
+              "DocumentMoniker": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\DebugInfo.cs",
+              "RelativeDocumentMoniker": "MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\DebugInfo.cs",
+              "ToolTip": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\DebugInfo.cs",
+              "RelativeToolTip": "MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\DebugInfo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAQAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T09:44:10.163Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "DossierCounts.cs",
+              "DocumentMoniker": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\DossierCounts.cs",
+              "RelativeDocumentMoniker": "MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\DossierCounts.cs",
+              "ToolTip": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\DossierCounts.cs",
+              "RelativeToolTip": "MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\DossierCounts.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwA0AAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T09:44:14.05Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "DemandType.cs",
+              "DocumentMoniker": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\DemandType.cs",
+              "RelativeDocumentMoniker": "MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\DemandType.cs",
+              "ToolTip": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\DemandType.cs",
+              "RelativeToolTip": "MultipleHtppClient.Infrastructure\\Models\\Gestion\\Responses\\DemandType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T14:07:02.608Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "StringToBoolConverter.cs",
+              "DocumentMoniker": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MutipleHttpClient.Domain\\Converters\\StringToBoolConverter.cs",
+              "RelativeDocumentMoniker": "MutipleHttpClient.Domain\\Converters\\StringToBoolConverter.cs",
+              "ToolTip": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MutipleHttpClient.Domain\\Converters\\StringToBoolConverter.cs",
+              "RelativeToolTip": "MutipleHttpClient.Domain\\Converters\\StringToBoolConverter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T14:05:58.819Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Aglou10001Response.cs",
+              "DocumentMoniker": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Models\\Responses\\aglou-q-10001\\Aglou10001Response.cs",
+              "RelativeDocumentMoniker": "MultipleHtppClient.Infrastructure\\Models\\Responses\\aglou-q-10001\\Aglou10001Response.cs",
+              "ToolTip": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Models\\Responses\\aglou-q-10001\\Aglou10001Response.cs",
+              "RelativeToolTip": "MultipleHtppClient.Infrastructure\\Models\\Responses\\aglou-q-10001\\Aglou10001Response.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T09:44:37.705Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Aglou10001Requests.cs",
+              "DocumentMoniker": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Models\\Requests\\aglou-q-10001\\Aglou10001Requests.cs",
+              "RelativeDocumentMoniker": "MultipleHtppClient.Infrastructure\\Models\\Requests\\aglou-q-10001\\Aglou10001Requests.cs",
+              "ToolTip": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Models\\Requests\\aglou-q-10001\\Aglou10001Requests.cs",
+              "RelativeToolTip": "MultipleHtppClient.Infrastructure\\Models\\Requests\\aglou-q-10001\\Aglou10001Requests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T13:27:03.61Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "DossierCountRequest.cs",
+              "DocumentMoniker": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Models\\Gestion\\Requests\\DossierCountRequest.cs",
+              "RelativeDocumentMoniker": "MultipleHtppClient.Infrastructure\\Models\\Gestion\\Requests\\DossierCountRequest.cs",
+              "ToolTip": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Models\\Gestion\\Requests\\DossierCountRequest.cs",
+              "RelativeToolTip": "MultipleHtppClient.Infrastructure\\Models\\Gestion\\Requests\\DossierCountRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T09:43:58.555Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "AglouLoginResponse.cs",
+              "DocumentMoniker": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Models\\Responses\\aglou-q-10001\\AglouLoginResponse.cs",
+              "RelativeDocumentMoniker": "MultipleHtppClient.Infrastructure\\Models\\Responses\\aglou-q-10001\\AglouLoginResponse.cs",
+              "ToolTip": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Models\\Responses\\aglou-q-10001\\AglouLoginResponse.cs",
+              "RelativeToolTip": "MultipleHtppClient.Infrastructure\\Models\\Responses\\aglou-q-10001\\AglouLoginResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T09:44:41.522Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.API\\Program.cs",
+              "RelativeDocumentMoniker": "MultipleHtppClient.API\\Program.cs",
+              "ToolTip": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.API\\Program.cs",
+              "RelativeToolTip": "MultipleHtppClient.API\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T10:08:37.963Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.API\\appsettings.json",
+              "RelativeDocumentMoniker": "MultipleHtppClient.API\\appsettings.json",
+              "ToolTip": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.API\\appsettings.json",
+              "RelativeToolTip": "MultipleHtppClient.API\\appsettings.json",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAACwAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-12T10:31:16.952Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Models\\Product.cs",
+              "RelativeDocumentMoniker": "MultipleHtppClient.Infrastructure\\Models\\Product.cs",
+              "ToolTip": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Models\\Product.cs",
+              "RelativeToolTip": "MultipleHtppClient.Infrastructure\\Models\\Product.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T09:44:44.416Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "AglouUser.cs",
+              "DocumentMoniker": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Models\\Responses\\aglou-q-10001\\AglouUser.cs",
+              "RelativeDocumentMoniker": "MultipleHtppClient.Infrastructure\\Models\\Responses\\aglou-q-10001\\AglouUser.cs",
+              "ToolTip": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\Models\\Responses\\aglou-q-10001\\AglouUser.cs",
+              "RelativeToolTip": "MultipleHtppClient.Infrastructure\\Models\\Responses\\aglou-q-10001\\AglouUser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T09:45:15.321Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MultipleHtppClient.Infrastructure;
+using MultipleHtppClient.Infrastructure.Models.Gestion.Requests;
+using MultipleHtppClient.Infrastructure.Models.Gestion.Responses;
 
 namespace MultipleHtppClient.API;
 
@@ -98,5 +100,100 @@ public class UseHttpService : IUseHttpService
         return await _clientService.SendAsync<object, object>(request);
     }
 
+    public async Task<ApiResponse<Aglou10001Response<IEnumerable<PartnersType>>>> GetPartnerTypes()
+    {
+        ApiRequest<object> request = new ApiRequest<object>
+        {
+            ApiName = "aglou-q-monopp-extern",
+            Endpoint = "/api/v2/typepartenaire/GetAll",
+            Method = HttpMethod.Post,
+            RequiresApiKey = true,
+            RequiresBearerToken = true
+        };
+        return await _clientService.SendAsync<object, Aglou10001Response<IEnumerable<PartnersType>>>(request);
+    }
 
+    public async Task<ApiResponse<Aglou10001Response<IEnumerable<DossierStatus>>>> GetDossierStatusAsync(ProfileRoleRequestBody? profileRequestBody)
+    {
+        profileRequestBody.RoleId = string.Empty;
+        ApiRequest<ProfileRoleRequestBody> request = new ApiRequest<ProfileRoleRequestBody>
+        {
+            ApiName = "aglou-q-monopp-extern",
+            Endpoint = "/api/v2/statutdossier/GetAll",
+            Method = HttpMethod.Post,
+            RequiresApiKey = true,
+            RequiresBearerToken = true,
+            Data = profileRequestBody
+        };
+        return await _clientService.SendAsync<ProfileRoleRequestBody, Aglou10001Response<IEnumerable<DossierStatus>>>(request);
+    }
+
+    public async Task<ApiResponse<Aglou10001Response<IEnumerable<DemandType>>>> GetDemandsTypeAsync()
+    {
+        ApiRequest<object> request = new ApiRequest<object>
+        {
+            ApiName = "aglou-q-monopp-extern",
+            Endpoint = "/api/v2/typedemende/GetAll",
+            Method = HttpMethod.Post,
+            RequiresApiKey = true,
+            RequiresBearerToken = true
+        };
+        return await _clientService.SendAsync<object, Aglou10001Response<IEnumerable<DemandType>>>(request);
+    }
+
+    public async Task<ApiResponse<Aglou10001Response<IEnumerable<CommercialCutting>>>> GetCommercialCuttingAsync()
+    {
+        ApiRequest<object> request = new ApiRequest<object>
+        {
+            ApiName = "aglou-q-monopp-extern",
+            Endpoint = "/api/v2/decoupagecommercial/GetAll",
+            Method = HttpMethod.Post,
+            RequiresApiKey = true,
+            RequiresBearerToken = true
+        };
+        return await _clientService.SendAsync<object, Aglou10001Response<IEnumerable<CommercialCutting>>>(request);
+    }
+
+    public async Task<ApiResponse<Aglou10001Response<IEnumerable<DossierAll>>>> GetAllDossierAsync(ProfileRoleRequestBody? profileRoleRequestBody)
+    {
+        profileRoleRequestBody.RoleId = string.Empty;
+        ApiRequest<object> request = new ApiRequest<object>
+        {
+            ApiName = "aglou-q-monopp-extern",
+            Endpoint = "/api/v2/dossier/GetAll",
+            Method = HttpMethod.Post,
+            RequiresApiKey = true,
+            RequiresBearerToken = true,
+            Data = profileRoleRequestBody
+        };
+        return await _clientService.SendAsync<object, Aglou10001Response<IEnumerable<DossierAll>>>(request);
+    }
+
+    public async Task<ApiResponse<Aglou10001Response<IEnumerable<Partner>>>> GetPartnersAsync()
+    {
+        ApiRequest<object> request = new ApiRequest<object>
+        {
+            ApiName = "aglou-q-monopp-extern",
+            Endpoint = "/api/v2/partenaire/GetAll",
+            Method = HttpMethod.Post,
+            RequiresApiKey = true,
+            RequiresBearerToken = true,
+            Data = new { }
+        };
+        return await _clientService.SendAsync<object, Aglou10001Response<IEnumerable<Partner>>>(request);
+    }
+
+    public async Task<ApiResponse<Aglou10001Response<IEnumerable<DossierSearchResponse>>>> SearchDossier(SearchDossierRequestBody searchDossierRequestBody)
+    {
+        ApiRequest<SearchDossierRequestBody> request = new ApiRequest<SearchDossierRequestBody>
+        {
+            ApiName = "aglou-q-monopp-extern",
+            Endpoint = "/api/v2/dossier/Search",
+            Method = HttpMethod.Post,
+            RequiresApiKey = true,
+            RequiresBearerToken = true,
+            Data = searchDossierRequestBody
+        };
+        return await _clientService.SendAsync<SearchDossierRequestBody, Aglou10001Response<IEnumerable<DossierSearchResponse>>>(request);
+    }
 }
