@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Runtime.Serialization;
+using Microsoft.AspNetCore.Mvc;
 using MultipleHtppClient.Infrastructure;
 using MultipleHtppClient.Infrastructure.Models.Gestion.Requests;
 using MultipleHtppClient.Infrastructure.Models.Gestion.Responses;
@@ -195,5 +196,117 @@ public class UseHttpService : IUseHttpService
             Data = searchDossierRequestBody
         };
         return await _clientService.SendAsync<SearchDossierRequestBody, Aglou10001Response<IEnumerable<DossierSearchResponse>>>(request);
+    }
+
+    public async Task<ApiResponse<Aglou10001Response<object>>> LogoutAsync(LogoutRequestBody logoutRequestBody)
+    {
+        ApiRequest<LogoutRequestBody> request = new ApiRequest<LogoutRequestBody>
+        {
+            ApiName = "aglou-q-monopp-extern",
+            Endpoint = "/api/v2/utilisateur/Logout",
+            Method = HttpMethod.Post,
+            RequiresApiKey = true,
+            RequiresBearerToken = true,
+            Data = logoutRequestBody
+        };
+        return await _clientService.SendAsync<LogoutRequestBody, Aglou10001Response<object>>(request);
+    }
+
+    public async Task<ApiResponse<Aglou10001Response<IEnumerable<ActivityNatureResponse>>>> GetAllActivitiesAsync()
+    {
+        ApiRequest<object> request = new ApiRequest<object>
+        {
+            ApiName = "aglou-q-monopp-extern",
+            Endpoint = "/api/v2/natureactivite/GetAll",
+            Method = HttpMethod.Post,
+            RequiresApiKey = true,
+            RequiresBearerToken = true,
+            Data = new { }
+        };
+        return await _clientService.SendAsync<object, Aglou10001Response<IEnumerable<ActivityNatureResponse>>>(request);
+    }
+
+    public async Task<ApiResponse<Aglou10001Response<IEnumerable<PackResponse>>>> GetAllPacksAsync()
+    {
+        ApiRequest<object> request = new ApiRequest<object>
+        {
+            ApiName = "aglou-q-monopp-extern",
+            Endpoint = "/api/v2/pack/GetAll",
+            Method = HttpMethod.Post,
+            RequiresApiKey = true,
+            RequiresBearerToken = true,
+            Data = new { }
+        };
+        return await _clientService.SendAsync<object, Aglou10001Response<IEnumerable<PackResponse>>>(request);
+    }
+
+    public async Task<ApiResponse<Aglou10001Response<IEnumerable<VilleResponse>>>> GetAllCitiesAsync()
+    {
+        ApiRequest<object> request = new ApiRequest<object>
+        {
+            ApiName = "aglou-q-monopp-extern",
+            Endpoint = "/api/v2/ville/GetAll",
+            Method = HttpMethod.Post,
+            RequiresApiKey = true,
+            RequiresBearerToken = true,
+            Data = new { }
+        };
+        return await _clientService.SendAsync<object, Aglou10001Response<IEnumerable<VilleResponse>>>(request);
+    }
+
+    public async Task<ApiResponse<Aglou10001Response<IEnumerable<ArrondissementResponse>>>> GetArrondissementsAsync()
+    {
+        ApiRequest<object> request = new ApiRequest<object>
+        {
+            ApiName = "aglou-q-monopp-extern",
+            Endpoint = "/api/v2/arrondissement/GetAll",
+            Method = HttpMethod.Post,
+            RequiresApiKey = true,
+            RequiresBearerToken = true,
+            Data = new { }
+        };
+        return await _clientService.SendAsync<object, Aglou10001Response<IEnumerable<ArrondissementResponse>>>(request);
+    }
+
+    public async Task<ApiResponse<Aglou10001Response<IEnumerable<TypeBienResponse>>>> GetTypeBienAsync()
+    {
+        ApiRequest<object> request = new ApiRequest<object>
+        {
+            ApiName = "aglou-q-monopp-extern",
+            Endpoint = "/api/v2/typebien/GetAll",
+            Method = HttpMethod.Post,
+            RequiresApiKey = true,
+            RequiresBearerToken = true,
+            Data = new { }
+        };
+        return await _clientService.SendAsync<object, Aglou10001Response<IEnumerable<TypeBienResponse>>>(request);
+    }
+
+    public async Task<ApiResponse<Aglou10001Response<IEnumerable<RegionResponse>>>> GetAllRegionsAsync()
+    {
+        ApiRequest<object> request = new ApiRequest<object>
+        {
+            ApiName = "aglou-q-monopp-extern",
+            Endpoint = "/api/v2/region/GetAll",
+            Method = HttpMethod.Post,
+            RequiresApiKey = true,
+            RequiresBearerToken = true,
+            Data = new { }
+        };
+        return await _clientService.SendAsync<object, Aglou10001Response<IEnumerable<RegionResponse>>>(request);
+    }
+
+    public async Task<ApiResponse<Aglou10001Response<object>>> ForgetPasswordAsync(ForgetPasswordRequestBody forgetPasswordRequestBody)
+    {
+        ApiRequest<object> request = new ApiRequest<object>
+        {
+            ApiName = "aglou-q-monopp-extern",
+            Endpoint = "/api/v2/utilisateur/PasswordForgotten",
+            Method = HttpMethod.Post,
+            RequiresApiKey = true,
+            RequiresBearerToken = false,
+            Data = forgetPasswordRequestBody
+        };
+        return await _clientService.SendAsync<object, Aglou10001Response<object>>(request);
     }
 }

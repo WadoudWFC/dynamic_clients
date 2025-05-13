@@ -6,32 +6,46 @@ public class DossierSearchResponse
 {
     [JsonPropertyName("id")]
     public int Id { get; set; }
+
     [JsonPropertyName("Code")]
-    public string Code { get; set; } = string.Empty;
+    public string? Code { get; set; }
+
     [JsonPropertyName("id_natureactivite")]
-    public int? IdNatureActivite { get; set; }
+    public int? Id_NatureActivite { get; set; }
+
     [JsonPropertyName("id_typedemende")]
-    public int IdTypeDemande { get; set; }
+    public int Id_TypeDemande { get; set; }
+
     [JsonPropertyName("id_decoupagecommercial")]
-    public int IdDecoupageCommercial { get; set; }
+    public int Id_DecoupageCommercial { get; set; }
+
     [JsonPropertyName("decopagecmr")]
-    public string DecopageCmr { get; set; } = string.Empty;
+    public string? DecopageCMR { get; set; }
+
     [JsonPropertyName("id_statutdossier")]
-    public int IdStatutDossier { get; set; }
+    public int Id_StatutDossier { get; set; }
+
     [JsonPropertyName("canupdate")]
     public bool CanUpdate { get; set; }
+
     [JsonPropertyName("typedemende")]
-    public string TypeDemande { get; set; } = string.Empty;
+    public string? TypeDemande { get; set; }
+
     [JsonPropertyName("natureactivite")]
     public string? NatureActivite { get; set; }
+
     [JsonPropertyName("partenaire")]
-    public string Partenaire { get; set; } = string.Empty;
+    public string? Partenaire { get; set; }
+
     [JsonPropertyName("LocalDossier")]
-    public LocalDossier LocalDossier { get; set; } = new LocalDossier();
+    public LocalDossier? LocalDossier { get; set; }
+
     [JsonPropertyName("statut")]
-    public string Statut { get; set; } = string.Empty;
+    public string? Statut { get; set; }
+
     [JsonPropertyName("labelstatut")]
-    public string LabelStatut { get; set; } = string.Empty;
+    public string? LabelStatut { get; set; }
+
     [JsonPropertyName("date_created")]
-    public DateTime DateCreated { get; set; }
+    public string? DateCreated { get; set; }
 }

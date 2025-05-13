@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MultipleHtppClient.Infrastructure;
 using MultipleHtppClient.Infrastructure.Models.Gestion.Requests;
 using MultipleHtppClient.Infrastructure.Models.Gestion.Responses;
@@ -143,6 +142,86 @@ public class PresentationController : ControllerBase
     public async Task<ActionResult<Aglou10001Response<IEnumerable<DossierSearchResponse>>>> SearchDossiers([FromBody] SearchDossierRequestBody request)
     {
         var response = await _useHttpService.SearchDossier(request);
+        if (!response.IsSuccess)
+        {
+            return StatusCode((int)response.StatusCode, response.ErrorMessage);
+        }
+        return Ok(response.Data);
+    }
+    [HttpPost("/api/v2/utilisateur/Logout")]
+    public async Task<ActionResult<Aglou10001Response<object>>> Logout([FromBody] LogoutRequestBody request)
+    {
+        var response = await _useHttpService.LogoutAsync(request);
+        if (!response.IsSuccess)
+        {
+            return StatusCode((int)response.StatusCode, response.ErrorMessage);
+        }
+        return Ok(response.Data);
+    }
+    [HttpPost("/api/v2/natureactivite/GetAll")]
+    public async Task<ActionResult<Aglou10001Response<IEnumerable<ActivityNatureResponse>>>> GetAllActivities()
+    {
+        var response = await _useHttpService.GetAllActivitiesAsync();
+        if (!response.IsSuccess)
+        {
+            return StatusCode((int)response.StatusCode, response.ErrorMessage);
+        }
+        return Ok(response.Data);
+    }
+    [HttpPost("/api/v2/pack/GetAll")]
+    public async Task<ActionResult<Aglou10001Response<IEnumerable<PackResponse>>>> GetAllPacks()
+    {
+        var response = await _useHttpService.GetAllPacksAsync();
+        if (!response.IsSuccess)
+        {
+            return StatusCode((int)response.StatusCode, response.ErrorMessage);
+        }
+        return Ok(response.Data);
+    }
+    [HttpPost("/api/v2/ville/GetAll")]
+    public async Task<ActionResult<Aglou10001Response<IEnumerable<VilleResponse>>>> GetAllCities()
+    {
+        var response = await _useHttpService.GetAllCitiesAsync();
+        if (!response.IsSuccess)
+        {
+            return StatusCode((int)response.StatusCode, response.ErrorMessage);
+        }
+        return Ok(response.Data);
+    }
+    [HttpPost("/api/v2/arrondissement/GetAll")]
+    public async Task<ActionResult<Aglou10001Response<IEnumerable<ArrondissementResponse>>>> GetArrondissements()
+    {
+        var response = await _useHttpService.GetArrondissementsAsync();
+        if (!response.IsSuccess)
+        {
+            return StatusCode((int)response.StatusCode, response.ErrorMessage);
+        }
+        return Ok(response.Data);
+    }
+    [HttpPost("/api/v2/typebien/GetAll")]
+    public async Task<ActionResult<Aglou10001Response<IEnumerable<TypeBienResponse>>>> GetAllTypeBien()
+    {
+        var response = await _useHttpService.GetTypeBienAsync();
+        if (!response.IsSuccess)
+        {
+            return StatusCode((int)response.StatusCode, response.ErrorMessage);
+        }
+        return Ok(response.Data);
+    }
+    [HttpPost("/api/v2/region/GetAll")]
+    public async Task<ActionResult<Aglou10001Response<IEnumerable<RegionResponse>>>> GetAllRegions()
+    {
+        var response = await _useHttpService.GetAllRegionsAsync();
+        if (!response.IsSuccess)
+        {
+            return StatusCode((int)response.StatusCode, response.ErrorMessage);
+        }
+        return Ok(response.Data);
+    }
+    [HttpPost("/api/v2/utilisateur/PasswordForgotten")]
+    public async Task<ActionResult<Aglou10001Response<object>>> ForgetPassword([FromBody] ForgetPasswordRequestBody request)
+    {
+        var response = await _useHttpService.ForgetPasswordAsync(request);
         if (!response.IsSuccess)
         {
             return StatusCode((int)response.StatusCode, response.ErrorMessage);

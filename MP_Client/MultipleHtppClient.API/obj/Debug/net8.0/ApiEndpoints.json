@@ -37,6 +37,26 @@
   },
   {
     "ContainingType": "MultipleHtppClient.API.PresentationController",
+    "Method": "GetArrondissements",
+    "RelativePath": "api/v2/arrondissement/GetAll",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.Models.Gestion.Responses.ArrondissementResponse, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.PresentationController",
     "Method": "GetCommercialCutting",
     "RelativePath": "api/v2/decoupagecommercial/GetAll",
     "HttpMethod": "POST",
@@ -109,6 +129,72 @@
   },
   {
     "ContainingType": "MultipleHtppClient.API.PresentationController",
+    "Method": "SearchDossiers",
+    "RelativePath": "api/v2/dossier/Search",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "MultipleHtppClient.Infrastructure.SearchDossierRequestBody",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.DossierSearchResponse, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.PresentationController",
+    "Method": "GetAllActivities",
+    "RelativePath": "api/v2/natureactivite/GetAll",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.Models.Gestion.Responses.ActivityNatureResponse, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.PresentationController",
+    "Method": "GetAllPacks",
+    "RelativePath": "api/v2/pack/GetAll",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.Models.Gestion.Responses.PackResponse, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.PresentationController",
     "Method": "GetPartners",
     "RelativePath": "api/v2/partenaire/GetAll",
     "HttpMethod": "POST",
@@ -118,6 +204,26 @@
     "ReturnTypes": [
       {
         "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.Models.Gestion.Responses.Partner, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.PresentationController",
+    "Method": "GetAllRegions",
+    "RelativePath": "api/v2/region/GetAll",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.Models.Gestion.Responses.RegionResponse, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -144,6 +250,26 @@
     "ReturnTypes": [
       {
         "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.Models.Gestion.Responses.DossierStatus, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.PresentationController",
+    "Method": "GetAllTypeBien",
+    "RelativePath": "api/v2/typebien/GetAll",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.Models.Gestion.Responses.TypeBienResponse, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -234,5 +360,77 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.PresentationController",
+    "Method": "Logout",
+    "RelativePath": "api/v2/utilisateur/Logout",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "MultipleHtppClient.Infrastructure.Models.Gestion.Requests.LogoutRequestBody",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.PresentationController",
+    "Method": "ForgetPassword",
+    "RelativePath": "api/v2/utilisateur/PasswordForgotten",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "MultipleHtppClient.Infrastructure.Models.Gestion.Requests.ForgetPasswordRequestBody",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.PresentationController",
+    "Method": "GetAllCities",
+    "RelativePath": "api/v2/ville/GetAll",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.Models.Gestion.Responses.VilleResponse, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]

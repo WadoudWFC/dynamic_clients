@@ -5,21 +5,29 @@ namespace MultipleHtppClient.Infrastructure;
 public class LocalDossier
 {
     [JsonPropertyName("id_dossier")]
-    public int IdDossier { get; set; }
+    public int Id_Dossier { get; set; }
+
     [JsonPropertyName("id")]
     public int Id { get; set; }
+
     [JsonPropertyName("Latitude")]
-    public string Latitude { get; set; } = string.Empty;
+    public string? Latitude { get; set; }
+
     [JsonPropertyName("Longitude")]
-    public string Longitude { get; set; } = string.Empty;
+    public string? Longitude { get; set; }
+
     [JsonPropertyName("adress")]
-    public string Address { get; set; } = string.Empty;
+    public string? Address { get; set; }
+
     [JsonPropertyName("zon")]
-    public string? Zon { get; set; }
+    public string? Zone { get; set; }
+
     [JsonPropertyName("ville")]
-    public string Ville { get; set; } = string.Empty;
+    public string? City { get; set; }
+
     [JsonPropertyName("decopagecmr")]
-    public string DecopageCmr { get; set; } = string.Empty;
+    public string? DecopageCMR { get; set; }
+
     [JsonPropertyName("region")]
-    public string Region { get; set; } = string.Empty;
+    public string? Region { get; set; }
 }
