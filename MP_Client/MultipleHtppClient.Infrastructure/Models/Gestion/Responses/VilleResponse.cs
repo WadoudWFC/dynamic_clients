@@ -5,16 +5,16 @@ namespace MultipleHtppClient.Infrastructure.Models.Gestion.Responses
     public class VilleResponse
     {
         [JsonPropertyName("id")]
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         [JsonPropertyName("label")]
         public string? Label { get; set; }
 
         [JsonPropertyName("id_region")]
-        public string? Id_Region { get; set; }
+        public int? Id_Region { get; set; }
 
         [JsonPropertyName("id_decoupagecommercial")]
-        public string? Id_DecoupageCommercial { get; set; }
+        public int? Id_DecoupageCommercial { get; set; }
 
         [JsonPropertyName("type_localite")]
         public string? Type_Localite { get; set; }

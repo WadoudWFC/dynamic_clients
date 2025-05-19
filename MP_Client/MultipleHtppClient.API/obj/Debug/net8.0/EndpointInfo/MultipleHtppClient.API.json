@@ -708,6 +708,102 @@
           }
         }
       }
+    },
+    "/api/v2/utilisateur/UpdatePassWord": {
+      "post": {
+        "tags": [
+          "Presentation"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePasswordRequestBody"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePasswordRequestBody"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePasswordRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/StringAglou10001Response"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StringAglou10001Response"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StringAglou10001Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/dossier/Load": {
+      "post": {
+        "tags": [
+          "Presentation"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogoutRequestBody"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogoutRequestBody"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogoutRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoadDossierResponseAglou10001Response"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoadDossierResponseAglou10001Response"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoadDossierResponseAglou10001Response"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -871,6 +967,57 @@
         "type": "object",
         "properties": {
           "email": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Commentaire": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id_dossier": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "commentaire": {
+            "type": "string",
+            "nullable": true
+          },
+          "date_created": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "date_updated": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "date_deleted": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "user_created": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "user_updated": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "user_deleted": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "id_dossierNavigation": {
             "type": "string",
             "nullable": true
           }
@@ -1324,6 +1471,158 @@
         },
         "additionalProperties": false
       },
+      "HistoryItem": {
+        "type": "object",
+        "properties": {
+          "date_created": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "id_dossier": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "id_statutprecedent": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "id_statutsuivant": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "statutprecedent": {
+            "type": "string",
+            "nullable": true
+          },
+          "statutsuivant": {
+            "type": "string",
+            "nullable": true
+          },
+          "statutprecedentin": {
+            "type": "string",
+            "nullable": true
+          },
+          "statutsuivantin": {
+            "type": "string",
+            "nullable": true
+          },
+          "opperateur": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LoadDossierResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id_natureactivite": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "id_typedemende": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Code": {
+            "type": "string",
+            "nullable": true
+          },
+          "id_Partenaire": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "id_statutdossier": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Commentaire": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Commentaire"
+            },
+            "nullable": true
+          },
+          "natureactivite": {
+            "type": "string",
+            "nullable": true
+          },
+          "nameactivite": {
+            "type": "string",
+            "nullable": true
+          },
+          "typedemende": {
+            "type": "string",
+            "nullable": true
+          },
+          "codestatut": {
+            "type": "string",
+            "nullable": true
+          },
+          "labelstatut": {
+            "type": "string",
+            "nullable": true
+          },
+          "statut": {
+            "type": "string",
+            "nullable": true
+          },
+          "canupload": {
+            "type": "boolean"
+          },
+          "LocalDossier": {
+            "$ref": "#/components/schemas/LocalDossierData"
+          },
+          "Partenaire": {
+            "$ref": "#/components/schemas/Partner"
+          },
+          "Historique": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HistoryItem"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LoadDossierResponseAglou10001Response": {
+        "type": "object",
+        "properties": {
+          "codeReponse": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "msg": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/LoadDossierResponse"
+          },
+          "NbRows": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "TotalRows": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "LocalDossier": {
         "type": "object",
         "properties": {
@@ -1360,6 +1659,149 @@
             "nullable": true
           },
           "region": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LocalDossierData": {
+        "type": "object",
+        "properties": {
+          "id_dossier": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "photosInterieur": {
+            "type": "string",
+            "nullable": true
+          },
+          "photosExterieur": {
+            "type": "string",
+            "nullable": true
+          },
+          "Latitude": {
+            "type": "string",
+            "nullable": true
+          },
+          "Longitude": {
+            "type": "string",
+            "nullable": true
+          },
+          "adress": {
+            "type": "string",
+            "nullable": true
+          },
+          "id_ville": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id_arrandissement": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "commentaireLocal": {
+            "type": "string",
+            "nullable": true
+          },
+          "id_typebien": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "adresslocal": {
+            "type": "string",
+            "nullable": true
+          },
+          "horaire_ouverture": {
+            "type": "string",
+            "nullable": true
+          },
+          "jour_ouverture": {
+            "type": "string",
+            "nullable": true
+          },
+          "id_visibilite": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "superficie": {
+            "type": "string",
+            "nullable": true
+          },
+          "presence_sanitaire": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "typebien": {
+            "type": "string",
+            "nullable": true
+          },
+          "facade": {
+            "type": "string",
+            "nullable": true
+          },
+          "anne_experience": {
+            "type": "string",
+            "nullable": true
+          },
+          "prix": {
+            "type": "number",
+            "format": "double"
+          },
+          "zon": {
+            "type": "string",
+            "nullable": true
+          },
+          "ville": {
+            "type": "string",
+            "nullable": true
+          },
+          "region": {
+            "type": "string",
+            "nullable": true
+          },
+          "arrondissement": {
+            "type": "string",
+            "nullable": true
+          },
+          "typelocalite": {
+            "type": "string",
+            "nullable": true
+          },
+          "decopagecmr": {
+            "type": "string",
+            "nullable": true
+          },
+          "nom_ag_WFC_proche": {
+            "type": "string",
+            "nullable": true
+          },
+          "dist_bur_WFC_proche": {
+            "type": "string",
+            "nullable": true
+          },
+          "potentiel": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dist_ag_WFC_proche": {
+            "type": "string",
+            "nullable": true
+          },
+          "pack": {
+            "type": "string",
+            "nullable": true
+          },
+          "id_pack": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nom": {
             "type": "string",
             "nullable": true
           }
@@ -1476,6 +1918,30 @@
             "type": "integer",
             "format": "int32"
           },
+          "id_typepartenaire": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "id_typepersonne": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "id_ville": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "id_region": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Code": {
+            "type": "string",
+            "nullable": true
+          },
           "nom": {
             "type": "string",
             "nullable": true
@@ -1484,12 +1950,91 @@
             "type": "string",
             "nullable": true
           },
-          "Code": {
+          "mail": {
             "type": "string",
             "nullable": true
           },
-          "full_name": {
+          "telephone": {
             "type": "string",
+            "nullable": true
+          },
+          "cin": {
+            "type": "string",
+            "nullable": true
+          },
+          "raison_sociale": {
+            "type": "string",
+            "nullable": true
+          },
+          "pid": {
+            "type": "string",
+            "nullable": true
+          },
+          "ice": {
+            "type": "string",
+            "nullable": true
+          },
+          "rc": {
+            "type": "string",
+            "nullable": true
+          },
+          "rib": {
+            "type": "string",
+            "nullable": true
+          },
+          "tp": {
+            "type": "string",
+            "nullable": true
+          },
+          "identification_fiscale": {
+            "type": "string",
+            "nullable": true
+          },
+          "forme_juridique": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "regime_imposi": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "mode_mandataire": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "genre": {
+            "type": "boolean"
+          },
+          "statut": {
+            "type": "string",
+            "nullable": true
+          },
+          "date_created": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "date_updated": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "date_deleted": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "user_created": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "user_updated": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "user_deleted": {
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           }
         },
@@ -1698,6 +2243,32 @@
         },
         "additionalProperties": false
       },
+      "StringAglou10001Response": {
+        "type": "object",
+        "properties": {
+          "codeReponse": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "msg": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "string",
+            "nullable": true
+          },
+          "NbRows": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "TotalRows": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "TypeBienResponse": {
         "type": "object",
         "properties": {
@@ -1737,6 +2308,20 @@
           "TotalRows": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdatePasswordRequestBody": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "newPassword": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

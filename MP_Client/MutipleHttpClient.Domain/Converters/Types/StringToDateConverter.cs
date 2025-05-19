@@ -2,7 +2,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace MultipleHtppClient.Domain;
+namespace MutipleHttpClient.Domain.Converters.Types;
 
 public class StringToDateTimeConverter : JsonConverter<DateTime>
 {

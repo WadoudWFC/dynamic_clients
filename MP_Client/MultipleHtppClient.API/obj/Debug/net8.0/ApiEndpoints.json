@@ -129,6 +129,32 @@
   },
   {
     "ContainingType": "MultipleHtppClient.API.PresentationController",
+    "Method": "LoadDossier",
+    "RelativePath": "api/v2/dossier/Load",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "MultipleHtppClient.Infrastructure.Models.Gestion.Requests.LogoutRequestBody",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[MultipleHtppClient.Infrastructure.LoadDossierResponse, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.PresentationController",
     "Method": "SearchDossiers",
     "RelativePath": "api/v2/dossier/Search",
     "HttpMethod": "POST",
@@ -404,6 +430,32 @@
     "ReturnTypes": [
       {
         "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.PresentationController",
+    "Method": "UpdatePassword",
+    "RelativePath": "api/v2/utilisateur/UpdatePassWord",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "MultipleHtppClient.Infrastructure.UpdatePasswordRequestBody",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

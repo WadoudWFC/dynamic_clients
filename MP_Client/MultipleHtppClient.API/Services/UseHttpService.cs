@@ -1,5 +1,6 @@
 ﻿using System.Runtime.Serialization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing.Tree;
 using MultipleHtppClient.Infrastructure;
 using MultipleHtppClient.Infrastructure.Models.Gestion.Requests;
 using MultipleHtppClient.Infrastructure.Models.Gestion.Responses;
@@ -308,5 +309,34 @@ public class UseHttpService : IUseHttpService
             Data = forgetPasswordRequestBody
         };
         return await _clientService.SendAsync<object, Aglou10001Response<object>>(request);
+    }
+
+    public async Task<ApiResponse<Aglou10001Response<object>>> UpdatePasswordAsync(UpdatePasswordRequestBody updatePasswordRequestBody)
+    {
+        ApiRequest<UpdatePasswordRequestBody> request = new ApiRequest<UpdatePasswordRequestBody>
+        {
+            ApiName = "aglou-q-monopp-extern",
+            Endpoint = "/api/v2/utilisateur/UpdatePassWord",
+            Method = HttpMethod.Post,
+            RequiresApiKey = true,
+            RequiresBearerToken = false,
+            Data = updatePasswordRequestBody
+        };
+        return await _clientService.SendAsync<UpdatePasswordRequestBody, Aglou10001Response<object>>(request);
+    }
+
+    public async Task<ApiResponse<Aglou10001Response<string>>> LoadDossierAsync(LogoutRequestBody idRequestBody)
+    {
+        ApiRequest<LogoutRequestBody> request = new ApiRequest<LogoutRequestBody>
+        {
+            ApiName = "aglou-q-monopp-extern",
+            Endpoint = "/api/v2/dossier/Load",
+            Method = HttpMethod.Post,
+            RequiresApiKey = true,
+            RequiresBearerToken = true,
+            Data = idRequestBody,
+            IsNestedFormat = false
+        };
+        return await _clientService.SendAsync<LogoutRequestBody, Aglou10001Response<string>>(request);
     }
 }

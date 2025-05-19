@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Text.Json;
+using Microsoft.AspNetCore.Mvc;
 using MultipleHtppClient.Infrastructure;
 using MultipleHtppClient.Infrastructure.Models.Gestion.Requests;
 using MultipleHtppClient.Infrastructure.Models.Gestion.Responses;
@@ -228,4 +229,48 @@ public class PresentationController : ControllerBase
         }
         return Ok(response.Data);
     }
+    [HttpPost("/api/v2/utilisateur/UpdatePassWord")]
+    public async Task<ActionResult<Aglou10001Response<string>>> UpdatePassword([FromBody] UpdatePasswordRequestBody request)
+    {
+        var response = await _useHttpService.UpdatePasswordAsync(request);
+        if (!response.IsSuccess)
+        {
+            return StatusCode((int)response.StatusCode, response.ErrorMessage);
+        }
+        return Ok(response.Data);
+    }
+    [HttpPost("/api/v2/dossier/Load")]
+    public async Task<ActionResult<Aglou10001Response<LoadDossierResponse>>> LoadDossier([FromBody] LogoutRequestBody request)
+    {
+        var response = await _useHttpService.LoadDossierAsync(request);
+        if (!response.IsSuccess)
+        {
+            return StatusCode((int)response.StatusCode, response.ErrorMessage);
+        }
+        var apiReq = ApiResponse<string>.Success(response.Data.Data, response.StatusCode);
+        var transformmedResponse = GetLoadDossierResponseAsync(apiReq);
+        Aglou10001Response<LoadDossierResponse> finalResponse = new Aglou10001Response<LoadDossierResponse>
+        {
+            ResponseCode = (int)response.StatusCode,
+            Message = response.Data.Message,
+            Data = transformmedResponse,
+            NbRows = response.Data.NbRows,
+            TotalRows = response.Data.TotalRows
+        };
+        return Ok(finalResponse);
+    }
+    private static LoadDossierResponse? GetLoadDossierResponseAsync(ApiResponse<string> apiResponse)
+    {
+        if (!string.IsNullOrEmpty(apiResponse.Data))
+        {
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            };
+            var loadDossierResp = JsonSerializer.Deserialize<LoadDossierResponse>(apiResponse.Data, options);
+            return loadDossierResp;
+        }
+        return null;
+    }
+
 }

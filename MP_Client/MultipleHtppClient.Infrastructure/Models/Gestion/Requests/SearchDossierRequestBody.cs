@@ -1,5 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-using MultipleHtppClient.Domain;
 using MutipleHttpClient.Domain.Converters;
 
 namespace MultipleHtppClient.Infrastructure;

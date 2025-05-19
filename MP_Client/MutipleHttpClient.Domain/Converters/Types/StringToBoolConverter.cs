@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 
 
-namespace MutipleHttpClient.Domain;
+namespace MutipleHttpClient.Domain.Converters.Types;
 
 public class StringToBoolConverter : JsonConverter<bool>
 {

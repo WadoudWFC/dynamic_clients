@@ -1,5 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
+
 namespace MultipleHtppClient.Infrastructure;
 
 public class Aglou10001Response<T>
