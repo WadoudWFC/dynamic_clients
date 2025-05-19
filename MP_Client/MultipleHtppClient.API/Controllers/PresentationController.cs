@@ -259,6 +259,16 @@ public class PresentationController : ControllerBase
         };
         return Ok(finalResponse);
     }
+    [HttpPost("/api/v2/historique/Search")]
+    public async Task<ActionResult<Aglou10001Response<HistroySearchResponse>>> SearchHistory([FromBody] HistorySearchRequestBody request)
+    {
+        var response = await _useHttpService.SearchHistroyAsync(request);
+        if (!response.IsSuccess)
+        {
+            return StatusCode((int)response.StatusCode, response.ErrorMessage);
+        }
+        return Ok(response.Data);
+    }
     private static LoadDossierResponse? GetLoadDossierResponseAsync(ApiResponse<string> apiResponse)
     {
         if (!string.IsNullOrEmpty(apiResponse.Data))

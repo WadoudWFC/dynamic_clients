@@ -339,4 +339,18 @@ public class UseHttpService : IUseHttpService
         };
         return await _clientService.SendAsync<LogoutRequestBody, Aglou10001Response<string>>(request);
     }
+
+    public async Task<ApiResponse<Aglou10001Response<IEnumerable<HistroySearchResponse>>>> SearchHistroyAsync(HistorySearchRequestBody historySearchRequestBody)
+    {
+        ApiRequest<HistorySearchRequestBody> request = new ApiRequest<HistorySearchRequestBody>
+        {
+            ApiName = "aglou-q-monopp-extern",
+            Endpoint = "/api/v2/historique/Search",
+            Method = HttpMethod.Post,
+            RequiresApiKey = true,
+            RequiresBearerToken = true,
+            Data = historySearchRequestBody
+        };
+        return await _clientService.SendAsync<HistorySearchRequestBody, Aglou10001Response<IEnumerable<HistroySearchResponse>>>(request);
+    }
 }
