@@ -7,7 +7,7 @@ public class Commentaire
     [JsonPropertyName("id")]
     public int Id { get; set; }
     [JsonPropertyName("id_dossier")]
-    public int DossierId { get; set; }
+    public int? DossierId { get; set; }
     [JsonPropertyName("commentaire")]
     public string? Text { get; set; }
     [JsonPropertyName("date_created")]
@@ -17,7 +17,7 @@ public class Commentaire
     [JsonPropertyName("date_deleted")]
     public DateTime? DateDeleted { get; set; }
     [JsonPropertyName("user_created")]
-    public int UserCreated { get; set; }
+    public int? UserCreated { get; set; }
     [JsonPropertyName("user_updated")]
     public int? UserUpdated { get; set; }
     [JsonPropertyName("user_deleted")]

@@ -10,7 +10,7 @@ public class LoadDossierResponse
     [JsonPropertyName("id_natureactivite")]
     public int? ActivityNatureId { get; set; }
     [JsonPropertyName("id_typedemende")]
-    public int RequestTypeId { get; set; }
+    public int? RequestTypeId { get; set; }
     [JsonPropertyName("Code")]
     public string? Code { get; set; }
     [JsonPropertyName("id_Partenaire")]

@@ -269,6 +269,27 @@ public class PresentationController : ControllerBase
         }
         return Ok(response.Data);
     }
+    [HttpPost("/api/v2/dossier/Update")]
+    public async Task<ActionResult<Aglou10001Response<object>>> UpdateDossier([FromBody] UpdateDossierRequestBody request)
+    {
+        var response = await _useHttpService.UpdateDossierAsync(request);
+        if (!response.IsSuccess)
+        {
+            return StatusCode((int)response.StatusCode, response.ErrorMessage);
+        }
+        return Ok(response.Data);
+    }
+    [HttpPost("/api/v2/dossier/Insert")]
+    public async Task<ActionResult<Aglou10001Response<object>>> InsertDossier([FromForm] InsertDossierFormBodyRequest request)
+    {
+        var response = await _useHttpService.InsertDossierFormAsync(request);
+        if (!response.IsSuccess)
+        {
+            return StatusCode((int)response.StatusCode, response.ErrorMessage);
+        }
+        return Ok(response.Data);
+    }
+    // Important !!: Refactor code to reduce arbitrary method defintion
     private static LoadDossierResponse? GetLoadDossierResponseAsync(ApiResponse<string> apiResponse)
     {
         if (!string.IsNullOrEmpty(apiResponse.Data))

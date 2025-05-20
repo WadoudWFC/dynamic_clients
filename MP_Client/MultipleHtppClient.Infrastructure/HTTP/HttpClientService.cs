@@ -1,5 +1,6 @@
-﻿using System.Diagnostics;
-using System.Net;
+﻿using System.Net.Http.Headers;
+using System.Net.NetworkInformation;
+using System.Reflection;
 using System.Text;
 using System.Text.Json;
 using Microsoft.Extensions.Logging;
@@ -54,11 +55,13 @@ public class HttpClientService : IHttpClientService
                     }
                     ApplyHeaders(client, apiConfig, apiRequest);
                     _logger.LogDebug("Sending {0} request to {1}: {2}", apiRequest.Method, apiRequest.ApiName, apiRequest.Endpoint);
-                    var response = await client.SendAsync(requestMessage, cancellationToken);
-                    if (apiRequest.IsNestedFormat)
+                    if (apiRequest.IsForm && apiRequest.Data != null)
                     {
-                        return await ProcessResponseAsync<TResponse>(response);
+                        var httpRequestMessage = CreateFormHttpMessage(apiRequest, apiConfig);
+                        var formResponse = await client.SendAsync(httpRequestMessage, cancellationToken);
+                        return await ProcessResponseAsync<TResponse>(formResponse);
                     }
+                    var response = await client.SendAsync(requestMessage, cancellationToken);
                     return await ProcessResponse<TResponse>(response);
                 }
                 catch (HttpRequestException ex)
@@ -82,6 +85,39 @@ public class HttpClientService : IHttpClientService
     private static Uri BuildEndpointUrl(string BaseUrl, string endpoint)
     {
         return new Uri(new Uri(BaseUrl), endpoint);
+    }
+    private static HttpRequestMessage CreateFormHttpMessage<TRequest>(ApiRequest<TRequest> apiRequest, ApiConfig apiConfig)
+    {
+        var requestMessage = new HttpRequestMessage(apiRequest.Method, BuildEndpointUrl(apiConfig.BaseUrl, apiRequest.Endpoint));
+        var formContent = new MultipartFormDataContent();
+        if (apiRequest.Data != null)
+        {
+            foreach (var prop in typeof(TRequest).GetProperties(BindingFlags.Public | BindingFlags.Instance))
+            {
+                var value = prop.GetValue(apiRequest.Data);
+                if (value is null) continue;
+                if (value is string strVal)
+                {
+                    formContent.Add(new StringContent(strVal), prop.Name);
+                }
+                else if (value is byte[] byteArray)
+                {
+                    var byteContent = new ByteArrayContent(byteArray);
+                    byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+                    formContent.Add(byteContent, prop.Name, "file.bin");
+                }
+                else
+                {
+                    formContent.Add(new StringContent(value.ToString()), prop.Name);
+                }
+            }
+            requestMessage.Content = formContent;
+            if (requestMessage.Content.Headers.ContentType != null)
+            {
+                requestMessage.Content.Headers.ContentType.MediaType = "multipart/form-data";
+            }
+        }
+        return requestMessage;
     }
 
     private async Task ApplyAuthentication(HttpClient client, ApiConfig apiConfig)
@@ -138,241 +174,19 @@ public class HttpClientService : IHttpClientService
             return ApiResponse<TResponse>.Error($"Failed to deserialize response: {ex.Message}\nResponse: {content}", httpResponseMessage.StatusCode);
         }
     }
-    private static LoadDossierResponse? GetLoadDossierResponseAsync(ApiResponse<string> apiResponse)
+    private async Task<ApiResponse<TResponse>> ProcessResponseAsync<TResponse>(HttpResponseMessage formResponse)
     {
-        if (!string.IsNullOrEmpty(apiResponse.Data))
-        {
-            var options = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            };
-            var loadDossierResp = JsonSerializer.Deserialize<LoadDossierResponse>(apiResponse.Data, options);
-            return loadDossierResp;
-        }
-        return null;
-    }
-    private static async Task<ApiResponse<TResponse>> ProcessResponseAsync<TResponse>(HttpResponseMessage httpResponseMessage)
-    {
-        var content = await httpResponseMessage.Content.ReadAsStringAsync();
-
-        if (!httpResponseMessage.IsSuccessStatusCode)
-            return ApiResponse<TResponse>.Error(content, httpResponseMessage.StatusCode);
-
+        var content = await formResponse.Content.ReadAsStringAsync();
+        if (!formResponse.IsSuccessStatusCode) return ApiResponse<TResponse>.Error(content, formResponse.StatusCode);
         try
         {
-            // First deserialize into the Aglou10001Response wrapper
-            var outerResponse = JsonSerializer.Deserialize<Aglou10001Response<JsonElement>>(content, _jsonOptions);
-
-            if (outerResponse == null)
-                return ApiResponse<TResponse>.Error("Failed to deserialize outer response", httpResponseMessage.StatusCode);
-
-            // Handle three possible data formats:
-            // 1. Data is a JSON string (your current case)
-            // 2. Data is already a JSON object
-            // 3. Data is null
-            if (outerResponse.Data.ValueKind == JsonValueKind.String)
-            {
-                // Case 1: Data is a JSON string containing JSON
-                var innerJson = outerResponse.Data.GetString();
-                if (string.IsNullOrEmpty(innerJson))
-                    return ApiResponse<TResponse>.Error("Empty data content", httpResponseMessage.StatusCode);
-
-                var data = JsonSerializer.Deserialize<TResponse>(innerJson, _jsonOptions);
-                return ApiResponse<TResponse>.Success(data, httpResponseMessage.StatusCode);
-            }
-            else if (outerResponse.Data.ValueKind == JsonValueKind.Object)
-            {
-                // Case 2: Data is already a JSON object
-                var data = outerResponse.Data.Deserialize<TResponse>(_jsonOptions);
-                return ApiResponse<TResponse>.Success(data, httpResponseMessage.StatusCode);
-            }
-
-            return ApiResponse<TResponse>.Error("Unsupported data format", httpResponseMessage.StatusCode);
-        }
-        catch (JsonException ex)
-        {
-            return ApiResponse<TResponse>.Error(
-                $"JSON Error: {ex.Message}\nPath: {ex.Path}\nResponse: {content}",
-                httpResponseMessage.StatusCode);
+            var data = JsonSerializer.Deserialize<TResponse>(content, _jsonOptions);
+            return ApiResponse<TResponse>.Success(data, formResponse.StatusCode);
         }
         catch (Exception ex)
         {
-            return ApiResponse<TResponse>.Error(
-                $"Unexpected error: {ex.Message}\nResponse: {content}",
-                httpResponseMessage.StatusCode);
+            return ApiResponse<TResponse>.Error($"Failed to deserialize response: {ex.Message}: {content}", formResponse.StatusCode);
         }
     }
 
-    // Notes!!: You can Remove the ProcessResponseAsync and go back to the previous implementation 
-    private static async Task<ApiResponse<TResponse>> ProcessResponseAsyncDepre<TResponse>(HttpResponseMessage httpResponseMessage)
-    {
-        var content = await httpResponseMessage.Content.ReadAsStringAsync();
-
-        if (!httpResponseMessage.IsSuccessStatusCode)
-            return ApiResponse<TResponse>.Error(content, httpResponseMessage.StatusCode);
-
-        try
-        {
-            var rawJson = JsonSerializer.Deserialize<string>(content, _jsonOptions);
-            var tt = JsonSerializer.Serialize<object>(rawJson);
-            var data1 = JsonSerializer.Deserialize<string>(tt, _jsonOptions);
-            var rawJson1 = JsonSerializer.Deserialize<TResponse>(data1, _jsonOptions);
-
-            // First try to parse as direct object (for simple endpoints) 
-            try
-            {
-                using var doc = JsonDocument.Parse(content);
-                var root = doc.RootElement;
-                Tuple<string, string> obj = new Tuple<string, string>("codeReponse", "data");
-                // Check if this looks like an Aglou response
-                if (root.TryGetProperty(obj.Item1, out _) && root.TryGetProperty(obj.Item2, out var dataProp))
-                {
-                    // Handle case where data is a JSON string
-                    if (dataProp.ValueKind == JsonValueKind.String)
-                    {
-                        var jsonString = dataProp.GetString();
-                        if (!string.IsNullOrEmpty(jsonString))
-                        {
-                            // Clean the JSON string
-                            var cleanJson = jsonString.StartsWith("\"")
-                                ? jsonString.Trim('"').Replace("\\\"", "\"")
-                                : jsonString;
-
-                            var data = JsonSerializer.Deserialize<TResponse>(cleanJson, _jsonOptions);
-                            if (data != null)
-                            {
-                                return ApiResponse<TResponse>.Success(data, httpResponseMessage.StatusCode);
-                            }
-                        }
-                    }
-                    // Handle case where data is a direct object
-                    else
-                    {
-                        var data = JsonSerializer.Deserialize<TResponse>(dataProp.GetRawText(), _jsonOptions);
-                        if (data != null)
-                        {
-                            return ApiResponse<TResponse>.Success(data, httpResponseMessage.StatusCode);
-                        }
-                    }
-                }
-            }
-            catch (JsonException ex)
-            {
-                return ApiResponse<TResponse>.Error(
-                    $"Failed to deserialize Aglou response: {ex.Message}\nResponse: {content}",
-                    httpResponseMessage.StatusCode);
-            }
-
-            // Final fallback - try direct deserialization again
-            try
-            {
-                var finalAttempt = JsonSerializer.Deserialize<TResponse>(content, _jsonOptions);
-                if (finalAttempt != null)
-                {
-                    return ApiResponse<TResponse>.Success(finalAttempt, httpResponseMessage.StatusCode);
-                }
-            }
-            catch { /* Ignore and return error */ }
-
-            return ApiResponse<TResponse>.Error("Unable to determine response format", httpResponseMessage.StatusCode);
-        }
-        catch (Exception ex)
-        {
-            return ApiResponse<TResponse>.Error(
-                $"Unexpected error: {ex.Message}\nResponse: {content}",
-                httpResponseMessage.StatusCode);
-        }
-    }
-
-    private enum ResponseType
-    {
-        DirectObject,
-        NestedJsonString,
-        AglouWrapper,
-        Unknown
-    }
-
-    private static ResponseType DetectResponseType(string jsonContent)
-    {
-        try
-        {
-            using var doc = JsonDocument.Parse(jsonContent);
-            var root = doc.RootElement;
-
-            // Check for Aglou wrapper structure
-            if (root.TryGetProperty("codeReponse", out _) &&
-                root.TryGetProperty("data", out var dataProp))
-            {
-                return dataProp.ValueKind == JsonValueKind.String
-                    ? ResponseType.NestedJsonString
-                    : ResponseType.AglouWrapper;
-            }
-
-            // Otherwise assume it's a direct object
-            return ResponseType.DirectObject;
-        }
-        catch
-        {
-            return ResponseType.Unknown;
-        }
-    }
-
-    private static ApiResponse<TResponse> HandleDirectResponse<TResponse>(string jsonContent, HttpStatusCode statusCode)
-    {
-        try
-        {
-            var result = JsonSerializer.Deserialize<TResponse>(jsonContent, _jsonOptions);
-            return result != null
-                ? ApiResponse<TResponse>.Success(result, statusCode)
-                : ApiResponse<TResponse>.Error("Deserialized null result", statusCode);
-        }
-        catch (JsonException ex)
-        {
-            return ApiResponse<TResponse>.Error(
-                $"Failed to deserialize direct response: {ex.Message}",
-                statusCode);
-        }
-    }
-
-    private static ApiResponse<TResponse> HandleNestedJsonResponse<TResponse>(string jsonContent, HttpStatusCode statusCode)
-    {
-        try
-        {
-            var wrapper = JsonSerializer.Deserialize<Aglou10001Response<string>>(jsonContent, _jsonOptions);
-            if (wrapper?.Data == null)
-                return ApiResponse<TResponse>.Error("Empty nested JSON data", statusCode);
-
-            var cleanJson = wrapper.Data.StartsWith("\"")
-                ? wrapper.Data.Trim('"').Replace("\\\"", "\"")
-                : wrapper.Data;
-
-            var data = JsonSerializer.Deserialize<TResponse>(cleanJson, _jsonOptions);
-            return data != null
-                ? ApiResponse<TResponse>.Success(data, statusCode)
-                : ApiResponse<TResponse>.Error("Failed to deserialize nested content", statusCode);
-        }
-        catch (JsonException ex)
-        {
-            return ApiResponse<TResponse>.Error(
-                $"Failed to deserialize nested response: {ex.Message}",
-                statusCode);
-        }
-    }
-
-    private static ApiResponse<TResponse> HandleAglouWrappedResponse<TResponse>(string jsonContent, HttpStatusCode statusCode)
-    {
-        try
-        {
-            var response = JsonSerializer.Deserialize<Aglou10001Response<TResponse>>(jsonContent, _jsonOptions);
-            return response.Data != null
-                ? ApiResponse<TResponse>.Success(response.Data, statusCode)
-                : ApiResponse<TResponse>.Error("Empty wrapped response data", statusCode);
-        }
-        catch (JsonException ex)
-        {
-            return ApiResponse<TResponse>.Error(
-                $"Failed to deserialize wrapped response: {ex.Message}",
-                statusCode);
-        }
-    }
 }

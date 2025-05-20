@@ -334,8 +334,7 @@ public class UseHttpService : IUseHttpService
             Method = HttpMethod.Post,
             RequiresApiKey = true,
             RequiresBearerToken = true,
-            Data = idRequestBody,
-            IsNestedFormat = false
+            Data = idRequestBody
         };
         return await _clientService.SendAsync<LogoutRequestBody, Aglou10001Response<string>>(request);
     }
@@ -352,5 +351,34 @@ public class UseHttpService : IUseHttpService
             Data = historySearchRequestBody
         };
         return await _clientService.SendAsync<HistorySearchRequestBody, Aglou10001Response<IEnumerable<HistroySearchResponse>>>(request);
+    }
+
+    public async Task<ApiResponse<Aglou10001Response<object>>> UpdateDossierAsync(UpdateDossierRequestBody updateDossierRequestBody)
+    {
+        ApiRequest<UpdateDossierRequestBody> request = new ApiRequest<UpdateDossierRequestBody>
+        {
+            ApiName = "aglou-q-monopp-extern",
+            Endpoint = "/api/v2/dossier/Update",
+            Method = HttpMethod.Post,
+            RequiresApiKey = true,
+            RequiresBearerToken = true,
+            Data = updateDossierRequestBody
+        };
+        return await _clientService.SendAsync<UpdateDossierRequestBody, Aglou10001Response<object>>(request);
+    }
+
+    public async Task<ApiResponse<Aglou10001Response<object?>>> InsertDossierFormAsync(InsertDossierFormBodyRequest insertDossierFormBodyRequest)
+    {
+        ApiRequest<InsertDossierFormBodyRequest> request = new ApiRequest<InsertDossierFormBodyRequest>
+        {
+            ApiName = "aglou-q-monopp-extern",
+            Endpoint = "/api/v2/dossier/Insert",
+            Method = HttpMethod.Post,
+            RequiresApiKey = true,
+            RequiresBearerToken = true,
+            Data = insertDossierFormBodyRequest,
+            IsForm = true
+        };
+        return await _clientService.SendAsync<InsertDossierFormBodyRequest, Aglou10001Response<object?>>(request);
     }
 }

@@ -9,5 +9,5 @@ public class ApiRequest<TRequest>
     public Dictionary<string, string> Headers { get; init; } = new Dictionary<string, string>();
     public bool RequiresBearerToken { get; set; } = false;
     public bool RequiresApiKey { get; set; } = true;
-    public bool IsNestedFormat { get; set; } = false;
+    public bool IsForm { get; set; } = false;
 }

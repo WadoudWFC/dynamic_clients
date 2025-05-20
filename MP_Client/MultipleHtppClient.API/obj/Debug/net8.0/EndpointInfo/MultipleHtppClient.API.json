@@ -804,6 +804,354 @@
           }
         }
       }
+    },
+    "/api/v2/historique/Search": {
+      "post": {
+        "tags": [
+          "Presentation"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HistorySearchRequestBody"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HistorySearchRequestBody"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/HistorySearchRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistroySearchResponseAglou10001Response"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistroySearchResponseAglou10001Response"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistroySearchResponseAglou10001Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/dossier/Update": {
+      "post": {
+        "tags": [
+          "Presentation"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDossierRequestBody"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDossierRequestBody"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDossierRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectAglou10001Response"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectAglou10001Response"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectAglou10001Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/dossier/Insert": {
+      "post": {
+        "tags": [
+          "Presentation"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id_statutdossier": {
+                    "type": "string"
+                  },
+                  "user_id": {
+                    "type": "string"
+                  },
+                  "id_typedemende": {
+                    "type": "string"
+                  },
+                  "id_natureactivite": {
+                    "type": "string"
+                  },
+                  "id_region": {
+                    "type": "string"
+                  },
+                  "id_ville": {
+                    "type": "string"
+                  },
+                  "id_arrandissement": {
+                    "type": "string"
+                  },
+                  "adresslocal": {
+                    "type": "string"
+                  },
+                  "id_visibilite": {
+                    "type": "string"
+                  },
+                  "superficie": {
+                    "type": "string"
+                  },
+                  "presence_sanitaire": {
+                    "type": "string"
+                  },
+                  "id_typebien": {
+                    "type": "string"
+                  },
+                  "prix": {
+                    "type": "string"
+                  },
+                  "facade": {
+                    "type": "string"
+                  },
+                  "Latitude": {
+                    "type": "string"
+                  },
+                  "Longitude": {
+                    "type": "string"
+                  },
+                  "horaire_ouverture": {
+                    "type": "string"
+                  },
+                  "jour_ouverture": {
+                    "type": "string"
+                  },
+                  "anne_experience": {
+                    "type": "string"
+                  },
+                  "commentairelocal": {
+                    "type": "string"
+                  },
+                  "ice": {
+                    "type": "string"
+                  },
+                  "rc": {
+                    "type": "string"
+                  },
+                  "autre_ville": {
+                    "type": "string"
+                  },
+                  "nomlocal": {
+                    "type": "string"
+                  },
+                  "nom_ag_WFC_proche": {
+                    "type": "string"
+                  },
+                  "dist_bur_WFC_proche": {
+                    "type": "string"
+                  },
+                  "dist_ag_WFC_proche": {
+                    "type": "string"
+                  },
+                  "potentiel": {
+                    "type": "string"
+                  },
+                  "pack": {
+                    "type": "string"
+                  },
+                  "forme_juridique": {
+                    "type": "string"
+                  },
+                  "regime_imposi": {
+                    "type": "string"
+                  },
+                  "mode_mandataire": {
+                    "type": "string"
+                  },
+                  "identification_fiscale": {
+                    "type": "string"
+                  },
+                  "photosInterieur_0": {
+                    "type": "string"
+                  },
+                  "photosExterieur_0": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "id_statutdossier": {
+                  "style": "form"
+                },
+                "user_id": {
+                  "style": "form"
+                },
+                "id_typedemende": {
+                  "style": "form"
+                },
+                "id_natureactivite": {
+                  "style": "form"
+                },
+                "id_region": {
+                  "style": "form"
+                },
+                "id_ville": {
+                  "style": "form"
+                },
+                "id_arrandissement": {
+                  "style": "form"
+                },
+                "adresslocal": {
+                  "style": "form"
+                },
+                "id_visibilite": {
+                  "style": "form"
+                },
+                "superficie": {
+                  "style": "form"
+                },
+                "presence_sanitaire": {
+                  "style": "form"
+                },
+                "id_typebien": {
+                  "style": "form"
+                },
+                "prix": {
+                  "style": "form"
+                },
+                "facade": {
+                  "style": "form"
+                },
+                "Latitude": {
+                  "style": "form"
+                },
+                "Longitude": {
+                  "style": "form"
+                },
+                "horaire_ouverture": {
+                  "style": "form"
+                },
+                "jour_ouverture": {
+                  "style": "form"
+                },
+                "anne_experience": {
+                  "style": "form"
+                },
+                "commentairelocal": {
+                  "style": "form"
+                },
+                "ice": {
+                  "style": "form"
+                },
+                "rc": {
+                  "style": "form"
+                },
+                "autre_ville": {
+                  "style": "form"
+                },
+                "nomlocal": {
+                  "style": "form"
+                },
+                "nom_ag_WFC_proche": {
+                  "style": "form"
+                },
+                "dist_bur_WFC_proche": {
+                  "style": "form"
+                },
+                "dist_ag_WFC_proche": {
+                  "style": "form"
+                },
+                "potentiel": {
+                  "style": "form"
+                },
+                "pack": {
+                  "style": "form"
+                },
+                "forme_juridique": {
+                  "style": "form"
+                },
+                "regime_imposi": {
+                  "style": "form"
+                },
+                "mode_mandataire": {
+                  "style": "form"
+                },
+                "identification_fiscale": {
+                  "style": "form"
+                },
+                "photosInterieur_0": {
+                  "style": "form"
+                },
+                "photosExterieur_0": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectAglou10001Response"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectAglou10001Response"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectAglou10001Response"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -982,7 +1330,8 @@
           },
           "id_dossier": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "commentaire": {
             "type": "string",
@@ -1005,7 +1354,8 @@
           },
           "user_created": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "user_updated": {
             "type": "integer",
@@ -1517,6 +1867,107 @@
         },
         "additionalProperties": false
       },
+      "HistorySearchRequestBody": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string",
+            "nullable": true
+          },
+          "id_dossier": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "order": {
+            "type": "string",
+            "nullable": true
+          },
+          "skip": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "take": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "HistroySearchResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "date_created": {
+            "type": "string",
+            "nullable": true
+          },
+          "id_statutprecedent": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id_statutsuivant": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id_dossier": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dossier": {
+            "type": "string",
+            "nullable": true
+          },
+          "statutprecedent": {
+            "type": "string",
+            "nullable": true
+          },
+          "statutsuivant": {
+            "type": "string",
+            "nullable": true
+          },
+          "statutprecedentin": {
+            "type": "string",
+            "nullable": true
+          },
+          "statutsuivantin": {
+            "type": "string",
+            "nullable": true
+          },
+          "opperateur": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "HistroySearchResponseAglou10001Response": {
+        "type": "object",
+        "properties": {
+          "codeReponse": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "msg": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/HistroySearchResponse"
+          },
+          "NbRows": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "TotalRows": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "LoadDossierResponse": {
         "type": "object",
         "properties": {
@@ -1556,11 +2007,9 @@
             "nullable": true
           },
           "natureactivite": {
-            "type": "string",
             "nullable": true
           },
           "nameactivite": {
-            "type": "string",
             "nullable": true
           },
           "typedemende": {
@@ -1670,18 +2119,17 @@
         "properties": {
           "id_dossier": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "id": {
             "type": "integer",
             "format": "int32"
           },
           "photosInterieur": {
-            "type": "string",
             "nullable": true
           },
           "photosExterieur": {
-            "type": "string",
             "nullable": true
           },
           "Latitude": {
@@ -1698,7 +2146,8 @@
           },
           "id_ville": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "id_arrandissement": {
             "type": "integer",
@@ -1711,7 +2160,8 @@
           },
           "id_typebien": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "adresslocal": {
             "type": "string",
@@ -1727,7 +2177,8 @@
           },
           "id_visibilite": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "superficie": {
             "type": "string",
@@ -1735,7 +2186,8 @@
           },
           "presence_sanitaire": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "typebien": {
             "type": "string",
@@ -1751,7 +2203,8 @@
           },
           "prix": {
             "type": "number",
-            "format": "double"
+            "format": "double",
+            "nullable": true
           },
           "zon": {
             "type": "string",
@@ -1787,7 +2240,8 @@
           },
           "potentiel": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "dist_ag_WFC_proche": {
             "type": "string",
@@ -1799,7 +2253,8 @@
           },
           "id_pack": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "nom": {
             "type": "string",
@@ -2035,6 +2490,27 @@
           "user_deleted": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "Dossier": {
+            "type": "array",
+            "items": { },
+            "nullable": true
+          },
+          "id_villeNavigation": {
+            "type": "string",
+            "nullable": true
+          },
+          "id_regionNavigation": {
+            "type": "string",
+            "nullable": true
+          },
+          "id_typepartenaireNavigation": {
+            "type": "string",
+            "nullable": true
+          },
+          "id_typepersonneNavigation": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -2312,6 +2788,152 @@
         },
         "additionalProperties": false
       },
+      "UpdateDossierRequestBody": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "nullable": true
+          },
+          "id_statutdossier": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "localid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id_typedemende": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id_partenaire": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id_natureactivite": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id_ville": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id_arrandissement": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "adresslocal": {
+            "type": "string",
+            "nullable": true
+          },
+          "id_visibilite": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "superficie": {
+            "type": "string",
+            "nullable": true
+          },
+          "presence_sanitaire": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id_typebien": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "prix": {
+            "type": "number",
+            "format": "double"
+          },
+          "facade": {
+            "type": "string",
+            "nullable": true
+          },
+          "Latitude": {
+            "type": "string",
+            "nullable": true
+          },
+          "Longitude": {
+            "type": "string",
+            "nullable": true
+          },
+          "horaire_ouverture": {
+            "type": "string",
+            "nullable": true
+          },
+          "jour_ouverture": {
+            "type": "string",
+            "nullable": true
+          },
+          "anne_experience": {
+            "type": "string",
+            "nullable": true
+          },
+          "commentairelocal": {
+            "type": "string",
+            "nullable": true
+          },
+          "ice": {
+            "type": "string",
+            "nullable": true
+          },
+          "rc": {
+            "type": "string",
+            "nullable": true
+          },
+          "autre_ville": {
+            "type": "string",
+            "nullable": true
+          },
+          "nomlocal": {
+            "type": "string",
+            "nullable": true
+          },
+          "nom_ag_WFC_proche": {
+            "type": "string",
+            "nullable": true
+          },
+          "dist_bur_WFC_proche": {
+            "type": "string",
+            "nullable": true
+          },
+          "dist_ag_WFC_proche": {
+            "type": "string",
+            "nullable": true
+          },
+          "potentiel": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pack": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "forme_juridique": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "regime_imposi": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "mode_mandataire": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "identification_fiscale": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "UpdatePasswordRequestBody": {
         "type": "object",
         "properties": {
@@ -2331,19 +2953,20 @@
         "properties": {
           "id": {
             "type": "integer",
-            "format": "int32",
-            "nullable": true
+            "format": "int32"
           },
           "label": {
             "type": "string",
             "nullable": true
           },
           "id_region": {
-            "type": "string",
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           },
           "id_decoupagecommercial": {
-            "type": "string",
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           },
           "type_localite": {

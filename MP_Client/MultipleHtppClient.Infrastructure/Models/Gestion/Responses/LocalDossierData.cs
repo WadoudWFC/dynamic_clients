@@ -5,7 +5,7 @@ namespace MultipleHtppClient.Infrastructure;
 public class LocalDossierData
 {
     [JsonPropertyName("id_dossier")]
-    public int DossierId { get; set; }
+    public int? DossierId { get; set; }
     [JsonPropertyName("id")]
     public int Id { get; set; }
     [JsonPropertyName("photosInterieur")]
@@ -19,13 +19,13 @@ public class LocalDossierData
     [JsonPropertyName("adress")]
     public string? Address { get; set; }
     [JsonPropertyName("id_ville")]
-    public int CityId { get; set; }
+    public int? CityId { get; set; }
     [JsonPropertyName("id_arrandissement")]
     public int? DistrictId { get; set; }
     [JsonPropertyName("commentaireLocal")]
     public string? LocalComment { get; set; }
     [JsonPropertyName("id_typebien")]
-    public int PropertyTypeId { get; set; }
+    public int? PropertyTypeId { get; set; }
     [JsonPropertyName("adresslocal")]
     public string? LocalAddress { get; set; }
     [JsonPropertyName("horaire_ouverture")]
@@ -33,11 +33,11 @@ public class LocalDossierData
     [JsonPropertyName("jour_ouverture")]
     public string? OpeningDays { get; set; }
     [JsonPropertyName("id_visibilite")]
-    public int VisibilityId { get; set; }
+    public int? VisibilityId { get; set; }
     [JsonPropertyName("superficie")]
     public string? Area { get; set; }
     [JsonPropertyName("presence_sanitaire")]
-    public int HasSanitary { get; set; }
+    public int? HasSanitary { get; set; }
     [JsonPropertyName("typebien")]
     public string? PropertyType { get; set; }
     [JsonPropertyName("facade")]
@@ -45,7 +45,7 @@ public class LocalDossierData
     [JsonPropertyName("anne_experience")]
     public string? YearsOfExperience { get; set; }
     [JsonPropertyName("prix")]
-    public decimal Price { get; set; }
+    public decimal? Price { get; set; }
     [JsonPropertyName("zon")]
     public string? Zone { get; set; }
     [JsonPropertyName("ville")]
@@ -63,13 +63,13 @@ public class LocalDossierData
     [JsonPropertyName("dist_bur_WFC_proche")]
     public string? NearestWFCOfficeDistance { get; set; }
     [JsonPropertyName("potentiel")]
-    public int Potential { get; set; }
+    public int? Potential { get; set; }
     [JsonPropertyName("dist_ag_WFC_proche")]
     public string? NearestWFCAgencyDistance { get; set; }
     [JsonPropertyName("pack")]
     public string? Pack { get; set; }
     [JsonPropertyName("id_pack")]
-    public int PackId { get; set; }
+    public int? PackId { get; set; }
     [JsonPropertyName("nom")]
     public string? Name { get; set; }
 }
