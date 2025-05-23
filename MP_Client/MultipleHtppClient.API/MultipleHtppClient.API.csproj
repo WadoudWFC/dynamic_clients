@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MultipleHtppClient.Infrastructure\MultipleHtppClient.Infrastructure.csproj" />
     <ProjectReference Include="..\MutipleHttpClient.Domain\MutipleHttpClient.Domain.csproj" />
+    <ProjectReference Include="..\MultipleHttpClient.Application\MultipleHttpClient.Application.csproj" />
   </ItemGroup>
 
 </Project>

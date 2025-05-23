@@ -410,6 +410,19 @@
           "bin/placeholder/MultipleHtppClient.Infrastructure.dll": {}
         }
       },
+      "MultipleHttpClient.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "MultipleHtppClient.Infrastructure": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/MultipleHttpClient.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MultipleHttpClient.Application.dll": {}
+        }
+      },
       "MutipleHttpClient.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
@@ -1287,6 +1300,11 @@
       "path": "../MultipleHtppClient.Infrastructure/MultipleHtppClient.Infrastructure.csproj",
       "msbuildProject": "../MultipleHtppClient.Infrastructure/MultipleHtppClient.Infrastructure.csproj"
     },
+    "MultipleHttpClient.Application/1.0.0": {
+      "type": "project",
+      "path": "../MultipleHttpClient.Application/MultipleHttpClient.Application.csproj",
+      "msbuildProject": "../MultipleHttpClient.Application/MultipleHttpClient.Application.csproj"
+    },
     "MutipleHttpClient.Domain/1.0.0": {
       "type": "project",
       "path": "../MutipleHttpClient.Domain/MutipleHttpClient.Domain.csproj",
@@ -1297,6 +1315,7 @@
     "net8.0": [
       "Microsoft.AspNetCore.OpenApi >= 8.0.15",
       "MultipleHtppClient.Infrastructure >= 1.0.0",
+      "MultipleHttpClient.Application >= 1.0.0",
       "MutipleHttpClient.Domain >= 1.0.0",
       "Newtonsoft.Json >= 13.0.3",
       "Swashbuckle.AspNetCore >= 6.6.2"
@@ -1336,6 +1355,9 @@
           "projectReferences": {
             "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj": {
               "projectPath": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj"
+            },
+            "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHttpClient.Application\\MultipleHttpClient.Application.csproj": {
+              "projectPath": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHttpClient.Application\\MultipleHttpClient.Application.csproj"
             },
             "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MutipleHttpClient.Domain\\MutipleHttpClient.Domain.csproj": {
               "projectPath": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MutipleHttpClient.Domain\\MutipleHttpClient.Domain.csproj"

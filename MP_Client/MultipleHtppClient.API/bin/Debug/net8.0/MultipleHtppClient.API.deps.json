@@ -10,6 +10,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.OpenApi": "8.0.15",
           "MultipleHtppClient.Infrastructure": "1.0.0",
+          "MultipleHttpClient.Application": "1.0.0",
           "MutipleHttpClient.Domain": "1.0.0",
           "Newtonsoft.Json": "13.0.3",
           "Swashbuckle.AspNetCore": "6.6.2"
@@ -259,6 +260,17 @@
           }
         }
       },
+      "MultipleHttpClient.Application/1.0.0": {
+        "dependencies": {
+          "MultipleHtppClient.Infrastructure": "1.0.0"
+        },
+        "runtime": {
+          "MultipleHttpClient.Application.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "MutipleHttpClient.Domain/1.0.0": {
         "runtime": {
           "MutipleHttpClient.Domain.dll": {
@@ -430,6 +442,11 @@
       "hashPath": "system.diagnostics.diagnosticsource.9.0.4.nupkg.sha512"
     },
     "MultipleHtppClient.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MultipleHttpClient.Application/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -108,3 +108,5 @@ C:\Users\A.Dihbaouri\Desktop\MiddlwareAPI_BFF\MP_Client\MP_Client\MultipleHtppCl
 C:\Users\A.Dihbaouri\Desktop\MiddlwareAPI_BFF\MP_Client\MP_Client\MultipleHtppClient.API\obj\Debug\net8.0\ref\MultipleHtppClient.API.dll
 C:\Users\A.Dihbaouri\Desktop\MiddlwareAPI_BFF\MP_Client\MP_Client\MultipleHtppClient.API\bin\Debug\net8.0\MutipleHttpClient.Domain.dll
 C:\Users\A.Dihbaouri\Desktop\MiddlwareAPI_BFF\MP_Client\MP_Client\MultipleHtppClient.API\bin\Debug\net8.0\MutipleHttpClient.Domain.pdb
+C:\Users\A.Dihbaouri\Desktop\MiddlwareAPI_BFF\MP_Client\MP_Client\MultipleHtppClient.API\bin\Debug\net8.0\MultipleHttpClient.Application.dll
+C:\Users\A.Dihbaouri\Desktop\MiddlwareAPI_BFF\MP_Client\MP_Client\MultipleHtppClient.API\bin\Debug\net8.0\MultipleHttpClient.Application.pdb

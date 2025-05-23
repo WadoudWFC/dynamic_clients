@@ -13,10 +13,10 @@ using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Managemen
 using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Property_Information.Responses;
 using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Statistics_and_Counts.Responses;
 using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.User_Account.Requests;
-using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Supplements.Requests;
 using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Supplements.Responses;
 using MultipleHtppClient.Infrastructure.HTTP.APIs.Models.User_Account.Responses;
 using MultipleHtppClient.Infrastructure.HTTP.REST;
+using MultipleHttpClient.Application;
 
 namespace MultipleHtppClient.API;
 
@@ -25,10 +25,13 @@ namespace MultipleHtppClient.API;
 public class PresentationController : ControllerBase
 {
     private readonly IUseHttpService _useHttpService;
-
-    public PresentationController(IUseHttpService useHttpService)
+    private readonly IHttpManagementAglou _httpAglouManagement;
+    private readonly IHttpUserAglou _httpAglouUser;
+    public PresentationController(IUseHttpService useHttpService, IHttpManagementAglou httpAglouManagement, IHttpUserAglou httpAglouUser)
     {
         _useHttpService = useHttpService;
+        _httpAglouManagement = httpAglouManagement;
+        _httpAglouUser = httpAglouUser;
     }
 
     [HttpGet("All")]
@@ -66,7 +69,7 @@ public class PresentationController : ControllerBase
     [HttpPost("/api/v2/utilisateur/Cantrylogin")]
     public async Task<ActionResult<Aglou10001Response<AglouUser>>> CanLogin([FromBody] CanTryLoginRequestBody email)
     {
-        var response = await _useHttpService.CanTryLoginAsync(email);
+        var response = await _httpAglouUser.CanTryLoginAsync(email);
         if (!response.IsSuccess)
         {
             return StatusCode((int)response.StatusCode, response.ErrorMessage);
@@ -76,7 +79,7 @@ public class PresentationController : ControllerBase
     [HttpPost("/api/v2/utilisateur/Login")]
     public async Task<IActionResult> Login([FromBody] LoginRequestBody loginRequest)
     {
-        var response = await _useHttpService.LoginAsync(loginRequest);
+        var response = await _httpAglouUser.LoginAsync(loginRequest);
         if (!response.IsSuccess)
         {
             return StatusCode((int)response.StatusCode, response.ErrorMessage);
@@ -86,7 +89,7 @@ public class PresentationController : ControllerBase
     [HttpPost("/api/v2/dossier/getCounts")]
     public async Task<ActionResult<Aglou10001Response<DossierCounts>>> GetCounts([FromBody] GetDossierCountRequestBody requestBody)
     {
-        var response = await _useHttpService.GetCountsAsync(requestBody.userId, requestBody.idRole);
+        var response = await _httpAglouManagement.GetCountsAsync(requestBody.userId, requestBody.idRole);
         if (!response.IsSuccess)
         {
             return StatusCode((int)response.StatusCode, response.ErrorMessage);
@@ -96,7 +99,7 @@ public class PresentationController : ControllerBase
     [HttpPost("/api/v2/typepartenaire/GetAll")]
     public async Task<ActionResult<Aglou10001Response<IEnumerable<PartnersType>>>> GetAllPartnerTypes()
     {
-        var response = await _useHttpService.GetPartnerTypes();
+        var response = await _httpAglouManagement.GetPartnerTypes();
         if (!response.IsSuccess)
         {
             return StatusCode((int)response.StatusCode, response.ErrorMessage);
@@ -106,7 +109,7 @@ public class PresentationController : ControllerBase
     [HttpPost("/api/v2/statutdossier/GetAll")]
     public async Task<ActionResult<Aglou10001Response<IEnumerable<DossierStatus>>>> GetAllStatusDossier([FromBody] ProfileRoleRequestBody request)
     {
-        var response = await _useHttpService.GetDossierStatusAsync(request);
+        var response = await _httpAglouManagement.GetDossierStatusAsync(request);
         if (!response.IsSuccess)
         {
             return StatusCode((int)response.StatusCode, response.ErrorMessage);
@@ -116,7 +119,7 @@ public class PresentationController : ControllerBase
     [HttpPost("/api/v2/typedemende/GetAll")]
     public async Task<ActionResult<Aglou10001Response<IEnumerable<DemandType>>>> GetAllDemandTypes()
     {
-        var response = await _useHttpService.GetDemandsTypeAsync();
+        var response = await _httpAglouManagement.GetDemandsTypeAsync();
         if (!response.IsSuccess)
         {
             return StatusCode((int)response.StatusCode, response.ErrorMessage);
@@ -126,7 +129,7 @@ public class PresentationController : ControllerBase
     [HttpPost("/api/v2/decoupagecommercial/GetAll")]
     public async Task<ActionResult<Aglou10001Response<IEnumerable<CommercialCutting>>>> GetCommercialCutting()
     {
-        var response = await _useHttpService.GetCommercialCuttingAsync();
+        var response = await _httpAglouManagement.GetCommercialCuttingAsync();
         if (!response.IsSuccess)
         {
             return StatusCode((int)response.StatusCode, response.ErrorMessage);
@@ -136,7 +139,7 @@ public class PresentationController : ControllerBase
     [HttpPost("/api/v2/dossier/GetAll")]
     public async Task<ActionResult<Aglou10001Response<IEnumerable<DossierAll>>>> GetAllDossier([FromBody] ProfileRoleRequestBody request)
     {
-        var response = await _useHttpService.GetAllDossierAsync(request);
+        var response = await _httpAglouManagement.GetAllDossierAsync(request);
         if (!response.IsSuccess)
         {
             return StatusCode((int)response.StatusCode, response.ErrorMessage);
@@ -146,7 +149,7 @@ public class PresentationController : ControllerBase
     [HttpPost("/api/v2/partenaire/GetAll")]
     public async Task<ActionResult<Aglou10001Response<IEnumerable<Partner>>>> GetPartners()
     {
-        var response = await _useHttpService.GetPartnersAsync();
+        var response = await _httpAglouManagement.GetPartnersAsync();
         if (!response.IsSuccess)
         {
             return StatusCode((int)response.StatusCode, response.ErrorMessage);
@@ -156,7 +159,7 @@ public class PresentationController : ControllerBase
     [HttpPost("/api/v2/dossier/Search")]
     public async Task<ActionResult<Aglou10001Response<IEnumerable<DossierSearchResponse>>>> SearchDossiers([FromBody] SearchDossierRequestBody request)
     {
-        var response = await _useHttpService.SearchDossier(request);
+        var response = await _httpAglouManagement.SearchDossier(request);
         if (!response.IsSuccess)
         {
             return StatusCode((int)response.StatusCode, response.ErrorMessage);
@@ -166,7 +169,7 @@ public class PresentationController : ControllerBase
     [HttpPost("/api/v2/utilisateur/Logout")]
     public async Task<ActionResult<Aglou10001Response<object>>> Logout([FromBody] LogoutRequestBody request)
     {
-        var response = await _useHttpService.LogoutAsync(request);
+        var response = await _httpAglouUser.LogoutAsync(request);
         if (!response.IsSuccess)
         {
             return StatusCode((int)response.StatusCode, response.ErrorMessage);
@@ -176,7 +179,7 @@ public class PresentationController : ControllerBase
     [HttpPost("/api/v2/natureactivite/GetAll")]
     public async Task<ActionResult<Aglou10001Response<IEnumerable<ActivityNatureResponse>>>> GetAllActivities()
     {
-        var response = await _useHttpService.GetAllActivitiesAsync();
+        var response = await _httpAglouManagement.GetAllActivitiesAsync();
         if (!response.IsSuccess)
         {
             return StatusCode((int)response.StatusCode, response.ErrorMessage);
@@ -186,7 +189,7 @@ public class PresentationController : ControllerBase
     [HttpPost("/api/v2/pack/GetAll")]
     public async Task<ActionResult<Aglou10001Response<IEnumerable<PackResponse>>>> GetAllPacks()
     {
-        var response = await _useHttpService.GetAllPacksAsync();
+        var response = await _httpAglouManagement.GetAllPacksAsync();
         if (!response.IsSuccess)
         {
             return StatusCode((int)response.StatusCode, response.ErrorMessage);
@@ -196,7 +199,7 @@ public class PresentationController : ControllerBase
     [HttpPost("/api/v2/ville/GetAll")]
     public async Task<ActionResult<Aglou10001Response<IEnumerable<VilleResponse>>>> GetAllCities()
     {
-        var response = await _useHttpService.GetAllCitiesAsync();
+        var response = await _httpAglouManagement.GetAllCitiesAsync();
         if (!response.IsSuccess)
         {
             return StatusCode((int)response.StatusCode, response.ErrorMessage);
@@ -206,7 +209,7 @@ public class PresentationController : ControllerBase
     [HttpPost("/api/v2/arrondissement/GetAll")]
     public async Task<ActionResult<Aglou10001Response<IEnumerable<ArrondissementResponse>>>> GetArrondissements()
     {
-        var response = await _useHttpService.GetArrondissementsAsync();
+        var response = await _httpAglouManagement.GetArrondissementsAsync();
         if (!response.IsSuccess)
         {
             return StatusCode((int)response.StatusCode, response.ErrorMessage);
@@ -216,7 +219,7 @@ public class PresentationController : ControllerBase
     [HttpPost("/api/v2/typebien/GetAll")]
     public async Task<ActionResult<Aglou10001Response<IEnumerable<TypeBienResponse>>>> GetAllTypeBien()
     {
-        var response = await _useHttpService.GetTypeBienAsync();
+        var response = await _httpAglouManagement.GetTypeBienAsync();
         if (!response.IsSuccess)
         {
             return StatusCode((int)response.StatusCode, response.ErrorMessage);
@@ -226,7 +229,7 @@ public class PresentationController : ControllerBase
     [HttpPost("/api/v2/region/GetAll")]
     public async Task<ActionResult<Aglou10001Response<IEnumerable<RegionResponse>>>> GetAllRegions()
     {
-        var response = await _useHttpService.GetAllRegionsAsync();
+        var response = await _httpAglouManagement.GetAllRegionsAsync();
         if (!response.IsSuccess)
         {
             return StatusCode((int)response.StatusCode, response.ErrorMessage);
@@ -236,7 +239,7 @@ public class PresentationController : ControllerBase
     [HttpPost("/api/v2/utilisateur/PasswordForgotten")]
     public async Task<ActionResult<Aglou10001Response<object>>> ForgetPassword([FromBody] ForgetPasswordRequestBody request)
     {
-        var response = await _useHttpService.ForgetPasswordAsync(request);
+        var response = await _httpAglouUser.ForgetPasswordAsync(request);
         if (!response.IsSuccess)
         {
             return StatusCode((int)response.StatusCode, response.ErrorMessage);
@@ -246,7 +249,7 @@ public class PresentationController : ControllerBase
     [HttpPost("/api/v2/utilisateur/UpdatePassWord")]
     public async Task<ActionResult<Aglou10001Response<string>>> UpdatePassword([FromBody] UpdatePasswordRequestBody request)
     {
-        var response = await _useHttpService.UpdatePasswordAsync(request);
+        var response = await _httpAglouUser.UpdatePasswordAsync(request);
         if (!response.IsSuccess)
         {
             return StatusCode((int)response.StatusCode, response.ErrorMessage);
@@ -256,7 +259,7 @@ public class PresentationController : ControllerBase
     [HttpPost("/api/v2/dossier/Load")]
     public async Task<ActionResult<Aglou10001Response<LoadDossierResponse>>> LoadDossier([FromBody] LogoutRequestBody request)
     {
-        var response = await _useHttpService.LoadDossierAsync(request);
+        var response = await _httpAglouManagement.LoadDossierAsync(request);
         if (!response.IsSuccess)
         {
             return StatusCode((int)response.StatusCode, response.ErrorMessage);
@@ -276,7 +279,7 @@ public class PresentationController : ControllerBase
     [HttpPost("/api/v2/historique/Search")]
     public async Task<ActionResult<Aglou10001Response<HistroySearchResponse>>> SearchHistory([FromBody] HistorySearchRequestBody request)
     {
-        var response = await _useHttpService.SearchHistroyAsync(request);
+        var response = await _httpAglouManagement.SearchHistroyAsync(request);
         if (!response.IsSuccess)
         {
             return StatusCode((int)response.StatusCode, response.ErrorMessage);
@@ -286,7 +289,7 @@ public class PresentationController : ControllerBase
     [HttpPost("/api/v2/dossier/Update")]
     public async Task<ActionResult<Aglou10001Response<object>>> UpdateDossier([FromBody] UpdateDossierRequestBody request)
     {
-        var response = await _useHttpService.UpdateDossierAsync(request);
+        var response = await _httpAglouManagement.UpdateDossierAsync(request);
         if (!response.IsSuccess)
         {
             return StatusCode((int)response.StatusCode, response.ErrorMessage);
@@ -296,7 +299,7 @@ public class PresentationController : ControllerBase
     [HttpPost("/api/v2/dossier/Insert")]
     public async Task<ActionResult<Aglou10001Response<object>>> InsertDossier([FromForm] InsertDossierFormBodyRequest request)
     {
-        var response = await _useHttpService.InsertDossierFormAsync(request);
+        var response = await _httpAglouManagement.InsertDossierFormAsync(request);
         if (!response.IsSuccess)
         {
             return StatusCode((int)response.StatusCode, response.ErrorMessage);
@@ -306,7 +309,7 @@ public class PresentationController : ControllerBase
     [HttpPost("/api/v2/commentaire/Insert")]
     public async Task<ActionResult<Aglou10001Response<object>>> InsertComment([FromBody] InsertCommentRequestBody request)
     {
-        var response = await _useHttpService.InsertCommentAsync(request);
+        var response = await _httpAglouManagement.InsertCommentAsync(request);
         if (!response.IsSuccess)
         {
             return StatusCode((int)response.StatusCode, response.ErrorMessage);
@@ -316,7 +319,7 @@ public class PresentationController : ControllerBase
     [HttpPost("/api/v2/commentaire/GetAll")]
     public async Task<ActionResult<Aglou10001Response<IEnumerable<GetAllCommentsResponse>>>> GetAllComments([FromBody] GetAllCommentRequestBody request)
     {
-        var response = await _useHttpService.GetAllCommentsAsync(request);
+        var response = await _httpAglouManagement.GetAllCommentsAsync(request);
         if (!response.IsSuccess)
         {
             return StatusCode((int)response.StatusCode, response.ErrorMessage);
