@@ -289,6 +289,28 @@ public class PresentationController : ControllerBase
         }
         return Ok(response.Data);
     }
+    [HttpPost("/api/v2/commentaire/Insert")]
+    public async Task<ActionResult<Aglou10001Response<object>>> InsertComment([FromBody] InsertCommentRequestBody request)
+    {
+        var response = await _useHttpService.InsertCommentAsync(request);
+        if (!response.IsSuccess)
+        {
+            return StatusCode((int)response.StatusCode, response.ErrorMessage);
+        }
+        return Ok(response.Data);
+    }
+    [HttpPost("/api/v2/commentaire/GetAll")]
+    public async Task<ActionResult<Aglou10001Response<IEnumerable<GetAllCommentsResponse>>>> GetAllComments([FromBody] GetAllCommentRequestBody request)
+    {
+        var response = await _useHttpService.GetAllCommentsAsync(request);
+        if (!response.IsSuccess)
+        {
+            return StatusCode((int)response.StatusCode, response.ErrorMessage);
+        }
+        return Ok(response.Data);
+    }
+
+
     // Important !!: Refactor code to reduce arbitrary method defintion
     private static LoadDossierResponse? GetLoadDossierResponseAsync(ApiResponse<string> apiResponse)
     {

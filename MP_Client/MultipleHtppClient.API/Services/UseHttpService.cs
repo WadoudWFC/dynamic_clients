@@ -381,4 +381,32 @@ public class UseHttpService : IUseHttpService
         };
         return await _clientService.SendAsync<InsertDossierFormBodyRequest, Aglou10001Response<object?>>(request);
     }
+
+    public async Task<ApiResponse<Aglou10001Response<object?>>> InsertCommentAsync(InsertCommentRequestBody insertCommentRequestBody)
+    {
+        ApiRequest<InsertCommentRequestBody> request = new ApiRequest<InsertCommentRequestBody>
+        {
+            ApiName = "aglou-q-monopp-extern",
+            Endpoint = "/api/v2/commentaire/Insert",
+            Method = HttpMethod.Post,
+            RequiresApiKey = true,
+            RequiresBearerToken = true,
+            Data = insertCommentRequestBody
+        };
+        return await _clientService.SendAsync<InsertCommentRequestBody, Aglou10001Response<object?>>(request);
+    }
+
+    public async Task<ApiResponse<Aglou10001Response<IEnumerable<GetAllCommentsResponse>>>> GetAllCommentsAsync(GetAllCommentRequestBody getAllCommentRequestBody)
+    {
+        ApiRequest<GetAllCommentRequestBody> request = new ApiRequest<GetAllCommentRequestBody>
+        {
+            ApiName = "aglou-q-monopp-extern",
+            Endpoint = "/api/v2/commentaire/GetAll",
+            Method = HttpMethod.Post,
+            RequiresApiKey = true,
+            RequiresBearerToken = true,
+            Data = getAllCommentRequestBody
+        };
+        return await _clientService.SendAsync<GetAllCommentRequestBody, Aglou10001Response<IEnumerable<GetAllCommentsResponse>>>(request);
+    }
 }
