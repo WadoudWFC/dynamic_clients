@@ -1,9 +1,22 @@
-﻿using System.Runtime.Serialization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing.Tree;
-using MultipleHtppClient.Infrastructure;
-using MultipleHtppClient.Infrastructure.Models.Gestion.Requests;
-using MultipleHtppClient.Infrastructure.Models.Gestion.Responses;
+﻿using MultipleHtppClient.Infrastructure;
+using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Comment_Management.Requests;
+using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Comment_Management.Responses;
+using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Commercial_Activities.Responses;
+using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Demand_Management.Requests;
+using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Demand_Management.Responses;
+using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Dossier_Management.Requests;
+using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Dossier_Management.Responses;
+using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Gepgraphical_Information.Responses;
+using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Partner_Management.Responses;
+using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Property_Information.Responses;
+using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Statistics_and_Counts.Responses;
+using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Supplements.Requests;
+using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Supplements.Responses;
+using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.User_Account.Requests;
+using MultipleHtppClient.Infrastructure.HTTP.APIs.Models;
+using MultipleHtppClient.Infrastructure.HTTP.APIs.Models.User_Account.Responses;
+using MultipleHtppClient.Infrastructure.HTTP.Interfaces;
+using MultipleHtppClient.Infrastructure.HTTP.REST;
 
 namespace MultipleHtppClient.API;
 

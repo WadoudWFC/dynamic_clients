@@ -1,5 +1,5 @@
 using MultipleHtppClient.API;
-using MultipleHtppClient.Infrastructure;
+using MultipleHtppClient.Infrastructure.HTTP.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
