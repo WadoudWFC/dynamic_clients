@@ -12,4 +12,5 @@ public interface IHttpUserAglou
     Task<ApiResponse<Aglou10001Response<object>>> LogoutAsync(LogoutRequestBody loginRequestBody);
     Task<ApiResponse<Aglou10001Response<object>>> ForgetPasswordAsync(ForgetPasswordRequestBody forgetPasswordRequestBody);
     Task<ApiResponse<Aglou10001Response<object>>> UpdatePasswordAsync(UpdatePasswordRequestBody updatePasswordRequestBody);
+    Task<ApiResponse<Aglou10001Response<object>>> RegisterUserAsync(RegisterUserRequestBody registerUserRequestBody);
 }

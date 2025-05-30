@@ -45,7 +45,59 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.Models.Gestion.Responses.ArrondissementResponse, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Gepgraphical_Information.Responses.ArrondissementResponse, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.PresentationController",
+    "Method": "GetAllComments",
+    "RelativePath": "api/v2/commentaire/GetAll",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Comment_Management.Requests.GetAllCommentRequestBody",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Comment_Management.Responses.GetAllCommentsResponse, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.PresentationController",
+    "Method": "InsertComment",
+    "RelativePath": "api/v2/commentaire/Insert",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Comment_Management.Requests.InsertCommentRequestBody",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -65,7 +117,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.Models.Gestion.Responses.CommercialCutting, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Commercial_Activities.Responses.CommercialCutting, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -85,13 +137,13 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "MultipleHtppClient.Infrastructure.Models.Gestion.Requests.ProfileRoleRequestBody",
+        "Type": "MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Dossier_Management.Requests.ProfileRoleRequestBody",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.Models.Gestion.Responses.DossierAll, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Dossier_Management.Responses.DossierAll, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -111,13 +163,13 @@
     "Parameters": [
       {
         "Name": "requestBody",
-        "Type": "MultipleHtppClient.Infrastructure.GetDossierCountRequestBody",
+        "Type": "MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.User_Account.Requests.GetDossierCountRequestBody",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[MultipleHtppClient.Infrastructure.DossierCounts, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Statistics_and_Counts.Responses.DossierCounts, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -333,13 +385,13 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "MultipleHtppClient.Infrastructure.Models.Gestion.Requests.LogoutRequestBody",
+        "Type": "MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.User_Account.Requests.LogoutRequestBody",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[MultipleHtppClient.Infrastructure.LoadDossierResponse, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Supplements.Responses.LoadDossierResponse, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -359,13 +411,13 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "MultipleHtppClient.Infrastructure.SearchDossierRequestBody",
+        "Type": "MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Dossier_Management.Requests.SearchDossierRequestBody",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.DossierSearchResponse, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Dossier_Management.Responses.DossierSearchResponse, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -385,7 +437,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "MultipleHtppClient.Infrastructure.UpdateDossierRequestBody",
+        "Type": "MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Dossier_Management.Requests.UpdateDossierRequestBody",
         "IsRequired": true
       }
     ],
@@ -411,13 +463,13 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "MultipleHtppClient.Infrastructure.HistorySearchRequestBody",
+        "Type": "MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Demand_Management.Requests.HistorySearchRequestBody",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[MultipleHtppClient.Infrastructure.HistroySearchResponse, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Demand_Management.Responses.HistroySearchResponse, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -437,7 +489,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.Models.Gestion.Responses.ActivityNatureResponse, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Commercial_Activities.Responses.ActivityNatureResponse, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -457,7 +509,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.Models.Gestion.Responses.PackResponse, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Supplements.Responses.PackResponse, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -477,7 +529,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.Models.Gestion.Responses.Partner, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Partner_Management.Responses.Partner, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -497,7 +549,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.Models.Gestion.Responses.RegionResponse, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Gepgraphical_Information.Responses.RegionResponse, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -517,13 +569,13 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "MultipleHtppClient.Infrastructure.Models.Gestion.Requests.ProfileRoleRequestBody",
+        "Type": "MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Dossier_Management.Requests.ProfileRoleRequestBody",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.Models.Gestion.Responses.DossierStatus, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Dossier_Management.Responses.DossierStatus, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -543,7 +595,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.Models.Gestion.Responses.TypeBienResponse, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Property_Information.Responses.TypeBienResponse, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -563,7 +615,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.Models.Gestion.Responses.DemandType, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Demand_Management.Responses.DemandType, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -583,7 +635,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.Models.Gestion.Responses.PartnersType, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Partner_Management.Responses.PartnersType, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -603,13 +655,13 @@
     "Parameters": [
       {
         "Name": "email",
-        "Type": "MultipleHtppClient.Infrastructure.CanTryLoginRequestBody",
+        "Type": "MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.User_Account.Requests.CanTryLoginRequestBody",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[MultipleHtppClient.Infrastructure.AglouUser, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[MultipleHtppClient.Infrastructure.HTTP.APIs.Models.User_Account.Responses.AglouUser, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -629,7 +681,7 @@
     "Parameters": [
       {
         "Name": "loginRequest",
-        "Type": "MultipleHtppClient.Infrastructure.LoginRequestBody",
+        "Type": "MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.User_Account.Requests.LoginRequestBody",
         "IsRequired": true
       }
     ],
@@ -645,7 +697,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "MultipleHtppClient.Infrastructure.Models.Gestion.Requests.LogoutRequestBody",
+        "Type": "MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.User_Account.Requests.LogoutRequestBody",
         "IsRequired": true
       }
     ],
@@ -671,7 +723,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "MultipleHtppClient.Infrastructure.Models.Gestion.Requests.ForgetPasswordRequestBody",
+        "Type": "MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.User_Account.Requests.ForgetPasswordRequestBody",
         "IsRequired": true
       }
     ],
@@ -697,7 +749,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "MultipleHtppClient.Infrastructure.UpdatePasswordRequestBody",
+        "Type": "MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.User_Account.Requests.UpdatePasswordRequestBody",
         "IsRequired": true
       }
     ],
@@ -723,7 +775,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.Models.Gestion.Responses.VilleResponse, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Gepgraphical_Information.Responses.VilleResponse, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

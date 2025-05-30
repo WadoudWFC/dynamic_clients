@@ -29,6 +29,7 @@ public class HttpManagementAglouService : IHttpManagementAglou
     {
         _clientService = clientService;
     }
+    #region Methods
     public async Task<ApiResponse<Aglou10001Response<IEnumerable<ActivityNatureResponse>>>> GetAllActivitiesAsync()
     {
         ApiRequest<object> request = new ApiRequest<object>
@@ -325,4 +326,5 @@ public class HttpManagementAglouService : IHttpManagementAglou
         };
         return await _clientService.SendAsync<UpdateDossierRequestBody, Aglou10001Response<object>>(request);
     }
+    #endregion
 }

@@ -5,6 +5,6 @@ namespace MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.User_
     public class LogoutRequestBody
     {
         [JsonPropertyName("id")]
-        public string Id { get; set; } = null!;
+        public int Id { get; set; }
     }
 }

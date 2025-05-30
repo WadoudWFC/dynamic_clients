@@ -75,6 +75,19 @@ public class HttpUserAglouService : IHttpUserAglou
         return await _clientService.SendAsync<LogoutRequestBody, Aglou10001Response<object>>(request);
     }
 
+    public async Task<ApiResponse<Aglou10001Response<object>>> RegisterUserAsync(RegisterUserRequestBody registerUserRequestBody)
+    {
+        ApiRequest<RegisterUserRequestBody> request = new ApiRequest<RegisterUserRequestBody>
+        {
+            ApiName = monopp_extern,
+            Endpoint = "/api/v2/utilisateur/InsertUser",
+            Method = HttpMethod.Post,
+            RequiresApiKey = false,
+            Data = registerUserRequestBody
+        };
+        return await _clientService.SendAsync<RegisterUserRequestBody, Aglou10001Response<object>>(request);
+    }
+
     public async Task<ApiResponse<Aglou10001Response<object>>> UpdatePasswordAsync(UpdatePasswordRequestBody updatePasswordRequestBody)
     {
         ApiRequest<UpdatePasswordRequestBody> request = new ApiRequest<UpdatePasswordRequestBody>

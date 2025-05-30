@@ -110,3 +110,8 @@ C:\Users\A.Dihbaouri\Desktop\MiddlwareAPI_BFF\MP_Client\MP_Client\MultipleHtppCl
 C:\Users\A.Dihbaouri\Desktop\MiddlwareAPI_BFF\MP_Client\MP_Client\MultipleHtppClient.API\bin\Debug\net8.0\MutipleHttpClient.Domain.pdb
 C:\Users\A.Dihbaouri\Desktop\MiddlwareAPI_BFF\MP_Client\MP_Client\MultipleHtppClient.API\bin\Debug\net8.0\MultipleHttpClient.Application.dll
 C:\Users\A.Dihbaouri\Desktop\MiddlwareAPI_BFF\MP_Client\MP_Client\MultipleHtppClient.API\bin\Debug\net8.0\MultipleHttpClient.Application.pdb
+C:\Users\A.Dihbaouri\Desktop\MiddlwareAPI_BFF\MP_Client\MP_Client\MultipleHtppClient.API\bin\Debug\net8.0\FluentValidation.dll
+C:\Users\A.Dihbaouri\Desktop\MiddlwareAPI_BFF\MP_Client\MP_Client\MultipleHtppClient.API\bin\Debug\net8.0\MediatR.dll
+C:\Users\A.Dihbaouri\Desktop\MiddlwareAPI_BFF\MP_Client\MP_Client\MultipleHtppClient.API\bin\Debug\net8.0\MediatR.Contracts.dll
+C:\Users\A.Dihbaouri\Desktop\MiddlwareAPI_BFF\MP_Client\MP_Client\MultipleHtppClient.API\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
+C:\Users\A.Dihbaouri\Desktop\MiddlwareAPI_BFF\MP_Client\MP_Client\MultipleHtppClient.API\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
