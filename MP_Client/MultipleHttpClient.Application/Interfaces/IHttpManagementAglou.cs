@@ -39,5 +39,4 @@ public interface IHttpManagementAglou
     Task<ApiResponse<Aglou10001Response<IEnumerable<DossierAll>>>> GetAllDossierAsync(ProfileRoleRequestBody? profileRoleRequestBody);
     Task<ApiResponse<Aglou10001Response<IEnumerable<Partner>>>> GetPartnersAsync();
     Task<ApiResponse<Aglou10001Response<IEnumerable<DossierSearchResponse>>>> SearchDossier(SearchDossierRequestBody searchDossierRequestBody);
-
 }

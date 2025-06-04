@@ -3,7 +3,7 @@ using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.User_Acco
 using MultipleHtppClient.Infrastructure.HTTP.APIs.Models.User_Account.Responses;
 using MultipleHtppClient.Infrastructure.HTTP.REST;
 
-namespace MultipleHttpClient.Application;
+namespace MultipleHttpClient.Application.Interfaces.User;
 
 public interface IHttpUserAglou
 {

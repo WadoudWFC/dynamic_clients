@@ -43,7 +43,6 @@ public class HttpManagementAglouService : IHttpManagementAglou
         };
         return await _clientService.SendAsync<object, Aglou10001Response<IEnumerable<ActivityNatureResponse>>>(request);
     }
-
     public async Task<ApiResponse<Aglou10001Response<IEnumerable<VilleResponse>>>> GetAllCitiesAsync()
     {
         ApiRequest<object> request = new ApiRequest<object>
@@ -86,7 +85,6 @@ public class HttpManagementAglouService : IHttpManagementAglou
         };
         return await _clientService.SendAsync<object, Aglou10001Response<IEnumerable<DossierAll>>>(request);
     }
-
     public async Task<ApiResponse<Aglou10001Response<IEnumerable<PackResponse>>>> GetAllPacksAsync()
     {
         ApiRequest<object> request = new ApiRequest<object>
@@ -100,7 +98,6 @@ public class HttpManagementAglouService : IHttpManagementAglou
         };
         return await _clientService.SendAsync<object, Aglou10001Response<IEnumerable<PackResponse>>>(request);
     }
-
     public async Task<ApiResponse<Aglou10001Response<IEnumerable<RegionResponse>>>> GetAllRegionsAsync()
     {
         ApiRequest<object> request = new ApiRequest<object>
@@ -114,7 +111,6 @@ public class HttpManagementAglouService : IHttpManagementAglou
         };
         return await _clientService.SendAsync<object, Aglou10001Response<IEnumerable<RegionResponse>>>(request);
     }
-
     public async Task<ApiResponse<Aglou10001Response<IEnumerable<ArrondissementResponse>>>> GetArrondissementsAsync()
     {
         ApiRequest<object> request = new ApiRequest<object>
@@ -128,7 +124,6 @@ public class HttpManagementAglouService : IHttpManagementAglou
         };
         return await _clientService.SendAsync<object, Aglou10001Response<IEnumerable<ArrondissementResponse>>>(request);
     }
-
     public async Task<ApiResponse<Aglou10001Response<IEnumerable<CommercialCutting>>>> GetCommercialCuttingAsync()
     {
         ApiRequest<object> request = new ApiRequest<object>
@@ -141,7 +136,6 @@ public class HttpManagementAglouService : IHttpManagementAglou
         };
         return await _clientService.SendAsync<object, Aglou10001Response<IEnumerable<CommercialCutting>>>(request);
     }
-
     public async Task<ApiResponse<Aglou10001Response<DossierCounts>>> GetCountsAsync(string userId, string roleId)
     {
         ApiRequest<DossierCountRequest> request = new ApiRequest<DossierCountRequest>
@@ -160,7 +154,6 @@ public class HttpManagementAglouService : IHttpManagementAglou
         };
         return await _clientService.SendAsync<DossierCountRequest, Aglou10001Response<DossierCounts>>(request);
     }
-
     public async Task<ApiResponse<Aglou10001Response<IEnumerable<DemandType>>>> GetDemandsTypeAsync()
     {
         ApiRequest<object> request = new ApiRequest<object>
@@ -173,7 +166,6 @@ public class HttpManagementAglouService : IHttpManagementAglou
         };
         return await _clientService.SendAsync<object, Aglou10001Response<IEnumerable<DemandType>>>(request);
     }
-
     public async Task<ApiResponse<Aglou10001Response<IEnumerable<DossierStatus>>>> GetDossierStatusAsync(ProfileRoleRequestBody? profileRequestBody)
     {
         profileRequestBody.RoleId = string.Empty;
@@ -188,7 +180,6 @@ public class HttpManagementAglouService : IHttpManagementAglou
         };
         return await _clientService.SendAsync<ProfileRoleRequestBody, Aglou10001Response<IEnumerable<DossierStatus>>>(request);
     }
-
     public async Task<ApiResponse<Aglou10001Response<IEnumerable<Partner>>>> GetPartnersAsync()
     {
         ApiRequest<object> request = new ApiRequest<object>
@@ -202,7 +193,6 @@ public class HttpManagementAglouService : IHttpManagementAglou
         };
         return await _clientService.SendAsync<object, Aglou10001Response<IEnumerable<Partner>>>(request);
     }
-
     public async Task<ApiResponse<Aglou10001Response<IEnumerable<PartnersType>>>> GetPartnerTypes()
     {
         ApiRequest<object> request = new ApiRequest<object>
@@ -215,7 +205,6 @@ public class HttpManagementAglouService : IHttpManagementAglou
         };
         return await _clientService.SendAsync<object, Aglou10001Response<IEnumerable<PartnersType>>>(request);
     }
-
     public async Task<ApiResponse<Aglou10001Response<IEnumerable<TypeBienResponse>>>> GetTypeBienAsync()
     {
         ApiRequest<object> request = new ApiRequest<object>
@@ -229,7 +218,6 @@ public class HttpManagementAglouService : IHttpManagementAglou
         };
         return await _clientService.SendAsync<object, Aglou10001Response<IEnumerable<TypeBienResponse>>>(request);
     }
-
     public async Task<ApiResponse<Aglou10001Response<object?>>> InsertCommentAsync(InsertCommentRequestBody insertCommentRequestBody)
     {
         ApiRequest<InsertCommentRequestBody> request = new ApiRequest<InsertCommentRequestBody>
@@ -243,7 +231,6 @@ public class HttpManagementAglouService : IHttpManagementAglou
         };
         return await _clientService.SendAsync<InsertCommentRequestBody, Aglou10001Response<object?>>(request);
     }
-
     public async Task<ApiResponse<Aglou10001Response<object?>>> InsertDossierFormAsync(InsertDossierFormBodyRequest insertDossierFormBodyRequest)
     {
         ApiRequest<InsertDossierFormBodyRequest> request = new ApiRequest<InsertDossierFormBodyRequest>
@@ -258,7 +245,6 @@ public class HttpManagementAglouService : IHttpManagementAglou
         };
         return await _clientService.SendAsync<InsertDossierFormBodyRequest, Aglou10001Response<object?>>(request);
     }
-
     public async Task<ApiResponse<Aglou10001Response<string>>> LoadDossierAsync(LogoutRequestBody idRequestBody)
     {
         ApiRequest<LogoutRequestBody> request = new ApiRequest<LogoutRequestBody>
@@ -272,7 +258,6 @@ public class HttpManagementAglouService : IHttpManagementAglou
         };
         return await _clientService.SendAsync<LogoutRequestBody, Aglou10001Response<string>>(request);
     }
-
     public async Task<ApiResponse<Aglou10001Response<IEnumerable<DossierSearchResponse>>>> SearchDossier(SearchDossierRequestBody searchDossierRequestBody)
     {
         ApiRequest<SearchDossierRequestBody> request = new ApiRequest<SearchDossierRequestBody>
@@ -286,7 +271,6 @@ public class HttpManagementAglouService : IHttpManagementAglou
         };
         return await _clientService.SendAsync<SearchDossierRequestBody, Aglou10001Response<IEnumerable<DossierSearchResponse>>>(request);
     }
-
     public async Task<ApiResponse<Aglou10001Response<IEnumerable<HistroySearchResponse>>>> SearchHistroyAsync(HistorySearchRequestBody historySearchRequestBody)
     {
         ApiRequest<HistorySearchRequestBody> request = new ApiRequest<HistorySearchRequestBody>
@@ -300,7 +284,6 @@ public class HttpManagementAglouService : IHttpManagementAglou
         };
         return await _clientService.SendAsync<HistorySearchRequestBody, Aglou10001Response<IEnumerable<HistroySearchResponse>>>(request);
     }
-
     public async Task<ApiResponse<object>> TickerAsync()
     {
         ApiRequest<object> request = new ApiRequest<object>
@@ -311,7 +294,6 @@ public class HttpManagementAglouService : IHttpManagementAglou
         };
         return await _clientService.SendAsync<object, object>(request);
     }
-
     public async Task<ApiResponse<Aglou10001Response<object>>> UpdateDossierAsync(UpdateDossierRequestBody updateDossierRequestBody)
     {
         ApiRequest<UpdateDossierRequestBody> request = new ApiRequest<UpdateDossierRequestBody>

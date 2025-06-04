@@ -17,6 +17,7 @@ using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Supplemen
 using MultipleHtppClient.Infrastructure.HTTP.APIs.Models.User_Account.Responses;
 using MultipleHtppClient.Infrastructure.HTTP.REST;
 using MultipleHttpClient.Application;
+using MultipleHttpClient.Application.Interfaces.User;
 
 namespace MultipleHtppClient.API;
 

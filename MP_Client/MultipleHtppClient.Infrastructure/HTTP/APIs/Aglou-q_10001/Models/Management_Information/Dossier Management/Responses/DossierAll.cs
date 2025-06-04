@@ -14,6 +14,5 @@ namespace MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Manag
         public int DossierStatusId { get; set; }
         [JsonPropertyName("statut")]
         public string Status { get; set; }
-
     }
 }

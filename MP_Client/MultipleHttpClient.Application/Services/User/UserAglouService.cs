@@ -1,12 +1,12 @@
-﻿using System.Runtime.InteropServices;
-using MultipleHtppClient.Infrastructure;
+﻿using MultipleHtppClient.Infrastructure;
 using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.User_Account.Requests;
+using MultipleHttpClient.Application.Interfaces.User;
 using MultipleHttpClient.Application.Users.Commands.Can_Try_Login;
 using MultipleHttpClient.Application.Users.Commands.ForgetPassword;
 using MultipleHttpClient.Application.Users.Commands.Logout;
 using MutipleHttpClient.Domain;
 
-namespace MultipleHttpClient.Application;
+namespace MultipleHttpClient.Application.Services.User;
 
 public class UserAglouService : IUserAglouService
 {
@@ -23,13 +23,13 @@ public class UserAglouService : IUserAglouService
         var response = await _httpUserAglou.CanTryLoginAsync(request);
         if (!response.IsSuccess || response.Data?.Data == null)
         {
-            return Result<SanitizedUserResponse>.Failure(new Error("CanTryLogin.Failed", "Cannot try login"));
+            return Result<SanitizedUserResponse>.Failure(new Error(Constants.UserFail, "Cannot try login"));
         }
         var externalResponse = response.Data.Data;
         var userId = externalResponse.UserId;
         if (!int.TryParse(userId, out int Id))
         {
-            return Result<SanitizedUserResponse>.Failure(new Error("CanTryLogin.Failed", "Invalid User Id!"));
+            return Result<SanitizedUserResponse>.Failure(new Error(Constants.UserFail, "Invalid User Id!"));
         }
         var userGuid = _idMappingService.GetGuidForUserId(Id);
         return Result<SanitizedUserResponse>.Success(new SanitizedUserResponse(UserId: userGuid, FirstName: externalResponse.FirstName, LastName: externalResponse.LastName,
@@ -44,7 +44,7 @@ public class UserAglouService : IUserAglouService
         var response = await _httpUserAglou.LoginAsync(request);
         if (!response.IsSuccess || response.Data?.Data == null)
         {
-            return Result<SanitizedLoginResponse>.Failure(new Error("Login.Failed", "Login failed!"));
+            return Result<SanitizedLoginResponse>.Failure(new Error(Constants.UserFail, "Login failed!"));
         }
         var externalResponse = response.Data.Data;
         var userId = externalResponse.UserId;
@@ -59,13 +59,13 @@ public class UserAglouService : IUserAglouService
         var userId = _idMappingService.GetUserIdForGuid(command.UserId);
         if (userId == null || userId is not int)
         {
-            return Result<SanitizedBasicResponse>.Failure(new Error("Logout.Failed", "Logout failed!"));
+            return Result<SanitizedBasicResponse>.Failure(new Error(Constants.UserFail, "Logout failed!"));
         }
         LogoutRequestBody request = new LogoutRequestBody { Id = (int)userId };
         var response = await _httpUserAglou.LogoutAsync(request);
         if (!response.IsSuccess || response.Data?.Data == null)
         {
-            return Result<SanitizedBasicResponse>.Failure(new Error("Logout.Failed", "Logout failed!"));
+            return Result<SanitizedBasicResponse>.Failure(new Error(Constants.UserFail, "Logout failed!"));
         }
         var externalResponse = response.Data;
         return Result<SanitizedBasicResponse>.Success(new SanitizedBasicResponse(true, externalResponse.Message));
@@ -77,7 +77,7 @@ public class UserAglouService : IUserAglouService
         var response = await _httpUserAglou.ForgetPasswordAsync(request);
         if (!response.IsSuccess || response.Data?.Data == null)
         {
-            return Result<SanitizedBasicResponse>.Failure(new Error("ForgetPassword.Failed", "Forget Password failed!"));
+            return Result<SanitizedBasicResponse>.Failure(new Error(Constants.UserFail, "Forget Password failed!"));
         }
         var externalResponse = response.Data;
         return Result<SanitizedBasicResponse>.Success(new SanitizedBasicResponse(true, externalResponse.Message));
@@ -88,13 +88,13 @@ public class UserAglouService : IUserAglouService
         var userId = _idMappingService.GetUserIdForGuid(command.UserId);
         if (userId == null || userId is not int)
         {
-            return Result<SanitizedBasicResponse>.Failure(new Error("UpdatePassword.Failed", "Update password failed!"));
+            return Result<SanitizedBasicResponse>.Failure(new Error(Constants.UserFail, "Update password failed!"));
         }
         UpdatePasswordRequestBody request = new UpdatePasswordRequestBody { Id = (int)userId, Password = command.NewPassword };
         var response = await _httpUserAglou.UpdatePasswordAsync(request);
         if (!response.IsSuccess || response.Data?.Data == null)
         {
-            return Result<SanitizedBasicResponse>.Failure(new Error("UpdatePassword.Failed", "Update password failed!"));
+            return Result<SanitizedBasicResponse>.Failure(new Error(Constants.UserFail, "Update password failed!"));
         }
         var externalResponse = response.Data;
         return Result<SanitizedBasicResponse>.Success(new SanitizedBasicResponse(true, externalResponse.Message));
@@ -115,7 +115,7 @@ public class UserAglouService : IUserAglouService
         var response = await _httpUserAglou.RegisterUserAsync(request);
         if (!response.IsSuccess || response.Data == null)
         {
-            return Result<SanitizedBasicResponse>.Failure(new Error("RegisterUser.Failed", "Registration failed!"));
+            return Result<SanitizedBasicResponse>.Failure(new Error(Constants.UserFail, "Registration failed!"));
         }
         var externalResponse = response.Data;
         return Result<SanitizedBasicResponse>.Success(new SanitizedBasicResponse(true, externalResponse.Message));

@@ -3,7 +3,7 @@ using MultipleHttpClient.Application.Users.Commands.ForgetPassword;
 using MultipleHttpClient.Application.Users.Commands.Logout;
 using MutipleHttpClient.Domain;
 
-namespace MultipleHttpClient.Application;
+namespace MultipleHttpClient.Application.Interfaces.User;
 
 public interface IUserAglouService
 {

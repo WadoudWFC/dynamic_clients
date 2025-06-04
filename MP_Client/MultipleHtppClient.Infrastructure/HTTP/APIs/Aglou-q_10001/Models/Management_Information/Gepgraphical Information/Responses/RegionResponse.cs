@@ -10,7 +10,7 @@ namespace MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Manag
     public class RegionResponse
     {
         [JsonPropertyName("id")]
-        public int? Id { get; set; }
+        public int Id { get; set; }
         [JsonPropertyName("label")]
         public string? Label { get; set; }
         [JsonPropertyName("logo")]

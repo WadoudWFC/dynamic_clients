@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
+using MultipleHttpClient.Application.Interfaces.User;
 using MultipleHttpClient.Application.Users.Commands.Can_Try_Login;
 using MutipleHttpClient.Domain;
 

@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
+using MultipleHttpClient.Application.Interfaces.User;
 using MutipleHttpClient.Domain;
 
 namespace MultipleHttpClient.Application;

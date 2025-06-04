@@ -1,12 +1,10 @@
+using FluentValidation;
 using MultipleHtppClient.API;
 using MultipleHtppClient.Infrastructure.HTTP.Extensions;
 using MultipleHttpClient.Application;
 using MultipleHttpClient.Application.Users.Validators;
-using MutipleHttpClient.Domain;
-using FluentValidation.AspNetCore;
-using MediatR;
-using MultipleHttpClient.Application.Commons.Behavior;
-using FluentValidation;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -17,7 +15,7 @@ builder.Services.AddControllers();
 builder.Services.AddApiHttpClients(builder.Configuration);
 builder.Services.AddApplicationService();
 builder.Services.AddSingleton<IUseHttpService, UseHttpService>();
-builder.Services.AddMediatR(config => config.RegisterServicesFromAssemblyContaining<MultipleHttpClient.Application.Users.Handlers.LoginCommandHandler>());
+// builder.Services.AddMediatR(config => config.RegisterServicesFromAssemblyContaining<MultipleHttpClient.Application.Users.Handlers.LoginCommandHandler>());
 
 // Validators
 builder.Services.AddValidatorsFromAssemblyContaining<LoginCommandValidator>();
