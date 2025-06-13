@@ -17,7 +17,7 @@ using MultipleHttpClient.Application.Interfaces.Dossier;
 
 namespace MultipleHttpClient.Application.Services.Dossier;
 
-public class HttpDossierAglouService : IHttpDosserAglouService
+public class HttpDossierAglouService : IHttpDossierAglouService
 {
     #region Constants
     const string monopp_extern = "aglou-q-monopp-extern";

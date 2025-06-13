@@ -12,7 +12,7 @@ using MultipleHtppClient.Infrastructure.HTTP.REST;
 
 namespace MultipleHttpClient.Application.Interfaces.Dossier;
 
-public interface IHttpDosserAglouService
+public interface IHttpDossierAglouService
 {
     Task<ApiResponse<Aglou10001Response<LoadDossierResponse>>> LoadDossierAsync(LogoutRequestBody idRequestBody);
     Task<ApiResponse<Aglou10001Response<IEnumerable<HistroySearchResponse>>>> SearchHistroyAsync(HistorySearchRequestBody historySearchRequestBody);
@@ -24,5 +24,4 @@ public interface IHttpDosserAglouService
     Task<ApiResponse<Aglou10001Response<IEnumerable<DossierStatus>>>> GetDossierStatusAsync(ProfileRoleRequestBody? profileRequestBody);
     Task<ApiResponse<Aglou10001Response<IEnumerable<DossierAll>>>> GetAllDossierAsync(ProfileRoleRequestBody? profileRoleRequestBody);
     Task<ApiResponse<Aglou10001Response<IEnumerable<DossierSearchResponse>>>> SearchDossier(SearchDossierRequestBody searchDossierRequestBody);
-
 }

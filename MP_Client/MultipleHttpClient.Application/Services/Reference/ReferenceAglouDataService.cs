@@ -1,6 +1,4 @@
-﻿using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Partner_Management.Responses;
-using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Property_Information.Responses;
-using MultipleHttpClient.Application.Interfaces.Reference;
+﻿using MultipleHttpClient.Application.Interfaces.Reference;
 using MutipleHttpClient.Domain;
 
 namespace MultipleHttpClient.Application;

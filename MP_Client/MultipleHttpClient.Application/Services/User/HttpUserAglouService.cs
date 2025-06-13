@@ -1,5 +1,6 @@
 ﻿using MultipleHtppClient.Infrastructure;
 using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.User_Account.Requests;
+using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.User_Account.Responses;
 using MultipleHtppClient.Infrastructure.HTTP.APIs.Models.User_Account.Responses;
 using MultipleHtppClient.Infrastructure.HTTP.Interfaces;
 using MultipleHtppClient.Infrastructure.HTTP.REST;
@@ -41,6 +42,20 @@ public class HttpUserAglouService : IHttpUserAglou
             Data = forgetPasswordRequestBody
         };
         return await _clientService.SendAsync<object, Aglou10001Response<object>>(request);
+    }
+
+    public async Task<ApiResponse<Aglou10001Response<LoadUserResponse>>> LoadUserAsync(LogoutRequestBody logoutRequestBody)
+    {
+        ApiRequest<LogoutRequestBody> request = new ApiRequest<LogoutRequestBody>
+        {
+            ApiName = monopp_extern,
+            Endpoint = "/api/v2/utilisateur/Load",
+            Method = HttpMethod.Post,
+            Data = logoutRequestBody,
+            RequiresApiKey = true,
+            RequiresBearerToken = true
+        };
+        return await _clientService.SendAsync<LogoutRequestBody, Aglou10001Response<LoadUserResponse>>(request);
     }
 
     public async Task<ApiResponse<Aglou10001Response<AglouLoginResponse>>> LoginAsync(LoginRequestBody loginRequestBody)

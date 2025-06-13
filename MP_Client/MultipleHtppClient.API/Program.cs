@@ -15,7 +15,6 @@ builder.Services.AddControllers();
 builder.Services.AddApiHttpClients(builder.Configuration);
 builder.Services.AddApplicationService();
 builder.Services.AddSingleton<IUseHttpService, UseHttpService>();
-// builder.Services.AddMediatR(config => config.RegisterServicesFromAssemblyContaining<MultipleHttpClient.Application.Users.Handlers.LoginCommandHandler>());
 
 // Validators
 builder.Services.AddValidatorsFromAssemblyContaining<LoginCommandValidator>();

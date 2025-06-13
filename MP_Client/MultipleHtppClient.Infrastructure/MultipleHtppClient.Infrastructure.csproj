@@ -10,9 +10,6 @@
     <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.4" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\MutipleHttpClient.Domain\MutipleHttpClient.Domain.csproj" />
-  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="HTTP\APIs\Aglou-q_10001\Models\Management_Information\Commercial Activities\Requests\" />
@@ -20,6 +17,10 @@
     <Folder Include="HTTP\APIs\Aglou-q_10001\Models\Management_Information\Partner Management\Requests\" />
     <Folder Include="HTTP\APIs\Aglou-q_10001\Models\Management_Information\Property Information\Requests\" />
     <Folder Include="HTTP\APIs\Aglou-q_10001\Models\Management_Information\Statistics and Counts\Requests\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MutipleHttpClient.Domain\MutipleHttpClient.Domain.csproj" />
   </ItemGroup>
 
 

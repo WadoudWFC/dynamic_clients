@@ -3,8 +3,10 @@ using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.User_Acco
 using MultipleHttpClient.Application.Interfaces.User;
 using MultipleHttpClient.Application.Users.Commands.Can_Try_Login;
 using MultipleHttpClient.Application.Users.Commands.ForgetPassword;
+using MultipleHttpClient.Application.Users.Commands.LoadUser;
 using MultipleHttpClient.Application.Users.Commands.Logout;
 using MutipleHttpClient.Domain;
+using MutipleHttpClient.Domain.Shared.DTOs.Users;
 
 namespace MultipleHttpClient.Application.Services.User;
 
@@ -12,10 +14,12 @@ public class UserAglouService : IUserAglouService
 {
     private readonly IHttpUserAglou _httpUserAglou;
     private readonly IIdMappingService _idMappingService;
-    public UserAglouService(IHttpUserAglou httpUserAglou, IIdMappingService idMappingService)
+    private readonly IReferenceDataMappingService _referenceDataMappingService;
+    public UserAglouService(IHttpUserAglou httpUserAglou, IIdMappingService idMappingService, IReferenceDataMappingService referenceDataMappingService)
     {
         _httpUserAglou = httpUserAglou;
         _idMappingService = idMappingService;
+        _referenceDataMappingService = referenceDataMappingService;
     }
     public async Task<Result<SanitizedUserResponse>> CanTryLoginAsync(CanTryLoginCommand command)
     {
@@ -59,7 +63,7 @@ public class UserAglouService : IUserAglouService
         var userId = _idMappingService.GetUserIdForGuid(command.UserId);
         if (userId == null || userId is not int)
         {
-            return Result<SanitizedBasicResponse>.Failure(new Error(Constants.UserFail, "Logout failed!"));
+            return Result<SanitizedBasicResponse>.Failure(new Error(Constants.UserFail, Constants.InvalidUser));
         }
         LogoutRequestBody request = new LogoutRequestBody { Id = (int)userId };
         var response = await _httpUserAglou.LogoutAsync(request);
@@ -88,7 +92,7 @@ public class UserAglouService : IUserAglouService
         var userId = _idMappingService.GetUserIdForGuid(command.UserId);
         if (userId == null || userId is not int)
         {
-            return Result<SanitizedBasicResponse>.Failure(new Error(Constants.UserFail, "Update password failed!"));
+            return Result<SanitizedBasicResponse>.Failure(new Error(Constants.UserFail, Constants.InvalidUser));
         }
         UpdatePasswordRequestBody request = new UpdatePasswordRequestBody { Id = (int)userId, Password = command.NewPassword };
         var response = await _httpUserAglou.UpdatePasswordAsync(request);
@@ -119,5 +123,38 @@ public class UserAglouService : IUserAglouService
         }
         var externalResponse = response.Data;
         return Result<SanitizedBasicResponse>.Success(new SanitizedBasicResponse(true, externalResponse.Message));
+    }
+
+    public async Task<Result<LoadUserResponseSanitized>> GetUserByIdAsync(LoadUserCommand command)
+    {
+        var userId = _idMappingService.GetUserIdForGuid(command.UserId);
+        if (userId == null || userId is not int)
+        {
+            return Result<LoadUserResponseSanitized>.Failure(new Error(Constants.UserFail, Constants.UserMappingError));
+        }
+        var response = await _httpUserAglou.LoadUserAsync(new LogoutRequestBody { Id = userId.Value });
+        if (!response.IsSuccess || response.Data?.Data == null)
+        {
+            return Result<LoadUserResponseSanitized>.Failure(new Error(Constants.UserFail, Constants.NoDataError));
+        }
+        var userData = response.Data.Data;
+        return Result<LoadUserResponseSanitized>.Success(new LoadUserResponseSanitized
+        {
+            User = command.UserId,
+            FirstName = userData.FirstName,
+            LastName = userData.LastName,
+            Gender = userData.Gender,
+            EmailAddress = userData.EmailAddress,
+            PhoneNumber = userData.PhoneNumber,
+            Profile_Id = _referenceDataMappingService.GetOrCreateGuidForReferenceId(userData.ProfileId, Constants.Profile),
+            EntityId = userData.EntityId,
+            DecoupageCommercialId = userData.DecoupageCommercialId,
+            ParentUserId = userData.ParentUserId,
+            IsActive = userData.IsActive,
+            ImageUrl = userData.ImageUrl,
+            Image = userData.Image,
+            InternalId = userData.Id,
+            InternalProfileId = userData.ProfileId
+        });
     }
 }

@@ -1,7 +1,9 @@
 ﻿using MultipleHttpClient.Application.Users.Commands.Can_Try_Login;
 using MultipleHttpClient.Application.Users.Commands.ForgetPassword;
+using MultipleHttpClient.Application.Users.Commands.LoadUser;
 using MultipleHttpClient.Application.Users.Commands.Logout;
 using MutipleHttpClient.Domain;
+using MutipleHttpClient.Domain.Shared.DTOs.Users;
 
 namespace MultipleHttpClient.Application.Interfaces.User;
 
@@ -13,4 +15,5 @@ public interface IUserAglouService
     Task<Result<SanitizedBasicResponse>> ForgetPasswordAsync(ForgetPasswordCommand command);
     Task<Result<SanitizedBasicResponse>> UpdatePasswordAsync(UpdatePasswordCommand command);
     Task<Result<SanitizedBasicResponse>> RegisterUserAsync(RegisterUserCommand command);
+    Task<Result<LoadUserResponseSanitized>> GetUserByIdAsync(LoadUserCommand command);
 }

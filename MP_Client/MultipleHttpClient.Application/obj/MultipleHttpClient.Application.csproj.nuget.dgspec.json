@@ -48,7 +48,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -75,7 +75,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -109,6 +109,9 @@
             "projectReferences": {
               "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj": {
                 "projectPath": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj"
+              },
+              "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MutipleHttpClient.Domain\\MutipleHttpClient.Domain.csproj": {
+                "projectPath": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MutipleHttpClient.Domain\\MutipleHttpClient.Domain.csproj"
               }
             }
           }
@@ -123,7 +126,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -136,6 +139,10 @@
             "MediatR": {
               "target": "Package",
               "version": "[12.5.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.16, )"
             }
           },
           "imports": [
@@ -154,7 +161,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -198,11 +205,17 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authorization": {
+              "target": "Package",
+              "version": "[9.0.5, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -219,7 +232,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
