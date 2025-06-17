@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
+using MutipleHttpClient.Domain;
 using MutipleHttpClient.Domain.Shared.DTOs.Dossier;
 
 namespace MultipleHttpClient.Application.Dossier.Command
@@ -11,6 +11,6 @@ namespace MultipleHttpClient.Application.Dossier.Command
                                         string? LocalComment, string? ICE, string? RC, string? OtherCity, string? LocalName,
                                         string? NearestWFCAgencyName, string? NearestWFCOfficeDistance, string? NearestWFCAgencyDistance,
                                         int? Potential, string? Pack, int? LegalForm, int? TaxRegime, int? AgentMode,
-                                        string? FiscalIdentification, List<IFormFile>? InteriorPhotos, List<IFormFile>? ExteriorPhotos)
-        : IRequest<InsertDossierOperationResult>;
+                                        string? FiscalIdentification, List<string>? InteriorPhotos, List<string>? ExteriorPhotos)
+        : IRequest<Result<InsertDossierOperationResult>>;
 }

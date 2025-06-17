@@ -21,7 +21,7 @@ namespace MultipleHttpClient.Application.Dossier.Handlers
             try
             {
                 var result = await _dossierAglouService.GetAllDossierAsync(request);
-                if (result.IsSuccess || result.Value == null)
+                if (!result.IsSuccess || result.Value == null)
                 {
                     _logger.LogError("[GetAllDossier]: {0} failed execution!", nameof(GetAllDossierQueryHandler));
                     return Result<IEnumerable<DossierAllSanitized>>.Failure(new Error("The GetAllDossierQueryHandler failed", "Can't handle Get all dossier"));

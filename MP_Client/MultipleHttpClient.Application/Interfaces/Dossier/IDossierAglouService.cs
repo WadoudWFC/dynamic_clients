@@ -16,4 +16,5 @@ public interface IDossierAglouService
     Task<Result<DossierUpdateResult>> UpdateDossierAsync(UpdateDossierCommand command);
     Task<Result<IEnumerable<DossierSearchSanitized>>> SearchDossierAsync(SearchDossierQuery query);
     Task<Result<InsertDossierOperationResult>> InsertDossierAsync(InsertDossierCommand command);
+    Task<Result<LoadDossierResponseSanitized>> LoadDossierAsync(LoadDossierQuery query);
 }

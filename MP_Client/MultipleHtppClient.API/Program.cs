@@ -13,7 +13,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddApiHttpClients(builder.Configuration);
-builder.Services.AddApplicationService();
+builder.Services.AddApplicationService(builder.Configuration);
 builder.Services.AddSingleton<IUseHttpService, UseHttpService>();
 
 // Validators

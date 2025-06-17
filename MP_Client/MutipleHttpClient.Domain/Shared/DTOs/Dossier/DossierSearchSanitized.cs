@@ -4,7 +4,7 @@ namespace MutipleHttpClient.Domain.Shared.DTOs.Dossier
 {
     public record DossierSearchSanitized(Guid DossierId, string? Code, Guid? NatureActivityId, Guid DemandTypeId,
                                         Guid CommercialCuttingId, Guid DossierStatusId, bool CanUpdate, string? TypeDemande,
-                                        string? ActivityNature, string? Partner, LocalDossierSanitized? LocalDossierSanitized,
+                                        string? ActivityNature, string? Partner, SearchLocalDossierSanitied? LocalDossierSanitized,
                                         string? Status, string? LabelStatus, DateTime? DateCreated)
     {
         [JsonIgnore]

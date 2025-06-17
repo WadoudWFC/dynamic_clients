@@ -3,6 +3,8 @@ using Microsoft.Extensions.Logging;
 using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Comment_Management.Requests;
 using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Demand_Management.Requests;
 using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Management_Information.Dossier_Management.Requests;
+using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Supplements.Responses;
+using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.User_Account.Requests;
 using MultipleHttpClient.Application.Dossier.Command;
 using MultipleHttpClient.Application.Dossier.Queries;
 using MultipleHttpClient.Application.Interfaces.Dossier;
@@ -235,34 +237,43 @@ public class DossierAglouService : IDossierAglouService
             return Result<CommentOperationResult>.Failure(new Error(Constants.DossierFail, ex.Message));
         }
     }
-
-    public Task<Result<InsertDossierOperationResult>> InsertDossierAsync(InsertDossierCommand command)
+    public async Task<Result<InsertDossierOperationResult>> InsertDossierAsync(InsertDossierCommand command)
     {
+        var userId = _idMappingService.GetUserIdForGuid(command.UserId);
+        if (userId == null)
+        {
+            _logger.LogError("User ID mapping not found for {UserId}", command.UserId);
+            return Result<InsertDossierOperationResult>.Failure(new Error(Constants.DossierFail, Constants.DossierFailMessage));
+        }
         try
         {
-            // Map GUIDs to internal IDs
+            // Map GUIDs to internal IDs for legacy API
             var request = new InsertDossierFormBodyRequest
             {
-                id_statutdossier = _mappingAglouDataService.GetReferenceIdForGuid(command.StatusId, Constants.DossierStatus)?.ToString(),
+                // Required fields
+                id_statutdossier = userId.Value.ToString(),
                 user_id = _mappingAglouDataService.GetReferenceIdForGuid(command.UserId, Constants.User)?.ToString(),
+
+                // Optional GUID fields
                 id_typedemende = command.DemandTypeId.HasValue ?
                     _mappingAglouDataService.GetReferenceIdForGuid(command.DemandTypeId.Value, Constants.DemandType)?.ToString() : null,
                 id_natureactivite = command.ActivityNatureId.HasValue ?
-                    _mappingAglouDataService.GetReferenceIdForGuid(command.ActivityNatureId.Value, Constants.ActivityNature)?.ToString() : null,
+                    _mappingAglouDataService.GetReferenceIdForGuid(command.ActivityNatureId.Value, Constants.Activity)?.ToString() : null,
                 id_region = command.RegionId.HasValue ?
                     _mappingAglouDataService.GetReferenceIdForGuid(command.RegionId.Value, Constants.Region)?.ToString() : null,
                 id_ville = command.CityId.HasValue ?
                     _mappingAglouDataService.GetReferenceIdForGuid(command.CityId.Value, Constants.City)?.ToString() : null,
                 id_arrandissement = command.DistrictId.HasValue ?
-                    _mappingAglouDataService.GetReferenceIdForGuid(command.DistrictId.Value, Constants.District)?.ToString() : null,
-                adresslocal = command.LocalAddress,
+                    _mappingAglouDataService.GetReferenceIdForGuid(command.DistrictId.Value, Constants.Arrondissement)?.ToString() : null,
                 id_visibilite = command.VisibilityId.HasValue ?
                     _mappingAglouDataService.GetReferenceIdForGuid(command.VisibilityId.Value, Constants.Visibility)?.ToString() : null,
-                superficie = command.Area,
-                presence_sanitaire = command.HasSanitary.HasValue ?
-                    (command.HasSanitary.Value ? "1" : "0") : null,
                 id_typebien = command.PropertyTypeId.HasValue ?
-                    _mappingAglouDataService.GetReferenceIdForGuid(command.PropertyTypeId.Value, Constants.PropertyType)?.ToString() : null,
+                    _mappingAglouDataService.GetReferenceIdForGuid(command.PropertyTypeId.Value, Constants.Type)?.ToString() : null,
+
+                // String fields
+                adresslocal = command.LocalAddress?.Trim(),
+                superficie = command.Area,
+                presence_sanitaire = command.HasSanitary.HasValue ? (command.HasSanitary.Value ? "1" : "0") : null,
                 prix = command.Price?.ToString(CultureInfo.InvariantCulture),
                 facade = command.Facade,
                 Latitude = command.Latitude,
@@ -284,53 +295,208 @@ public class DossierAglouService : IDossierAglouService
                 regime_imposi = command.TaxRegime?.ToString(),
                 mode_mandataire = command.AgentMode?.ToString(),
                 identification_fiscale = command.FiscalIdentification,
-                photosInterieur_0 = command.InteriorPhotos?.FirstOrDefault().ToString(),
-                photosExterieur_0 = command.ExteriorPhotos?.FirstOrDefault().ToString()
+
+                // Base64 Images
+                photosInterieur_0 = command.InteriorPhotos?.FirstOrDefault(),
+                photosExterieur_0 = command.ExteriorPhotos?.FirstOrDefault()
             };
 
-            // Validate all required mappings exist
+            // Validate critical ID mappings
             var missingMappings = new List<string>();
             if (request.id_statutdossier == null) missingMappings.Add("Status");
             if (request.user_id == null) missingMappings.Add("User");
 
             if (missingMappings.Any())
             {
-                return Result<DossierOperationResult>.Failure(
-                    new Error("MappingError", $"Missing mappings for: {string.Join(", ", missingMappings)}"));
+                _logger.LogError("Missing ID mappings: {Mappings}", missingMappings);
+                return Result<InsertDossierOperationResult>.Failure(new Error(Constants.DossierFail, Constants.DossierFailMessage));
             }
 
-            // Call the legacy API
-            var response = await _httpDossierService.InsertDossierFormAsync(request);
+            var response = await _httpDosserAglouService.InsertDossierFormAsync(request);
 
             if (!response.IsSuccess || response.Data == null)
             {
-                return Result<DossierOperationResult>.Failure(
-                    new Error("ApiError", response.ErrorMessage ?? "Failed to create dossier"));
+                _logger.LogError("Legacy API error: {StatusCode} - {Message}",
+                    response.StatusCode, response.ErrorMessage);
+                return Result<InsertDossierOperationResult>.Failure(new Error("ApiError", response.ErrorMessage ?? "Failed to create dossier"));
             }
 
-            // Map the response
+            // Map response IDs
             Guid? dossierId = null;
             if (response.Data.Data != null && int.TryParse(response.Data.Data.ToString(), out var newDossierId))
             {
                 dossierId = _mappingAglouDataService.GetOrCreateGuidForReferenceId(newDossierId, Constants.Dossier);
-                _logger.LogInformation("Created new dossier with internal ID {InternalId} and GUID {DossierId}",
-                    newDossierId, dossierId);
+                _logger.LogInformation("Created dossier with internal ID {InternalId}", newDossierId);
             }
 
-            return Result<DossierOperationResult>.Success(
-                new DossierOperationResult(
-                    IsSuccess: true,
+            return Result<InsertDossierOperationResult>.Success(
+                new InsertDossierOperationResult(
+                    IsSucess: true,
                     Message: response.Data.Message ?? "Dossier created successfully",
                     DossierId: dossierId));
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error creating dossier");
-            return Result<DossierOperationResult>.Failure(
-                new Error("ServerError", "An error occurred while creating dossier"));
+            return Result<InsertDossierOperationResult>.Failure(new Error(Constants.DossierFail, Constants.DossierFailMessage));
         }
     }
+    public async Task<Result<LoadDossierResponseSanitized>> LoadDossierAsync(LoadDossierQuery query)
+    {
+        try
+        {
+            // Map GUID to internal ID
+            var dossierId = _mappingAglouDataService.GetReferenceIdForGuid(query.DossierId, Constants.Dossier);
+            if (dossierId == null)
+            {
+                _logger.LogError("Dossier ID mapping not found for {DossierId}", query.DossierId);
+                return Result<LoadDossierResponseSanitized>.Failure(
+                    new Error(Constants.DossierFail, Constants.DossierFailMessage));
+            }
 
+            // Prepare request
+            var request = new LogoutRequestBody { Id = dossierId.Value };
+
+            // Call legacy API through the injected service
+            var response = await _httpDosserAglouService.LoadDossierAsync(request);
+
+            if (!response.IsSuccess || response.Data?.Data == null)
+            {
+                _logger.LogError("Failed to load dossier {DossierId}", query.DossierId);
+                return Result<LoadDossierResponseSanitized>.Failure(
+                    new Error(Constants.DossierFail, response.ErrorMessage ?? Constants.DossierFailMessage));
+            }
+
+            var dossierData = response.Data.Data;
+
+            // Map the response
+            var result = new LoadDossierResponseSanitized(
+                DossierId: query.DossierId,
+                ActivityNatureId: dossierData.ActivityNatureId.HasValue ?
+                    _mappingAglouDataService.GetOrCreateGuidForReferenceId(dossierData.ActivityNatureId.Value, Constants.Activity) : null,
+                RequestTypeId: dossierData.RequestTypeId.HasValue ?
+                    _mappingAglouDataService.GetOrCreateGuidForReferenceId(dossierData.RequestTypeId.Value, Constants.DemandType) : null,
+                Code: dossierData.Code,
+                PartnerId: dossierData.PartnerId.HasValue ?
+                    _mappingAglouDataService.GetOrCreateGuidForReferenceId(dossierData.PartnerId.Value, Constants.Partner) : null,
+                StatusId: dossierData.StatusId.HasValue ?
+                    _mappingAglouDataService.GetOrCreateGuidForReferenceId(dossierData.StatusId.Value, Constants.DossierStatus) : null,
+                Comments: dossierData.Comments.Select(c => new CommentaireSanitized(
+                    CommentId: _mappingAglouDataService.GetOrCreateGuidForReferenceId(c.Id, Constants.Comment),
+                    DossierId: query.DossierId,
+                    Text: c.Text,
+                    DateCreated: c.DateCreated,
+                    UserCreatedId: c.UserCreated.HasValue ?
+                        _mappingAglouDataService.GetOrCreateGuidForReferenceId(c.UserCreated.Value, Constants.User) : null)
+                {
+                    InternalId = c.Id,
+                    InternalDossierId = c.DossierId ?? 0,
+                    InternalUserCreatedId = c.UserCreated
+                }).ToList(),
+                RequestType: dossierData.RequestType,
+                StatusCode: dossierData.StatusCode,
+                StatusLabel: dossierData.StatusLabel,
+                Status: dossierData.Status,
+                CanUpload: dossierData.CanUpload,
+                LocalDossier: dossierData.LocalDossier != null ? new LocalDossierSanitized(
+                    DossierId: query.DossierId,
+                    Id: _mappingAglouDataService.GetOrCreateGuidForReferenceId(dossierData.LocalDossier.Id, Constants.LocalDossier),
+                    Latitude: dossierData.LocalDossier.Latitude,
+                    Longitude: dossierData.LocalDossier.Longitude,
+                    Address: dossierData.LocalDossier.Address,
+                    CityId: dossierData.LocalDossier.CityId.HasValue ?
+                        _mappingAglouDataService.GetOrCreateGuidForReferenceId(dossierData.LocalDossier.CityId.Value, Constants.City) : null,
+                    DistrictId: dossierData.LocalDossier.DistrictId.HasValue ?
+                        _mappingAglouDataService.GetOrCreateGuidForReferenceId(dossierData.LocalDossier.DistrictId.Value, Constants.Arrondissement) : null,
+                    LocalComment: dossierData.LocalDossier.LocalComment,
+                    PropertyTypeId: dossierData.LocalDossier.PropertyTypeId.HasValue ?
+                        _mappingAglouDataService.GetOrCreateGuidForReferenceId(dossierData.LocalDossier.PropertyTypeId.Value, Constants.BienType) : null,
+                    LocalAddress: dossierData.LocalDossier.LocalAddress,
+                    OpeningHours: dossierData.LocalDossier.OpeningHours,
+                    OpeningDays: dossierData.LocalDossier.OpeningDays,
+                    VisibilityId: dossierData.LocalDossier.VisibilityId.HasValue ?
+                        _mappingAglouDataService.GetOrCreateGuidForReferenceId(dossierData.LocalDossier.VisibilityId.Value, Constants.Visibility) : null,
+                    Area: dossierData.LocalDossier.Area,
+                    HasSanitary: dossierData.LocalDossier.HasSanitary == 1,
+                    PropertyType: dossierData.LocalDossier.PropertyType,
+                    Facade: dossierData.LocalDossier.Facade,
+                    YearsOfExperience: dossierData.LocalDossier.YearsOfExperience,
+                    Price: dossierData.LocalDossier.Price,
+                    Zone: dossierData.LocalDossier.Zone,
+                    CityName: dossierData.LocalDossier.City,
+                    Region: dossierData.LocalDossier.Region,
+                    DistrictName: dossierData.LocalDossier.District)
+                {
+                    InternalDossierId = dossierData.LocalDossier.DossierId ?? 0,
+                    InternalId = dossierData.LocalDossier.Id,
+                    InternalCityId = dossierData.LocalDossier.CityId,
+                    InternalDistrictId = dossierData.LocalDossier.DistrictId,
+                    InternalPropertyTypeId = dossierData.LocalDossier.PropertyTypeId,
+                    InternalVisibilityId = dossierData.LocalDossier.VisibilityId
+                } : null,
+                Partner: dossierData.Partner != null ? new PartnerSanitized(
+                    PartnerId: _mappingAglouDataService.GetOrCreateGuidForReferenceId(dossierData.Partner.Id, Constants.Partner),
+                    PartnerTypeId: dossierData.Partner.PartnerTypeId.HasValue ?
+                        _mappingAglouDataService.GetOrCreateGuidForReferenceId(dossierData.Partner.PartnerTypeId.Value, Constants.Partner) : null,
+                    PersonTypeId: dossierData.Partner.PersonTypeId.HasValue ?
+                        _mappingAglouDataService.GetOrCreateGuidForReferenceId(dossierData.Partner.PersonTypeId.Value, Constants.User) : null,
+                    CityId: dossierData.Partner.CityId.HasValue ?
+                        _mappingAglouDataService.GetOrCreateGuidForReferenceId(dossierData.Partner.CityId.Value, Constants.City) : null,
+                    RegionId: dossierData.Partner.RegionId.HasValue ?
+                        _mappingAglouDataService.GetOrCreateGuidForReferenceId(dossierData.Partner.RegionId.Value, Constants.Region) : null,
+                    Code: dossierData.Partner.Code,
+                    LastName: dossierData.Partner.LastName,
+                    FirstName: dossierData.Partner.FirstName,
+                    Email: dossierData.Partner.Email,
+                    Phone: dossierData.Partner.Phone,
+                    ICE: dossierData.Partner.ICE,
+                    CompanyName: dossierData.Partner.CompanyName,
+                    FiscalIdentification: dossierData.Partner.FiscalIdentification,
+                    LegalForm: dossierData.Partner.LegalForm,
+                    TaxRegime: dossierData.Partner.TaxRegime,
+                    AgentMode: dossierData.Partner.AgentMode)
+                {
+                    InternalId = dossierData.Partner.Id,
+                    InternalPartnerTypeId = dossierData.Partner.PartnerTypeId,
+                    InternalPersonTypeId = dossierData.Partner.PersonTypeId,
+                    InternalCityId = dossierData.Partner.CityId,
+                    InternalRegionId = dossierData.Partner.RegionId
+                } : null,
+                History: dossierData.History.Select(h => new HistoryItemSanitized(
+                    HistoryId: _mappingAglouDataService.GetOrCreateGuidForReferenceId(GetHistoryItemId(h), Constants.History),
+                    DossierId: query.DossierId,
+                    PreviousStatusId: h.PreviousStatusId.HasValue ?
+                        _mappingAglouDataService.GetOrCreateGuidForReferenceId(h.PreviousStatusId.Value, Constants.DossierStatus) : null,
+                    NextStatusId: h.NextStatusId.HasValue ?
+                        _mappingAglouDataService.GetOrCreateGuidForReferenceId(h.NextStatusId.Value, Constants.DossierStatus) : null,
+                    CreationDate: h.CreationDate,
+                    PreviousStatusText: h.PreviousStatusText,
+                    NextStatusText: h.NextStatusText,
+                    Operator: h.Operator)
+                {
+                    InternalId = GetHistoryItemId(h),
+                    InternalDossierId = h.DossierId ?? 0,
+                    InternalPreviousStatusId = h.PreviousStatusId,
+                    InternalNextStatusId = h.NextStatusId
+                }).ToList())
+            {
+                InternalId = dossierData.Id,
+                InternalActivityNatureId = dossierData.ActivityNatureId,
+                InternalRequestTypeId = dossierData.RequestTypeId,
+                InternalPartnerId = dossierData.PartnerId,
+                InternalStatusId = dossierData.StatusId
+            };
+
+            _logger.LogInformation("Successfully loaded dossier {DossierId}", query.DossierId);
+            return Result<LoadDossierResponseSanitized>.Success(result);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error loading dossier {DossierId}", query.DossierId);
+            return Result<LoadDossierResponseSanitized>.Failure(
+                new Error(Constants.DossierFail, ex.Message));
+        }
+    }
     public async Task<Result<IEnumerable<DossierSearchSanitized>>> SearchDossierAsync(SearchDossierQuery query)
     {
         try
@@ -423,7 +589,7 @@ public class DossierAglouService : IDossierAglouService
             // Map and sanitize the response
             var results = response.Data.Data.Select(d =>
             {
-                var localDossier = d.LocalDossier != null ? new LocalDossierSanitized(
+                var localDossier = d.LocalDossier != null ? new SearchLocalDossierSanitied(
                     DossierId: dossierMappings[d.LocalDossier.Id_Dossier],
                     Id: _mappingAglouDataService.GetOrCreateGuidForReferenceId(d.LocalDossier.Id, Constants.LocalDossier),
                     Latitude: d.LocalDossier.Latitude,
@@ -612,5 +778,10 @@ public class DossierAglouService : IDossierAglouService
             _logger.LogError(ex, "Error updating dossier {DossierId}", command.DossierId);
             return Result<DossierUpdateResult>.Failure(new Error("ServerError", ex.Message));
         }
+    }
+    private int GetHistoryItemId(HistoryItem historyItem)
+    {
+        var idString = $"{historyItem.DossierId}-{historyItem.CreationDate}-{historyItem.PreviousStatusId}-{historyItem.NextStatusId}";
+        return idString.GetHashCode();
     }
 }
