@@ -327,7 +327,16 @@ public class PresentationController : ControllerBase
         }
         return Ok(response.Data);
     }
-
+    [HttpPost("/api/v2/utilisateur/GetAll")]
+    public async Task<ActionResult<Aglou10001Response<IEnumerable<GetAllUsersResponse>>>> GetAllUsers([FromBody] GetAllUsersRequestBody request)
+    {
+        var response = await _httpAglouManagement.GetAllUsersAsync(request);
+        if (!response.IsSuccess)
+        {
+            return StatusCode((int)response.StatusCode, response.ErrorMessage);
+        }
+        return Ok(response.Data);
+    }
 
     // Important !!: Refactor code to reduce arbitrary method defintion
     private static LoadDossierResponse? GetLoadDossierResponseAsync(ApiResponse<string> apiResponse)

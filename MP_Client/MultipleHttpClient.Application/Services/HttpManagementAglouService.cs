@@ -71,6 +71,20 @@ public class HttpManagementAglouService : IHttpManagementAglou
         return await _clientService.SendAsync<GetAllCommentRequestBody, Aglou10001Response<IEnumerable<GetAllCommentsResponse>>>(request);
     }
 
+    public async Task<ApiResponse<Aglou10001Response<IEnumerable<GetAllUsersResponse>>>> GetAllUsersAsync(GetAllUsersRequestBody getAllUsersRequestBody)
+    {
+        ApiRequest<GetAllUsersRequestBody> request = new ApiRequest<GetAllUsersRequestBody>
+        {
+            ApiName = monopp_extern,
+            Endpoint = "/api/v2/utilisateur/GetAll",
+            Method = HttpMethod.Post,
+            RequiresApiKey = true,
+            RequiresBearerToken = true,
+            Data = getAllUsersRequestBody
+        };
+        return await _clientService.SendAsync<GetAllUsersRequestBody, Aglou10001Response<IEnumerable<GetAllUsersResponse>>>(request);
+    }
+
     public async Task<ApiResponse<Aglou10001Response<IEnumerable<DossierAll>>>> GetAllDossierAsync(ProfileRoleRequestBody? profileRoleRequestBody)
     {
         profileRoleRequestBody.RoleId = string.Empty;

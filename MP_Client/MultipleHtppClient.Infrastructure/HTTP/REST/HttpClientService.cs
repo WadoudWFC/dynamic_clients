@@ -40,37 +40,35 @@ public class HttpClientService : IHttpClientService
     {
         var apiName = apiRequest.ApiName ?? _configuration.DefaultApiName;
         var apiConfig = _configuration.Apis.FirstOrDefault(a => a.Name == apiName) ?? throw new ArgumentException($"No API configuration found for {apiName}");
-        using (var client = _httpClientFactory.CreateClient(apiName))
+        var client = _httpClientFactory.CreateClient(apiName);
+        using (var requestMessage = CreateHttpMessage(apiRequest, apiConfig))
         {
-            using (var requestMessage = CreateHttpMessage(apiRequest, apiConfig))
+            try
             {
-                try
+                // await ApplyAuthentication(client, apiConfig);
+                if (apiRequest.RequiresApiKey)
                 {
-                    // await ApplyAuthentication(client, apiConfig);
-                    if (apiRequest.RequiresApiKey)
-                    {
-                        await ApplyApiKeyAuth(client, apiConfig);
-                    }
-                    if (apiRequest.RequiresBearerToken)
-                    {
-                        await ApplyBearerTokenAuth(client, apiConfig);
-                    }
-                    ApplyHeaders(client, apiConfig, apiRequest);
-                    _logger.LogDebug("Sending {0} request to {1}: {2}", apiRequest.Method, apiRequest.ApiName, apiRequest.Endpoint);
-                    if (apiRequest.IsForm && apiRequest.Data != null)
-                    {
-                        var httpRequestMessage = CreateFormHttpMessage(apiRequest, apiConfig);
-                        var formResponse = await client.SendAsync(httpRequestMessage, cancellationToken);
-                        return await ProcessResponseAsync<TResponse>(formResponse);
-                    }
-                    var response = await client.SendAsync(requestMessage, cancellationToken);
-                    return await ProcessResponse<TResponse>(response);
+                    await ApplyApiKeyAuth(client, apiConfig);
                 }
-                catch (HttpRequestException ex)
+                if (apiRequest.RequiresBearerToken)
                 {
-                    _logger.LogError(ex, "Failed to call {0} at {1}", apiName, apiRequest.Endpoint);
-                    return ApiResponse<TResponse>.Error(ex.Message);
+                    await ApplyBearerTokenAuth(client, apiConfig);
                 }
+                ApplyHeaders(client, apiConfig, apiRequest);
+                _logger.LogDebug("Sending {0} request to {1}: {2}", apiRequest.Method, apiRequest.ApiName, apiRequest.Endpoint);
+                if (apiRequest.IsForm && apiRequest.Data != null)
+                {
+                    var httpRequestMessage = CreateFormHttpMessage(apiRequest, apiConfig);
+                    var formResponse = await client.SendAsync(httpRequestMessage, cancellationToken);
+                    return await ProcessResponseAsync<TResponse>(formResponse);
+                }
+                var response = await client.SendAsync(requestMessage, cancellationToken);
+                return await ProcessResponse<TResponse>(response);
+            }
+            catch (HttpRequestException ex)
+            {
+                _logger.LogError(ex, "Failed to call {0} at {1}", apiName, apiRequest.Endpoint);
+                return ApiResponse<TResponse>.Error(ex.Message);
             }
         }
     }
@@ -171,7 +169,7 @@ public class HttpClientService : IHttpClientService
 
             return ApiResponse<TResponse>.Success(data, httpResponseMessage.StatusCode);
         }
-        catch (JsonException ex)
+        catch (JsonException ex) // 
         {
             return ApiResponse<TResponse>.Error($"Failed to deserialize response: {ex.Message}\nResponse: {content}", httpResponseMessage.StatusCode);
         }
