@@ -29,7 +29,6 @@ public class HttpUserAglouService : IHttpUserAglou
         };
         return await _clientService.SendAsync<CanTryLoginRequestBody, Aglou10001Response<AglouUser>>(request);
     }
-
     public async Task<ApiResponse<Aglou10001Response<object>>> ForgetPasswordAsync(ForgetPasswordRequestBody forgetPasswordRequestBody)
     {
         ApiRequest<object> request = new ApiRequest<object>
@@ -43,7 +42,19 @@ public class HttpUserAglouService : IHttpUserAglou
         };
         return await _clientService.SendAsync<object, Aglou10001Response<object>>(request);
     }
-
+    public async Task<ApiResponse<Aglou10001Response<IEnumerable<GetAllUsersResponse>>>> GetAllUsersAsync(GetAllUsersRequestBody getAllUsersRequestBody)
+    {
+        ApiRequest<GetAllUsersRequestBody> request = new ApiRequest<GetAllUsersRequestBody>
+        {
+            ApiName = monopp_extern,
+            Endpoint = "/api/v2/utilisateur/GetAll",
+            Method = HttpMethod.Post,
+            RequiresApiKey = true,
+            RequiresBearerToken = true,
+            Data = getAllUsersRequestBody
+        };
+        return await _clientService.SendAsync<GetAllUsersRequestBody, Aglou10001Response<IEnumerable<GetAllUsersResponse>>>(request);
+    }
     public async Task<ApiResponse<Aglou10001Response<LoadUserResponse>>> LoadUserAsync(LogoutRequestBody logoutRequestBody)
     {
         ApiRequest<LogoutRequestBody> request = new ApiRequest<LogoutRequestBody>
@@ -57,7 +68,6 @@ public class HttpUserAglouService : IHttpUserAglou
         };
         return await _clientService.SendAsync<LogoutRequestBody, Aglou10001Response<LoadUserResponse>>(request);
     }
-
     public async Task<ApiResponse<Aglou10001Response<AglouLoginResponse>>> LoginAsync(LoginRequestBody loginRequestBody)
     {
         ApiRequest<LoginRequestBody> request = new ApiRequest<LoginRequestBody>
@@ -76,7 +86,6 @@ public class HttpUserAglouService : IHttpUserAglou
         }
         return response;
     }
-
     public async Task<ApiResponse<Aglou10001Response<object>>> LogoutAsync(LogoutRequestBody logoutRequestBody)
     {
         ApiRequest<LogoutRequestBody> request = new ApiRequest<LogoutRequestBody>
@@ -90,7 +99,6 @@ public class HttpUserAglouService : IHttpUserAglou
         };
         return await _clientService.SendAsync<LogoutRequestBody, Aglou10001Response<object>>(request);
     }
-
     public async Task<ApiResponse<Aglou10001Response<object>>> RegisterUserAsync(RegisterUserRequestBody registerUserRequestBody)
     {
         ApiRequest<RegisterUserRequestBody> request = new ApiRequest<RegisterUserRequestBody>
@@ -103,7 +111,6 @@ public class HttpUserAglouService : IHttpUserAglou
         };
         return await _clientService.SendAsync<RegisterUserRequestBody, Aglou10001Response<object>>(request);
     }
-
     public async Task<ApiResponse<Aglou10001Response<object>>> UpdatePasswordAsync(UpdatePasswordRequestBody updatePasswordRequestBody)
     {
         ApiRequest<UpdatePasswordRequestBody> request = new ApiRequest<UpdatePasswordRequestBody>

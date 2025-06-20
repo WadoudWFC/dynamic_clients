@@ -30,6 +30,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCustomSecurityHeaders();
 app.UseHttpsRedirection();
 app.MapControllers();
 

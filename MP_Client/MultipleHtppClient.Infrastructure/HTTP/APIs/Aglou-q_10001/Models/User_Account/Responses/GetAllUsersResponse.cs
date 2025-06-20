@@ -9,3 +9,4 @@ public class GetAllUsersResponse
     [JsonPropertyName("full_name")]
     public string FullName { get; set; } = null!;
 }
+

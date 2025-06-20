@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Text;
 using System.Text.Json;
+using System.Web;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MultipleHtppClient.Infrastructure.HTTP.Configurations;
@@ -98,7 +99,8 @@ public class HttpClientService : IHttpClientService
                 if (value is null) continue;
                 if (value is string strVal)
                 {
-                    formContent.Add(new StringContent(strVal), prop.Name);
+                    //formContent.Add(new StringContent(strVal), prop.Name); /*This was changed to prevent FORM XSS*/
+                    formContent.Add(new StringContent(HttpUtility.HtmlEncode(strVal)), HttpUtility.HtmlEncode(prop.Name));
                 }
                 else if (value is byte[] byteArray)
                 {

@@ -13,6 +13,7 @@ using MutipleHttpClient.Domain;
 using FluentValidation;
 using MultipleHttpClient.Application.Interfaces.Dossier;
 using MultipleHttpClient.Application.Services.Dossier;
+using Microsoft.AspNetCore.Builder;
 
 namespace MultipleHttpClient.Application;
 
@@ -51,5 +52,15 @@ public static class ApplicationExtensions
         //});
 
         return services;
+    }
+    public static IApplicationBuilder UseCustomSecurityHeaders(this IApplicationBuilder builder)
+    {
+        return builder.Use(async (context, next) =>
+        {
+            context.Response.Headers["Content-Security-Policy"] = "default-src 'self'";
+            context.Response.Headers["X-Content-Type-Options"] = "nosniff";
+            context.Response.Headers["Strict-Transport-Security"] = "max-age=63072000";
+            await next();
+        });
     }
 }

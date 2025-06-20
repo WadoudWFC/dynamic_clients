@@ -7,7 +7,7 @@ using MultipleHttpClient.Application.Users.Commands.LoadUser;
 using MultipleHttpClient.Application.Users.Commands.Logout;
 using MutipleHttpClient.Domain;
 using MutipleHttpClient.Domain.Shared.DTOs.Users;
-
+// 
 namespace MultipleHttpClient.Application.Services.User;
 
 public class UserAglouService : IUserAglouService
@@ -40,7 +40,6 @@ public class UserAglouService : IUserAglouService
                                                      IsActive: externalResponse.IsUserActive, externalResponse.TryingCounter,
                                                      IsPasswordUpdateRequired: externalResponse.IsPasswordUpdated));
     }
-
 
     public async Task<Result<SanitizedLoginResponse>> LoginAsync(LoginCommand command)
     {
