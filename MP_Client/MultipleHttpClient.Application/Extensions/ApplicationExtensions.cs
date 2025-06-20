@@ -14,6 +14,8 @@ using FluentValidation;
 using MultipleHttpClient.Application.Interfaces.Dossier;
 using MultipleHttpClient.Application.Services.Dossier;
 using Microsoft.AspNetCore.Builder;
+using System.Threading.RateLimiting;
+using System.ComponentModel.DataAnnotations;
 
 namespace MultipleHttpClient.Application;
 
@@ -37,19 +39,15 @@ public static class ApplicationExtensions
         services.AddMediatR(config => config.RegisterServicesFromAssemblyContaining<GetAllCitiesQueryHandler>());
         // Add Dossier Handlers here
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-        //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
-        //{
-        //    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-        //    {
-        //        ValidateIssuer = true,
-        //        ValidateAudience = true,
-        //        ValidateLifetime = true,
-        //        ValidateIssuerSigningKey = true,
-        //        ValidIssuer = configuration.GetValue<string>("Jwt:Issuer"),
-        //        ValidAudience = configuration.GetValue<string>("Jwt:Audience"),
-        //        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetValue<string>("Jwt:Secret")))
-        //    };
-        //});
+        services.AddRateLimiter(options =>
+        {
+            options.AddPolicy("login", context =>
+            RateLimitPartition.GetSlidingWindowLimiter(partitionKey: context.Request.Headers["X-Forwarded-For"], factory: _ => new SlidingWindowRateLimiterOptions()
+            {
+                PermitLimit = 5,
+                Window = TimeSpan.FromMinutes(1)
+            }));
+        });
 
         return services;
     }

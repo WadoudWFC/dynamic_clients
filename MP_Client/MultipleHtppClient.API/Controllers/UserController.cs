@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using MultipleHttpClient.Application;
 using MultipleHttpClient.Application.Users.Commands.Can_Try_Login;
 using MultipleHttpClient.Application.Users.Commands.ForgetPassword;
@@ -19,10 +20,12 @@ public class UserController : ControllerBase
     {
         _mediator = mediator;
     }
+    [EnableRateLimiting("login")]
     [HttpPost("Login")]
     public async Task<ActionResult<Result<SanitizedLoginResponse>>> Login([FromBody] LoginCommand command) => Ok(await _mediator.Send(command));
     [HttpPost("CanTryLogin")]
     public async Task<ActionResult<Result<SanitizedUserResponse>>> CanTryLogin([FromBody] CanTryLoginCommand command) => Ok(await _mediator.Send(command));
+    [EnableRateLimiting("login")]
     [HttpPost("UpdatePassword")]
     public async Task<ActionResult<Result<SanitizedBasicResponse>>> UpdatePassword([FromBody] UpdatePasswordCommand command) => Ok(await _mediator.Send(command));
     [HttpPost("Logout")]
