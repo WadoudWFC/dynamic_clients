@@ -1,35 +1,106 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MultipleHttpClient.Application;
-using MutipleHttpClient.Domain;
+using MultipleHttpClient.Application.Services.Security;
 
 namespace MultipleHtppClient.API;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class ReferenceController : ControllerBase
 {
     private readonly IMediator _mediator;
+
     public ReferenceController(IMediator mediator)
     {
         _mediator = mediator;
     }
-    [HttpPost("Activities")]
-    public async Task<ActionResult<Result<IEnumerable<ActivityNatureSanitized>>>> GetAllActivities([FromBody] GetAllActivitiesQuery query) => Ok(await _mediator.Send(query));
-    [HttpPost("Packs")]
-    public async Task<ActionResult<Result<IEnumerable<PackSanitized>>>> GetAllPacks([FromBody] GetAllPackQuery query) => Ok(await _mediator.Send(query));
-    [HttpPost("Cities")]
-    public async Task<ActionResult<Result<IEnumerable<CitiesSanitized>>>> GetAllCities([FromBody] GetAllCitiesQuery query) => Ok(await _mediator.Send(query));
-    [HttpPost("Arrondissements")]
-    public async Task<ActionResult<Result<IEnumerable<ArrondissementSanitized>>>> GetAllArrondissements([FromBody] GetArrondissementQuery query) => Ok(await _mediator.Send(query));
-    [HttpPost("TypeBien")]
-    public async Task<ActionResult<Result<IEnumerable<TypeBienSanitized>>>> GetAllTypeBien([FromBody] GetTypeBienQuery query) => Ok(await _mediator.Send(query));
-    [HttpPost("Regions")]
-    public async Task<ActionResult<Result<IEnumerable<RegionsSanitized>>>> GetAllRegions([FromBody] GetAllRegionQuery query) => Ok(await _mediator.Send(query));
-    [HttpPost("PartnersType")]
-    public async Task<ActionResult<Result<IEnumerable<PartnerTypeSanitized>>>> GetAllPartnerTypes([FromBody] GetPartnerTypesQuery query) => Ok(await _mediator.Send(query));
-    [HttpPost("DemandsType")]
-    public async Task<ActionResult<Result<IEnumerable<DemandTypeSanitized>>>> GetAllDemandTypes([FromBody] GetDemandTypesQuery query) => Ok(await _mediator.Send(query));
-    [HttpPost("CommercialCutting")]
-    public async Task<ActionResult<Result<IEnumerable<CommercialCuttingSanitized>>>> GetAllCommercialCuttings([FromBody] GetCommercialCuttingQuery query) => Ok(await _mediator.Send(query));
+
+    /// <summary>
+    /// Reference data endpoints - accessible to all authenticated users
+    /// No ownership validation needed as this is lookup data
+    /// </summary>
+
+    [HttpGet("activities")]
+    [RequireProfile(1, 2, 3)]
+    public async Task<IActionResult> GetActivities()
+    {
+        var query = new GetAllActivitiesQuery();
+        var result = await _mediator.Send(query);
+        return result.IsSuccess ? Ok(result.Value) : BadRequest(result.Error);
+    }
+
+    [HttpGet("cities")]
+    [RequireProfile(1, 2, 3)]
+    public async Task<IActionResult> GetCities()
+    {
+        var query = new GetAllCitiesQuery();
+        var result = await _mediator.Send(query);
+        return result.IsSuccess ? Ok(result.Value) : BadRequest(result.Error);
+    }
+
+    [HttpGet("regions")]
+    [RequireProfile(1, 2, 3)]
+    public async Task<IActionResult> GetRegions()
+    {
+        var query = new GetAllRegionQuery();
+        var result = await _mediator.Send(query);
+        return result.IsSuccess ? Ok(result.Value) : BadRequest(result.Error);
+    }
+
+    [HttpGet("arrondissements")]
+    [RequireProfile(1, 2, 3)]
+    public async Task<IActionResult> GetArrondissements()
+    {
+        var query = new GetArrondissementQuery();
+        var result = await _mediator.Send(query);
+        return result.IsSuccess ? Ok(result.Value) : BadRequest(result.Error);
+    }
+
+    [HttpGet("demand-types")]
+    [RequireProfile(1, 2, 3)]
+    public async Task<IActionResult> GetDemandTypes()
+    {
+        var query = new GetDemandTypesQuery();
+        var result = await _mediator.Send(query);
+        return result.IsSuccess ? Ok(result.Value) : BadRequest(result.Error);
+    }
+
+    [HttpGet("partner-types")]
+    [RequireProfile(1, 2, 3)]
+    public async Task<IActionResult> GetPartnerTypes()
+    {
+        var query = new GetPartnerTypesQuery();
+        var result = await _mediator.Send(query);
+        return result.IsSuccess ? Ok(result.Value) : BadRequest(result.Error);
+    }
+
+    [HttpGet("commercial-cuttings")]
+    [RequireProfile(1, 2, 3)]
+    public async Task<IActionResult> GetCommercialCuttings()
+    {
+        var query = new GetCommercialCuttingQuery();
+        var result = await _mediator.Send(query);
+        return result.IsSuccess ? Ok(result.Value) : BadRequest(result.Error);
+    }
+
+    [HttpGet("type-bien")]
+    [RequireProfile(1, 2, 3)]
+    public async Task<IActionResult> GetTypeBien()
+    {
+        var query = new GetTypeBienQuery();
+        var result = await _mediator.Send(query);
+        return result.IsSuccess ? Ok(result.Value) : BadRequest(result.Error);
+    }
+
+    [HttpGet("packs")]
+    [RequireProfile(1, 2, 3)]
+    public async Task<IActionResult> GetPacks()
+    {
+        var query = new GetAllPackQuery();
+        var result = await _mediator.Send(query);
+        return result.IsSuccess ? Ok(result.Value) : BadRequest(result.Error);
+    }
 }

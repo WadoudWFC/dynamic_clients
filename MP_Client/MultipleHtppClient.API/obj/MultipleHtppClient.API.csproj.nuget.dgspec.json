@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.API\\MultipleHtppClient.API.csproj": {}
+    "C:\\Users\\A.Dihbaouri\\Desktop\\FV\\dynamic_clients\\MP_Client\\MultipleHtppClient.API\\MultipleHtppClient.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.API\\MultipleHtppClient.API.csproj": {
+    "C:\\Users\\A.Dihbaouri\\Desktop\\FV\\dynamic_clients\\MP_Client\\MultipleHtppClient.API\\MultipleHtppClient.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.API\\MultipleHtppClient.API.csproj",
+        "projectUniqueName": "C:\\Users\\A.Dihbaouri\\Desktop\\FV\\dynamic_clients\\MP_Client\\MultipleHtppClient.API\\MultipleHtppClient.API.csproj",
         "projectName": "MultipleHtppClient.API",
-        "projectPath": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.API\\MultipleHtppClient.API.csproj",
+        "projectPath": "C:\\Users\\A.Dihbaouri\\Desktop\\FV\\dynamic_clients\\MP_Client\\MultipleHtppClient.API\\MultipleHtppClient.API.csproj",
         "packagesPath": "C:\\Users\\A.Dihbaouri\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.API\\obj\\",
+        "outputPath": "C:\\Users\\A.Dihbaouri\\Desktop\\FV\\dynamic_clients\\MP_Client\\MultipleHtppClient.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,14 +32,14 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj"
+              "C:\\Users\\A.Dihbaouri\\Desktop\\FV\\dynamic_clients\\MP_Client\\MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\A.Dihbaouri\\Desktop\\FV\\dynamic_clients\\MP_Client\\MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj"
               },
-              "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHttpClient.Application\\MultipleHttpClient.Application.csproj": {
-                "projectPath": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHttpClient.Application\\MultipleHttpClient.Application.csproj"
+              "C:\\Users\\A.Dihbaouri\\Desktop\\FV\\dynamic_clients\\MP_Client\\MultipleHttpClient.Application\\MultipleHttpClient.Application.csproj": {
+                "projectPath": "C:\\Users\\A.Dihbaouri\\Desktop\\FV\\dynamic_clients\\MP_Client\\MultipleHttpClient.Application\\MultipleHttpClient.Application.csproj"
               },
-              "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MutipleHttpClient.Domain\\MutipleHttpClient.Domain.csproj": {
-                "projectPath": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MutipleHttpClient.Domain\\MutipleHttpClient.Domain.csproj"
+              "C:\\Users\\A.Dihbaouri\\Desktop\\FV\\dynamic_clients\\MP_Client\\MutipleHttpClient.Domain\\MutipleHttpClient.Domain.csproj": {
+                "projectPath": "C:\\Users\\A.Dihbaouri\\Desktop\\FV\\dynamic_clients\\MP_Client\\MutipleHttpClient.Domain\\MutipleHttpClient.Domain.csproj"
               }
             }
           }
@@ -100,14 +100,14 @@
         }
       }
     },
-    "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj": {
+    "C:\\Users\\A.Dihbaouri\\Desktop\\FV\\dynamic_clients\\MP_Client\\MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\A.Dihbaouri\\Desktop\\FV\\dynamic_clients\\MP_Client\\MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj",
         "projectName": "MultipleHtppClient.Infrastructure",
-        "projectPath": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj",
+        "projectPath": "C:\\Users\\A.Dihbaouri\\Desktop\\FV\\dynamic_clients\\MP_Client\\MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\A.Dihbaouri\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\obj\\",
+        "outputPath": "C:\\Users\\A.Dihbaouri\\Desktop\\FV\\dynamic_clients\\MP_Client\\MultipleHtppClient.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -128,8 +128,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MutipleHttpClient.Domain\\MutipleHttpClient.Domain.csproj": {
-                "projectPath": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MutipleHttpClient.Domain\\MutipleHttpClient.Domain.csproj"
+              "C:\\Users\\A.Dihbaouri\\Desktop\\FV\\dynamic_clients\\MP_Client\\MutipleHttpClient.Domain\\MutipleHttpClient.Domain.csproj": {
+                "projectPath": "C:\\Users\\A.Dihbaouri\\Desktop\\FV\\dynamic_clients\\MP_Client\\MutipleHttpClient.Domain\\MutipleHttpClient.Domain.csproj"
               }
             }
           }
@@ -175,14 +175,14 @@
         }
       }
     },
-    "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHttpClient.Application\\MultipleHttpClient.Application.csproj": {
+    "C:\\Users\\A.Dihbaouri\\Desktop\\FV\\dynamic_clients\\MP_Client\\MultipleHttpClient.Application\\MultipleHttpClient.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHttpClient.Application\\MultipleHttpClient.Application.csproj",
+        "projectUniqueName": "C:\\Users\\A.Dihbaouri\\Desktop\\FV\\dynamic_clients\\MP_Client\\MultipleHttpClient.Application\\MultipleHttpClient.Application.csproj",
         "projectName": "MultipleHttpClient.Application",
-        "projectPath": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHttpClient.Application\\MultipleHttpClient.Application.csproj",
+        "projectPath": "C:\\Users\\A.Dihbaouri\\Desktop\\FV\\dynamic_clients\\MP_Client\\MultipleHttpClient.Application\\MultipleHttpClient.Application.csproj",
         "packagesPath": "C:\\Users\\A.Dihbaouri\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHttpClient.Application\\obj\\",
+        "outputPath": "C:\\Users\\A.Dihbaouri\\Desktop\\FV\\dynamic_clients\\MP_Client\\MultipleHttpClient.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -203,11 +203,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj"
+              "C:\\Users\\A.Dihbaouri\\Desktop\\FV\\dynamic_clients\\MP_Client\\MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\A.Dihbaouri\\Desktop\\FV\\dynamic_clients\\MP_Client\\MultipleHtppClient.Infrastructure\\MultipleHtppClient.Infrastructure.csproj"
               },
-              "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MutipleHttpClient.Domain\\MutipleHttpClient.Domain.csproj": {
-                "projectPath": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MutipleHttpClient.Domain\\MutipleHttpClient.Domain.csproj"
+              "C:\\Users\\A.Dihbaouri\\Desktop\\FV\\dynamic_clients\\MP_Client\\MutipleHttpClient.Domain\\MutipleHttpClient.Domain.csproj": {
+                "projectPath": "C:\\Users\\A.Dihbaouri\\Desktop\\FV\\dynamic_clients\\MP_Client\\MutipleHttpClient.Domain\\MutipleHttpClient.Domain.csproj"
               }
             }
           }
@@ -261,14 +261,14 @@
         }
       }
     },
-    "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MutipleHttpClient.Domain\\MutipleHttpClient.Domain.csproj": {
+    "C:\\Users\\A.Dihbaouri\\Desktop\\FV\\dynamic_clients\\MP_Client\\MutipleHttpClient.Domain\\MutipleHttpClient.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MutipleHttpClient.Domain\\MutipleHttpClient.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\A.Dihbaouri\\Desktop\\FV\\dynamic_clients\\MP_Client\\MutipleHttpClient.Domain\\MutipleHttpClient.Domain.csproj",
         "projectName": "MutipleHttpClient.Domain",
-        "projectPath": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MutipleHttpClient.Domain\\MutipleHttpClient.Domain.csproj",
+        "projectPath": "C:\\Users\\A.Dihbaouri\\Desktop\\FV\\dynamic_clients\\MP_Client\\MutipleHttpClient.Domain\\MutipleHttpClient.Domain.csproj",
         "packagesPath": "C:\\Users\\A.Dihbaouri\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MutipleHttpClient.Domain\\obj\\",
+        "outputPath": "C:\\Users\\A.Dihbaouri\\Desktop\\FV\\dynamic_clients\\MP_Client\\MutipleHttpClient.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -1,251 +1,649 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "MultipleHtppClient.API",
-    "version": "1.0"
+    "title": "My API",
+    "version": "v1"
   },
   "paths": {
-    "/api/Dossier/Comments": {
+    "/api/v1/Admin/users": {
       "post": {
         "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/Admin/users/search": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/Admin/users/load": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/Admin/users/create": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/Admin/users/update": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/Admin/users/delete": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/Admin/users/validate": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/Admin/users/resend-validation": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/Admin/documents/insert": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/Admin/documents/files": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/Admin/documents/file": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/Admin/documents/update": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/Admin/documents/delete": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/Admin/dossiers/delete": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/Admin/dossiers/change-status": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/Admin/parameters/zones": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/Admin/parameters/type-personne": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/Admin/parameters/droit-profil": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/Admin/parameters/droit": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/Admin/parameters/affectation-zone-user": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/Admin/parameters/partenaire": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/Admin/parameters/local-dossier": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/Admin/parameters/historique": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v2/Dossier/{dossierId}": {
+      "get": {
+        "tags": [
           "Dossier"
+        ],
+        "parameters": [
+          {
+            "name": "dossierId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Dossier"
+        ],
+        "parameters": [
+          {
+            "name": "dossierId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
         ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/GetAllCommentsQuery"
+                "$ref": "#/components/schemas/UpdateDossierCommand"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/GetAllCommentsQuery"
+                "$ref": "#/components/schemas/UpdateDossierCommand"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/GetAllCommentsQuery"
+                "$ref": "#/components/schemas/UpdateDossierCommand"
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CommentSanitizedIEnumerableResult"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CommentSanitizedIEnumerableResult"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CommentSanitizedIEnumerableResult"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       }
     },
-    "/api/Dossier/Dossiers": {
-      "post": {
-        "tags": [
-          "Dossier"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetAllDossierQuery"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetAllDossierQuery"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetAllDossierQuery"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/DossierAllSanitizedIEnumerableResult"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DossierAllSanitizedIEnumerableResult"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DossierAllSanitizedIEnumerableResult"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Dossier/Counts": {
-      "post": {
-        "tags": [
-          "Dossier"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetCountsQuery"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetCountsQuery"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetCountsQuery"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/DossierCountsSanitizedResult"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DossierCountsSanitizedResult"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DossierCountsSanitizedResult"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Dossier/DossierStatus": {
-      "post": {
-        "tags": [
-          "Dossier"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetDossierStatusQuery"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetDossierStatusQuery"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetDossierStatusQuery"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/DossierStatusSanitizedIEnumerableResult"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DossierStatusSanitizedIEnumerableResult"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DossierStatusSanitizedIEnumerableResult"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Dossier/Comments/add": {
-      "post": {
-        "tags": [
-          "Dossier"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/InsertCommentCommand"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/InsertCommentCommand"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/InsertCommentCommand"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CommentOperationResultResult"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CommentOperationResultResult"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CommentOperationResultResult"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Dossier/Dossiers/add": {
+    "/api/v2/Dossier": {
       "post": {
         "tags": [
           "Dossier"
@@ -271,77 +669,31 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/InsertDossierOperationResultResult"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InsertDossierOperationResultResult"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InsertDossierOperationResultResult"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
-      }
-    },
-    "/api/Dossier/Dossiers/read": {
-      "post": {
+      },
+      "get": {
         "tags": [
           "Dossier"
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/LoadDossierQuery"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/LoadDossierQuery"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/LoadDossierQuery"
-              }
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "query",
+            "schema": {
+              "type": "string"
             }
           }
-        },
+        ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/LoadDossierResponseSanitizedResult"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LoadDossierResponseSanitizedResult"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LoadDossierResponseSanitizedResult"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       }
     },
-    "/api/Dossier/Dossiers/search": {
+    "/api/v2/Dossier/search": {
       "post": {
         "tags": [
           "Dossier"
@@ -367,120 +719,145 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/DossierSearchSanitizedIEnumerableResult"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DossierSearchSanitizedIEnumerableResult"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DossierSearchSanitizedIEnumerableResult"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       }
     },
-    "/api/Dossier/History/search": {
+    "/api/v2/Dossier/counts": {
+      "get": {
+        "tags": [
+          "Dossier"
+        ],
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v2/Dossier/{dossierId}/comments": {
+      "get": {
+        "tags": [
+          "Dossier"
+        ],
+        "parameters": [
+          {
+            "name": "dossierId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
       "post": {
         "tags": [
           "Dossier"
+        ],
+        "parameters": [
+          {
+            "name": "dossierId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
         ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SearchHistoryQuery"
+                "$ref": "#/components/schemas/AddCommentRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/SearchHistoryQuery"
+                "$ref": "#/components/schemas/AddCommentRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/SearchHistoryQuery"
+                "$ref": "#/components/schemas/AddCommentRequest"
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/HistorySearchSanitizedIEnumerableResult"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HistorySearchSanitizedIEnumerableResult"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HistorySearchSanitizedIEnumerableResult"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       }
     },
-    "/api/Dossier/Dossiers/update": {
+    "/api/v2/Dossier/statuses": {
+      "get": {
+        "tags": [
+          "Dossier"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v2/Dossier/{dossierId}/history": {
       "post": {
         "tags": [
           "Dossier"
+        ],
+        "parameters": [
+          {
+            "name": "dossierId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
         ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateDossierCommand"
+                "$ref": "#/components/schemas/HistorySearchRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateDossierCommand"
+                "$ref": "#/components/schemas/HistorySearchRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateDossierCommand"
+                "$ref": "#/components/schemas/HistorySearchRequest"
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/DossierUpdateResultResult"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DossierUpdateResultResult"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DossierUpdateResultResult"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       }
@@ -1729,26 +2106,26 @@
         }
       }
     },
-    "/api/Reference/Activities": {
+    "/api/v2/utilisateur/GetAll": {
       "post": {
         "tags": [
-          "Reference"
+          "Presentation"
         ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/GetAllActivitiesQuery"
+                "$ref": "#/components/schemas/GetAllUsersRequestBody"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/GetAllActivitiesQuery"
+                "$ref": "#/components/schemas/GetAllUsersRequestBody"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/GetAllActivitiesQuery"
+                "$ref": "#/components/schemas/GetAllUsersRequestBody"
               }
             }
           }
@@ -1759,17 +2136,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/ActivityNatureSanitizedIEnumerableResult"
+                  "$ref": "#/components/schemas/GetAllUsersResponseIEnumerableAglou10001Response"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ActivityNatureSanitizedIEnumerableResult"
+                  "$ref": "#/components/schemas/GetAllUsersResponseIEnumerableAglou10001Response"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ActivityNatureSanitizedIEnumerableResult"
+                  "$ref": "#/components/schemas/GetAllUsersResponseIEnumerableAglou10001Response"
                 }
               }
             }
@@ -1777,386 +2154,110 @@
         }
       }
     },
-    "/api/Reference/Packs": {
-      "post": {
+    "/api/Reference/activities": {
+      "get": {
         "tags": [
           "Reference"
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetAllPackQuery"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetAllPackQuery"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetAllPackQuery"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/PackSanitizedIEnumerableResult"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PackSanitizedIEnumerableResult"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PackSanitizedIEnumerableResult"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       }
     },
-    "/api/Reference/Cities": {
-      "post": {
+    "/api/Reference/cities": {
+      "get": {
         "tags": [
           "Reference"
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetAllCitiesQuery"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetAllCitiesQuery"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetAllCitiesQuery"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CitiesSanitizedIEnumerableResult"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CitiesSanitizedIEnumerableResult"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CitiesSanitizedIEnumerableResult"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       }
     },
-    "/api/Reference/Arrondissements": {
-      "post": {
+    "/api/Reference/regions": {
+      "get": {
         "tags": [
           "Reference"
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetArrondissementQuery"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetArrondissementQuery"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetArrondissementQuery"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ArrondissementSanitizedIEnumerableResult"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ArrondissementSanitizedIEnumerableResult"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ArrondissementSanitizedIEnumerableResult"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       }
     },
-    "/api/Reference/TypeBien": {
-      "post": {
+    "/api/Reference/arrondissements": {
+      "get": {
         "tags": [
           "Reference"
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetTypeBienQuery"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetTypeBienQuery"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetTypeBienQuery"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/TypeBienSanitizedIEnumerableResult"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TypeBienSanitizedIEnumerableResult"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TypeBienSanitizedIEnumerableResult"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       }
     },
-    "/api/Reference/Regions": {
-      "post": {
+    "/api/Reference/demand-types": {
+      "get": {
         "tags": [
           "Reference"
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetAllRegionQuery"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetAllRegionQuery"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetAllRegionQuery"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/RegionsSanitizedIEnumerableResult"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RegionsSanitizedIEnumerableResult"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RegionsSanitizedIEnumerableResult"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       }
     },
-    "/api/Reference/PartnersType": {
-      "post": {
+    "/api/Reference/partner-types": {
+      "get": {
         "tags": [
           "Reference"
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetPartnerTypesQuery"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetPartnerTypesQuery"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetPartnerTypesQuery"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/PartnerTypeSanitizedIEnumerableResult"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PartnerTypeSanitizedIEnumerableResult"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PartnerTypeSanitizedIEnumerableResult"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       }
     },
-    "/api/Reference/DemandsType": {
-      "post": {
+    "/api/Reference/commercial-cuttings": {
+      "get": {
         "tags": [
           "Reference"
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetDemandTypesQuery"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetDemandTypesQuery"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetDemandTypesQuery"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/DemandTypeSanitizedIEnumerableResult"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DemandTypeSanitizedIEnumerableResult"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DemandTypeSanitizedIEnumerableResult"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       }
     },
-    "/api/Reference/CommercialCutting": {
-      "post": {
+    "/api/Reference/type-bien": {
+      "get": {
         "tags": [
           "Reference"
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetCommercialCuttingQuery"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetCommercialCuttingQuery"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetCommercialCuttingQuery"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CommercialCuttingSanitizedIEnumerableResult"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CommercialCuttingSanitizedIEnumerableResult"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CommercialCuttingSanitizedIEnumerableResult"
-                }
-              }
-            }
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Reference/packs": {
+      "get": {
+        "tags": [
+          "Reference"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }
@@ -2547,41 +2648,12 @@
         },
         "additionalProperties": false
       },
-      "ActivityNatureSanitized": {
+      "AddCommentRequest": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "activityNature": {
+          "content": {
             "type": "string",
             "nullable": true
-          },
-          "activityName": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ActivityNatureSanitizedIEnumerableResult": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ActivityNatureSanitized"
-            },
-            "nullable": true,
-            "readOnly": true
-          },
-          "isSuccess": {
-            "type": "boolean",
-            "readOnly": true
-          },
-          "error": {
-            "$ref": "#/components/schemas/Error"
           }
         },
         "additionalProperties": false
@@ -2694,41 +2766,6 @@
         },
         "additionalProperties": false
       },
-      "ArrondissementSanitized": {
-        "type": "object",
-        "properties": {
-          "arrondissement": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "label": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ArrondissementSanitizedIEnumerableResult": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ArrondissementSanitized"
-            },
-            "nullable": true,
-            "readOnly": true
-          },
-          "isSuccess": {
-            "type": "boolean",
-            "readOnly": true
-          },
-          "error": {
-            "$ref": "#/components/schemas/Error"
-          }
-        },
-        "additionalProperties": false
-      },
       "CanTryLoginCommand": {
         "type": "object",
         "properties": {
@@ -2745,148 +2782,6 @@
           "email": {
             "type": "string",
             "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CitiesSanitized": {
-        "type": "object",
-        "properties": {
-          "city": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "label": {
-            "type": "string",
-            "nullable": true
-          },
-          "region": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "decoupageCommercial": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "localityType": {
-            "type": "string",
-            "nullable": true
-          },
-          "logo": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CitiesSanitizedIEnumerableResult": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CitiesSanitized"
-            },
-            "nullable": true,
-            "readOnly": true
-          },
-          "isSuccess": {
-            "type": "boolean",
-            "readOnly": true
-          },
-          "error": {
-            "$ref": "#/components/schemas/Error"
-          }
-        },
-        "additionalProperties": false
-      },
-      "CommentOperationResult": {
-        "type": "object",
-        "properties": {
-          "isSuccess": {
-            "type": "boolean"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "commentId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CommentOperationResultResult": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "$ref": "#/components/schemas/CommentOperationResult"
-          },
-          "isSuccess": {
-            "type": "boolean",
-            "readOnly": true
-          },
-          "error": {
-            "$ref": "#/components/schemas/Error"
-          }
-        },
-        "additionalProperties": false
-      },
-      "CommentSanitized": {
-        "type": "object",
-        "properties": {
-          "comment": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "creationDate": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "time": {
-            "type": "string",
-            "nullable": true
-          },
-          "dossierId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "userCreatedId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "user": {
-            "$ref": "#/components/schemas/UserCommentSanitized"
-          }
-        },
-        "additionalProperties": false
-      },
-      "CommentSanitizedIEnumerableResult": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CommentSanitized"
-            },
-            "nullable": true,
-            "readOnly": true
-          },
-          "isSuccess": {
-            "type": "boolean",
-            "readOnly": true
-          },
-          "error": {
-            "$ref": "#/components/schemas/Error"
           }
         },
         "additionalProperties": false
@@ -2944,34 +2839,6 @@
         },
         "additionalProperties": false
       },
-      "CommentaireSanitized": {
-        "type": "object",
-        "properties": {
-          "commentId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "dossierId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "text": {
-            "type": "string",
-            "nullable": true
-          },
-          "dateCreated": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "userCreatedId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "CommercialCutting": {
         "type": "object",
         "properties": {
@@ -3015,41 +2882,6 @@
         },
         "additionalProperties": false
       },
-      "CommercialCuttingSanitized": {
-        "type": "object",
-        "properties": {
-          "commercialCutting": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "label": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CommercialCuttingSanitizedIEnumerableResult": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CommercialCuttingSanitized"
-            },
-            "nullable": true,
-            "readOnly": true
-          },
-          "isSuccess": {
-            "type": "boolean",
-            "readOnly": true
-          },
-          "error": {
-            "$ref": "#/components/schemas/Error"
-          }
-        },
-        "additionalProperties": false
-      },
       "DebugInfo": {
         "type": "object",
         "properties": {
@@ -3083,40 +2915,6 @@
           },
           "FinalCounts": {
             "$ref": "#/components/schemas/FinalCounts"
-          }
-        },
-        "additionalProperties": false
-      },
-      "DebugInfoSanitized": {
-        "type": "object",
-        "properties": {
-          "userId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "commercialDivisionId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "applyFilter": {
-            "type": "boolean"
-          },
-          "configuredStatuses": {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int32"
-            },
-            "nullable": true
-          },
-          "currentStatusDistribution": {
-            "type": "array",
-            "items": { },
-            "nullable": true
-          },
-          "finalCounts": {
-            "$ref": "#/components/schemas/FinalCountsSanitized"
           }
         },
         "additionalProperties": false
@@ -3164,45 +2962,6 @@
           "TotalRows": {
             "type": "integer",
             "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "DemandTypeSanitized": {
-        "type": "object",
-        "properties": {
-          "demandType": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "label": {
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "DemandTypeSanitizedIEnumerableResult": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DemandTypeSanitized"
-            },
-            "nullable": true,
-            "readOnly": true
-          },
-          "isSuccess": {
-            "type": "boolean",
-            "readOnly": true
-          },
-          "error": {
-            "$ref": "#/components/schemas/Error"
           }
         },
         "additionalProperties": false
@@ -3262,53 +3021,6 @@
         },
         "additionalProperties": false
       },
-      "DossierAllSanitized": {
-        "type": "object",
-        "properties": {
-          "dossier": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "code": {
-            "type": "string",
-            "nullable": true
-          },
-          "demandTypeId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "dossierStatusId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "status": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "DossierAllSanitizedIEnumerableResult": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DossierAllSanitized"
-            },
-            "nullable": true,
-            "readOnly": true
-          },
-          "isSuccess": {
-            "type": "boolean",
-            "readOnly": true
-          },
-          "error": {
-            "$ref": "#/components/schemas/Error"
-          }
-        },
-        "additionalProperties": false
-      },
       "DossierCounts": {
         "type": "object",
         "properties": {
@@ -3351,43 +3063,6 @@
           "TotalRows": {
             "type": "integer",
             "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "DossierCountsSanitized": {
-        "type": "object",
-        "properties": {
-          "totalDossier": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "totalProcessedDossier": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "totalPendingDossier": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "debugInfo": {
-            "$ref": "#/components/schemas/DebugInfoSanitized"
-          }
-        },
-        "additionalProperties": false
-      },
-      "DossierCountsSanitizedResult": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "$ref": "#/components/schemas/DossierCountsSanitized"
-          },
-          "isSuccess": {
-            "type": "boolean",
-            "readOnly": true
-          },
-          "error": {
-            "$ref": "#/components/schemas/Error"
           }
         },
         "additionalProperties": false
@@ -3486,89 +3161,6 @@
         },
         "additionalProperties": false
       },
-      "DossierSearchSanitized": {
-        "type": "object",
-        "properties": {
-          "dossierId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "code": {
-            "type": "string",
-            "nullable": true
-          },
-          "natureActivityId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "demandTypeId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "commercialCuttingId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "dossierStatusId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "canUpdate": {
-            "type": "boolean"
-          },
-          "typeDemande": {
-            "type": "string",
-            "nullable": true
-          },
-          "activityNature": {
-            "type": "string",
-            "nullable": true
-          },
-          "partner": {
-            "type": "string",
-            "nullable": true
-          },
-          "localDossierSanitized": {
-            "$ref": "#/components/schemas/SearchLocalDossierSanitied"
-          },
-          "status": {
-            "type": "string",
-            "nullable": true
-          },
-          "labelStatus": {
-            "type": "string",
-            "nullable": true
-          },
-          "dateCreated": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "DossierSearchSanitizedIEnumerableResult": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DossierSearchSanitized"
-            },
-            "nullable": true,
-            "readOnly": true
-          },
-          "isSuccess": {
-            "type": "boolean",
-            "readOnly": true
-          },
-          "error": {
-            "$ref": "#/components/schemas/Error"
-          }
-        },
-        "additionalProperties": false
-      },
       "DossierStatus": {
         "type": "object",
         "properties": {
@@ -3649,107 +3241,6 @@
         },
         "additionalProperties": false
       },
-      "DossierStatusSanitized": {
-        "type": "object",
-        "properties": {
-          "statusId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "label": {
-            "type": "string",
-            "nullable": true
-          },
-          "status": {
-            "type": "string",
-            "nullable": true
-          },
-          "code": {
-            "type": "string",
-            "nullable": true
-          },
-          "color": {
-            "type": "string",
-            "nullable": true
-          },
-          "canUpdate": {
-            "type": "boolean"
-          },
-          "canUpload": {
-            "type": "boolean"
-          },
-          "haveMail": {
-            "type": "boolean"
-          },
-          "mailName": {
-            "type": "string",
-            "nullable": true
-          },
-          "mailSubject": {
-            "type": "string",
-            "nullable": true
-          },
-          "action": {
-            "type": "string",
-            "nullable": true
-          },
-          "statusCode": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "DossierStatusSanitizedIEnumerableResult": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DossierStatusSanitized"
-            },
-            "nullable": true,
-            "readOnly": true
-          },
-          "isSuccess": {
-            "type": "boolean",
-            "readOnly": true
-          },
-          "error": {
-            "$ref": "#/components/schemas/Error"
-          }
-        },
-        "additionalProperties": false
-      },
-      "DossierUpdateResult": {
-        "type": "object",
-        "properties": {
-          "isSuccess": {
-            "type": "boolean"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "DossierUpdateResultResult": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "$ref": "#/components/schemas/DossierUpdateResult"
-          },
-          "isSuccess": {
-            "type": "boolean",
-            "readOnly": true
-          },
-          "error": {
-            "$ref": "#/components/schemas/Error"
-          }
-        },
-        "additionalProperties": false
-      },
       "Error": {
         "type": "object",
         "properties": {
@@ -3782,24 +3273,6 @@
         },
         "additionalProperties": false
       },
-      "FinalCountsSanitized": {
-        "type": "object",
-        "properties": {
-          "total": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "treated": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pending": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
       "ForgetPasswordCommand": {
         "type": "object",
         "properties": {
@@ -3820,14 +3293,6 @@
         },
         "additionalProperties": false
       },
-      "GetAllActivitiesQuery": {
-        "type": "object",
-        "additionalProperties": false
-      },
-      "GetAllCitiesQuery": {
-        "type": "object",
-        "additionalProperties": false
-      },
       "GetAllCommentRequestBody": {
         "type": "object",
         "properties": {
@@ -3838,20 +3303,6 @@
           "user_id": {
             "type": "integer",
             "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "GetAllCommentsQuery": {
-        "type": "object",
-        "properties": {
-          "dossierId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "userId": {
-            "type": "string",
-            "format": "uuid"
           }
         },
         "additionalProperties": false
@@ -3918,52 +3369,57 @@
         },
         "additionalProperties": false
       },
-      "GetAllDossierQuery": {
+      "GetAllUsersRequestBody": {
         "type": "object",
         "properties": {
-          "userId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "roleId": {
+          "keyword": {
             "type": "string",
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "GetAllPackQuery": {
-        "type": "object",
-        "additionalProperties": false
-      },
-      "GetAllRegionQuery": {
-        "type": "object",
-        "additionalProperties": false
-      },
-      "GetArrondissementQuery": {
-        "type": "object",
-        "additionalProperties": false
-      },
-      "GetCommercialCuttingQuery": {
-        "type": "object",
-        "additionalProperties": false
-      },
-      "GetCountsQuery": {
+      "GetAllUsersResponse": {
         "type": "object",
         "properties": {
-          "userId": {
-            "type": "string",
-            "format": "uuid"
+          "id": {
+            "type": "integer",
+            "format": "int32"
           },
-          "roleId": {
+          "full_name": {
             "type": "string",
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "GetDemandTypesQuery": {
+      "GetAllUsersResponseIEnumerableAglou10001Response": {
         "type": "object",
+        "properties": {
+          "codeReponse": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "msg": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetAllUsersResponse"
+            },
+            "nullable": true
+          },
+          "NbRows": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "TotalRows": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
         "additionalProperties": false
       },
       "GetDossierCountRequestBody": {
@@ -3981,28 +3437,6 @@
             "type": "boolean"
           }
         },
-        "additionalProperties": false
-      },
-      "GetDossierStatusQuery": {
-        "type": "object",
-        "properties": {
-          "userId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "dossierId": {
-            "type": "string",
-            "format": "uuid"
-          }
-        },
-        "additionalProperties": false
-      },
-      "GetPartnerTypesQuery": {
-        "type": "object",
-        "additionalProperties": false
-      },
-      "GetTypeBienQuery": {
-        "type": "object",
         "additionalProperties": false
       },
       "HistoryItem": {
@@ -4051,43 +3485,24 @@
         },
         "additionalProperties": false
       },
-      "HistoryItemSanitized": {
+      "HistorySearchRequest": {
         "type": "object",
         "properties": {
-          "historyId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "dossierId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "previousStatusId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "nextStatusId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "creationDate": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "previousStatusText": {
+          "field": {
             "type": "string",
             "nullable": true
           },
-          "nextStatusText": {
+          "order": {
             "type": "string",
             "nullable": true
           },
-          "operator": {
-            "type": "string",
-            "nullable": true
+          "skip": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "take": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -4114,69 +3529,6 @@
           "take": {
             "type": "integer",
             "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "HistorySearchSanitized": {
-        "type": "object",
-        "properties": {
-          "historySearch": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "creationDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "previousStatusId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "nextStatusId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "dossierId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "dossierNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "previousStatusText": {
-            "type": "string",
-            "nullable": true
-          },
-          "nextStatusText": {
-            "type": "string",
-            "nullable": true
-          },
-          "operator": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "HistorySearchSanitizedIEnumerableResult": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/HistorySearchSanitized"
-            },
-            "nullable": true,
-            "readOnly": true
-          },
-          "isSuccess": {
-            "type": "boolean",
-            "readOnly": true
-          },
-          "error": {
-            "$ref": "#/components/schemas/Error"
           }
         },
         "additionalProperties": false
@@ -4252,24 +3604,6 @@
           "TotalRows": {
             "type": "integer",
             "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "InsertCommentCommand": {
-        "type": "object",
-        "properties": {
-          "userId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "dossierId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "content": {
-            "type": "string",
-            "nullable": true
           }
         },
         "additionalProperties": false
@@ -4456,50 +3790,6 @@
         },
         "additionalProperties": false
       },
-      "InsertDossierOperationResult": {
-        "type": "object",
-        "properties": {
-          "isSucess": {
-            "type": "boolean"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "dossierId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "InsertDossierOperationResultResult": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "$ref": "#/components/schemas/InsertDossierOperationResult"
-          },
-          "isSuccess": {
-            "type": "boolean",
-            "readOnly": true
-          },
-          "error": {
-            "$ref": "#/components/schemas/Error"
-          }
-        },
-        "additionalProperties": false
-      },
-      "LoadDossierQuery": {
-        "type": "object",
-        "properties": {
-          "dossierId": {
-            "type": "string",
-            "format": "uuid"
-          }
-        },
-        "additionalProperties": false
-      },
       "LoadDossierResponse": {
         "type": "object",
         "properties": {
@@ -4604,95 +3894,6 @@
         },
         "additionalProperties": false
       },
-      "LoadDossierResponseSanitized": {
-        "type": "object",
-        "properties": {
-          "dossierId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "activityNatureId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "requestTypeId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "code": {
-            "type": "string",
-            "nullable": true
-          },
-          "partnerId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "statusId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "comments": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CommentaireSanitized"
-            },
-            "nullable": true
-          },
-          "requestType": {
-            "type": "string",
-            "nullable": true
-          },
-          "statusCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "statusLabel": {
-            "type": "string",
-            "nullable": true
-          },
-          "status": {
-            "type": "string",
-            "nullable": true
-          },
-          "canUpload": {
-            "type": "boolean"
-          },
-          "localDossier": {
-            "$ref": "#/components/schemas/LocalDossierSanitized"
-          },
-          "partner": {
-            "$ref": "#/components/schemas/PartnerSanitized"
-          },
-          "history": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/HistoryItemSanitized"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "LoadDossierResponseSanitizedResult": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "$ref": "#/components/schemas/LoadDossierResponseSanitized"
-          },
-          "isSuccess": {
-            "type": "boolean",
-            "readOnly": true
-          },
-          "error": {
-            "$ref": "#/components/schemas/Error"
-          }
-        },
-        "additionalProperties": false
-      },
       "LoadUserCommand": {
         "type": "object",
         "properties": {
@@ -4730,20 +3931,21 @@
             "type": "string",
             "nullable": true
           },
-          "Control": {
+          "profile_Id": {
             "type": "string",
             "format": "uuid"
           },
-          "Entity": {
-            "type": "string",
+          "entityId": {
             "nullable": true
           },
-          "DecoupageCommercial": {
-            "type": "string",
+          "decoupageCommercialId": {
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           },
-          "ParentUser": {
-            "type": "string",
+          "parentUserId": {
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           },
           "isActive": {
@@ -4966,109 +4168,6 @@
         },
         "additionalProperties": false
       },
-      "LocalDossierSanitized": {
-        "type": "object",
-        "properties": {
-          "dossierId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "latitude": {
-            "type": "string",
-            "nullable": true
-          },
-          "longitude": {
-            "type": "string",
-            "nullable": true
-          },
-          "address": {
-            "type": "string",
-            "nullable": true
-          },
-          "cityId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "districtId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "localComment": {
-            "type": "string",
-            "nullable": true
-          },
-          "propertyTypeId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "localAddress": {
-            "type": "string",
-            "nullable": true
-          },
-          "openingHours": {
-            "type": "string",
-            "nullable": true
-          },
-          "openingDays": {
-            "type": "string",
-            "nullable": true
-          },
-          "visibilityId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "area": {
-            "type": "string",
-            "nullable": true
-          },
-          "hasSanitary": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "propertyType": {
-            "type": "string",
-            "nullable": true
-          },
-          "facade": {
-            "type": "string",
-            "nullable": true
-          },
-          "yearsOfExperience": {
-            "type": "string",
-            "nullable": true
-          },
-          "price": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "zone": {
-            "type": "string",
-            "nullable": true
-          },
-          "cityName": {
-            "type": "string",
-            "nullable": true
-          },
-          "region": {
-            "type": "string",
-            "nullable": true
-          },
-          "districtName": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "LoginCommand": {
         "type": "object",
         "properties": {
@@ -5192,49 +4291,6 @@
           "TotalRows": {
             "type": "integer",
             "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "PackSanitized": {
-        "type": "object",
-        "properties": {
-          "pack": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "label": {
-            "type": "string",
-            "nullable": true
-          },
-          "arabicLabel": {
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "PackSanitizedIEnumerableResult": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PackSanitized"
-            },
-            "nullable": true,
-            "readOnly": true
-          },
-          "isSuccess": {
-            "type": "boolean",
-            "readOnly": true
-          },
-          "error": {
-            "$ref": "#/components/schemas/Error"
           }
         },
         "additionalProperties": false
@@ -5418,119 +4474,6 @@
         },
         "additionalProperties": false
       },
-      "PartnerSanitized": {
-        "type": "object",
-        "properties": {
-          "partnerId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "partnerTypeId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "personTypeId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "cityId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "regionId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "code": {
-            "type": "string",
-            "nullable": true
-          },
-          "lastName": {
-            "type": "string",
-            "nullable": true
-          },
-          "firstName": {
-            "type": "string",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "phone": {
-            "type": "string",
-            "nullable": true
-          },
-          "ice": {
-            "type": "string",
-            "nullable": true
-          },
-          "companyName": {
-            "type": "string",
-            "nullable": true
-          },
-          "fiscalIdentification": {
-            "type": "string",
-            "nullable": true
-          },
-          "legalForm": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "taxRegime": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "agentMode": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "PartnerTypeSanitized": {
-        "type": "object",
-        "properties": {
-          "partnerType": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "label": {
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "PartnerTypeSanitizedIEnumerableResult": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PartnerTypeSanitized"
-            },
-            "nullable": true,
-            "readOnly": true
-          },
-          "isSuccess": {
-            "type": "boolean",
-            "readOnly": true
-          },
-          "error": {
-            "$ref": "#/components/schemas/Error"
-          }
-        },
-        "additionalProperties": false
-      },
       "PartnersType": {
         "type": "object",
         "properties": {
@@ -5635,49 +4578,6 @@
           "TotalRows": {
             "type": "integer",
             "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "RegionsSanitized": {
-        "type": "object",
-        "properties": {
-          "region": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "label": {
-            "type": "string",
-            "nullable": true
-          },
-          "logo": {
-            "type": "string",
-            "nullable": true
-          },
-          "map": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "RegionsSanitizedIEnumerableResult": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/RegionsSanitized"
-            },
-            "nullable": true,
-            "readOnly": true
-          },
-          "isSuccess": {
-            "type": "boolean",
-            "readOnly": true
-          },
-          "error": {
-            "$ref": "#/components/schemas/Error"
           }
         },
         "additionalProperties": false
@@ -5962,74 +4862,6 @@
         },
         "additionalProperties": false
       },
-      "SearchHistoryQuery": {
-        "type": "object",
-        "properties": {
-          "dossierId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "field": {
-            "type": "string",
-            "nullable": true
-          },
-          "order": {
-            "type": "string",
-            "nullable": true
-          },
-          "skip": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "take": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "SearchLocalDossierSanitied": {
-        "type": "object",
-        "properties": {
-          "dossierId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "latitude": {
-            "type": "string",
-            "nullable": true
-          },
-          "longitude": {
-            "type": "string",
-            "nullable": true
-          },
-          "address": {
-            "type": "string",
-            "nullable": true
-          },
-          "zone": {
-            "type": "string",
-            "nullable": true
-          },
-          "city": {
-            "type": "string",
-            "nullable": true
-          },
-          "decopageCMR": {
-            "type": "string",
-            "nullable": true
-          },
-          "region": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "StringAglou10001Response": {
         "type": "object",
         "properties": {
@@ -6095,41 +4927,6 @@
           "TotalRows": {
             "type": "integer",
             "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "TypeBienSanitized": {
-        "type": "object",
-        "properties": {
-          "typeBien": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "label": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "TypeBienSanitizedIEnumerableResult": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TypeBienSanitized"
-            },
-            "nullable": true,
-            "readOnly": true
-          },
-          "isSuccess": {
-            "type": "boolean",
-            "readOnly": true
-          },
-          "error": {
-            "$ref": "#/components/schemas/Error"
           }
         },
         "additionalProperties": false
@@ -6472,28 +5269,6 @@
         },
         "additionalProperties": false
       },
-      "UserCommentSanitized": {
-        "type": "object",
-        "properties": {
-          "user": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "image": {
-            "type": "string",
-            "nullable": true
-          },
-          "align": {
-            "type": "string",
-            "nullable": true
-          },
-          "fullName": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "VilleResponse": {
         "type": "object",
         "properties": {
@@ -6555,6 +5330,19 @@
         },
         "additionalProperties": false
       }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "Please enter token",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
     }
-  }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
 }

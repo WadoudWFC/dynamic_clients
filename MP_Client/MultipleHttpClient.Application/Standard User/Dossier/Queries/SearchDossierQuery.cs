@@ -5,7 +5,7 @@ using MutipleHttpClient.Domain.Shared.DTOs.Dossier;
 
 namespace MultipleHttpClient.Application.Dossier.Queries
 {
-    public class SearchDossierQuery : IRequest<Result<IEnumerable<DossierSearchSanitized>>>
+    public record SearchDossierQuery : IRequest<Result<IEnumerable<DossierSearchSanitized>>>
     {
         public Guid UserId { get; set; }
         public string RoleId { get; set; }

@@ -8,11 +8,12 @@ namespace MultipleHttpClient.Application.Dossier.Handlers
 {
     public class UpdateDossierCommandHandler : IRequestHandler<UpdateDossierCommand, Result<DossierUpdateResult>>
     {
-        private readonly IDossierAglouService _dossierAglouService;
+        private readonly IDossierAglouService _dossierService;
         private readonly ILogger<UpdateDossierCommandHandler> _logger;
-        public UpdateDossierCommandHandler(IDossierAglouService dossierAglouService, ILogger<UpdateDossierCommandHandler> logger)
+
+        public UpdateDossierCommandHandler(IDossierAglouService dossierService, ILogger<UpdateDossierCommandHandler> logger)
         {
-            _dossierAglouService = dossierAglouService;
+            _dossierService = dossierService;
             _logger = logger;
         }
 
@@ -20,19 +21,20 @@ namespace MultipleHttpClient.Application.Dossier.Handlers
         {
             try
             {
-                var result = await _dossierAglouService.UpdateDossierAsync(request);
+                var result = await _dossierService.UpdateDossierAsync(request);
                 if (!result.IsSuccess || result.Value == null)
                 {
-                    _logger.LogError("[UpdateDossier]: {0} failed execution!", nameof(UpdateDossierCommandHandler));
-                    return Result<DossierUpdateResult>.Failure(new Error("The UpdateDossierCommandHandler failed", "Can't handle Update dossier"));
+                    _logger.LogError("[UpdateDossier]: Failed to update dossier {DossierId}", request.DossierId);
+                    return Result<DossierUpdateResult>.Failure(new Error("UpdateDossierFailed", "Unable to update dossier"));
                 }
-                _logger.LogInformation("[UpdateDossier]: Successful operation!");
+
+                _logger.LogInformation("[UpdateDossier]: Successfully updated dossier {DossierId}", request.DossierId);
                 return Result<DossierUpdateResult>.Success(result.Value);
             }
             catch (Exception ex)
             {
-                _logger.LogError("[UpdateDossier]: {0}", ex.Message);
-                return Result<DossierUpdateResult>.Failure(new Error("The UpdateDossierCommandHandler failed", ex.Message));
+                _logger.LogError(ex, "[UpdateDossier]: Exception updating dossier {DossierId}", request.DossierId);
+                return Result<DossierUpdateResult>.Failure(new Error("UpdateDossierFailed", ex.Message));
             }
         }
     }

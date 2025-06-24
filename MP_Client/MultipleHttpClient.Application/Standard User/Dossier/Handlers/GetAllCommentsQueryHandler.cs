@@ -8,6 +8,7 @@ namespace MultipleHttpClient.Application.Dossier.Handlers
     {
         private readonly IDossierAglouService _dossierService;
         private readonly ILogger<GetAllCommentsQueryHandler> _logger;
+
         public GetAllCommentsQueryHandler(IDossierAglouService dossierService, ILogger<GetAllCommentsQueryHandler> logger)
         {
             _dossierService = dossierService;
@@ -21,16 +22,18 @@ namespace MultipleHttpClient.Application.Dossier.Handlers
                 var result = await _dossierService.GetAllCommentsAsync(request);
                 if (!result.IsSuccess || result.Value == null)
                 {
-                    _logger.LogError("[GetAllComments]: {0} failed execution", nameof(GetAllCommentsQueryHandler));
-                    return Result<IEnumerable<CommentSanitized>>.Failure(new Error("The GetAllCommentsQueryHandler failed", "Can't handle get comments"));
+                    _logger.LogError("[GetAllComments]: Failed to get comments for dossier {DossierId}", request.DossierId);
+                    return Result<IEnumerable<CommentSanitized>>.Failure(new Error("GetCommentsFailed", "Unable to load comments"));
                 }
-                _logger.LogInformation("[GetAllComments]: Successful operation!");
+
+                _logger.LogInformation("[GetAllComments]: Successfully loaded {Count} comments for dossier {DossierId}",
+                    result.Value.Count(), request.DossierId);
                 return Result<IEnumerable<CommentSanitized>>.Success(result.Value);
             }
             catch (Exception ex)
             {
-                _logger.LogError("[GetAllComments]: {0}", ex.Message);
-                return Result<IEnumerable<CommentSanitized>>.Failure(new Error("The GetAllCommentsQueryHandler failed", ex.Message));
+                _logger.LogError(ex, "[GetAllComments]: Exception loading comments for dossier {DossierId}", request.DossierId);
+                return Result<IEnumerable<CommentSanitized>>.Failure(new Error("GetCommentsFailed", ex.Message));
             }
         }
     }

@@ -5,7 +5,7 @@ using MutipleHttpClient.Domain.Shared.DTOs.Dossier;
 
 namespace MultipleHttpClient.Application.Dossier.Command
 {
-    public class UpdateDossierCommand : IRequest<Result<DossierUpdateResult>>
+    public record UpdateDossierCommand : IRequest<Result<DossierUpdateResult>>
     {
         public Guid DossierId { get; set; }
         public Guid StatusId { get; set; }

@@ -8,7 +8,6 @@ public class AglouLoginResponse
     [JsonPropertyName("XKestrel")]
     public string BearerKey { get; set; }
     [JsonPropertyName("user_id")]
-    [JsonConverter(typeof(StringToIntConverter))]
     public int UserId { get; set; }
     [JsonPropertyName("id_typepartenaire")]
     public string? PartnershipType { get; set; }

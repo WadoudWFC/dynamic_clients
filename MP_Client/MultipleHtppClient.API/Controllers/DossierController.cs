@@ -1,41 +1,231 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MultipleHttpClient.Application;
 using MultipleHttpClient.Application.Dossier.Command;
 using MultipleHttpClient.Application.Dossier.Queries;
+using MultipleHttpClient.Application.Services.Security;
 using MutipleHttpClient.Domain;
 using MutipleHttpClient.Domain.Shared.DTOs.Dossier;
 
 namespace MultipleHtppClient.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v2/[controller]")]
+    [Authorize] // All endpoints require authentication
     public class DossierController : ControllerBase
     {
         private readonly IMediator _mediator;
+
         public DossierController(IMediator mediator)
         {
             _mediator = mediator;
         }
-        [HttpPost("Comments")]
-        public async Task<ActionResult<Result<IEnumerable<CommentSanitized>>>> GetllComments([FromBody] GetAllCommentsQuery query) => Ok(await _mediator.Send(query));
-        [HttpPost("Dossiers")]
-        public async Task<ActionResult<Result<IEnumerable<DossierAllSanitized>>>> GetAllDossiers([FromBody] GetAllDossierQuery query) => Ok(await _mediator.Send(query));
-        [HttpPost("Counts")]
-        public async Task<ActionResult<Result<DossierCountsSanitized>>> GetCounts([FromBody] GetCountsQuery query) => Ok(await _mediator.Send(query));
-        [HttpPost("DossierStatus")]
-        public async Task<ActionResult<Result<IEnumerable<DossierStatusSanitized>>>> GetAllDossiersStatus([FromBody] GetDossierStatusQuery query) => Ok(await _mediator.Send(query));
-        [HttpPost("Comments/add")]
-        public async Task<ActionResult<Result<CommentOperationResult>>> AddComment([FromBody] InsertCommentCommand command) => Ok(await _mediator.Send(command));
-        [HttpPost("Dossiers/add")]
-        public async Task<ActionResult<Result<InsertDossierOperationResult>>> AddDossier([FromBody] InsertDossierCommand command) => Ok(await _mediator.Send(command));
-        [HttpPost("Dossiers/read")]
-        public async Task<ActionResult<Result<LoadDossierResponseSanitized>>> ReadDossier([FromBody] LoadDossierQuery query) => Ok(await _mediator.Send(query));
-        [HttpPost("Dossiers/search")]
-        public async Task<ActionResult<Result<IEnumerable<DossierSearchSanitized>>>> SearchDossier([FromBody] SearchDossierQuery query) => Ok(await _mediator.Send(query));
-        [HttpPost("History/search")]
-        public async Task<ActionResult<Result<IEnumerable<HistorySearchSanitized>>>> SearchHistory([FromBody] SearchHistoryQuery query) => Ok(await _mediator.Send(query));
-        [HttpPost("Dossiers/update")]
-        public async Task<ActionResult<Result<DossierUpdateResult>>> UpdateDossier([FromBody] UpdateDossierCommand command) => Ok(await _mediator.Send(command));
+
+        /// <summary>
+        /// Get specific dossier - requires ownership or appropriate role
+        /// </summary>
+        [HttpGet("{dossierId}")]
+        [OwnershipAuthorization("dossierId", "dossier")]
+        public async Task<IActionResult> GetDossier(Guid dossierId)
+        {
+            var query = new LoadDossierQuery(dossierId);
+            var result = await _mediator.Send(query);
+
+            if (!result.IsSuccess)
+                return BadRequest(result.Error);
+
+            return Ok(result.Value);
+        }
+
+        /// <summary>
+        /// Create new dossier - any authenticated user can create
+        /// </summary>
+        [HttpPost]
+        [RequireProfile(1, 2, 3)] // All authenticated users can create dossiers
+        public async Task<IActionResult> CreateDossier([FromBody] InsertDossierCommand command)
+        {
+            // Extract user ID from JWT and set it in the command
+            var userId = GetCurrentUserId();
+            var commandWithUser = command with { UserId = userId };
+
+            var result = await _mediator.Send(commandWithUser);
+            return result.IsSuccess ? Ok(result.Value) : BadRequest(result.Error);
+        }
+
+        /// <summary>
+        /// Update dossier - requires ownership of the specific dossier
+        /// </summary>
+        [HttpPut("{dossierId}")]
+        [OwnershipAuthorization("dossierId", "dossier")]
+        public async Task<IActionResult> UpdateDossier(Guid dossierId, [FromBody] UpdateDossierCommand command)
+        {
+            // Ensure route ID matches command ID
+            var userId = GetCurrentUserId();
+            var commandWithIds = command with { DossierId = dossierId, UserId = userId };
+
+            var result = await _mediator.Send(commandWithIds);
+            return result.IsSuccess ? Ok(result.Value) : BadRequest(result.Error);
+        }
+
+        /// <summary>
+        /// Search dossiers - applies role-based filtering automatically
+        /// </summary>
+        [HttpPost("search")]
+        [RequireProfile(1, 2, 3)] // All users can search, but results are filtered by role
+        public async Task<IActionResult> SearchDossiers([FromBody] SearchDossierQuery query)
+        {
+            // Set user context from JWT
+            var userId = GetCurrentUserId();
+            var profileId = GetCurrentInternalProfileId();
+
+            var queryWithUser = query with
+            {
+                UserId = userId,
+                RoleId = profileId
+            };
+
+            var result = await _mediator.Send(queryWithUser);
+            return result.IsSuccess ? Ok(result.Value) : BadRequest(result.Error);
+        }
+
+        /// <summary>
+        /// Get all dossiers - restricted to admins and regional admins
+        /// </summary>
+        [HttpGet]
+        [RequireAdminOrRegional] // Only admins and regional admins
+        public async Task<IActionResult> GetAllDossiers([FromQuery] string? roleId)
+        {
+            var query = new GetAllDossierQuery
+            {
+                UserId = GetCurrentUserId(),
+                RoleId = roleId ?? GetCurrentInternalProfileId()
+            };
+
+            var result = await _mediator.Send(query);
+            return result.IsSuccess ? Ok(result.Value) : BadRequest(result.Error);
+        }
+
+        /// <summary>
+        /// Get dossier counts - role-based access with commercial division filtering
+        /// </summary>
+        [HttpGet("counts")]
+        [RequireProfile(1, 2, 3)]
+        public async Task<IActionResult> GetCounts([FromQuery] string? roleId)
+        {
+            var query = new GetCountsQuery
+            {
+                UserId = GetCurrentUserId(),
+                RoleId = roleId ?? GetCurrentInternalProfileId()
+            };
+
+            var result = await _mediator.Send(query);
+            return result.IsSuccess ? Ok(result.Value) : BadRequest(result.Error);
+        }
+
+        #region Comment Management
+
+        /// <summary>
+        /// Get comments for a dossier - requires dossier access
+        /// </summary>
+        [HttpGet("{dossierId}/comments")]
+        [OwnershipAuthorization("dossierId", "dossier")]
+        public async Task<IActionResult> GetDossierComments(Guid dossierId)
+        {
+            var query = new GetAllCommentsQuery
+            {
+                DossierId = dossierId,
+                UserId = GetCurrentUserId()
+            };
+
+            var result = await _mediator.Send(query);
+            return result.IsSuccess ? Ok(result.Value) : BadRequest(result.Error);
+        }
+
+        /// <summary>
+        /// Add comment to dossier - requires dossier access
+        /// </summary>
+        [HttpPost("{dossierId}/comments")]
+        [OwnershipAuthorization("dossierId", "dossier")]
+        public async Task<IActionResult> AddComment(Guid dossierId, [FromBody] AddCommentRequest request)
+        {
+            var command = new InsertCommentCommand
+            {
+                DossierId = dossierId,
+                UserId = GetCurrentUserId(),
+                Content = request.Content
+            };
+
+            var result = await _mediator.Send(command);
+            return result.IsSuccess ? Ok(result.Value) : BadRequest(result.Error);
+        }
+
+        #endregion
+
+        #region Status Management
+
+        /// <summary>
+        /// Get dossier statuses - available to all authenticated users
+        /// </summary>
+        [HttpGet("statuses")]
+        [RequireProfile(1, 2, 3)]
+        public async Task<IActionResult> GetDossierStatuses()
+        {
+            var query = new GetDossierStatusQuery
+            {
+                UserId = GetCurrentUserId()
+            };
+
+            var result = await _mediator.Send(query);
+            return result.IsSuccess ? Ok(result.Value) : BadRequest(result.Error);
+        }
+
+        #endregion
+
+        #region History Management
+
+        /// <summary>
+        /// Search dossier history - requires dossier access
+        /// </summary>
+        [HttpPost("{dossierId}/history")]
+        [OwnershipAuthorization("dossierId", "dossier")]
+        public async Task<IActionResult> SearchHistory(Guid dossierId, [FromBody] HistorySearchRequest request)
+        {
+            var query = new SearchHistoryQuery
+            {
+                DossierId = dossierId,
+                Field = request.Field ?? "date_created",
+                Order = request.Order ?? "desc",
+                Skip = request.Skip,
+                Take = request.Take
+            };
+
+            var result = await _mediator.Send(query);
+            return result.IsSuccess ? Ok(result.Value) : BadRequest(result.Error);
+        }
+
+        #endregion
+
+        #region Helper Methods
+
+        private Guid GetCurrentUserId()
+        {
+            var userIdClaim = User.FindFirst("user_id")?.Value;
+            return Guid.TryParse(userIdClaim, out var userId) ? userId : Guid.Empty;
+        }
+
+        private string GetCurrentInternalProfileId()
+        {
+            return User.FindFirst("internal_profile_id")?.Value ?? "3"; // Default to standard user
+        }
+
+        private int? GetCurrentInternalUserId()
+        {
+            var userIdClaim = User.FindFirst("internal_user_id")?.Value;
+            return int.TryParse(userIdClaim, out var userId) ? userId : null;
+        }
+
+        #endregion
     }
 }
+

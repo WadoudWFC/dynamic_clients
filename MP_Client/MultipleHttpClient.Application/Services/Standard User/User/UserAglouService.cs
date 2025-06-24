@@ -66,7 +66,7 @@ public class UserAglouService : IUserAglouService
         }
         LogoutRequestBody request = new LogoutRequestBody { Id = (int)userId };
         var response = await _httpUserAglou.LogoutAsync(request);
-        if (!response.IsSuccess || response.Data?.Data == null)
+        if (!response.IsSuccess)
         {
             return Result<SanitizedBasicResponse>.Failure(new Error(Constants.UserFail, "Logout failed!"));
         }

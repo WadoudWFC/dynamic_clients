@@ -8,11 +8,12 @@ namespace MultipleHttpClient.Application.Dossier.Handlers
 {
     public class LoadDossierQueryHandler : IRequestHandler<LoadDossierQuery, Result<LoadDossierResponseSanitized>>
     {
-        private readonly IDossierAglouService _dossierAglouService;
+        private readonly IDossierAglouService _dossierService;
         private readonly ILogger<LoadDossierQueryHandler> _logger;
-        public LoadDossierQueryHandler(IDossierAglouService dossierAglouService, ILogger<LoadDossierQueryHandler> logger)
+
+        public LoadDossierQueryHandler(IDossierAglouService dossierService, ILogger<LoadDossierQueryHandler> logger)
         {
-            _dossierAglouService = dossierAglouService;
+            _dossierService = dossierService;
             _logger = logger;
         }
 
@@ -20,19 +21,20 @@ namespace MultipleHttpClient.Application.Dossier.Handlers
         {
             try
             {
-                var result = await _dossierAglouService.LoadDossierAsync(request);
+                var result = await _dossierService.LoadDossierAsync(request);
                 if (!result.IsSuccess || result.Value == null)
                 {
-                    _logger.LogError("[LoadDossier]: {0} failed execution!", nameof(LoadDossierQueryHandler));
-                    return Result<LoadDossierResponseSanitized>.Failure(new Error("The LoadDossierQueryHandler failed", "Can't handle load dossier"));
+                    _logger.LogError("[LoadDossier]: Failed to load dossier {DossierId}", request.DossierId);
+                    return Result<LoadDossierResponseSanitized>.Failure(new Error("LoadDossierFailed", "Unable to load dossier"));
                 }
-                _logger.LogInformation("[LoadDossier]: Successful operation!");
+
+                _logger.LogInformation("[LoadDossier]: Successfully loaded dossier {DossierId}", request.DossierId);
                 return Result<LoadDossierResponseSanitized>.Success(result.Value);
             }
             catch (Exception ex)
             {
-                _logger.LogError("[LoadDossier]: {0}", ex.Message);
-                return Result<LoadDossierResponseSanitized>.Failure(new Error("The LoadDossierQueryHandler failed", "Can't handle load dossier"));
+                _logger.LogError(ex, "[LoadDossier]: Exception loading dossier {DossierId}", request.DossierId);
+                return Result<LoadDossierResponseSanitized>.Failure(new Error("LoadDossierFailed", ex.Message));
             }
         }
     }

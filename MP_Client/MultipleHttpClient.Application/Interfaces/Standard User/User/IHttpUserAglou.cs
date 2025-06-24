@@ -16,5 +16,4 @@ public interface IHttpUserAglou
     Task<ApiResponse<Aglou10001Response<object>>> RegisterUserAsync(RegisterUserRequestBody registerUserRequestBody);
     Task<ApiResponse<Aglou10001Response<LoadUserResponse>>> LoadUserAsync(LogoutRequestBody logoutRequestBody);
     Task<ApiResponse<Aglou10001Response<IEnumerable<GetAllUsersResponse>>>> GetAllUsersAsync(GetAllUsersRequestBody getAllUsersRequestBody);
-
 }

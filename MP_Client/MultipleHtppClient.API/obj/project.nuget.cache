@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VxmEXJNC9ZM=",
+  "dgSpecHash": "zOZr8puSIHM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.API\\MultipleHtppClient.API.csproj",
+  "projectFilePath": "C:\\Users\\A.Dihbaouri\\Desktop\\FV\\dynamic_clients\\MP_Client\\MultipleHtppClient.API\\MultipleHtppClient.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\A.Dihbaouri\\.nuget\\packages\\fluentvalidation\\12.0.0\\fluentvalidation.12.0.0.nupkg.sha512",
     "C:\\Users\\A.Dihbaouri\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
@@ -40,15 +40,5 @@
     "C:\\Users\\A.Dihbaouri\\.nuget\\packages\\system.diagnostics.diagnosticsource\\9.0.4\\system.diagnostics.diagnosticsource.9.0.4.nupkg.sha512",
     "C:\\Users\\A.Dihbaouri\\.nuget\\packages\\system.identitymodel.tokens.jwt\\7.1.2\\system.identitymodel.tokens.jwt.7.1.2.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.",
-      "projectPath": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.API\\MultipleHtppClient.API.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\A.Dihbaouri\\Desktop\\MiddlwareAPI_BFF\\MP_Client\\MP_Client\\MultipleHtppClient.API\\MultipleHtppClient.API.csproj",
-      "targetGraphs": []
-    }
-  ]
+  "logs": []
 }

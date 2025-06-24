@@ -1,265 +1,5 @@
 [
   {
-    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
-    "Method": "GetllComments",
-    "RelativePath": "api/Dossier/Comments",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "query",
-        "Type": "MultipleHttpClient.Application.GetAllCommentsQuery",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "MutipleHttpClient.Domain.Result\u00601[[System.Collections.Generic.IEnumerable\u00601[[MutipleHttpClient.Domain.CommentSanitized, MutipleHttpClient.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
-    "Method": "AddComment",
-    "RelativePath": "api/Dossier/Comments/add",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "command",
-        "Type": "MultipleHttpClient.Application.Dossier.Command.InsertCommentCommand",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "MutipleHttpClient.Domain.Result\u00601[[MutipleHttpClient.Domain.Shared.DTOs.Dossier.CommentOperationResult, MutipleHttpClient.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
-    "Method": "GetCounts",
-    "RelativePath": "api/Dossier/Counts",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "query",
-        "Type": "MultipleHttpClient.Application.Dossier.Queries.GetCountsQuery",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "MutipleHttpClient.Domain.Result\u00601[[MutipleHttpClient.Domain.DossierCountsSanitized, MutipleHttpClient.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
-    "Method": "GetAllDossiers",
-    "RelativePath": "api/Dossier/Dossiers",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "query",
-        "Type": "MultipleHttpClient.Application.Dossier.Queries.GetAllDossierQuery",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "MutipleHttpClient.Domain.Result\u00601[[System.Collections.Generic.IEnumerable\u00601[[MutipleHttpClient.Domain.Shared.DTOs.Dossier.DossierAllSanitized, MutipleHttpClient.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
-    "Method": "AddDossier",
-    "RelativePath": "api/Dossier/Dossiers/add",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "command",
-        "Type": "MultipleHttpClient.Application.Dossier.Command.InsertDossierCommand",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "MutipleHttpClient.Domain.Result\u00601[[MutipleHttpClient.Domain.Shared.DTOs.Dossier.InsertDossierOperationResult, MutipleHttpClient.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
-    "Method": "ReadDossier",
-    "RelativePath": "api/Dossier/Dossiers/read",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "query",
-        "Type": "MultipleHttpClient.Application.Dossier.Queries.LoadDossierQuery",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "MutipleHttpClient.Domain.Result\u00601[[MutipleHttpClient.Domain.Shared.DTOs.Dossier.LoadDossierResponseSanitized, MutipleHttpClient.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
-    "Method": "SearchDossier",
-    "RelativePath": "api/Dossier/Dossiers/search",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "query",
-        "Type": "MultipleHttpClient.Application.Dossier.Queries.SearchDossierQuery",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "MutipleHttpClient.Domain.Result\u00601[[System.Collections.Generic.IEnumerable\u00601[[MutipleHttpClient.Domain.Shared.DTOs.Dossier.DossierSearchSanitized, MutipleHttpClient.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
-    "Method": "UpdateDossier",
-    "RelativePath": "api/Dossier/Dossiers/update",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "command",
-        "Type": "MultipleHttpClient.Application.Dossier.Command.UpdateDossierCommand",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "MutipleHttpClient.Domain.Result\u00601[[MutipleHttpClient.Domain.Shared.DTOs.Dossier.DossierUpdateResult, MutipleHttpClient.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
-    "Method": "GetAllDossiersStatus",
-    "RelativePath": "api/Dossier/DossierStatus",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "query",
-        "Type": "MultipleHttpClient.Application.Dossier.Queries.GetDossierStatusQuery",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "MutipleHttpClient.Domain.Result\u00601[[System.Collections.Generic.IEnumerable\u00601[[MutipleHttpClient.Domain.Shared.DTOs.Dossier.DossierStatusSanitized, MutipleHttpClient.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
-    "Method": "SearchHistory",
-    "RelativePath": "api/Dossier/History/search",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "query",
-        "Type": "MultipleHttpClient.Application.SearchHistoryQuery",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "MutipleHttpClient.Domain.Result\u00601[[System.Collections.Generic.IEnumerable\u00601[[MutipleHttpClient.Domain.HistorySearchSanitized, MutipleHttpClient.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
     "ContainingType": "MultipleHtppClient.API.PresentationController",
     "Method": "GetById",
     "RelativePath": "api/Presentation/{id}",
@@ -297,237 +37,93 @@
   },
   {
     "ContainingType": "MultipleHtppClient.API.ReferenceController",
-    "Method": "GetAllActivities",
-    "RelativePath": "api/Reference/Activities",
-    "HttpMethod": "POST",
+    "Method": "GetActivities",
+    "RelativePath": "api/Reference/activities",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "query",
-        "Type": "MultipleHttpClient.Application.GetAllActivitiesQuery",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "MutipleHttpClient.Domain.Result\u00601[[System.Collections.Generic.IEnumerable\u00601[[MutipleHttpClient.Domain.ActivityNatureSanitized, MutipleHttpClient.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "Parameters": [],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "MultipleHtppClient.API.ReferenceController",
-    "Method": "GetAllArrondissements",
-    "RelativePath": "api/Reference/Arrondissements",
-    "HttpMethod": "POST",
+    "Method": "GetArrondissements",
+    "RelativePath": "api/Reference/arrondissements",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "query",
-        "Type": "MultipleHttpClient.Application.GetArrondissementQuery",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "MutipleHttpClient.Domain.Result\u00601[[System.Collections.Generic.IEnumerable\u00601[[MutipleHttpClient.Domain.ArrondissementSanitized, MutipleHttpClient.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "Parameters": [],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "MultipleHtppClient.API.ReferenceController",
-    "Method": "GetAllCities",
-    "RelativePath": "api/Reference/Cities",
-    "HttpMethod": "POST",
+    "Method": "GetCities",
+    "RelativePath": "api/Reference/cities",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "query",
-        "Type": "MultipleHttpClient.Application.GetAllCitiesQuery",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "MutipleHttpClient.Domain.Result\u00601[[System.Collections.Generic.IEnumerable\u00601[[MutipleHttpClient.Domain.CitiesSanitized, MutipleHttpClient.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "Parameters": [],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "MultipleHtppClient.API.ReferenceController",
-    "Method": "GetAllCommercialCuttings",
-    "RelativePath": "api/Reference/CommercialCutting",
-    "HttpMethod": "POST",
+    "Method": "GetCommercialCuttings",
+    "RelativePath": "api/Reference/commercial-cuttings",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "query",
-        "Type": "MultipleHttpClient.Application.GetCommercialCuttingQuery",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "MutipleHttpClient.Domain.Result\u00601[[System.Collections.Generic.IEnumerable\u00601[[MutipleHttpClient.Domain.CommercialCuttingSanitized, MutipleHttpClient.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "Parameters": [],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "MultipleHtppClient.API.ReferenceController",
-    "Method": "GetAllDemandTypes",
-    "RelativePath": "api/Reference/DemandsType",
-    "HttpMethod": "POST",
+    "Method": "GetDemandTypes",
+    "RelativePath": "api/Reference/demand-types",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "query",
-        "Type": "MultipleHttpClient.Application.GetDemandTypesQuery",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "MutipleHttpClient.Domain.Result\u00601[[System.Collections.Generic.IEnumerable\u00601[[MutipleHttpClient.Domain.DemandTypeSanitized, MutipleHttpClient.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "Parameters": [],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "MultipleHtppClient.API.ReferenceController",
-    "Method": "GetAllPacks",
-    "RelativePath": "api/Reference/Packs",
-    "HttpMethod": "POST",
+    "Method": "GetPacks",
+    "RelativePath": "api/Reference/packs",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "query",
-        "Type": "MultipleHttpClient.Application.GetAllPackQuery",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "MutipleHttpClient.Domain.Result\u00601[[System.Collections.Generic.IEnumerable\u00601[[MutipleHttpClient.Domain.PackSanitized, MutipleHttpClient.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "Parameters": [],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "MultipleHtppClient.API.ReferenceController",
-    "Method": "GetAllPartnerTypes",
-    "RelativePath": "api/Reference/PartnersType",
-    "HttpMethod": "POST",
+    "Method": "GetPartnerTypes",
+    "RelativePath": "api/Reference/partner-types",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "query",
-        "Type": "MultipleHttpClient.Application.GetPartnerTypesQuery",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "MutipleHttpClient.Domain.Result\u00601[[System.Collections.Generic.IEnumerable\u00601[[MutipleHttpClient.Domain.PartnerTypeSanitized, MutipleHttpClient.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "Parameters": [],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "MultipleHtppClient.API.ReferenceController",
-    "Method": "GetAllRegions",
-    "RelativePath": "api/Reference/Regions",
-    "HttpMethod": "POST",
+    "Method": "GetRegions",
+    "RelativePath": "api/Reference/regions",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "query",
-        "Type": "MultipleHttpClient.Application.GetAllRegionQuery",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "MutipleHttpClient.Domain.Result\u00601[[System.Collections.Generic.IEnumerable\u00601[[MutipleHttpClient.Domain.RegionsSanitized, MutipleHttpClient.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "Parameters": [],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "MultipleHtppClient.API.ReferenceController",
-    "Method": "GetAllTypeBien",
-    "RelativePath": "api/Reference/TypeBien",
-    "HttpMethod": "POST",
+    "Method": "GetTypeBien",
+    "RelativePath": "api/Reference/type-bien",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "query",
-        "Type": "MultipleHttpClient.Application.GetTypeBienQuery",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "MutipleHttpClient.Domain.Result\u00601[[System.Collections.Generic.IEnumerable\u00601[[MutipleHttpClient.Domain.TypeBienSanitized, MutipleHttpClient.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "Parameters": [],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "MultipleHtppClient.API.UserController",
@@ -712,6 +308,374 @@
     ]
   },
   {
+    "ContainingType": "MultipleHtppClient.API.Controllers.AdminController",
+    "Method": "DeleteDocument",
+    "RelativePath": "api/v1/Admin/documents/delete",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "System.Object",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.AdminController",
+    "Method": "GetFile",
+    "RelativePath": "api/v1/Admin/documents/file",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "System.Object",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.AdminController",
+    "Method": "GetFiles",
+    "RelativePath": "api/v1/Admin/documents/files",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "System.Object",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.AdminController",
+    "Method": "UploadDocument",
+    "RelativePath": "api/v1/Admin/documents/insert",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "System.Object",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.AdminController",
+    "Method": "UpdateDocument",
+    "RelativePath": "api/v1/Admin/documents/update",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "System.Object",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.AdminController",
+    "Method": "ChangeDossierStatus",
+    "RelativePath": "api/v1/Admin/dossiers/change-status",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "System.Object",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.AdminController",
+    "Method": "DeleteDossier",
+    "RelativePath": "api/v1/Admin/dossiers/delete",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "System.Object",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.AdminController",
+    "Method": "GetAffectationZoneUser",
+    "RelativePath": "api/v1/Admin/parameters/affectation-zone-user",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "System.Object",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.AdminController",
+    "Method": "GetDroit",
+    "RelativePath": "api/v1/Admin/parameters/droit",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "System.Object",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.AdminController",
+    "Method": "GetDroitProfil",
+    "RelativePath": "api/v1/Admin/parameters/droit-profil",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "System.Object",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.AdminController",
+    "Method": "GetHistorique",
+    "RelativePath": "api/v1/Admin/parameters/historique",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "System.Object",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.AdminController",
+    "Method": "GetLocalDossier",
+    "RelativePath": "api/v1/Admin/parameters/local-dossier",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "System.Object",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.AdminController",
+    "Method": "GetPartenaire",
+    "RelativePath": "api/v1/Admin/parameters/partenaire",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "System.Object",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.AdminController",
+    "Method": "GetTypePersonne",
+    "RelativePath": "api/v1/Admin/parameters/type-personne",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "System.Object",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.AdminController",
+    "Method": "GetZones",
+    "RelativePath": "api/v1/Admin/parameters/zones",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "System.Object",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.AdminController",
+    "Method": "GetAllUsers",
+    "RelativePath": "api/v1/Admin/users",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "System.Object",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.AdminController",
+    "Method": "CreateUser",
+    "RelativePath": "api/v1/Admin/users/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "System.Object",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.AdminController",
+    "Method": "DeleteUser",
+    "RelativePath": "api/v1/Admin/users/delete",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "System.Object",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.AdminController",
+    "Method": "LoadUser",
+    "RelativePath": "api/v1/Admin/users/load",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "System.Object",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.AdminController",
+    "Method": "ResendEmailValidation",
+    "RelativePath": "api/v1/Admin/users/resend-validation",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "System.Object",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.AdminController",
+    "Method": "SearchUsers",
+    "RelativePath": "api/v1/Admin/users/search",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "System.Object",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.AdminController",
+    "Method": "UpdateUser",
+    "RelativePath": "api/v1/Admin/users/update",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "System.Object",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.AdminController",
+    "Method": "ValidateUser",
+    "RelativePath": "api/v1/Admin/users/validate",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "System.Object",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "MultipleHtppClient.API.PresentationController",
     "Method": "GetArrondissements",
     "RelativePath": "api/v2/arrondissement/GetAll",
@@ -802,6 +766,149 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
+    "Method": "CreateDossier",
+    "RelativePath": "api/v2/Dossier",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "MultipleHttpClient.Application.Dossier.Command.InsertDossierCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
+    "Method": "GetAllDossiers",
+    "RelativePath": "api/v2/Dossier",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roleId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
+    "Method": "GetDossier",
+    "RelativePath": "api/v2/Dossier/{dossierId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dossierId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
+    "Method": "UpdateDossier",
+    "RelativePath": "api/v2/Dossier/{dossierId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dossierId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "command",
+        "Type": "MultipleHttpClient.Application.Dossier.Command.UpdateDossierCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
+    "Method": "GetDossierComments",
+    "RelativePath": "api/v2/Dossier/{dossierId}/comments",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dossierId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
+    "Method": "AddComment",
+    "RelativePath": "api/v2/Dossier/{dossierId}/comments",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dossierId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "MultipleHttpClient.Application.Dossier.Command.AddCommentRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
+    "Method": "SearchHistory",
+    "RelativePath": "api/v2/Dossier/{dossierId}/history",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dossierId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "MultipleHttpClient.Application.Dossier.Queries.HistorySearchRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
+    "Method": "GetCounts",
+    "RelativePath": "api/v2/Dossier/counts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roleId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "MultipleHtppClient.API.PresentationController",
@@ -1104,6 +1211,32 @@
     ]
   },
   {
+    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
+    "Method": "SearchDossiers",
+    "RelativePath": "api/v2/Dossier/search",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "query",
+        "Type": "MultipleHttpClient.Application.Dossier.Queries.SearchDossierQuery",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
+    "Method": "GetDossierStatuses",
+    "RelativePath": "api/v2/Dossier/statuses",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "MultipleHtppClient.API.PresentationController",
     "Method": "UpdateDossier",
     "RelativePath": "api/v2/dossier/Update",
@@ -1338,6 +1471,32 @@
     "ReturnTypes": [
       {
         "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[MultipleHtppClient.Infrastructure.HTTP.APIs.Models.User_Account.Responses.AglouUser, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.PresentationController",
+    "Method": "GetAllUsers",
+    "RelativePath": "api/v2/utilisateur/GetAll",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "MultipleHtppClient.Infrastructure.GetAllUsersRequestBody",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "MultipleHtppClient.Infrastructure.Aglou10001Response\u00601[[System.Collections.Generic.IEnumerable\u00601[[MultipleHtppClient.Infrastructure.GetAllUsersResponse, MultipleHtppClient.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
