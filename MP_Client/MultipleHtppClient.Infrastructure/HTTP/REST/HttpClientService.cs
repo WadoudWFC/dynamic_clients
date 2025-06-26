@@ -8,7 +8,6 @@ using Microsoft.Extensions.Options;
 using MultipleHtppClient.Infrastructure.HTTP.Configurations;
 using MultipleHtppClient.Infrastructure.HTTP.Enums;
 using MultipleHtppClient.Infrastructure.HTTP.Interfaces;
-using MultipleHtppClient.Infrastructure.HTTP.REST;
 using MutipleHttpClient.Domain.Converters.Types;
 
 namespace MultipleHtppClient.Infrastructure.HTTP.REST;
@@ -71,6 +70,37 @@ public class HttpClientService : IHttpClientService
                 _logger.LogError(ex, "Failed to call {0} at {1}", apiName, apiRequest.Endpoint);
                 return ApiResponse<TResponse>.Error(ex.Message);
             }
+        }
+    }
+    public async Task<ApiResponse<Aglou10001Response<TResponse>>> SendNestedJsonAsync<TRequest, TResponse>(ApiRequest<TRequest> apiRequest)
+    {
+        var rawResponse = await SendAsync<TRequest, Aglou10001Response<string>>(apiRequest);
+
+        if (!rawResponse.IsSuccess || rawResponse.Data?.Data == null)
+        {
+            return ApiResponse<Aglou10001Response<TResponse>>.Error(
+                rawResponse.ErrorMessage ?? "Failed to get response data",
+                rawResponse.StatusCode);
+        }
+
+        try
+        {
+            // Deserialize the inner JSON
+            var innerData = JsonSerializer.Deserialize<TResponse>(rawResponse.Data.Data, _jsonOptions);
+
+            // Reconstruct the response
+            var finalResponse = new Aglou10001Response<TResponse>
+            {
+                ResponseCode = rawResponse.Data.ResponseCode,
+                Message = rawResponse.Data.Message,
+                Data = innerData
+            };
+
+            return ApiResponse<Aglou10001Response<TResponse>>.Success(finalResponse, rawResponse.StatusCode);
+        }
+        catch (JsonException ex)
+        {
+            return ApiResponse<Aglou10001Response<TResponse>>.Error($"Failed to deserialize nested data: {ex.Message}", rawResponse.StatusCode);
         }
     }
 
@@ -171,7 +201,7 @@ public class HttpClientService : IHttpClientService
 
             return ApiResponse<TResponse>.Success(data, httpResponseMessage.StatusCode);
         }
-        catch (JsonException ex) // 
+        catch (JsonException ex)
         {
             return ApiResponse<TResponse>.Error($"Failed to deserialize response: {ex.Message}\nResponse: {content}", httpResponseMessage.StatusCode);
         }

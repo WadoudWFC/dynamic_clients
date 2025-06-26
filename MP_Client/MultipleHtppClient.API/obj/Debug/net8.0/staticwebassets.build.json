@@ -1,12 +1,1 @@
-{
-  "Version": 1,
-  "Hash": "Hm4+Q3dzuzVOYw+6TRwUCOMmlxvz+NPCpyeerMXjCEc=",
-  "Source": "MultipleHtppClient.API",
-  "BasePath": "_content/MultipleHtppClient.API",
-  "Mode": "Default",
-  "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
-}
+{"Version":1,"Hash":"Hm4+Q3dzuzVOYw+6TRwUCOMmlxvz+NPCpyeerMXjCEc=","Source":"MultipleHtppClient.API","BasePath":"_content/MultipleHtppClient.API","Mode":"Default","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}

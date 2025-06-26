@@ -179,6 +179,16 @@
   },
   {
     "ContainingType": "MultipleHtppClient.API.UserController",
+    "Method": "GetCurrentUser",
+    "RelativePath": "api/User/GetCurrentUser",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.UserController",
     "Method": "Login",
     "RelativePath": "api/User/Login",
     "HttpMethod": "POST",
@@ -1183,6 +1193,58 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
+    "Method": "GetMyDossiers",
+    "RelativePath": "api/v2/Dossier/my-dossiers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "take",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "skip",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
+    "Method": "GetMyDossiersDetailed",
+    "RelativePath": "api/v2/Dossier/my-dossiers/detailed",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
+    "Method": "GetMyDossiersWithSummary",
+    "RelativePath": "api/v2/Dossier/my-dossiers/summary",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "take",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "skip",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "MultipleHtppClient.API.PresentationController",

@@ -7,7 +7,7 @@ using MultipleHttpClient.Application.Users.Commands.LoadUser;
 using MultipleHttpClient.Application.Users.Commands.Logout;
 using MutipleHttpClient.Domain;
 using MutipleHttpClient.Domain.Shared.DTOs.Users;
-// 
+
 namespace MultipleHttpClient.Application.Services.User;
 
 public class UserAglouService : IUserAglouService

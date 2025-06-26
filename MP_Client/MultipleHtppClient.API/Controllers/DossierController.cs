@@ -5,14 +5,14 @@ using MultipleHttpClient.Application;
 using MultipleHttpClient.Application.Dossier.Command;
 using MultipleHttpClient.Application.Dossier.Queries;
 using MultipleHttpClient.Application.Services.Security;
-using MutipleHttpClient.Domain;
+using MultipleHttpClient.Application.Standard_User.Dossier.Queries;
 using MutipleHttpClient.Domain.Shared.DTOs.Dossier;
 
 namespace MultipleHtppClient.API.Controllers
 {
     [ApiController]
     [Route("api/v2/[controller]")]
-    [Authorize] // All endpoints require authentication
+    [Authorize]
     public class DossierController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -123,6 +123,133 @@ namespace MultipleHtppClient.API.Controllers
             return result.IsSuccess ? Ok(result.Value) : BadRequest(result.Error);
         }
 
+        /// <summary>
+        /// Get all dossiers for the authenticated user
+        /// </summary>
+        [HttpGet("my-dossiers")]
+        [Authorize]
+        public async Task<IActionResult> GetMyDossiers([FromQuery] int? take, [FromQuery] int? skip)
+        {
+            var userId = GetCurrentUserId();
+            var profileId = GetCurrentInternalProfileId();
+
+            if (userId == Guid.Empty)
+            {
+                return Unauthorized(new { error = "Invalid user context" });
+            }
+
+            var query = new GetMyDossiersQuery
+            {
+                UserId = userId,
+                RoleId = profileId,
+                Take = take ?? 50,
+                Skip = skip ?? 0,
+                Order = "desc",
+                Field = "date_created"
+            };
+
+            var result = await _mediator.Send(query);
+
+            if (!result.IsSuccess)
+            {
+                return BadRequest(new { error = result.Error.Message });
+            }
+
+            // Just return the dossiers directly - they already have all the information
+            return Ok(result.Value);
+        }
+
+        /// <summary>
+        /// Get all dossiers with summary information
+        /// </summary>
+        [HttpGet("my-dossiers/summary")]
+        [Authorize]
+        public async Task<IActionResult> GetMyDossiersWithSummary([FromQuery] int? take, [FromQuery] int? skip)
+        {
+            var userId = GetCurrentUserId();
+            var profileId = GetCurrentInternalProfileId();
+
+            if (userId == Guid.Empty)
+            {
+                return Unauthorized(new { error = "Invalid user context" });
+            }
+
+            var query = new GetMyDossiersQuery
+            {
+                UserId = userId,
+                RoleId = profileId,
+                Take = take ?? 50,
+                Skip = skip ?? 0,
+                Order = "desc",
+                Field = "date_created"
+            };
+
+            var result = await _mediator.Send(query);
+
+            if (!result.IsSuccess)
+            {
+                return BadRequest(new { error = result.Error.Message });
+            }
+
+            var dossiers = result.Value?.ToList() ?? new List<DossierSearchSanitized>();
+
+            // Create response with summary
+            var response = new
+            {
+                dossiers = dossiers,
+                summary = new
+                {
+                    total = dossiers.Count,
+                    userId = userId,
+                    profileType = profileId switch
+                    {
+                        "1" => "Administrator",
+                        "2" => "Regional Administrator",
+                        "3" => "Standard User",
+                        _ => "Unknown"
+                    },
+                    hasMore = dossiers.Count == (take ?? 50),
+                    filters = new
+                    {
+                        skip = skip ?? 0,
+                        take = take ?? 50,
+                        orderBy = "date_created",
+                        order = "desc"
+                    }
+                }
+            };
+
+            return Ok(response);
+        }
+
+        /// <summary>
+        /// Get detailed view of all user's dossiers with statistics
+        /// </summary>
+        [HttpGet("my-dossiers/detailed")]
+        [Authorize]
+        public async Task<IActionResult> GetMyDossiersDetailed()
+        {
+            var userId = GetCurrentUserId();
+            var profileId = GetCurrentInternalProfileId();
+
+            if (userId == Guid.Empty)
+            {
+                return Unauthorized(new { error = "Invalid user context" });
+            }
+
+            var query = new GetMyDossiersDetailedQuery
+            {
+                UserId = userId,
+                RoleId = profileId
+            };
+
+            var result = await _mediator.Send(query);
+
+            return result.IsSuccess
+                ? Ok(result.Value)
+                : BadRequest(new { error = result.Error.Message });
+        }
+
         #region Comment Management
 
         /// <summary>
@@ -196,8 +323,8 @@ namespace MultipleHtppClient.API.Controllers
                 DossierId = dossierId,
                 Field = request.Field ?? "date_created",
                 Order = request.Order ?? "desc",
-                Skip = request.Skip,
-                Take = request.Take
+                Skip = request.Skip.Value,
+                Take = request.Take.Value
             };
 
             var result = await _mediator.Send(query);

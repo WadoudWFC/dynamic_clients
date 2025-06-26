@@ -1,7 +1,8 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "My API",
+    "title": "Secure Middleware API",
+    "description": "Security middleware for legacy API integration",
     "version": "v1"
   },
   "paths": {
@@ -737,6 +738,78 @@
               "type": "string"
             }
           }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v2/Dossier/my-dossiers": {
+      "get": {
+        "tags": [
+          "Dossier"
+        ],
+        "parameters": [
+          {
+            "name": "take",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v2/Dossier/my-dossiers/summary": {
+      "get": {
+        "tags": [
+          "Dossier"
+        ],
+        "parameters": [
+          {
+            "name": "take",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v2/Dossier/my-dossiers/detailed": {
+      "get": {
+        "tags": [
+          "Dossier"
         ],
         "responses": {
           "200": {
@@ -2550,6 +2623,18 @@
         }
       }
     },
+    "/api/User/GetCurrentUser": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/User/User": {
       "post": {
         "tags": [
@@ -3498,11 +3583,13 @@
           },
           "skip": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "take": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -5333,10 +5420,10 @@
     },
     "securitySchemes": {
       "Bearer": {
-        "type": "http",
-        "description": "Please enter token",
-        "scheme": "bearer",
-        "bearerFormat": "JWT"
+        "type": "apiKey",
+        "description": "JWT Authorization header using the Bearer scheme. Enter 'Bearer' [space] and then your token",
+        "name": "Authorization",
+        "in": "header"
       }
     }
   },

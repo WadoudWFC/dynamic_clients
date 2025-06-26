@@ -28,7 +28,7 @@ namespace MultipleHttpClient.Application.Users.Handlers
         {
             try
             {
-                _logger.LogInformation("[Login]: Attempting login for {Email}", request.Email);
+                _logger.LogInformation("[Login]: Attempting login for {0}", request.Email);
 
                 // STEP 1: Call legacy API directly to get full user details
                 var loginRequest = new LoginRequestBody(request.Email, request.Password);
@@ -36,12 +36,12 @@ namespace MultipleHttpClient.Application.Users.Handlers
 
                 if (!legacyResponse.IsSuccess || legacyResponse.Data?.Data == null)
                 {
-                    _logger.LogWarning("[Login]: Legacy authentication failed for {Email}", request.Email);
+                    _logger.LogWarning("[Login]: Legacy authentication failed for {0}", request.Email);
                     return Result<SanitizedLoginResponse>.Failure(new Error("LoginFailed", "Invalid credentials"));
                 }
 
                 var legacyUserData = legacyResponse.Data.Data;
-                _logger.LogInformation("[Login]: Legacy authentication successful for {Email}, UserID: {UserId}",
+                _logger.LogInformation("[Login]: Legacy authentication successful for {0}, UserID: {1}",
                     request.Email, legacyUserData.UserId);
 
                 // STEP 2: Create GUID mapping for user
@@ -80,13 +80,13 @@ namespace MultipleHttpClient.Application.Users.Handlers
                     BearerToken: jwtToken
                 );
 
-                _logger.LogInformation("[Login]: JWT generated successfully for user {UserGuid} with profile {ProfileId}",
+                _logger.LogInformation("[Login]: JWT generated successfully for user {0} with profile {1}",
                     userGuid, profileId);
                 return Result<SanitizedLoginResponse>.Success(response);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "[Login]: Exception during login for {Email}", request.Email);
+                _logger.LogError(ex, "[Login]: Exception during login for {0}", request.Email);
                 return Result<SanitizedLoginResponse>.Failure(new Error("LoginFailed", "An error occurred during login"));
             }
         }

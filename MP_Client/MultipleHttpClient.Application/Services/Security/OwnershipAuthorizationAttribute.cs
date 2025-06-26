@@ -33,7 +33,14 @@ namespace MultipleHttpClient.Application.Services.Security
             var isActiveClaim = user.FindFirst("is_active")?.Value;
             if (isActiveClaim != "True")
             {
-                context.Result = new ForbidResult("User account is inactive");
+                context.Result = new ObjectResult(new
+                {
+                    error = "User account is inactive",
+                    code = "INACTIVE_ACCOUNT"
+                })
+                {
+                    StatusCode = 403
+                };
                 return;
             }
 
@@ -41,7 +48,11 @@ namespace MultipleHttpClient.Application.Services.Security
             var resourceIdValue = GetResourceId(context);
             if (resourceIdValue == null)
             {
-                context.Result = new BadRequestObjectResult($"Resource ID '{_resourceIdParameterName}' not found in request");
+                context.Result = new BadRequestObjectResult(new
+                {
+                    error = $"Resource ID '{_resourceIdParameterName}' not found in request",
+                    code = "MISSING_RESOURCE_ID"
+                });
                 return;
             }
 
@@ -53,13 +64,22 @@ namespace MultipleHttpClient.Application.Services.Security
                 logger?.LogWarning("Access denied for user {UserId} to {ResourceType} {ResourceId}",
                     user.FindFirst("user_id")?.Value, _resourceType, resourceIdValue);
 
-                context.Result = new ForbidResult($"Access denied: Insufficient permissions for this {_resourceType}");
+                context.Result = new ObjectResult(new
+                {
+                    error = $"Access denied: Insufficient permissions for this {_resourceType}",
+                    code = "ACCESS_DENIED",
+                    resourceType = _resourceType,
+                    resourceId = resourceIdValue?.ToString()
+                })
+                {
+                    StatusCode = 403
+                };
             }
         }
 
         private object? GetResourceId(AuthorizationFilterContext context)
         {
-            // Check route parameters (most common for REST APIs)
+            // Check route parameters
             if (context.RouteData.Values.TryGetValue(_resourceIdParameterName, out var routeValue))
             {
                 return routeValue;
@@ -221,7 +241,7 @@ namespace MultipleHttpClient.Application.Services.Security
                 // Convert dossier ID to GUID if it's not already
                 if (!Guid.TryParse(dossierId?.ToString(), out var dossierGuid))
                 {
-                    logger?.LogWarning("Invalid dossier GUID format: {DossierId}", dossierId);
+                    logger?.LogWarning("Invalid dossier GUID format: {0}", dossierId);
                     return false;
                 }
 
@@ -232,7 +252,7 @@ namespace MultipleHttpClient.Application.Services.Security
 
                 if (!loadTask.IsCompletedSuccessfully || !loadTask.Result.IsSuccess)
                 {
-                    logger?.LogWarning("Failed to load dossier {DossierId} for ownership validation", dossierGuid);
+                    logger?.LogWarning("Failed to load dossier {0} for ownership validation", dossierGuid);
                     return false;
                 }
 
@@ -257,7 +277,7 @@ namespace MultipleHttpClient.Application.Services.Security
             catch (Exception ex)
             {
                 var logger = services.GetService<ILogger<OwnershipAuthorizationAttribute>>();
-                logger?.LogError(ex, "Error validating user dossier access for dossier {DossierId}", dossierId);
+                logger?.LogError(ex, "Error validating user dossier access for dossier {0}", dossierId);
                 return false;
             }
         }
@@ -279,21 +299,21 @@ namespace MultipleHttpClient.Application.Services.Security
                 // Convert GUID to internal comment ID
                 if (!Guid.TryParse(commentId?.ToString(), out var commentGuid))
                 {
-                    logger?.LogWarning("Invalid comment GUID format: {CommentId}", commentId);
+                    logger?.LogWarning("Invalid comment GUID format: {0}", commentId);
                     return false;
                 }
 
                 var internalCommentId = mappingService.GetReferenceIdForGuid(commentGuid, Constants.Comment);
                 if (internalCommentId == null)
                 {
-                    logger?.LogWarning("Could not find internal ID for comment GUID {CommentId}", commentGuid);
+                    logger?.LogWarning("Could not find internal ID for comment GUID {0}", commentGuid);
                     return false;
                 }
 
                 // For regional admins and above, allow access to comments in their scope
                 if (profileId <= 2)
                 {
-                    logger?.LogInformation("Comment access granted to user {UserId} with profile {ProfileId}", userId, profileId);
+                    logger?.LogInformation("Comment access granted to user {0} with profile {1}", userId, profileId);
                     return true;
                 }
 
@@ -304,7 +324,7 @@ namespace MultipleHttpClient.Application.Services.Security
                 // Simplified approach: allow access if they're authenticated and it's their comment
                 // You can enhance this based on your specific business rules
 
-                logger?.LogInformation("Comment access validation for user {UserId}, comment {CommentId}: allowing access",
+                logger?.LogInformation("Comment access validation for user {0}, comment {1}: allowing access",
                     userId, commentId);
 
                 return true; // Simplified - enhance based on your business needs
@@ -312,7 +332,7 @@ namespace MultipleHttpClient.Application.Services.Security
             catch (Exception ex)
             {
                 var logger = services.GetService<ILogger<OwnershipAuthorizationAttribute>>();
-                logger?.LogError(ex, "Error validating user comment access for comment {CommentId}", commentId);
+                logger?.LogError(ex, "Error validating user comment access for comment {0}", commentId);
                 return false;
             }
         }

@@ -1,4 +1,5 @@
-﻿using MultipleHtppClient.Infrastructure;
+﻿using System.Text.Json;
+using MultipleHtppClient.Infrastructure;
 using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.User_Account.Requests;
 using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.User_Account.Responses;
 using MultipleHtppClient.Infrastructure.HTTP.APIs.Models.User_Account.Responses;
@@ -57,7 +58,7 @@ public class HttpUserAglouService : IHttpUserAglou
     }
     public async Task<ApiResponse<Aglou10001Response<LoadUserResponse>>> LoadUserAsync(LogoutRequestBody logoutRequestBody)
     {
-        ApiRequest<LogoutRequestBody> request = new ApiRequest<LogoutRequestBody>
+        var request = new ApiRequest<LogoutRequestBody>
         {
             ApiName = monopp_extern,
             Endpoint = "/api/v2/utilisateur/Load",
@@ -66,7 +67,8 @@ public class HttpUserAglouService : IHttpUserAglou
             RequiresApiKey = true,
             RequiresBearerToken = true
         };
-        return await _clientService.SendAsync<LogoutRequestBody, Aglou10001Response<LoadUserResponse>>(request);
+
+        return await _clientService.SendNestedJsonAsync<LogoutRequestBody, LoadUserResponse>(request);
     }
     public async Task<ApiResponse<Aglou10001Response<AglouLoginResponse>>> LoginAsync(LoginRequestBody loginRequestBody)
     {

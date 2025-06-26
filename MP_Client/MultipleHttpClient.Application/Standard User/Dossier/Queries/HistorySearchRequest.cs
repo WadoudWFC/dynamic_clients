@@ -1,10 +1,10 @@
 ﻿namespace MultipleHttpClient.Application.Dossier.Queries
 {
-    public class HistorySearchRequest
+    public record HistorySearchRequest
     {
-        public string? Field { get; set; } = "date_created";
-        public string? Order { get; set; } = "desc";
-        public int Skip { get; set; } = 0;
-        public int Take { get; set; } = 10;
+        public string? Field { get; init; }
+        public string? Order { get; init; }
+        public int? Skip { get; init; }
+        public int? Take { get; init; }
     }
 }

@@ -308,7 +308,7 @@ public class DossierAglouService : IDossierAglouService
 
             if (missingMappings.Any())
             {
-                _logger.LogError("Missing ID mappings: {Mappings}", missingMappings);
+                _logger.LogError("Missing ID mappings: {0}", missingMappings);
                 return Result<InsertDossierOperationResult>.Failure(new Error(Constants.DossierFail, Constants.DossierFailMessage));
             }
 
@@ -316,7 +316,7 @@ public class DossierAglouService : IDossierAglouService
 
             if (!response.IsSuccess || response.Data == null)
             {
-                _logger.LogError("Legacy API error: {StatusCode} - {Message}",
+                _logger.LogError("Legacy API error: {0} - {1}",
                     response.StatusCode, response.ErrorMessage);
                 return Result<InsertDossierOperationResult>.Failure(new Error("ApiError", response.ErrorMessage ?? "Failed to create dossier"));
             }
@@ -326,7 +326,7 @@ public class DossierAglouService : IDossierAglouService
             if (response.Data.Data != null && int.TryParse(response.Data.Data.ToString(), out var newDossierId))
             {
                 dossierId = _mappingAglouDataService.GetOrCreateGuidForReferenceId(newDossierId, Constants.Dossier);
-                _logger.LogInformation("Created dossier with internal ID {InternalId}", newDossierId);
+                _logger.LogInformation("Created dossier with internal ID {0}", newDossierId);
             }
 
             return Result<InsertDossierOperationResult>.Success(
@@ -349,7 +349,7 @@ public class DossierAglouService : IDossierAglouService
             var dossierId = _mappingAglouDataService.GetReferenceIdForGuid(query.DossierId, Constants.Dossier);
             if (dossierId == null)
             {
-                _logger.LogError("Dossier ID mapping not found for {DossierId}", query.DossierId);
+                _logger.LogError("Dossier ID mapping not found for {0}", query.DossierId);
                 return Result<LoadDossierResponseSanitized>.Failure(
                     new Error(Constants.DossierFail, Constants.DossierFailMessage));
             }
@@ -487,7 +487,7 @@ public class DossierAglouService : IDossierAglouService
                 InternalStatusId = dossierData.StatusId
             };
 
-            _logger.LogInformation("Successfully loaded dossier {DossierId}", query.DossierId);
+            _logger.LogInformation("Successfully loaded dossier {0}", query.DossierId);
             return Result<LoadDossierResponseSanitized>.Success(result);
         }
         catch (Exception ex)
