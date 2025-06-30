@@ -192,4 +192,3 @@ C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.API
 C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.API\obj\Debug\net8.0\MultipleHtppClient.API.pdb
 C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.API\obj\Debug\net8.0\MultipleHtppClient.API.genruntimeconfig.cache
 C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.API\obj\Debug\net8.0\ref\MultipleHtppClient.API.dll
-C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.API\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

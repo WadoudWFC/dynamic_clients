@@ -775,7 +775,7 @@ public class DossierAglouService : IDossierAglouService
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error updating dossier {DossierId}", command.DossierId);
+            _logger.LogError(ex, "Error updating dossier {0}", command.DossierId);
             return Result<DossierUpdateResult>.Failure(new Error("ServerError", ex.Message));
         }
     }

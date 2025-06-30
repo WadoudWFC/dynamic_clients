@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using MultipleHttpClient.Application;
@@ -36,6 +37,7 @@ public class UserController : ControllerBase
     [HttpPost("Register")]
     public async Task<ActionResult<Result<SanitizedBasicResponse>>> RegisterUser([FromBody] RegisterUserCommand command) => Ok(await _mediator.Send(command));
     [HttpGet("GetCurrentUser")]
+    [Authorize]
     public async Task<IActionResult> GetCurrentUser()
     {
         var query = new LoadUserCommand

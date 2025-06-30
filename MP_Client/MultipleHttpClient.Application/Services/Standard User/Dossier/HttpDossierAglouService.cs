@@ -14,6 +14,7 @@ using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.User_Acco
 using MultipleHtppClient.Infrastructure.HTTP.Interfaces;
 using MultipleHtppClient.Infrastructure.HTTP.REST;
 using MultipleHttpClient.Application.Interfaces.Dossier;
+using MutipleHttpClient.Domain;
 
 namespace MultipleHttpClient.Application.Services.Dossier;
 
@@ -75,7 +76,7 @@ public class HttpDossierAglouService : IHttpDossierAglouService
     }
     public async Task<ApiResponse<Aglou10001Response<IEnumerable<DossierStatus>>>> GetDossierStatusAsync(ProfileRoleRequestBody? profileRequestBody)
     {
-        profileRequestBody = new ProfileRoleRequestBody() { RoleId = string.Empty };
+        profileRequestBody.RoleId = string.Empty;
         ApiRequest<ProfileRoleRequestBody> request = new ApiRequest<ProfileRoleRequestBody>
         {
             ApiName = monopp_extern,
@@ -186,12 +187,28 @@ public class HttpDossierAglouService : IHttpDossierAglouService
     {
         if (!string.IsNullOrEmpty(apiResponse.Data))
         {
-            var options = new JsonSerializerOptions
+            try
             {
-                PropertyNameCaseInsensitive = true
-            };
-            var loadDossierResp = JsonSerializer.Deserialize<LoadDossierResponse>(apiResponse.Data, options);
-            return loadDossierResp;
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true,
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                    Converters =
+                {
+                    new FlexibleDateTimeConverter()
+                }
+                };
+
+                var loadDossierResp = JsonSerializer.Deserialize<LoadDossierResponse>(apiResponse.Data, options);
+                return loadDossierResp;
+            }
+            catch (JsonException ex)
+            {
+                // Log the error and the problematic JSON for debugging
+                Console.WriteLine($"JSON Deserialization Error: {ex.Message}");
+                Console.WriteLine($"Problematic JSON: {apiResponse.Data}");
+                throw;
+            }
         }
         return null;
     }

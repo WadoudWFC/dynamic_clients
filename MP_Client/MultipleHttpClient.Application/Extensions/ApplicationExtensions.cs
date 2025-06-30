@@ -1,7 +1,9 @@
-﻿using System.Threading.RateLimiting;
+﻿using System.IO.Compression;
+using System.Threading.RateLimiting;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -86,13 +88,13 @@ public static class ApplicationExtensions
                 OnAuthenticationFailed = context =>
                 {
                     var logger = context.HttpContext.RequestServices.GetService<ILogger<JwtBearerHandler>>();
-                    logger?.LogWarning("JWT Authentication failed: {0}", context.Exception.Message);
+                    logger?.LogWarning("JWT Authentication failed: {Error}", context.Exception.Message);
                     return Task.CompletedTask;
                 },
                 OnTokenValidated = context =>
                 {
                     var logger = context.HttpContext.RequestServices.GetService<ILogger<JwtBearerHandler>>();
-                    logger?.LogInformation("JWT Token validated for user: {0}",
+                    logger?.LogInformation("JWT Token validated for user: {UserId}",
                         context.Principal?.FindFirst("user_id")?.Value);
                     return Task.CompletedTask;
                 }
@@ -114,6 +116,33 @@ public static class ApplicationExtensions
 
         return services;
     }
+    public static IServiceCollection AddResponseCompressionConfiguration(this IServiceCollection services)
+        {
+            services.AddResponseCompression(options =>
+            {
+                options.EnableForHttps = true;
+                options.Providers.Add<BrotliCompressionProvider>();
+                options.Providers.Add<GzipCompressionProvider>();
+                options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[]
+                {
+                    "application/json",
+                    "application/json; charset=utf-8",
+                    "text/json"
+                });
+            });
+
+            services.Configure<BrotliCompressionProviderOptions>(options =>
+            {
+                options.Level = CompressionLevel.Optimal;
+            });
+
+            services.Configure<GzipCompressionProviderOptions>(options =>
+            {
+                options.Level = CompressionLevel.Optimal;
+            });
+
+            return services;
+        }
     public static IApplicationBuilder UseCustomSecurityHeaders(this IApplicationBuilder builder)
     {
         return builder.Use(async (context, next) =>
@@ -123,9 +152,5 @@ public static class ApplicationExtensions
             context.Response.Headers["Strict-Transport-Security"] = "max-age=63072000";
             await next();
         });
-    }
-    public static IApplicationBuilder UseGlobalExceptionHandler(this IApplicationBuilder builder)
-    {
-        return builder.UseMiddleware<GlobalExceptionMiddleware>();
     }
 }
