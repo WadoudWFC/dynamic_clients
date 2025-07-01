@@ -6,7 +6,7 @@ namespace MultipleHttpClient.Application.Dossier.Validators
 {
     public class SearchDossierQueryValidator : AbstractValidator<SearchDossierQuery>
     {
-        private static readonly string[] AllowedFields = { "code", "status", "createddate", "partner" };
+        private static readonly string[] AllowedFields = { "code", "status", "date_created", "partner" };
         private static readonly string[] AllowedOrders = { "asc", "desc" };
 
         public SearchDossierQueryValidator()

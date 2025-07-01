@@ -546,7 +546,7 @@ public class DossierAglouService : IDossierAglouService
 
             var response = await _httpDosserAglouService.SearchDossier(request);
 
-            if (!response.IsSuccess || response.Data?.Data == null)
+            if (!response.IsSuccess)
             {
                 _logger.LogError("Legacy API returned error: {0}, {1}",
                     response.StatusCode, response.ErrorMessage);

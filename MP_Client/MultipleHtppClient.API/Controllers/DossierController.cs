@@ -150,7 +150,7 @@ namespace MultipleHtppClient.API.Controllers
                     Take = take ?? 50,
                     Skip = skip ?? 0,
                     Order = "desc", // Must be lowercase
-                    Field = "createddate" // Must be lowercase and use correct field name
+                    Field = "date_created" // Must be lowercase and use correct field name
                 };
 
                 var result = await _mediator.Send(query);
