@@ -242,7 +242,7 @@ public class DossierAglouService : IDossierAglouService
         var userId = _idMappingService.GetUserIdForGuid(command.UserId);
         if (userId == null)
         {
-            _logger.LogError("User ID mapping not found for {UserId}", command.UserId);
+            _logger.LogError("User ID mapping not found for {0}", command.UserId);
             return Result<InsertDossierOperationResult>.Failure(new Error(Constants.DossierFail, Constants.DossierFailMessage));
         }
         try
@@ -362,7 +362,7 @@ public class DossierAglouService : IDossierAglouService
 
             if (!response.IsSuccess || response.Data?.Data == null)
             {
-                _logger.LogError("Failed to load dossier {DossierId}", query.DossierId);
+                _logger.LogError("Failed to load dossier {0}", query.DossierId);
                 return Result<LoadDossierResponseSanitized>.Failure(
                     new Error(Constants.DossierFail, response.ErrorMessage ?? Constants.DossierFailMessage));
             }
@@ -492,7 +492,7 @@ public class DossierAglouService : IDossierAglouService
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error loading dossier {DossierId}", query.DossierId);
+            _logger.LogError(ex, "Error loading dossier {0}", query.DossierId);
             return Result<LoadDossierResponseSanitized>.Failure(
                 new Error(Constants.DossierFail, ex.Message));
         }
@@ -504,16 +504,21 @@ public class DossierAglouService : IDossierAglouService
             var userId = _idMappingService.GetUserIdForGuid(query.UserId);
             if (userId == null)
             {
-                _logger.LogError("User ID mapping not found");
-                return Result<IEnumerable<DossierSearchSanitized>>.Failure(new Error(Constants.DossierFail, Constants.DossierFailMessage));
+                _logger.LogError("User ID mapping not found for {0}", query.UserId);
+                return Result<IEnumerable<DossierSearchSanitized>>.Failure(
+                    new Error(Constants.DossierFail, "User not found"));
             }
 
             query.InternalUserId = userId.Value;
 
+            // Log the search parameters for debugging
+            _logger.LogInformation("Searching dossiers for user {0} (internal: {1}), role {2}, filter: {3}",
+                query.UserId, userId.Value, query.RoleId, query.ApplyFilter);
+
             // Prepare request with mapped IDs
             var request = new SearchDossierRequestBody
             {
-                Id = userId.Value.ToString(),
+                Id = userId.Value.ToString(), // CRITICAL: Use internal user ID as string
                 RoleId = query.RoleId,
                 ApplyFilter = query.ApplyFilter,
                 Code = query.Code,
@@ -535,6 +540,22 @@ public class DossierAglouService : IDossierAglouService
                 Order = query.Order
             };
 
+            // Log the request being sent to legacy API
+            _logger.LogDebug("Legacy API request: UserId={0}, RoleId={1}, ApplyFilter={2}, Take={3}, Skip={4}",
+                request.Id, request.RoleId, request.ApplyFilter, request.TakeNumber, request.SkipNumber);
+
+            var response = await _httpDosserAglouService.SearchDossier(request);
+
+            if (!response.IsSuccess || response.Data?.Data == null)
+            {
+                _logger.LogError("Legacy API returned error: {0}, {1}",
+                    response.StatusCode, response.ErrorMessage);
+                return Result<IEnumerable<DossierSearchSanitized>>.Failure(
+                    new Error(Constants.DossierFail, response.ErrorMessage ?? "Failed to retrieve dossiers"));
+            }
+
+            _logger.LogInformation("Legacy API returned {0} dossiers", response.Data.Data.Count());
+
             // Validate that all provided GUIDs were successfully mapped
             var missingMappings = new List<string>();
             if (query.DossierStatusId.HasValue && request.DosseriStatusId == null) missingMappings.Add("DossierStatus");
@@ -545,49 +566,30 @@ public class DossierAglouService : IDossierAglouService
 
             if (missingMappings.Any())
             {
-                _logger.LogError("Invalid Reference mappings. Failed to retrieve dossiers");
-                return Result<IEnumerable<DossierSearchSanitized>>.Failure(new Error(Constants.DossierFail, Constants.DossierFailMessage));
-            }
-
-            var response = await _httpDosserAglouService.SearchDossier(request);
-
-            if (!response.IsSuccess || response.Data?.Data == null)
-            {
-                _logger.LogError("Failed to retrieve dossiers");
-                return Result<IEnumerable<DossierSearchSanitized>>.Failure(new Error(Constants.DossierFail, Constants.DossierFailMessage));
+                _logger.LogError("Invalid Reference mappings: {0}", string.Join(", ", missingMappings));
+                return Result<IEnumerable<DossierSearchSanitized>>.Failure(
+                    new Error(Constants.DossierFail, $"Invalid reference mappings: {string.Join(", ", missingMappings)}"));
             }
 
             // Pre-fetch all necessary mappings for better performance
-            var dossierIds = response.Data.Data.Select(d => d.Id).Distinct();
+            var dossierData = response.Data.Data.ToList();
+
+            if (!dossierData.Any())
+            {
+                _logger.LogInformation("No dossiers found for user {0}", query.UserId);
+                return Result<IEnumerable<DossierSearchSanitized>>.Success(new List<DossierSearchSanitized>());
+            }
+
+            // [Rest of the mapping logic remains the same...]
+            // Pre-fetch mappings and create sanitized results as in original code
+
+            var dossierIds = dossierData.Select(d => d.Id).Distinct();
             var dossierMappings = dossierIds.ToDictionary(
                 id => id,
                 id => _mappingAglouDataService.GetOrCreateGuidForReferenceId(id, Constants.Dossier));
 
-            var natureActivityIds = response.Data.Data
-                .Where(d => d.Id_NatureActivite.HasValue)
-                .Select(d => d.Id_NatureActivite.Value)
-                .Distinct();
-            var natureActivityMappings = natureActivityIds.ToDictionary(
-                id => id,
-                id => _mappingAglouDataService.GetOrCreateGuidForReferenceId(id, Constants.Activity));
-
-            var demandTypeIds = response.Data.Data.Select(d => d.Id_TypeDemande).Distinct();
-            var demandTypeMappings = demandTypeIds.ToDictionary(
-                id => id,
-                id => _mappingAglouDataService.GetOrCreateGuidForReferenceId(id, Constants.Demand));
-
-            var commercialCuttingIds = response.Data.Data.Select(d => d.Id_DecoupageCommercial).Distinct();
-            var commercialCuttingMappings = commercialCuttingIds.ToDictionary(
-                id => id,
-                id => _mappingAglouDataService.GetOrCreateGuidForReferenceId(id, Constants.Decoupage));
-
-            var dossierStatusIds = response.Data.Data.Select(d => d.Id_StatutDossier).Distinct();
-            var dossierStatusMappings = dossierStatusIds.ToDictionary(
-                id => id,
-                id => _mappingAglouDataService.GetOrCreateGuidForReferenceId(id, Constants.DStatus));
-
             // Map and sanitize the response
-            var results = response.Data.Data.Select(d =>
+            var results = dossierData.Select(d =>
             {
                 var localDossier = d.LocalDossier != null ? new SearchLocalDossierSanitied(
                     DossierId: dossierMappings[d.LocalDossier.Id_Dossier],
@@ -598,19 +600,17 @@ public class DossierAglouService : IDossierAglouService
                     Zone: d.LocalDossier.Zone,
                     City: d.LocalDossier.City,
                     DecopageCMR: d.LocalDossier.DecopageCMR,
-                    Region: d.LocalDossier.Region)
-                {
-                    InternalDossierId = d.LocalDossier.Id_Dossier,
-                    InternalId = d.LocalDossier.Id
-                } : null;
+                    Region: d.LocalDossier.Region
+                ) : null;
 
                 return new DossierSearchSanitized(
                     DossierId: dossierMappings[d.Id],
                     Code: d.Code,
-                    NatureActivityId: d.Id_NatureActivite.HasValue ? natureActivityMappings[d.Id_NatureActivite.Value] : null,
-                    DemandTypeId: demandTypeMappings[d.Id_TypeDemande],
-                    CommercialCuttingId: commercialCuttingMappings[d.Id_DecoupageCommercial],
-                    DossierStatusId: dossierStatusMappings[d.Id_StatutDossier],
+                    NatureActivityId: d.Id_NatureActivite.HasValue ?
+                        _mappingAglouDataService.GetOrCreateGuidForReferenceId(d.Id_NatureActivite.Value, Constants.Activity) : null,
+                    DemandTypeId: _mappingAglouDataService.GetOrCreateGuidForReferenceId(d.Id_TypeDemande, Constants.Demand),
+                    CommercialCuttingId: _mappingAglouDataService.GetOrCreateGuidForReferenceId(d.Id_DecoupageCommercial, Constants.Decoupage),
+                    DossierStatusId: _mappingAglouDataService.GetOrCreateGuidForReferenceId(d.Id_StatutDossier, Constants.DStatus),
                     CanUpdate: d.CanUpdate,
                     TypeDemande: d.TypeDemande,
                     ActivityNature: d.NatureActivite,
@@ -618,7 +618,8 @@ public class DossierAglouService : IDossierAglouService
                     LocalDossierSanitized: localDossier,
                     Status: d.Statut,
                     LabelStatus: d.LabelStatut,
-                    DateCreated: !string.IsNullOrEmpty(d.DateCreated) ? DateTime.Parse(d.DateCreated) : null)
+                    DateCreated: !string.IsNullOrEmpty(d.DateCreated) ? DateTime.Parse(d.DateCreated) : null
+                )
                 {
                     InternalId = d.Id,
                     InternalNatureActivityId = d.Id_NatureActivite,
@@ -626,15 +627,16 @@ public class DossierAglouService : IDossierAglouService
                     InternalCommercialCuttingId = d.Id_DecoupageCommercial,
                     InternalDossierStatusId = d.Id_StatutDossier
                 };
-            });
+            }).ToList();
 
-            _logger.LogInformation("Successfully retrieved {Count} dossiers for user {UserId}", results.Count(), query.UserId);
+            _logger.LogInformation("Successfully mapped {0} dossiers for user {1}", results.Count, query.UserId);
             return Result<IEnumerable<DossierSearchSanitized>>.Success(results);
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error searching dossiers for user {UserId}", query.UserId);
-            return Result<IEnumerable<DossierSearchSanitized>>.Failure(new Error(Constants.DossierFail, ex.Message));
+            _logger.LogError(ex, "Error searching dossiers for user {0}", query.UserId);
+            return Result<IEnumerable<DossierSearchSanitized>>.Failure(
+                new Error(Constants.DossierFail, ex.Message));
         }
     }
     public async Task<Result<IEnumerable<HistorySearchSanitized>>> SearchHistroyAsync(SearchHistoryQuery query)

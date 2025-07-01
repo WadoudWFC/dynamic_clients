@@ -139,14 +139,86 @@ namespace MultipleHtppClient.API.Controllers
                 return Unauthorized(new { error = "Invalid user context" });
             }
 
-            var query = new GetMyDossiersQuery
+            try
+            {
+                // Use SearchDossierQuery with correct field validation
+                var query = new SearchDossierQuery
+                {
+                    UserId = userId,
+                    RoleId = profileId,
+                    ApplyFilter = true, // This ensures role-based filtering
+                    Take = take ?? 50,
+                    Skip = skip ?? 0,
+                    Order = "desc", // Must be lowercase
+                    Field = "createddate" // Must be lowercase and use correct field name
+                };
+
+                var result = await _mediator.Send(query);
+
+                if (!result.IsSuccess)
+                {
+                    return BadRequest(new
+                    {
+                        error = result.Error.Message,
+                        userId = userId,
+                        profileId = profileId
+                    });
+                }
+
+                var dossiers = result.Value?.ToList() ?? new List<DossierSearchSanitized>();
+
+                // Return the dossiers with metadata
+                var response = new
+                {
+                    dossiers = dossiers,
+                    total = dossiers.Count,
+                    take = take ?? 50,
+                    skip = skip ?? 0,
+                    hasMore = dossiers.Count == (take ?? 50),
+                    userId = userId,
+                    profileId = profileId,
+                    debug = new
+                    {
+                        userIdMapped = userId != Guid.Empty,
+                        profileIdProvided = !string.IsNullOrEmpty(profileId),
+                        filterApplied = true
+                    }
+                };
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new
+                {
+                    error = ex.Message,
+                    userId = userId,
+                    profileId = profileId,
+                    type = ex.GetType().Name
+                });
+            }
+        }
+        /// <summary>
+        /// NEW ENDPOINT: Get current user's dossier IDs only - lightweight version
+        /// </summary>
+        [HttpGet("my-dossiers/ids")]
+        [Authorize]
+        public async Task<IActionResult> GetMyDossierIds([FromQuery] int? take, [FromQuery] int? skip)
+        {
+            var userId = GetCurrentUserId();
+            var profileId = GetCurrentInternalProfileId();
+
+            if (userId == Guid.Empty)
+            {
+                return Unauthorized(new { error = "Invalid user context" });
+            }
+
+            var query = new GetMyDossierIdsQuery
             {
                 UserId = userId,
                 RoleId = profileId,
-                Take = take ?? 50,
-                Skip = skip ?? 0,
-                Order = "desc",
-                Field = "date_created"
+                Take = take ?? 100,
+                Skip = skip ?? 0
             };
 
             var result = await _mediator.Send(query);
@@ -156,7 +228,6 @@ namespace MultipleHtppClient.API.Controllers
                 return BadRequest(new { error = result.Error.Message });
             }
 
-            // Return the dossiers directly - they already have all the information
             return Ok(result.Value);
         }
 

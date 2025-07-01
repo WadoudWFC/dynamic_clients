@@ -25,6 +25,7 @@ public class UserController : ControllerBase
     [EnableRateLimiting("login")]
     [HttpPost("Login")]
     public async Task<ActionResult<Result<SanitizedLoginResponse>>> Login([FromBody] LoginCommand command) => Ok(await _mediator.Send(command));
+    [EnableRateLimiting("login")]
     [HttpPost("CanTryLogin")]
     public async Task<ActionResult<Result<SanitizedUserResponse>>> CanTryLogin([FromBody] CanTryLoginCommand command) => Ok(await _mediator.Send(command));
     [EnableRateLimiting("login")]

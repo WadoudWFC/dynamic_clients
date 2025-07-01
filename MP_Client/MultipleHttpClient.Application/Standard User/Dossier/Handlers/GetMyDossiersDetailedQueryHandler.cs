@@ -22,13 +22,16 @@ public class GetMyDossiersDetailedQueryHandler : IRequestHandler<GetMyDossiersDe
     {
         try
         {
-            // Get all dossiers
-            var dossiersQuery = new GetMyDossiersQuery
+            // Use SearchDossierQuery directly with correct field validation
+            var dossiersQuery = new SearchDossierQuery
             {
                 UserId = request.UserId,
                 RoleId = request.RoleId,
+                ApplyFilter = true,
                 Take = 1000, // Get more for statistics
-                Skip = 0
+                Skip = 0,
+                Field = "createddate", // Must be lowercase
+                Order = "desc" // Must be lowercase
             };
 
             var dossiersResult = await _mediator.Send(dossiersQuery, cancellationToken);
@@ -47,7 +50,10 @@ public class GetMyDossiersDetailedQueryHandler : IRequestHandler<GetMyDossiersDe
 
             var countsResult = await _mediator.Send(countsQuery, cancellationToken);
 
+            // FIXED: Access the dossiers collection properly
             var dossiers = dossiersResult.Value?.ToList() ?? new List<DossierSearchSanitized>();
+
+            _logger.LogInformation("Processing {0} dossiers for detailed report for user {1}", dossiers.Count, request.UserId);
 
             // Group by status
             var groupedByStatus = dossiers
