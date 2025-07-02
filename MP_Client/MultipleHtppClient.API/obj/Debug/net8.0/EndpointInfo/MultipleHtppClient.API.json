@@ -1,8 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Secure Middleware API",
-    "description": "Security middleware for legacy API integration",
+    "title": "My API",
     "version": "v1"
   },
   "paths": {
@@ -581,7 +580,7 @@
         }
       }
     },
-    "/api/v2/Dossier/{dossierId}": {
+    "/api/bff/v2/Dossier/{dossierId}": {
       "get": {
         "tags": [
           "Dossier"
@@ -644,7 +643,7 @@
         }
       }
     },
-    "/api/v2/Dossier": {
+    "/api/bff/v2/Dossier": {
       "post": {
         "tags": [
           "Dossier"
@@ -694,7 +693,7 @@
         }
       }
     },
-    "/api/v2/Dossier/search": {
+    "/api/bff/v2/Dossier/search": {
       "post": {
         "tags": [
           "Dossier"
@@ -725,7 +724,7 @@
         }
       }
     },
-    "/api/v2/Dossier/counts": {
+    "/api/bff/v2/Dossier/counts": {
       "get": {
         "tags": [
           "Dossier"
@@ -746,7 +745,7 @@
         }
       }
     },
-    "/api/v2/Dossier/my-dossiers": {
+    "/api/bff/v2/Dossier/my-dossiers": {
       "get": {
         "tags": [
           "Dossier"
@@ -776,7 +775,7 @@
         }
       }
     },
-    "/api/v2/Dossier/my-dossiers/summary": {
+    "/api/bff/v2/Dossier/my-dossiers/ids": {
       "get": {
         "tags": [
           "Dossier"
@@ -806,7 +805,7 @@
         }
       }
     },
-    "/api/v2/Dossier/my-dossiers/detailed": {
+    "/api/bff/v2/Dossier/my-dossiers/detailed": {
       "get": {
         "tags": [
           "Dossier"
@@ -818,7 +817,7 @@
         }
       }
     },
-    "/api/v2/Dossier/{dossierId}/comments": {
+    "/api/bff/v2/Dossier/{dossierId}/comments": {
       "get": {
         "tags": [
           "Dossier"
@@ -881,7 +880,7 @@
         }
       }
     },
-    "/api/v2/Dossier/statuses": {
+    "/api/bff/v2/Dossier/statuses": {
       "get": {
         "tags": [
           "Dossier"
@@ -893,7 +892,7 @@
         }
       }
     },
-    "/api/v2/Dossier/{dossierId}/history": {
+    "/api/bff/v2/Dossier/{dossierId}/history": {
       "post": {
         "tags": [
           "Dossier"
@@ -5420,10 +5419,10 @@
     },
     "securitySchemes": {
       "Bearer": {
-        "type": "apiKey",
-        "description": "JWT Authorization header using the Bearer scheme. Enter 'Bearer' [space] and then your token",
-        "name": "Authorization",
-        "in": "header"
+        "type": "http",
+        "description": "Please enter token",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   },

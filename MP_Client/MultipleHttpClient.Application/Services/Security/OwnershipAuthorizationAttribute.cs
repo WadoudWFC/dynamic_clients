@@ -61,7 +61,7 @@ namespace MultipleHttpClient.Application.Services.Security
             if (!isAuthorized)
             {
                 var logger = context.HttpContext.RequestServices.GetService<ILogger<OwnershipAuthorizationAttribute>>();
-                logger?.LogWarning("Access denied for user {UserId} to {ResourceType} {ResourceId}",
+                logger?.LogWarning("Access denied for user {0} to {1} {2}",
                     user.FindFirst("user_id")?.Value, _resourceType, resourceIdValue);
 
                 context.Result = new ObjectResult(new
@@ -98,7 +98,6 @@ namespace MultipleHttpClient.Application.Services.Security
         {
             var services = context.HttpContext.RequestServices;
 
-            // Get user context from JWT claims
             var internalUserId = GetInternalUserId(user);
             var profileId = GetInternalProfileId(user);
             var commercialDivisionId = GetCommercialDivisionId(user);
@@ -183,18 +182,17 @@ namespace MultipleHttpClient.Application.Services.Security
                 var userGuid = idMappingService.GetGuidForUserId(userId);
                 if (userGuid == Guid.Empty)
                 {
-                    logger?.LogWarning("Could not find GUID for internal user ID {UserId}", userId);
+                    logger?.LogWarning("Could not find GUID for internal user ID {0}", userId);
                     return false;
                 }
 
                 // Convert dossier ID to GUID if it's not already
                 if (!Guid.TryParse(dossierId?.ToString(), out var dossierGuid))
                 {
-                    logger?.LogWarning("Invalid dossier GUID format: {DossierId}", dossierId);
+                    logger?.LogWarning("Invalid dossier GUID format: {0}", dossierId);
                     return false;
                 }
 
-                // Create search query to find the specific dossier for this user
                 var searchQuery = new SearchDossierQuery
                 {
                     UserId = userGuid,
@@ -204,8 +202,6 @@ namespace MultipleHttpClient.Application.Services.Security
                     Skip = 0
                 };
 
-                // Perform synchronous search (not ideal, but necessary in authorization filter)
-                // Alternative: Use Task.Run or implement sync version
                 var searchTask = dossierService.SearchDossierAsync(searchQuery);
                 searchTask.Wait(TimeSpan.FromSeconds(5)); // Timeout to prevent blocking
 
@@ -219,15 +215,14 @@ namespace MultipleHttpClient.Application.Services.Security
                 var accessibleDossiers = searchTask.Result.Value;
                 var hasAccess = accessibleDossiers?.Any(d => d.DossierId == dossierGuid) ?? false;
 
-                logger?.LogInformation("Regional access validation for user {UserId}, division {DivisionId}, dossier {DossierId}: {HasAccess}",
-                    userId, commercialDivisionId, dossierId, hasAccess);
+                logger?.LogInformation("Regional access validation for user {0}, division {1}, dossier {2}: {3}", userId, commercialDivisionId, dossierId, hasAccess);
 
                 return hasAccess;
             }
             catch (Exception ex)
             {
                 var logger = services.GetService<ILogger<OwnershipAuthorizationAttribute>>();
-                logger?.LogError(ex, "Error validating regional access for dossier {DossierId}", dossierId);
+                logger?.LogError(ex, "Error validating regional access for dossier {0}", dossierId);
                 return false;
             }
         }
@@ -265,12 +260,9 @@ namespace MultipleHttpClient.Application.Services.Security
                 // Check if user created any comments on the dossier (indicates involvement)
                 var userHasComments = dossierData.Comments.Any(c => c.InternalUserCreatedId == userId);
 
-                // For standard users, they should have some involvement with the dossier
-                // This could be expanded based on your business rules
                 var hasAccess = userHasComments;
 
-                logger?.LogInformation("User dossier access validation for user {UserId}, dossier {DossierId}: {HasAccess}",
-                    userId, dossierGuid, hasAccess);
+                logger?.LogInformation("User dossier access validation for user {0}, dossier {1}: {2}", userId, dossierGuid, hasAccess);
 
                 return hasAccess;
             }
@@ -290,9 +282,6 @@ namespace MultipleHttpClient.Application.Services.Security
         {
             try
             {
-                // For now, we'll implement a simplified version since we need the comment details
-                // to find which dossier it belongs to, and then check dossier access
-
                 var logger = services.GetService<ILogger<OwnershipAuthorizationAttribute>>();
                 var mappingService = services.GetRequiredService<IReferenceDataMappingService>();
 
@@ -310,7 +299,6 @@ namespace MultipleHttpClient.Application.Services.Security
                     return false;
                 }
 
-                // For regional admins and above, allow access to comments in their scope
                 if (profileId <= 2)
                 {
                     logger?.LogInformation("Comment access granted to user {0} with profile {1}", userId, profileId);
@@ -327,7 +315,7 @@ namespace MultipleHttpClient.Application.Services.Security
                 logger?.LogInformation("Comment access validation for user {0}, comment {1}: allowing access",
                     userId, commentId);
 
-                return true; // Simplified - enhance based on your business needs
+                return true;
             }
             catch (Exception ex)
             {

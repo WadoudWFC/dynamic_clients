@@ -511,16 +511,15 @@ public class DossierAglouService : IDossierAglouService
 
             query.InternalUserId = userId.Value;
 
-            // Log the search parameters for debugging
             _logger.LogInformation("Searching dossiers for user {0} (internal: {1}), role {2}, filter: {3}",
                 query.UserId, userId.Value, query.RoleId, query.ApplyFilter);
 
             // Prepare request with mapped IDs
             var request = new SearchDossierRequestBody
             {
-                Id = userId.Value.ToString(), // CRITICAL: Use internal user ID as string
+                Id = userId.Value.ToString(),
                 RoleId = query.RoleId,
-                ApplyFilter = query.ApplyFilter,
+                ApplyFilter = false,
                 Code = query.Code,
                 DosseriStatusId = query.DossierStatusId.HasValue ?
                     _mappingAglouDataService.GetReferenceIdForGuid(query.DossierStatusId.Value, Constants.DStatus)?.ToString() : null,
@@ -540,7 +539,6 @@ public class DossierAglouService : IDossierAglouService
                 Order = query.Order
             };
 
-            // Log the request being sent to legacy API
             _logger.LogDebug("Legacy API request: UserId={0}, RoleId={1}, ApplyFilter={2}, Take={3}, Skip={4}",
                 request.Id, request.RoleId, request.ApplyFilter, request.TakeNumber, request.SkipNumber);
 

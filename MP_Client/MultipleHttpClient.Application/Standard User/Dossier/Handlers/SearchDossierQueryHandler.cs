@@ -28,7 +28,7 @@ namespace MultipleHttpClient.Application.Dossier.Handlers
                     return Result<IEnumerable<DossierSearchSanitized>>.Failure(new Error("SearchDossierFailed", "Unable to search dossiers"));
                 }
 
-                _logger.LogInformation("[SearchDossier]: Successfully searched dossiers for user {UserId}, found {Count} results",
+                _logger.LogInformation("[SearchDossier]: Successfully searched dossiers for user {0}, found {1} results",
                     request.UserId, result.Value.Count());
                 return Result<IEnumerable<DossierSearchSanitized>>.Success(result.Value);
             }

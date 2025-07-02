@@ -35,18 +35,18 @@ public class GetMyDossiersQueryHandler : IRequestHandler<GetMyDossiersQuery, Res
     {
         try
         {
-            _logger.LogInformation("Getting dossiers for user {UserId}, profile {RoleId}", request.UserId, request.RoleId);
+            _logger.LogInformation("Getting dossiers for user {0}, profile {1}", request.UserId, request.RoleId);
 
             // Get internal user ID
             var internalUserId = _idMappingService.GetUserIdForGuid(request.UserId);
             if (internalUserId == null)
             {
-                _logger.LogError("User ID mapping not found for {UserId}", request.UserId);
+                _logger.LogError("User ID mapping not found for {0}", request.UserId);
                 return Result<MyDossiersResponse>.Failure(
                     new Error(Constants.DossierFail, "User not found"));
             }
 
-            _logger.LogInformation("Internal user ID: {InternalUserId}", internalUserId.Value);
+            _logger.LogInformation("Internal user ID: {0}", internalUserId.Value);
 
             // Create search request - bypass SearchDossierQuery validation
             var searchRequest = new SearchDossierRequestBody

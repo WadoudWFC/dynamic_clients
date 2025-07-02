@@ -1,5 +1,226 @@
 [
   {
+    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
+    "Method": "CreateDossier",
+    "RelativePath": "api/bff/v2/Dossier",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "MultipleHttpClient.Application.Dossier.Command.InsertDossierCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
+    "Method": "GetAllDossiers",
+    "RelativePath": "api/bff/v2/Dossier",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roleId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
+    "Method": "GetDossier",
+    "RelativePath": "api/bff/v2/Dossier/{dossierId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dossierId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
+    "Method": "UpdateDossier",
+    "RelativePath": "api/bff/v2/Dossier/{dossierId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dossierId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "command",
+        "Type": "MultipleHttpClient.Application.Dossier.Command.UpdateDossierCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
+    "Method": "GetDossierComments",
+    "RelativePath": "api/bff/v2/Dossier/{dossierId}/comments",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dossierId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
+    "Method": "AddComment",
+    "RelativePath": "api/bff/v2/Dossier/{dossierId}/comments",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dossierId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "MultipleHttpClient.Application.Dossier.Command.AddCommentRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
+    "Method": "SearchHistory",
+    "RelativePath": "api/bff/v2/Dossier/{dossierId}/history",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dossierId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "MultipleHttpClient.Application.Dossier.Queries.HistorySearchRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
+    "Method": "GetCounts",
+    "RelativePath": "api/bff/v2/Dossier/counts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roleId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
+    "Method": "GetMyDossiers",
+    "RelativePath": "api/bff/v2/Dossier/my-dossiers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "take",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "skip",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
+    "Method": "GetMyDossiersDetailed",
+    "RelativePath": "api/bff/v2/Dossier/my-dossiers/detailed",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
+    "Method": "GetMyDossierIds",
+    "RelativePath": "api/bff/v2/Dossier/my-dossiers/ids",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "take",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "skip",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
+    "Method": "SearchDossiers",
+    "RelativePath": "api/bff/v2/Dossier/search",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "query",
+        "Type": "MultipleHttpClient.Application.Dossier.Queries.SearchDossierQuery",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
+    "Method": "GetDossierStatuses",
+    "RelativePath": "api/bff/v2/Dossier/statuses",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "MultipleHtppClient.API.PresentationController",
     "Method": "GetById",
     "RelativePath": "api/Presentation/{id}",
@@ -778,149 +999,6 @@
     ]
   },
   {
-    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
-    "Method": "CreateDossier",
-    "RelativePath": "api/v2/Dossier",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "command",
-        "Type": "MultipleHttpClient.Application.Dossier.Command.InsertDossierCommand",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
-    "Method": "GetAllDossiers",
-    "RelativePath": "api/v2/Dossier",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "roleId",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
-    "Method": "GetDossier",
-    "RelativePath": "api/v2/Dossier/{dossierId}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dossierId",
-        "Type": "System.Guid",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
-    "Method": "UpdateDossier",
-    "RelativePath": "api/v2/Dossier/{dossierId}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dossierId",
-        "Type": "System.Guid",
-        "IsRequired": true
-      },
-      {
-        "Name": "command",
-        "Type": "MultipleHttpClient.Application.Dossier.Command.UpdateDossierCommand",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
-    "Method": "GetDossierComments",
-    "RelativePath": "api/v2/Dossier/{dossierId}/comments",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dossierId",
-        "Type": "System.Guid",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
-    "Method": "AddComment",
-    "RelativePath": "api/v2/Dossier/{dossierId}/comments",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dossierId",
-        "Type": "System.Guid",
-        "IsRequired": true
-      },
-      {
-        "Name": "request",
-        "Type": "MultipleHttpClient.Application.Dossier.Command.AddCommentRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
-    "Method": "SearchHistory",
-    "RelativePath": "api/v2/Dossier/{dossierId}/history",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dossierId",
-        "Type": "System.Guid",
-        "IsRequired": true
-      },
-      {
-        "Name": "request",
-        "Type": "MultipleHttpClient.Application.Dossier.Queries.HistorySearchRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
-    "Method": "GetCounts",
-    "RelativePath": "api/v2/Dossier/counts",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "roleId",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "MultipleHtppClient.API.PresentationController",
     "Method": "GetAllDossier",
     "RelativePath": "api/v2/dossier/GetAll",
@@ -1195,58 +1273,6 @@
     ]
   },
   {
-    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
-    "Method": "GetMyDossiers",
-    "RelativePath": "api/v2/Dossier/my-dossiers",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "take",
-        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "skip",
-        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
-    "Method": "GetMyDossiersDetailed",
-    "RelativePath": "api/v2/Dossier/my-dossiers/detailed",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
-    "Method": "GetMyDossiersWithSummary",
-    "RelativePath": "api/v2/Dossier/my-dossiers/summary",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "take",
-        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "skip",
-        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "MultipleHtppClient.API.PresentationController",
     "Method": "SearchDossiers",
     "RelativePath": "api/v2/dossier/Search",
@@ -1271,32 +1297,6 @@
         "StatusCode": 200
       }
     ]
-  },
-  {
-    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
-    "Method": "SearchDossiers",
-    "RelativePath": "api/v2/Dossier/search",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "query",
-        "Type": "MultipleHttpClient.Application.Dossier.Queries.SearchDossierQuery",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "MultipleHtppClient.API.Controllers.DossierController",
-    "Method": "GetDossierStatuses",
-    "RelativePath": "api/v2/Dossier/statuses",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
   },
   {
     "ContainingType": "MultipleHtppClient.API.PresentationController",

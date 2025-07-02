@@ -75,7 +75,7 @@ public class GetMyDossierIdsQueryHandler : IRequestHandler<GetMyDossierIdsQuery,
                 ProfileType: GetProfileTypeName(request.RoleId)
             );
 
-            _logger.LogInformation("Successfully retrieved {Count} dossier IDs for user {UserId}",
+            _logger.LogInformation("Successfully retrieved {0} dossier IDs for user {1}",
                 dossierIds.Count, request.UserId);
 
             return Result<MyDossierIdsResponse>.Success(response);

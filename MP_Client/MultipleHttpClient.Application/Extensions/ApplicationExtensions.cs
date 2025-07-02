@@ -88,13 +88,13 @@ public static class ApplicationExtensions
                 OnAuthenticationFailed = context =>
                 {
                     var logger = context.HttpContext.RequestServices.GetService<ILogger<JwtBearerHandler>>();
-                    logger?.LogWarning("JWT Authentication failed: {Error}", context.Exception.Message);
+                    logger?.LogWarning("JWT Authentication failed: {0}", context.Exception.Message);
                     return Task.CompletedTask;
                 },
                 OnTokenValidated = context =>
                 {
                     var logger = context.HttpContext.RequestServices.GetService<ILogger<JwtBearerHandler>>();
-                    logger?.LogInformation("JWT Token validated for user: {UserId}",
+                    logger?.LogInformation("JWT Token validated for user: {0}",
                         context.Principal?.FindFirst("user_id")?.Value);
                     return Task.CompletedTask;
                 }

@@ -12,8 +12,8 @@ using MutipleHttpClient.Domain.Shared.DTOs.Dossier;
 namespace MultipleHtppClient.API.Controllers
 {
     [ApiController]
-    [Route("api/v2/[controller]")]
-    [Authorize] // All endpoints require authentication
+    [Route("api/bff/v2/[controller]")]
+    [Authorize]
     public class DossierController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -43,10 +43,9 @@ namespace MultipleHtppClient.API.Controllers
         /// Create new dossier - any authenticated user can create
         /// </summary>
         [HttpPost]
-        [RequireProfile(1, 2, 3)] // All authenticated users can create dossiers
+        [RequireProfile(1, 2, 3)]
         public async Task<IActionResult> CreateDossier([FromBody] InsertDossierCommand command)
         {
-            // Extract user ID from JWT and set it in the command
             var userId = GetCurrentUserId();
             var commandWithUser = command with { UserId = userId };
 
@@ -61,7 +60,6 @@ namespace MultipleHtppClient.API.Controllers
         [OwnershipAuthorization("dossierId", "dossier")]
         public async Task<IActionResult> UpdateDossier(Guid dossierId, [FromBody] UpdateDossierCommand command)
         {
-            // Ensure route ID matches command ID
             var userId = GetCurrentUserId();
             var commandWithIds = command with { DossierId = dossierId, UserId = userId };
 
@@ -73,10 +71,9 @@ namespace MultipleHtppClient.API.Controllers
         /// Search dossiers - applies role-based filtering automatically
         /// </summary>
         [HttpPost("search")]
-        [RequireProfile(1, 2, 3)] // All users can search, but results are filtered by role
+        [RequireProfile(1, 2, 3)]
         public async Task<IActionResult> SearchDossiers([FromBody] SearchDossierQuery query)
         {
-            // Set user context from JWT
             var userId = GetCurrentUserId();
             var profileId = GetCurrentInternalProfileId();
 
@@ -94,7 +91,7 @@ namespace MultipleHtppClient.API.Controllers
         /// Get all dossiers - restricted to admins and regional admins
         /// </summary>
         [HttpGet]
-        [RequireAdminOrRegional] // Only admins and regional admins
+        [RequireAdminOrRegional]
         public async Task<IActionResult> GetAllDossiers([FromQuery] string? roleId)
         {
             var query = new GetAllDossierQuery
@@ -146,11 +143,11 @@ namespace MultipleHtppClient.API.Controllers
                 {
                     UserId = userId,
                     RoleId = profileId,
-                    ApplyFilter = true, // This ensures role-based filtering
+                    ApplyFilter = false,
                     Take = take ?? 50,
                     Skip = skip ?? 0,
-                    Order = "desc", // Must be lowercase
-                    Field = "date_created" // Must be lowercase and use correct field name
+                    Order = "desc",
+                    Field = "code" 
                 };
 
                 var result = await _mediator.Send(query);

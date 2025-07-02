@@ -76,7 +76,7 @@ public class HttpDossierAglouService : IHttpDossierAglouService
     }
     public async Task<ApiResponse<Aglou10001Response<IEnumerable<DossierStatus>>>> GetDossierStatusAsync(ProfileRoleRequestBody? profileRequestBody)
     {
-        profileRequestBody.RoleId = string.Empty;
+        profileRequestBody = new ProfileRoleRequestBody { RoleId = string.Empty };
         ApiRequest<ProfileRoleRequestBody> request = new ApiRequest<ProfileRoleRequestBody>
         {
             ApiName = monopp_extern,

@@ -27,16 +27,16 @@ public class GetMyDossiersDetailedQueryHandler : IRequestHandler<GetMyDossiersDe
             {
                 UserId = request.UserId,
                 RoleId = request.RoleId,
-                ApplyFilter = true,
-                Take = 1000, // Get more for statistics
+                ApplyFilter = false,
+                Take = 50,
                 Skip = 0,
-                Field = "createddate", // Must be lowercase
-                Order = "desc" // Must be lowercase
+                Field = "date_created",
+                Order = "desc"
             };
 
             var dossiersResult = await _mediator.Send(dossiersQuery, cancellationToken);
 
-            if (!dossiersResult.IsSuccess)
+            if (dossiersResult == null || !dossiersResult.IsSuccess)
             {
                 return Result<MyDossiersDetailedResponse>.Failure(dossiersResult.Error);
             }

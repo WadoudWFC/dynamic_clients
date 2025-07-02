@@ -9,7 +9,7 @@ namespace MultipleHttpClient.Application.Dossier.Queries
     {
         public Guid UserId { get; set; }
         public string RoleId { get; set; }
-        public bool ApplyFilter { get; set; } = true;
+        public bool ApplyFilter { get; set; } = false;
         public string? Code { get; set; }
         public Guid? DossierStatusId { get; set; }
         public Guid? DemandTypeId { get; set; }
@@ -21,7 +21,7 @@ namespace MultipleHttpClient.Application.Dossier.Queries
         public int Take { get; set; } = 10;
         public int Skip { get; set; } = 0;
         public string Field { get; set; } = "code";
-        public string Order { get; set; } = "asc";
+        public string Order { get; set; } = "desc";
         [JsonIgnore]
         public int InternalUserId { get; set; }
     }
