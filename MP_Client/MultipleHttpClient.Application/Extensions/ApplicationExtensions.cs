@@ -33,9 +33,9 @@ public static class ApplicationExtensions
         services.AddSingleton<IHttpManagementAglou, HttpManagementAglouService>();
         services.AddSingleton<IHttpUserAglou, HttpUserAglouService>();
         services.AddSingleton<IUserAglouService, UserAglouService>();
-        services.AddSingleton<IIdMappingService, IdMappingService>();
+        // services.AddSingleton<IIdMappingService, IdMappingService>();
         services.AddSingleton<IHttpReferenceAglouDataService, HttpReferenceAglouDataService>();
-        services.AddSingleton<IReferenceDataMappingService, ReferenceDataMappingService>();
+        // services.AddSingleton<IReferenceDataMappingService, ReferenceDataMappingService>();
         services.AddSingleton<IReferenceAglouDataService, ReferenceAglouDataService>();
         services.AddSingleton<IHttpDossierAglouService, HttpDossierAglouService>();
         services.AddSingleton<IDossierAglouService, DossierAglouService>();
@@ -114,35 +114,44 @@ public static class ApplicationExtensions
                 policy.RequireClaim("is_active", "True"));
         });
 
+        // Adding Memory cache
+        services.AddMemoryCache(options =>
+        {
+            options.SizeLimit = configuration.GetValue<int>("MappingService:MaxCacheSize", 10000);
+        });
+        services.AddSingleton<IIdMappingService, DeterministicIdMappingService>();
+        services.AddSingleton<IReferenceDataMappingService, DeterministicReferenceDataMappingService>();
+
+        services.AddHealthChecks().AddCheck<MappingHealthCheck>("mapping-service");
         return services;
     }
     public static IServiceCollection AddResponseCompressionConfiguration(this IServiceCollection services)
+    {
+        services.AddResponseCompression(options =>
         {
-            services.AddResponseCompression(options =>
+            options.EnableForHttps = true;
+            options.Providers.Add<BrotliCompressionProvider>();
+            options.Providers.Add<GzipCompressionProvider>();
+            options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[]
             {
-                options.EnableForHttps = true;
-                options.Providers.Add<BrotliCompressionProvider>();
-                options.Providers.Add<GzipCompressionProvider>();
-                options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[]
-                {
                     "application/json",
                     "application/json; charset=utf-8",
                     "text/json"
-                });
             });
+        });
 
-            services.Configure<BrotliCompressionProviderOptions>(options =>
-            {
-                options.Level = CompressionLevel.Optimal;
-            });
+        services.Configure<BrotliCompressionProviderOptions>(options =>
+        {
+            options.Level = CompressionLevel.Optimal;
+        });
 
-            services.Configure<GzipCompressionProviderOptions>(options =>
-            {
-                options.Level = CompressionLevel.Optimal;
-            });
+        services.Configure<GzipCompressionProviderOptions>(options =>
+        {
+            options.Level = CompressionLevel.Optimal;
+        });
 
-            return services;
-        }
+        return services;
+    }
     public static IApplicationBuilder UseCustomSecurityHeaders(this IApplicationBuilder builder)
     {
         return builder.Use(async (context, next) =>

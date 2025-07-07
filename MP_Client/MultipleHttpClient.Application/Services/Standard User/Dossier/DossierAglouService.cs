@@ -766,9 +766,7 @@ public class DossierAglouService : IDossierAglouService
                 return Result<DossierUpdateResult>.Failure(new Error(Constants.DossierFail, Constants.DossierFailMessage));
             }
 
-            return Result<DossierUpdateResult>.Success(new DossierUpdateResult(
-                IsSuccess: true,
-                Message: response.Data.Message)
+            return Result<DossierUpdateResult>.Success(new DossierUpdateResult(IsSuccess: true, Message: response.Data.Message)
             {
                 InternalDossierId = dossierId.Value
             });

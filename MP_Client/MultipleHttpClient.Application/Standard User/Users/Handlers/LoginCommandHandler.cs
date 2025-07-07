@@ -9,7 +9,7 @@ namespace MultipleHttpClient.Application.Users.Handlers
 {
     public class LoginCommandHandler : IRequestHandler<LoginCommand, Result<SanitizedLoginResponse>>
     {
-        private readonly IHttpUserAglou _httpUserService; // Direct access to HTTP service
+        private readonly IHttpUserAglou _httpUserService;
         private readonly IJwtService _jwtService;
         private readonly IIdMappingService _idMappingService;
         private readonly IReferenceDataMappingService _referenceDataMappingService;
@@ -30,7 +30,6 @@ namespace MultipleHttpClient.Application.Users.Handlers
             {
                 _logger.LogInformation("[Login]: Attempting login for {0}", request.Email);
 
-                // STEP 1: Call legacy API directly to get full user details
                 var loginRequest = new LoginRequestBody(request.Email, request.Password);
                 var legacyResponse = await _httpUserService.LoginAsync(loginRequest);
 
