@@ -12,6 +12,9 @@ namespace MutipleHttpClient.Domain.Shared
         public string Message { get; set; } = "An unexpected error occurred";
         public string? Details { get; set; }
         public string? StackTrace { get; set; }
+        public string? InnerException { get; set; }
+        public string? SupportMessage { get; set; }
+        public string? CorrelationId { get; set; }
         public DateTime Timestamp { get; set; } = DateTime.UtcNow;
     }
 }

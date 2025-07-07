@@ -30,10 +30,12 @@ public class UserController : ControllerBase
     public async Task<ActionResult<Result<SanitizedUserResponse>>> CanTryLogin([FromBody] CanTryLoginCommand command) => Ok(await _mediator.Send(command));
     [EnableRateLimiting("login")]
     [HttpPost("UpdatePassword")]
+    [RequireProfile(1, 2, 3)]
     public async Task<ActionResult<Result<SanitizedBasicResponse>>> UpdatePassword([FromBody] UpdatePasswordCommand command) => Ok(await _mediator.Send(command));
     [HttpPost("Logout")]
     public async Task<ActionResult<Result<SanitizedBasicResponse>>> Logout([FromBody] LogoutCommand command) => Ok(await _mediator.Send(command));
     [HttpPost("ForgetPassword")]
+    [EnableRateLimiting("passwordReset")]
     public async Task<ActionResult<Result<SanitizedBasicResponse>>> ForgetPassword([FromBody] ForgetPasswordCommand command) => Ok(await _mediator.Send(command));
     [HttpPost("Register")]
     public async Task<ActionResult<Result<SanitizedBasicResponse>>> RegisterUser([FromBody] RegisterUserCommand command) => Ok(await _mediator.Send(command));

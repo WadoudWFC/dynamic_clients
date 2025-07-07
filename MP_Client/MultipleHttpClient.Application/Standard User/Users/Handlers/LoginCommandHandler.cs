@@ -13,14 +13,16 @@ namespace MultipleHttpClient.Application.Users.Handlers
         private readonly IJwtService _jwtService;
         private readonly IIdMappingService _idMappingService;
         private readonly IReferenceDataMappingService _referenceDataMappingService;
+        private readonly IAccountLockoutService _accountLockoutService;
         private readonly ILogger<LoginCommandHandler> _logger;
 
-        public LoginCommandHandler(IHttpUserAglou httpUserService, IJwtService jwtService, IIdMappingService idMappingService, IReferenceDataMappingService referenceDataMappingService, ILogger<LoginCommandHandler> logger)
+        public LoginCommandHandler(IHttpUserAglou httpUserService, IJwtService jwtService, IIdMappingService idMappingService, IReferenceDataMappingService referenceDataMappingService, IAccountLockoutService accountLockoutService, ILogger<LoginCommandHandler> logger)
         {
             _httpUserService = httpUserService;
             _jwtService = jwtService;
             _idMappingService = idMappingService;
             _referenceDataMappingService = referenceDataMappingService;
+            _accountLockoutService = accountLockoutService;
             _logger = logger;
         }
 
@@ -30,27 +32,45 @@ namespace MultipleHttpClient.Application.Users.Handlers
             {
                 _logger.LogInformation("[Login]: Attempting login for {0}", request.Email);
 
+                // SECURITY: Check if account is locked before attempting authentication
+                if (await _accountLockoutService.IsAccountLockedAsync(request.Email))
+                {
+                    var timeRemaining = await _accountLockoutService.GetLockoutTimeRemainingAsync(request.Email);
+                    _logger.LogWarning("[Login]: Account {0} is locked, {1} remaining",
+                        request.Email, timeRemaining);
+
+                    return Result<SanitizedLoginResponse>.Failure(
+                        new Error("AccountLocked", $"Account is temporarily locked. Please try again in {timeRemaining?.TotalMinutes:F0} minutes."));
+                }
+
                 var loginRequest = new LoginRequestBody(request.Email, request.Password);
                 var legacyResponse = await _httpUserService.LoginAsync(loginRequest);
 
                 if (!legacyResponse.IsSuccess || legacyResponse.Data?.Data == null)
                 {
-                    _logger.LogWarning("[Login]: Legacy authentication failed for {0}", request.Email);
-                    return Result<SanitizedLoginResponse>.Failure(new Error("LoginFailed", "Invalid credentials"));
+                    // SECURITY: Record failed attempt for brute force protection
+                    await _accountLockoutService.RecordFailedAttemptAsync(request.Email);
+
+                    var failedAttempts = await _accountLockoutService.GetFailedAttemptsCountAsync(request.Email);
+                    _logger.LogWarning("[Login]: Failed authentication for {0}, {1} failed attempts",
+                        request.Email, failedAttempts);
+
+                    // Generic error message to prevent enumeration
+                    return Result<SanitizedLoginResponse>.Failure(
+                        new Error("InvalidCredentials", "Invalid email or password"));
                 }
 
+                // SECURITY: Record successful login to reset failed attempts
+                await _accountLockoutService.RecordSuccessfulLoginAsync(request.Email);
+
                 var legacyUserData = legacyResponse.Data.Data;
-                _logger.LogInformation("[Login]: Legacy authentication successful for {0}, UserID: {1}",
+                _logger.LogInformation("[Login]: Successful authentication for {0}, UserID: {1}",
                     request.Email, legacyUserData.UserId);
 
-                // STEP 2: Create GUID mapping for user
+                // Continue with existing JWT generation logic...
                 var userGuid = _idMappingService.GetGuidForUserId(legacyUserData.UserId);
+                var profileId = legacyUserData.UserRole;
 
-                // STEP 3: Extract profile information from legacy response
-                // NOTE: AglouLoginResponse contains UserRole field which should be the profile ID
-                var profileId = legacyUserData.UserRole; // This should be 1, 2, or 3
-
-                // Parse commercial division if available
                 int? commercialDivisionId = null;
                 if (!string.IsNullOrEmpty(legacyUserData.DecoupageCommercialId) &&
                     int.TryParse(legacyUserData.DecoupageCommercialId, out var divisionId))
@@ -58,7 +78,6 @@ namespace MultipleHttpClient.Application.Users.Handlers
                     commercialDivisionId = divisionId;
                 }
 
-                // STEP 4: Generate JWT using information from legacy response
                 var jwtToken = await _jwtService.GenerateTokenAsync(
                     internalUserId: legacyUserData.UserId,
                     email: request.Email,
@@ -66,11 +85,10 @@ namespace MultipleHttpClient.Application.Users.Handlers
                     firstName: legacyUserData.FirstName,
                     lastName: legacyUserData.LastName,
                     commercialDivisionId: commercialDivisionId,
-                    parentUserId: null, // Not available in login response
-                    isActive: true // Assume active if login succeeded
+                    parentUserId: null,
+                    isActive: true
                 );
 
-                // STEP 5: Return sanitized response
                 var response = new SanitizedLoginResponse(
                     UserId: userGuid,
                     FirstName: legacyUserData.FirstName,
@@ -81,12 +99,18 @@ namespace MultipleHttpClient.Application.Users.Handlers
 
                 _logger.LogInformation("[Login]: JWT generated successfully for user {0} with profile {1}",
                     userGuid, profileId);
+
                 return Result<SanitizedLoginResponse>.Success(response);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "[Login]: Exception during login for {0}", request.Email);
-                return Result<SanitizedLoginResponse>.Failure(new Error("LoginFailed", "An error occurred during login"));
+
+                // SECURITY: Also record system errors as failed attempts to prevent exploitation
+                await _accountLockoutService.RecordFailedAttemptAsync(request.Email);
+
+                return Result<SanitizedLoginResponse>.Failure(
+                    new Error("LoginFailed", "An error occurred during login. Please try again."));
             }
         }
     }

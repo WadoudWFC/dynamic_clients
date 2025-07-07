@@ -14,6 +14,18 @@ namespace MultipleHttpClient.Application.Commons.Behavior
         private readonly ILogger<GlobalExceptionMiddleware> _logger;
         private readonly IHostEnvironment _environment;
 
+        // SECURITY: Define safe error messages that don't reveal system information
+        private static readonly Dictionary<Type, string> SafeErrorMessages = new()
+        {
+            { typeof(UnauthorizedAccessException), "Access denied. Please check your permissions." },
+            { typeof(KeyNotFoundException), "The requested resource was not found." },
+            { typeof(ArgumentNullException), "Invalid request. Please check your input." },
+            { typeof(ArgumentException), "Invalid request parameters." },
+            { typeof(InvalidOperationException), "Unable to process request at this time." },
+            { typeof(TimeoutException), "Request timed out. Please try again later." },
+            { typeof(NotSupportedException), "Operation not supported." }
+        };
+
         public GlobalExceptionMiddleware(RequestDelegate next, ILogger<GlobalExceptionMiddleware> logger, IHostEnvironment environment)
         {
             _next = next;
@@ -29,60 +41,88 @@ namespace MultipleHttpClient.Application.Commons.Behavior
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "An unhandled exception occurred");
-                await HandleExceptionAsync(context, ex);
+                // SECURITY: Log full details server-side but sanitize client response
+                var correlationId = Guid.NewGuid().ToString("N")[..8];
+                _logger.LogError(ex, "Unhandled exception {0}: {1}", correlationId, ex.Message);
+
+                await HandleExceptionAsync(context, ex, correlationId);
             }
         }
 
-        private async Task HandleExceptionAsync(HttpContext context, Exception exception)
+        private async Task HandleExceptionAsync(HttpContext context, Exception exception, string correlationId)
         {
             context.Response.ContentType = "application/json";
 
-            var response = new ErrorResponse();
+            var response = new ErrorResponse
+            {
+                CorrelationId = correlationId,
+                Timestamp = DateTime.UtcNow
+            };
 
+            // SECURITY: Categorize exceptions and provide safe responses
             switch (exception)
             {
                 case UnauthorizedAccessException:
                     response.Code = "UNAUTHORIZED";
-                    response.Message = "You are not authorized to access this resource";
+                    response.Message = SafeErrorMessages[typeof(UnauthorizedAccessException)];
                     context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
                     break;
 
                 case KeyNotFoundException:
                     response.Code = "NOT_FOUND";
-                    response.Message = "The requested resource was not found";
+                    response.Message = SafeErrorMessages[typeof(KeyNotFoundException)];
                     context.Response.StatusCode = (int)HttpStatusCode.NotFound;
                     break;
 
                 case ArgumentNullException:
+                case ArgumentException:
                     response.Code = "BAD_REQUEST";
-                    response.Message = "Invalid request parameters";
+                    response.Message = SafeErrorMessages[typeof(ArgumentException)];
                     context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                     break;
 
-                case InvalidOperationException ioe when ioe.Message.Contains("authentication handler"):
-                    response.Code = "AUTH_CONFIG_ERROR";
-                    response.Message = "Authentication configuration error";
+                case InvalidOperationException when exception.Message.Contains("authentication"):
+                    response.Code = "AUTH_ERROR";
+                    response.Message = "Authentication configuration error. Please contact support.";
                     context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                     break;
 
+                case TimeoutException:
+                    response.Code = "TIMEOUT";
+                    response.Message = SafeErrorMessages[typeof(TimeoutException)];
+                    context.Response.StatusCode = (int)HttpStatusCode.RequestTimeout;
+                    break;
+
+                // SECURITY: Catch-all for any other exception
                 default:
                     response.Code = "INTERNAL_ERROR";
-                    response.Message = "An error occurred while processing your request";
+                    response.Message = "An unexpected error occurred. Please contact support if the problem persists.";
                     context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                     break;
             }
 
-            // Add details only in development
+            // SECURITY: Only add technical details in development
             if (_environment.IsDevelopment())
             {
                 response.Details = exception.Message;
                 response.StackTrace = exception.StackTrace;
+                response.InnerException = exception.InnerException?.Message;
+            }
+            else
+            {
+                // PRODUCTION: Never expose technical details
+                response.Details = null;
+                response.StackTrace = null;
+                response.InnerException = null;
+
+                // Only provide correlation ID for support
+                response.SupportMessage = $"Please provide this ID when contacting support: {correlationId}";
             }
 
             var jsonResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions
             {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                WriteIndented = _environment.IsDevelopment()
             });
 
             await context.Response.WriteAsync(jsonResponse);

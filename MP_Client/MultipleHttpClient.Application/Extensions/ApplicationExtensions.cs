@@ -3,6 +3,7 @@ using System.Threading.RateLimiting;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -50,7 +51,7 @@ public static class ApplicationExtensions
 
         // Validation pipeline
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-
+        services.AddSingleton<IAccountLockoutService, AccountLockoutService>();
         // Rate limiting
         services.AddRateLimiter(options =>
         {
@@ -59,6 +60,15 @@ public static class ApplicationExtensions
             {
                 PermitLimit = 5,
                 Window = TimeSpan.FromMinutes(1)
+            }));
+            options.AddPolicy("passwordReset", context => RateLimitPartition.GetSlidingWindowLimiter(
+            partitionKey: GetClientIp(context),
+            factory: _ => new SlidingWindowRateLimiterOptions()
+            {
+                PermitLimit = 3,
+                Window = TimeSpan.FromMinutes(60),
+                QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                QueueLimit = 0
             }));
         });
 
@@ -154,6 +164,8 @@ public static class ApplicationExtensions
     }
     public static IApplicationBuilder UseCustomSecurityHeaders(this IApplicationBuilder builder)
     {
+        // Health Check endpoint
+
         return builder.Use(async (context, next) =>
         {
             context.Response.Headers["Content-Security-Policy"] = "default-src 'self'";
@@ -161,5 +173,10 @@ public static class ApplicationExtensions
             context.Response.Headers["Strict-Transport-Security"] = "max-age=63072000";
             await next();
         });
+    }
+    private static string GetClientIp(HttpContext context)
+    {
+        var forwardedFor = context.Request.Headers["X-Forwarded-For"].ToString();
+        return !string.IsNullOrEmpty(forwardedFor) ? forwardedFor : context.Connection.RemoteIpAddress?.ToString() ?? "unknown";
     }
 }
