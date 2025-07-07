@@ -5,7 +5,6 @@ using MultipleHtppClient.Infrastructure.HTTP.Extensions;
 using MultipleHttpClient.Application.Extensions;
 using MultipleHttpClient.Application.Users.Validators;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -14,7 +13,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new() { Title = "My API", Version = "v1" });
-
     // Configure Swagger to use the Bearer token
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
@@ -25,7 +23,6 @@ builder.Services.AddSwaggerGen(c =>
         Scheme = "bearer",
         BearerFormat = "JWT"
     });
-
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {
@@ -41,15 +38,44 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
+
 builder.Services.AddControllers();
+
+// Add CORS configuration for Angular frontend
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularApp", policy =>
+    {
+        policy
+            .WithOrigins(
+                "http://localhost:4200",
+                "https://localhost:4200",
+                "http://localhost:4201", // Add additional ports if needed
+                "https://localhost:4201"
+            )
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials()
+            .SetIsOriginAllowedToAllowWildcardSubdomains();
+    });
+
+    // Alternative: Allow all origins for development (use with caution)
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
+
 builder.Services.AddApiHttpClients(builder.Configuration);
 builder.Services.AddApplicationService(builder.Configuration);
 builder.Services.AddSingleton<IUseHttpService, UseHttpService>();
 builder.Services.AddResponseCompressionConfiguration();
+
 // Validators
 builder.Services.AddValidatorsFromAssemblyContaining<LoginCommandValidator>();
-
-
 
 var app = builder.Build();
 
@@ -59,12 +85,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// Enable CORS - This must be placed before UseAuthentication and UseAuthorization
+app.UseCors("AllowAngularApp"); // Use "AllowAll" for development if you encounter issues
+
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseCustomSecurityHeaders();
 app.UseHttpsRedirection();
-app.MapControllers();
 
-app.MapHealthChecks("/health");
+app.MapControllers();
 
 app.Run();
