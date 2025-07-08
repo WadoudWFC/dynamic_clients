@@ -8,16 +8,14 @@ namespace MultipleHtppClient.API.Controllers
     [ApiController]
     [Route("api/v1/[controller]")]
     [Authorize]
-    [RequireAdmin] // Only Admin (Profile 1) can access all endpoints
+    [RequireAdmin]
     public class AdminController : ControllerBase
     {
         private readonly IHttpAdminService _adminService;
-        private readonly ILogger<AdminController> _logger;
 
-        public AdminController(IHttpAdminService adminService, ILogger<AdminController> logger)
+        public AdminController(IHttpAdminService adminService)
         {
             _adminService = adminService;
-            _logger = logger;
         }
 
         #region User Management - Admin Only
@@ -28,13 +26,11 @@ namespace MultipleHtppClient.API.Controllers
         [HttpPost("users")]
         public async Task<IActionResult> GetAllUsers([FromBody] object request)
         {
-            _logger.LogInformation("[Admin]: Getting all users");
 
             var result = await _adminService.GetAllUsersAsync(request);
 
             if (!result.IsSuccess)
             {
-                _logger.LogError("[Admin]: Failed to get users: {Error}", result.ErrorMessage);
                 return BadRequest(new { error = result.ErrorMessage });
             }
 
@@ -47,13 +43,11 @@ namespace MultipleHtppClient.API.Controllers
         [HttpPost("users/search")]
         public async Task<IActionResult> SearchUsers([FromBody] object request)
         {
-            _logger.LogInformation("[Admin]: Searching users");
 
             var result = await _adminService.SearchUsersAsync(request);
 
             if (!result.IsSuccess)
             {
-                _logger.LogError("[Admin]: Failed to search users: {Error}", result.ErrorMessage);
                 return BadRequest(new { error = result.ErrorMessage });
             }
 
@@ -66,13 +60,11 @@ namespace MultipleHtppClient.API.Controllers
         [HttpPost("users/load")]
         public async Task<IActionResult> LoadUser([FromBody] object request)
         {
-            _logger.LogInformation("[Admin]: Loading user");
 
             var result = await _adminService.LoadUserAsync(request);
 
             if (!result.IsSuccess)
             {
-                _logger.LogError("[Admin]: Failed to load user: {Error}", result.ErrorMessage);
                 return BadRequest(new { error = result.ErrorMessage });
             }
 
@@ -85,17 +77,14 @@ namespace MultipleHtppClient.API.Controllers
         [HttpPost("users/create")]
         public async Task<IActionResult> CreateUser([FromBody] object request)
         {
-            _logger.LogInformation("[Admin]: Creating user");
 
             var result = await _adminService.InsertUserAsync(request);
 
             if (!result.IsSuccess)
             {
-                _logger.LogError("[Admin]: Failed to create user: {Error}", result.ErrorMessage);
                 return BadRequest(new { error = result.ErrorMessage });
             }
 
-            _logger.LogInformation("[Admin]: Successfully created user");
             return Ok(result.Data);
         }
 
@@ -105,17 +94,14 @@ namespace MultipleHtppClient.API.Controllers
         [HttpPost("users/update")]
         public async Task<IActionResult> UpdateUser([FromBody] object request)
         {
-            _logger.LogInformation("[Admin]: Updating user");
 
             var result = await _adminService.UpdateUserAsync(request);
 
             if (!result.IsSuccess)
             {
-                _logger.LogError("[Admin]: Failed to update user: {Error}", result.ErrorMessage);
                 return BadRequest(new { error = result.ErrorMessage });
             }
 
-            _logger.LogInformation("[Admin]: Successfully updated user");
             return Ok(result.Data);
         }
 
@@ -125,17 +111,14 @@ namespace MultipleHtppClient.API.Controllers
         [HttpPost("users/delete")]
         public async Task<IActionResult> DeleteUser([FromBody] object request)
         {
-            _logger.LogInformation("[Admin]: Deleting user");
 
             var result = await _adminService.DeleteUserAsync(request);
 
             if (!result.IsSuccess)
             {
-                _logger.LogError("[Admin]: Failed to delete user: {Error}", result.ErrorMessage);
                 return BadRequest(new { error = result.ErrorMessage });
             }
 
-            _logger.LogInformation("[Admin]: Successfully deleted user");
             return Ok(result.Data);
         }
 
@@ -145,16 +128,12 @@ namespace MultipleHtppClient.API.Controllers
         [HttpPost("users/validate")]
         public async Task<IActionResult> ValidateUser([FromBody] object request)
         {
-            _logger.LogInformation("[Admin]: Validating user");
-
             var result = await _adminService.ValidateUserAsync(request);
 
             if (!result.IsSuccess)
             {
-                _logger.LogError("[Admin]: Failed to validate user: {Error}", result.ErrorMessage);
                 return BadRequest(new { error = result.ErrorMessage });
             }
-
             return Ok(result.Data);
         }
 
@@ -164,16 +143,12 @@ namespace MultipleHtppClient.API.Controllers
         [HttpPost("users/resend-validation")]
         public async Task<IActionResult> ResendEmailValidation([FromBody] object request)
         {
-            _logger.LogInformation("[Admin]: Resending email validation");
-
             var result = await _adminService.ResendEmailValidationAsync(request);
 
             if (!result.IsSuccess)
             {
-                _logger.LogError("[Admin]: Failed to resend validation: {Error}", result.ErrorMessage);
                 return BadRequest(new { error = result.ErrorMessage });
             }
-
             return Ok(result.Data);
         }
 
@@ -187,16 +162,11 @@ namespace MultipleHtppClient.API.Controllers
         [HttpPost("documents/insert")]
         public async Task<IActionResult> UploadDocument([FromBody] object request)
         {
-            _logger.LogInformation("[Admin]: Uploading document");
-
             var result = await _adminService.InsertDocumentAsync(request);
-
             if (!result.IsSuccess)
             {
-                _logger.LogError("[Admin]: Failed to upload document: {Error}", result.ErrorMessage);
                 return BadRequest(new { error = result.ErrorMessage });
             }
-
             return Ok(result.Data);
         }
 
@@ -206,16 +176,12 @@ namespace MultipleHtppClient.API.Controllers
         [HttpPost("documents/files")]
         public async Task<IActionResult> GetFiles([FromBody] object request)
         {
-            _logger.LogInformation("[Admin]: Getting files");
-
             var result = await _adminService.GetFilesAsync(request);
 
             if (!result.IsSuccess)
             {
-                _logger.LogError("[Admin]: Failed to get files: {Error}", result.ErrorMessage);
                 return BadRequest(new { error = result.ErrorMessage });
             }
-
             return Ok(result.Data);
         }
 
@@ -225,16 +191,11 @@ namespace MultipleHtppClient.API.Controllers
         [HttpPost("documents/file")]
         public async Task<IActionResult> GetFile([FromBody] object request)
         {
-            _logger.LogInformation("[Admin]: Getting file");
-
             var result = await _adminService.GetFileAsync(request);
-
             if (!result.IsSuccess)
             {
-                _logger.LogError("[Admin]: Failed to get file: {Error}", result.ErrorMessage);
                 return BadRequest(new { error = result.ErrorMessage });
             }
-
             return Ok(result.Data);
         }
 
@@ -244,16 +205,11 @@ namespace MultipleHtppClient.API.Controllers
         [HttpPost("documents/update")]
         public async Task<IActionResult> UpdateDocument([FromBody] object request)
         {
-            _logger.LogInformation("[Admin]: Updating document");
-
             var result = await _adminService.UpdateDocumentAsync(request);
-
             if (!result.IsSuccess)
             {
-                _logger.LogError("[Admin]: Failed to update document: {Error}", result.ErrorMessage);
                 return BadRequest(new { error = result.ErrorMessage });
             }
-
             return Ok(result.Data);
         }
 
@@ -263,16 +219,11 @@ namespace MultipleHtppClient.API.Controllers
         [HttpPost("documents/delete")]
         public async Task<IActionResult> DeleteDocument([FromBody] object request)
         {
-            _logger.LogInformation("[Admin]: Deleting document");
-
             var result = await _adminService.DeleteDocumentAsync(request);
-
             if (!result.IsSuccess)
             {
-                _logger.LogError("[Admin]: Failed to delete document: {Error}", result.ErrorMessage);
                 return BadRequest(new { error = result.ErrorMessage });
             }
-
             return Ok(result.Data);
         }
 
@@ -286,17 +237,11 @@ namespace MultipleHtppClient.API.Controllers
         [HttpPost("dossiers/delete")]
         public async Task<IActionResult> DeleteDossier([FromBody] object request)
         {
-            _logger.LogInformation("[Admin]: Deleting dossier");
-
             var result = await _adminService.DeleteDossierAsync(request);
-
             if (!result.IsSuccess)
             {
-                _logger.LogError("[Admin]: Failed to delete dossier: {Error}", result.ErrorMessage);
                 return BadRequest(new { error = result.ErrorMessage });
             }
-
-            _logger.LogInformation("[Admin]: Successfully deleted dossier");
             return Ok(result.Data);
         }
 
@@ -306,16 +251,12 @@ namespace MultipleHtppClient.API.Controllers
         [HttpPost("dossiers/change-status")]
         public async Task<IActionResult> ChangeDossierStatus([FromBody] object request)
         {
-            _logger.LogInformation("[Admin]: Changing dossier status");
 
             var result = await _adminService.ChangeStatusAsync(request);
-
             if (!result.IsSuccess)
             {
-                _logger.LogError("[Admin]: Failed to change dossier status: {Error}", result.ErrorMessage);
                 return BadRequest(new { error = result.ErrorMessage });
             }
-
             return Ok(result.Data);
         }
 

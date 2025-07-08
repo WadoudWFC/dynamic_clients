@@ -72,12 +72,19 @@ public class AccountLockoutService : IAccountLockoutService
                 identifier, lockoutInfo.LockedUntil, lockoutInfo.TotalFailedAttempts);
         }
 
-        // Cache with appropriate expiration
+        // FIX: Cache with appropriate expiration AND SIZE
         var cacheExpiration = lockoutInfo.LockedUntil > DateTime.UtcNow
             ? lockoutInfo.LockedUntil.Add(TimeSpan.FromMinutes(5))
             : DateTime.UtcNow.AddMinutes(ATTEMPT_WINDOW_MINUTES + 5);
 
-        _cache.Set(cacheKey, lockoutInfo, cacheExpiration);
+        var cacheOptions = new MemoryCacheEntryOptions
+        {
+            AbsoluteExpiration = cacheExpiration,
+            Size = 1, // CRITICAL: Specify size when SizeLimit is configured
+            Priority = CacheItemPriority.Normal
+        };
+
+        _cache.Set(cacheKey, lockoutInfo, cacheOptions);
     }
 
     public async Task RecordSuccessfulLoginAsync(string identifier)
@@ -91,7 +98,15 @@ public class AccountLockoutService : IAccountLockoutService
             lockoutInfo.FailedAttempts.Clear();
             lockoutInfo.LockedUntil = DateTime.MinValue;
 
-            _cache.Set(cacheKey, lockoutInfo, DateTime.UtcNow.AddHours(24));
+            // FIX: Include size in cache options
+            var cacheOptions = new MemoryCacheEntryOptions
+            {
+                AbsoluteExpiration = DateTime.UtcNow.AddHours(24),
+                Size = 1, // CRITICAL: Specify size
+                Priority = CacheItemPriority.Normal
+            };
+
+            _cache.Set(cacheKey, lockoutInfo, cacheOptions);
 
             _logger.LogInformation("Successful login for {Identifier}, reset sliding window", identifier);
         }

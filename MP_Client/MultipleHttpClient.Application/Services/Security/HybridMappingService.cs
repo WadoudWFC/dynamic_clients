@@ -56,7 +56,6 @@ public class HybridMappingService : IIdMappingService
                     return userId;
                 }
 
-                // Fallback to legacy if deterministic doesn't have the mapping
                 _logger.LogDebug("Deterministic service couldn't find GUID {0}, trying legacy", guid);
                 return _legacyService.GetUserIdForGuid(guid);
             }
@@ -86,7 +85,6 @@ public class HybridMappingService : IIdMappingService
             }
         }
 
-        // Always try to remove from legacy as well during transition
         try
         {
             _legacyService.RemoveMapping(guid);
