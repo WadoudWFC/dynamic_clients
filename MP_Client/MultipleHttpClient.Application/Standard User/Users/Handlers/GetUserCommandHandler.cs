@@ -25,16 +25,16 @@ namespace MultipleHttpClient.Application.Users.Handlers
                 var result = await _userAglouService.GetUserByIdAsync(request);
                 if (!result.IsSuccess || result.Value == null)
                 {
-                    _logger.LogError("[GetUserCommand]: Failed to load user {UserId}", request.UserId);
+                    _logger.LogError("[GetUserCommand]: Failed to load user {0}", request.UserId);
                     return Result<LoadUserResponseSanitized>.Failure(new Error("GetUserFailed", "Unable to load user details"));
                 }
 
-                _logger.LogInformation("[GetUserCommand]: Successfully loaded user {UserId}", request.UserId);
+                _logger.LogInformation("[GetUserCommand]: Successfully loaded user {0}", request.UserId);
                 return Result<LoadUserResponseSanitized>.Success(result.Value);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "[GetUserCommand]: Exception loading user {UserId}", request.UserId);
+                _logger.LogError(ex, "[GetUserCommand]: Exception loading user {0}", request.UserId);
                 return Result<LoadUserResponseSanitized>.Failure(new Error("GetUserFailed", ex.Message));
             }
         }

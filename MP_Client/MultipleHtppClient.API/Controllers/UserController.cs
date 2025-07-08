@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using System.Formats.Asn1;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
@@ -58,4 +59,58 @@ public class UserController : ControllerBase
         var userIdClaim = User.FindFirst("user_id")?.Value;
         return Guid.TryParse(userIdClaim, out var userId) ? userId : Guid.Empty;
     }
+    [HttpGet("GetCurrentUserProfileId")]
+    [Authorize]
+    public async Task<ActionResult<UserProfileIdResponse>> GetCurrentUserProfileIdLightweight()
+    {
+        try
+        {
+            var currentUserId = GetCurrentUserId();
+            var profileIdClaim = GetCurrentInternalProfileId();
+
+            if (currentUserId == Guid.Empty)
+            {
+                return BadRequest(new { error = "Invalid user context" });
+            }
+
+            if (string.IsNullOrEmpty(profileIdClaim) || !int.TryParse(profileIdClaim, out var profileId))
+            {
+                return BadRequest(new { error = "Profile information not available in token" });
+            }
+
+            var response = new UserProfileIdResponse
+            {
+                UserId = currentUserId,
+                ProfileId = profileId,
+                ProfileName = GetProfileName(profileId),
+                AccessLevel = GetAccessLevel(profileId),
+                RetrievedAt = DateTime.UtcNow
+            };
+
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { error = "An error occurred while retrieving profile information" });
+        }
+    }
+    private string GetCurrentInternalProfileId()
+    {
+        return User.FindFirst("internal_profile_id")?.Value ?? "3";
+    }
+    private static string GetProfileName(int profileId) => profileId switch
+    {
+        1 => "Administrator",
+        2 => "Regional Administrator",
+        3 => "Standard User",
+        _ => "Unknown Profile"
+    };
+
+    private static string GetAccessLevel(int profileId) => profileId switch
+    {
+        1 => "Full Access - All system functions",
+        2 => "Regional Access - Limited to assigned regions",
+        3 => "Standard Access - Own data only",
+        _ => "No Access"
+    };
 }

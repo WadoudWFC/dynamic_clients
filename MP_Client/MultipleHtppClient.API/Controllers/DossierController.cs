@@ -349,7 +349,7 @@ namespace MultipleHtppClient.API.Controllers
 
         private string GetCurrentInternalProfileId()
         {
-            return User.FindFirst("internal_profile_id")?.Value ?? "3"; // Default to standard user
+            return User.FindFirst("internal_profile_id")?.Value ?? "3"; 
         }
 
         private int? GetCurrentInternalUserId()
