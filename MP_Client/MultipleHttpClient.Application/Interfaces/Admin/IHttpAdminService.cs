@@ -39,5 +39,9 @@ namespace MultipleHttpClient.Application.Interfaces.Admin
         Task<ApiResponse<object>> GetPartenaireAsync(object searchRequest);
         Task<ApiResponse<object>> GetLocalDossierAsync(object searchRequest);
         Task<ApiResponse<object>> GetHistoriqueAsync(object searchRequest);
+
+        // Monitoring
+        Task<ApiResponse<object>> GetLogDescription(object searchRequest);
+        Task<ApiResponse<object>> SearchOrGetApplicationLogs(object searchRequest);
     }
 }

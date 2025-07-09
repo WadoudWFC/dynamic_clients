@@ -350,7 +350,35 @@ namespace MultipleHttpClient.Application.Services.Admin
             };
             return await _httpClientService.SendAsync<object, object>(request);
         }
+        #endregion
+        #region Monitoring
+        public async Task<ApiResponse<object>> GetLogDescription(object searchRequest)
+        {
+            var request = new ApiRequest<object>
+            {
+                ApiName = monopp_extern,
+                Endpoint = "api/v1/log_journal/GetDescription",
+                Method = HttpMethod.Post,
+                RequiresApiKey = true,
+                RequiresBearerToken = true,
+                Data = searchRequest
+            };
+            return await _httpClientService.SendAsync<object, object>(request);
+        }
 
+        public async Task<ApiResponse<object>> SearchOrGetApplicationLogs(object searchRequest)
+        {
+            var request = new ApiRequest<object>
+            {
+                ApiName = monopp_extern,
+                Endpoint = "api/v1/log_journal/Search",
+                Method = HttpMethod.Post,
+                RequiresApiKey = true,
+                RequiresBearerToken = true,
+                Data = searchRequest
+            };
+            return await _httpClientService.SendAsync<object, object>(request);
+        }
         #endregion
     }
 }
