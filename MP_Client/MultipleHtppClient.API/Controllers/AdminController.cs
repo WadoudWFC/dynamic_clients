@@ -345,6 +345,20 @@ namespace MultipleHtppClient.API.Controllers
         }
 
         #endregion
+        #region Monitoring
+        [HttpPost("log_journal/description")]
+        public async Task<IActionResult> GetLogDescription([FromBody] object request)
+        {
+            var result = await _adminService.GetLogDescription(request);
+            return result.IsSuccess ? Ok(result.Data) : BadRequest(new { error = result.ErrorMessage });
+        }
+        [HttpPost("log_journal/search")]
+        public async Task<IActionResult> SearchOrGetApplicationLog([FromBody] object request)
+        {
+            var result = await _adminService.SearchOrGetApplicationLogs(request);
+            return result.IsSuccess ? Ok(result.Data) : BadRequest(new { error = result.ErrorMessage });
+        }
+        #endregion
     }
 }
 
