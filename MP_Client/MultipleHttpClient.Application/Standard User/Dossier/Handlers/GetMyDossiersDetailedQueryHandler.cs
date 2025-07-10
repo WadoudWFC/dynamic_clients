@@ -80,8 +80,8 @@ public class GetMyDossiersDetailedQueryHandler : IRequestHandler<GetMyDossiersDe
             var response = new MyDossiersDetailedResponse(
                 Summary: new MyDossiersDetailedSummary(
                     TotalDossiers: countsResult.IsSuccess ? countsResult.Value.TotalDossier : dossiers.Count,
-                    TotalPending: countsResult.IsSuccess ? countsResult.Value.TotalPendingDossier : 0,
-                    TotalProcessed: countsResult.IsSuccess ? countsResult.Value.TotalProcessedDossier : 0,
+                    TotalPending: countsResult.IsSuccess ? countsResult.Value.TotalDossierEncours : 0,
+                    TotalProcessed: countsResult.IsSuccess ? countsResult.Value.TotalDossierTraiter : 0,
                     UserId: request.UserId,
                     ProfileType: GetProfileTypeName(request.RoleId),
                     AccessLevel: GetAccessLevelDescription(request.RoleId)

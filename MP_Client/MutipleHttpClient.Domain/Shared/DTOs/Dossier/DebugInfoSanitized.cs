@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 using MutipleHttpClient.Domain.Shared.DTOs.Dossier;
 namespace MutipleHttpClient.Domain;
 
-public record DebugInfoSanitized(Guid UserId, Guid? CommercialDivisionId, bool ApplyFilter, List<int> ConfiguredStatuses, List<object> CurrentStatusDistribution, FinalCountsSanitized FinalCounts)
+public record DebugInfoSanitized(Guid UserId, Guid? DecoupageCommercialId, bool AppliqueFilter, List<int> ConfiguredStatuses, List<object> CurrentStatusDistribution, FinalCountsSanitized FinalCounts)
 {
     [JsonIgnore]
     public ProfileType ProfileType { get; init; }

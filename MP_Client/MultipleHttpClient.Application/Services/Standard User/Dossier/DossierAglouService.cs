@@ -140,11 +140,11 @@ public class DossierAglouService : IDossierAglouService
                                                                                                 Constants.CommercialDivision) : Guid.Empty;
 
             var sanitized = new DossierCountsSanitized(TotalDossier: data.TotalDossier,
-                                                        TotalProcessedDossier: data.TotalProcessedDossiers,
-                                                        TotalPendingDossier: data.TotalPendingDossiers,
+                                                        TotalDossierTraiter: data.TotalProcessedDossiers,
+                                                        TotalDossierEncours: data.TotalPendingDossiers,
                                                         DebugInfo: new DebugInfoSanitized(UserId: query.UserId,
-                                                                                            CommercialDivisionId: commercialDivisionID,
-                                                                                            ApplyFilter: debugInfo.ApplyFilter,
+                                                                                            DecoupageCommercialId: commercialDivisionID,
+                                                                                            AppliqueFilter: debugInfo.ApplyFilter,
                                                                                             ConfiguredStatuses: debugInfo.ConfiguredStatuses,
                                                                                             CurrentStatusDistribution: debugInfo.CurrentStatusDistribution,
                                                                                             FinalCounts: new FinalCountsSanitized(Total: debugInfo.FinalCounts.Total,
