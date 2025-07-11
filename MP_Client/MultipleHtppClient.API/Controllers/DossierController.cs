@@ -126,7 +126,7 @@ namespace MultipleHtppClient.API.Controllers
         /// </summary>
         [HttpGet("my-dossiers")]
         [Authorize]
-        public async Task<IActionResult> GetMyDossiers([FromQuery] int? take, [FromQuery] int? skip)
+        public async Task<IActionResult> GetMyDossiers([FromBody] SearchDossierQuery searchQuery)
         {
             var userId = GetCurrentUserId();
             var profileId = GetCurrentInternalProfileId();
@@ -136,64 +136,14 @@ namespace MultipleHtppClient.API.Controllers
                 return Unauthorized(new { error = "Invalid user context" });
             }
 
-            try
+            var queryWithUser = searchQuery with
             {
-                // Use SearchDossierQuery with correct field validation
-                var query = new SearchDossierQuery
-                {
-                    UserId = userId,
-                    RoleId = profileId,
-                    ApplyFilter = false,
-                    Take = take ?? 50,
-                    Skip = skip ?? 0,
-                    Order = "desc",
-                    Field = "code" 
-                };
+                UserId = userId,
+                RoleId = profileId
+            };
 
-                var result = await _mediator.Send(query);
-
-                if (!result.IsSuccess)
-                {
-                    return BadRequest(new
-                    {
-                        error = result.Error.Message,
-                        userId = userId,
-                        profileId = profileId
-                    });
-                }
-
-                var dossiers = result.Value?.ToList() ?? new List<DossierSearchSanitized>();
-
-                // Return the dossiers with metadata
-                var response = new
-                {
-                    dossiers = dossiers,
-                    total = dossiers.Count,
-                    take = take ?? 50,
-                    skip = skip ?? 0,
-                    hasMore = dossiers.Count == (take ?? 50),
-                    userId = userId,
-                    profileId = profileId,
-                    debug = new
-                    {
-                        userIdMapped = userId != Guid.Empty,
-                        profileIdProvided = !string.IsNullOrEmpty(profileId),
-                        filterApplied = true
-                    }
-                };
-
-                return Ok(response);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new
-                {
-                    error = ex.Message,
-                    userId = userId,
-                    profileId = profileId,
-                    type = ex.GetType().Name
-                });
-            }
+            var result = await _mediator.Send(queryWithUser);
+            return result.IsSuccess ? Ok(result.Value) : BadRequest(result.Error);
         }
         /// <summary>
         /// NEW ENDPOINT: Get current user's dossier IDs only - lightweight version
@@ -349,7 +299,7 @@ namespace MultipleHtppClient.API.Controllers
 
         private string GetCurrentInternalProfileId()
         {
-            return User.FindFirst("internal_profile_id")?.Value ?? "3"; 
+            return User.FindFirst("internal_profile_id")?.Value ?? "3";
         }
 
         private int? GetCurrentInternalUserId()

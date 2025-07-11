@@ -24,7 +24,7 @@ namespace MultipleHttpClient.Application.Dossier.Handlers
                 var result = await _dossierService.SearchDossierAsync(request);
                 if (!result.IsSuccess || result.Value == null)
                 {
-                    _logger.LogError("[SearchDossier]: Failed to search dossiers for user {UserId}", request.UserId);
+                    _logger.LogError("[SearchDossier]: Failed to search dossiers for user {0}", request.UserId);
                     return Result<IEnumerable<DossierSearchSanitized>>.Failure(new Error("SearchDossierFailed", "Unable to search dossiers"));
                 }
 
