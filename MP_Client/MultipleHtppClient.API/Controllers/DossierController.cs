@@ -124,7 +124,7 @@ namespace MultipleHtppClient.API.Controllers
         /// <summary>
         /// Get all dossiers for the authenticated user
         /// </summary>
-        [HttpGet("my-dossiers")]
+        [HttpPost("my-dossiers")]
         [Authorize]
         public async Task<IActionResult> GetMyDossiers([FromBody] SearchDossierQuery searchQuery)
         {
