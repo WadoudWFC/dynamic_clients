@@ -243,7 +243,7 @@ namespace MultipleHttpClient.Application.Services.Security
                 // Load dossier details to check ownership
                 var loadQuery = new LoadDossierQuery(dossierGuid);
                 var loadTask = dossierService.LoadDossierAsync(loadQuery);
-                loadTask.Wait(TimeSpan.FromSeconds(5)); // Timeout to prevent blocking
+                loadTask.Wait(TimeSpan.FromSeconds(5)); 
 
                 if (!loadTask.IsCompletedSuccessfully || !loadTask.Result.IsSuccess)
                 {
@@ -310,7 +310,6 @@ namespace MultipleHttpClient.Application.Services.Security
                 // be expensive in an authorization filter.
 
                 // Simplified approach: allow access if they're authenticated and it's their comment
-                // You can enhance this based on your specific business rules
 
                 logger?.LogInformation("Comment access validation for user {0}, comment {1}: allowing access",
                     userId, commentId);

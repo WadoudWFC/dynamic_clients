@@ -13,9 +13,9 @@ public class ApiRouteSegregationMiddleware
         {
             { "/api/v1/admin", new[] { 1, 2 } },
             { "/api/admin", new[] { 1, 2 } },
-            
+
             { "/api/v1/superadmin", new[] { 1 } },
-            
+
             { "/api/bff/v2", new[] { 3 } },
             { "/api/user", new[] { 3 } }
         };
@@ -60,14 +60,14 @@ public class ApiRouteSegregationMiddleware
             if (!restrictedRoute.Value.Contains(userProfileId))
             {
                 var allowedProfiles = string.Join(", ", restrictedRoute.Value);
-                _logger.LogWarning("🚨 SECURITY: Unauthorized access attempt to {Path} by user with profile {ProfileId}. Allowed: {AllowedProfiles}",
+                _logger.LogWarning("SECURITY: Unauthorized access attempt to {0} by user with profile {1}. Allowed: {2}",
                     path, userProfileId, allowedProfiles);
 
                 await BlockAccess(context, $"Access denied: Route requires profile {allowedProfiles}, but user has profile {userProfileId}");
                 return;
             }
 
-            _logger.LogInformation("✅ Access granted to {Path} for user with profile {ProfileId}", path, userProfileId);
+            _logger.LogInformation("Access granted to {0} for user with profile {1}", path, userProfileId);
         }
 
         // User is authorized for this route, continue to next middleware
@@ -83,7 +83,7 @@ public class ApiRouteSegregationMiddleware
                 "/api/user/forgetpassword",
                 "/api/user/register",
                 "/swagger",
-                "/health" // Legacy presentation endpoints
+                "/health"
             };
 
         return publicPaths.Any(publicPath => path.StartsWith(publicPath.ToLowerInvariant()));

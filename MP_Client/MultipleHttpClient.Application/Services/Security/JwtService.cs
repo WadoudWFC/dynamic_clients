@@ -29,7 +29,7 @@ namespace MultipleHttpClient.Application.Services.Security
             {
                 if (!IsValidProfileId(profileId))
                 {
-                    _logger.LogError("🚨 SECURITY: Invalid profile ID {0} for user {1}", profileId, email);
+                    _logger.LogError("SECURITY: Invalid profile ID {0} for user {1}", profileId, email);
                     throw new SecurityException($"Invalid profile ID: {profileId}");
                 }
 
@@ -149,7 +149,7 @@ namespace MultipleHttpClient.Application.Services.Security
             }
             catch (Exception ex)
             {
-                _logger.LogWarning("🚨 Token validation failed: {Error}", ex.Message);
+                _logger.LogWarning("Token validation failed: {0}", ex.Message);
                 return null;
             }
         }

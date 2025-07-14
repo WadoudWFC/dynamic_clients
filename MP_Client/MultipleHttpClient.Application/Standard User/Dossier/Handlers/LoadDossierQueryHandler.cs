@@ -24,16 +24,16 @@ namespace MultipleHttpClient.Application.Dossier.Handlers
                 var result = await _dossierService.LoadDossierAsync(request);
                 if (!result.IsSuccess || result.Value == null)
                 {
-                    _logger.LogError("[LoadDossier]: Failed to load dossier {DossierId}", request.DossierId);
+                    _logger.LogError("[LoadDossier]: Failed to load dossier {0}", request.DossierId);
                     return Result<LoadDossierResponseSanitized>.Failure(new Error("LoadDossierFailed", "Unable to load dossier"));
                 }
 
-                _logger.LogInformation("[LoadDossier]: Successfully loaded dossier {DossierId}", request.DossierId);
+                _logger.LogInformation("[LoadDossier]: Successfully loaded dossier {0}", request.DossierId);
                 return Result<LoadDossierResponseSanitized>.Success(result.Value);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "[LoadDossier]: Exception loading dossier {DossierId}", request.DossierId);
+                _logger.LogError(ex, "[LoadDossier]: Exception loading dossier {0}", request.DossierId);
                 return Result<LoadDossierResponseSanitized>.Failure(new Error("LoadDossierFailed", ex.Message));
             }
         }

@@ -24,17 +24,17 @@ namespace MultipleHttpClient.Application.Dossier.Handlers
                 var result = await _dossierService.InsertDossierAsync(request);
                 if (!result.IsSuccess || result.Value == null)
                 {
-                    _logger.LogError("[InsertDossier]: Failed to create dossier for user {UserId}", request.UserId);
+                    _logger.LogError("[InsertDossier]: Failed to create dossier for user {0}", request.UserId);
                     return Result<InsertDossierOperationResult>.Failure(new Error("InsertDossierFailed", "Unable to create dossier"));
                 }
 
-                _logger.LogInformation("[InsertDossier]: Successfully created dossier {DossierId} for user {UserId}",
+                _logger.LogInformation("[InsertDossier]: Successfully created dossier {0} for user {1}",
                     result.Value.DossierId, request.UserId);
                 return Result<InsertDossierOperationResult>.Success(result.Value);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "[InsertDossier]: Exception creating dossier for user {UserId}", request.UserId);
+                _logger.LogError(ex, "[InsertDossier]: Exception creating dossier for user {0}", request.UserId);
                 return Result<InsertDossierOperationResult>.Failure(new Error("InsertDossierFailed", ex.Message));
             }
         }

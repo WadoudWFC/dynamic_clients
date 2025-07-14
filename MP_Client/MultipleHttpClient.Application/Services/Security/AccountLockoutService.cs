@@ -108,7 +108,7 @@ public class AccountLockoutService : IAccountLockoutService
 
             _cache.Set(cacheKey, lockoutInfo, cacheOptions);
 
-            _logger.LogInformation("Successful login for {Identifier}, reset sliding window", identifier);
+            _logger.LogInformation("Successful login for {0}, reset sliding window", identifier);
         }
     }
 

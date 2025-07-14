@@ -31,13 +31,11 @@ public class DeterministicReferenceDataMappingService : IReferenceDataMappingSer
     {
         var cacheKey = $"ref_guid_{entityType}_{referenceId}";
 
-        // Check cache first
         if (_enableCache && _memoryCache.TryGetValue(cacheKey, out Guid cachedGuid))
         {
             return cachedGuid;
         }
 
-        // Generate deterministic GUID
         var guid = GenerateDeterministicGuid(referenceId, entityType);
 
         // Store both forward and reverse mappings
@@ -59,7 +57,7 @@ public class DeterministicReferenceDataMappingService : IReferenceDataMappingSer
         var entityReverseMap = _reverseMap.GetOrAdd(entityType, _ => new ConcurrentDictionary<Guid, int>());
         entityReverseMap.TryAdd(guid, referenceId);
 
-        _logger.LogDebug("Generated GUID {0} for {EntityType} ID {1}", guid, entityType, referenceId);
+        _logger.LogDebug("Generated GUID {0} for {1} ID {2}", guid, entityType, referenceId);
         return guid;
     }
 
@@ -107,18 +105,14 @@ public class DeterministicReferenceDataMappingService : IReferenceDataMappingSer
         // Create consistent input string
         var input = $"{_applicationSalt}:{entityType}:{id}";
 
-        // Generate SHA-256 hash
         using var sha256 = SHA256.Create();
         var hashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(input));
 
-        // Take first 16 bytes for GUID
         var guidBytes = new byte[16];
         Array.Copy(hashBytes, guidBytes, 16);
 
-        // Set version bits (Version 5 - SHA-1 name-based)
         guidBytes[6] = (byte)((guidBytes[6] & 0x0F) | 0x50);
 
-        // Set variant bits
         guidBytes[8] = (byte)((guidBytes[8] & 0x3F) | 0x80);
 
         return new Guid(guidBytes);

@@ -22,17 +22,17 @@ namespace MultipleHttpClient.Application.Dossier.Handlers
                 var result = await _dossierService.GetAllCommentsAsync(request);
                 if (!result.IsSuccess || result.Value == null)
                 {
-                    _logger.LogError("[GetAllComments]: Failed to get comments for dossier {DossierId}", request.DossierId);
+                    _logger.LogError("[GetAllComments]: Failed to get comments for dossier {0}", request.DossierId);
                     return Result<IEnumerable<CommentSanitized>>.Failure(new Error("GetCommentsFailed", "Unable to load comments"));
                 }
 
-                _logger.LogInformation("[GetAllComments]: Successfully loaded {Count} comments for dossier {DossierId}",
+                _logger.LogInformation("[GetAllComments]: Successfully loaded {0} comments for dossier {1}",
                     result.Value.Count(), request.DossierId);
                 return Result<IEnumerable<CommentSanitized>>.Success(result.Value);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "[GetAllComments]: Exception loading comments for dossier {DossierId}", request.DossierId);
+                _logger.LogError(ex, "[GetAllComments]: Exception loading comments for dossier {0}", request.DossierId);
                 return Result<IEnumerable<CommentSanitized>>.Failure(new Error("GetCommentsFailed", ex.Message));
             }
         }

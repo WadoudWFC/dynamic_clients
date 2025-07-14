@@ -14,7 +14,6 @@ namespace MultipleHttpClient.Application.Commons.Behavior
         private readonly ILogger<GlobalExceptionMiddleware> _logger;
         private readonly IHostEnvironment _environment;
 
-        // SECURITY: Define safe error messages that don't reveal system information
         private static readonly Dictionary<Type, string> SafeErrorMessages = new()
         {
             { typeof(UnauthorizedAccessException), "Access denied. Please check your permissions." },
@@ -110,7 +109,6 @@ namespace MultipleHttpClient.Application.Commons.Behavior
             }
             else
             {
-                // PRODUCTION: Never expose technical details
                 response.Details = null;
                 response.StackTrace = null;
                 response.InnerException = null;

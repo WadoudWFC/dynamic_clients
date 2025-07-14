@@ -60,7 +60,7 @@ public class GetMyDossiersQueryHandler : IRequestHandler<GetMyDossiersQuery, Res
                 Order = "desc"
             };
 
-            _logger.LogInformation("Calling legacy API with UserId={UserId}, RoleId={RoleId}, ApplyFilter={ApplyFilter}",
+            _logger.LogInformation("Calling legacy API with UserId={0}, RoleId={1}, ApplyFilter={3}",
                 searchRequest.Id, searchRequest.RoleId, searchRequest.ApplyFilter);
 
             // Call legacy API directly
@@ -68,14 +68,14 @@ public class GetMyDossiersQueryHandler : IRequestHandler<GetMyDossiersQuery, Res
 
             if (!response.IsSuccess || response.Data?.Data == null)
             {
-                _logger.LogError("Legacy API error: {StatusCode}, {ErrorMessage}",
+                _logger.LogError("Legacy API error: {0}, {1}",
                     response.StatusCode, response.ErrorMessage);
                 return Result<MyDossiersResponse>.Failure(
                     new Error(Constants.DossierFail, response.ErrorMessage ?? "Failed to retrieve dossiers"));
             }
 
             var dossierData = response.Data.Data.ToList();
-            _logger.LogInformation("Legacy API returned {Count} dossiers", dossierData.Count);
+            _logger.LogInformation("Legacy API returned {0} dossiers", dossierData.Count);
 
             if (!dossierData.Any())
             {
@@ -148,16 +148,15 @@ public class GetMyDossiersQueryHandler : IRequestHandler<GetMyDossiersQuery, Res
                 ProfileType: GetProfileTypeName(request.RoleId)
             );
 
-            _logger.LogInformation("Successfully retrieved {Count} dossiers for user {UserId}",
+            _logger.LogInformation("Successfully retrieved {0} dossiers for user {1}",
                 sanitizedDossiers.Count, request.UserId);
 
             return Result<MyDossiersResponse>.Success(result);
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error retrieving dossiers for user {UserId}", request.UserId);
-            return Result<MyDossiersResponse>.Failure(
-                new Error(Constants.DossierFail, "Failed to retrieve dossiers"));
+            _logger.LogError(ex, "Error retrieving dossiers for user {0}", request.UserId);
+            return Result<MyDossiersResponse>.Failure(new Error(Constants.DossierFail, "Failed to retrieve dossiers"));
         }
     }
 

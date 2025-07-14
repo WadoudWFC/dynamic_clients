@@ -34,7 +34,7 @@ namespace MultipleHttpClient.Application.Dossier.Handlers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "[SearchDossier]: Exception searching dossiers for user {UserId}", request.UserId);
+                _logger.LogError(ex, "[SearchDossier]: Exception searching dossiers for user {0}", request.UserId);
                 return Result<IEnumerable<DossierSearchSanitized>>.Failure(new Error("SearchDossierFailed", ex.Message));
             }
         }

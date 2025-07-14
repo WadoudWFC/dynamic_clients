@@ -24,16 +24,16 @@ namespace MultipleHttpClient.Application.Dossier.Handlers
                 var result = await _dossierService.UpdateDossierAsync(request);
                 if (!result.IsSuccess || result.Value == null)
                 {
-                    _logger.LogError("[UpdateDossier]: Failed to update dossier {DossierId}", request.DossierId);
+                    _logger.LogError("[UpdateDossier]: Failed to update dossier {0}", request.DossierId);
                     return Result<DossierUpdateResult>.Failure(new Error("UpdateDossierFailed", "Unable to update dossier"));
                 }
 
-                _logger.LogInformation("[UpdateDossier]: Successfully updated dossier {DossierId}", request.DossierId);
+                _logger.LogInformation("[UpdateDossier]: Successfully updated dossier {0}", request.DossierId);
                 return Result<DossierUpdateResult>.Success(result.Value);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "[UpdateDossier]: Exception updating dossier {DossierId}", request.DossierId);
+                _logger.LogError(ex, "[UpdateDossier]: Exception updating dossier {0}", request.DossierId);
                 return Result<DossierUpdateResult>.Failure(new Error("UpdateDossierFailed", ex.Message));
             }
         }

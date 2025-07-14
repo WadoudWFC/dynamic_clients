@@ -23,7 +23,7 @@ public class UpdatePasswordCommandValidator : AbstractValidator<UpdatePasswordCo
             .WithMessage("Password must contain at least one lowercase letter")
             .Matches("[0-9]")
             .WithMessage("Password must contain at least one number")
-            .Matches(@"[!@#$%^&*(),.?""':{}|<>+=\-_~`\[\]\\\/;]") // SECURITY: Fixed regex
+            .Matches(@"[!@#$%^&*(),.?""':{}|<>+=\-_~`\[\]\\\/;]")
             .WithMessage("Password must contain at least one special character (!@#$%^&*(),.?\":{}|<>+=\\-_~`[]\\\\\\//;)")
             .Must(NotContainCommonPatterns)
             .WithMessage("Password cannot contain common patterns (123, abc, qwerty, etc.)");
@@ -63,7 +63,6 @@ public class UpdatePasswordCommandValidator : AbstractValidator<UpdatePasswordCo
 
         for (int i = 0; i < password.Length - minLength + 1; i++)
         {
-            // Check for sequential characters (e.g., "abcd", "1234")
             if (IsSequential(password.Substring(i, minLength)))
             {
                 return true;
@@ -74,7 +73,6 @@ public class UpdatePasswordCommandValidator : AbstractValidator<UpdatePasswordCo
 
     private static bool IsSequential(string str)
     {
-        // Check if the string is sequential in terms of ASCII values
         for (int i = 1; i < str.Length; i++)
         {
             if (str[i] != str[i - 1] + 1)
@@ -97,7 +95,7 @@ public class UpdatePasswordCommandValidator : AbstractValidator<UpdatePasswordCo
                 var nextOccurrence = password.IndexOf(pattern, i + length);
                 if (nextOccurrence != -1 && nextOccurrence < i + length * 2)
                 {
-                    return true; // Found a repeated pattern
+                    return true;
                 }
             }
         }

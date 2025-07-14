@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using MultipleHttpClient.Application.Users.Commands.Logout;
+using MutipleHttpClient.Domain;
 
 namespace MultipleHttpClient.Application.Users.Validators
 {
@@ -7,7 +8,7 @@ namespace MultipleHttpClient.Application.Users.Validators
     {
         public LogoutCommandValidator()
         {
-            RuleFor(x => x.UserId).NotEmpty().WithMessage("Invalid User Id!");
+            RuleFor(x => x.UserId).NotEmpty().WithMessage(Constants.InvalidUser);
         }
     }
 }

@@ -24,17 +24,17 @@ namespace MultipleHttpClient.Application.Dossier.Handlers
                 var result = await _dossierService.InsertCommentAsync(request);
                 if (!result.IsSuccess || result.Value == null)
                 {
-                    _logger.LogError("[InsertComment]: Failed to add comment to dossier {DossierId}", request.DossierId);
+                    _logger.LogError("[InsertComment]: Failed to add comment to dossier {0}", request.DossierId);
                     return Result<CommentOperationResult>.Failure(new Error("InsertCommentFailed", "Unable to add comment"));
                 }
 
-                _logger.LogInformation("[InsertComment]: Successfully added comment {CommentId} to dossier {DossierId}",
+                _logger.LogInformation("[InsertComment]: Successfully added comment {0} to dossier {1}",
                     result.Value.CommentId, request.DossierId);
                 return Result<CommentOperationResult>.Success(result.Value);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "[InsertComment]: Exception adding comment to dossier {DossierId}", request.DossierId);
+                _logger.LogError(ex, "[InsertComment]: Exception adding comment to dossier {0}", request.DossierId);
                 return Result<CommentOperationResult>.Failure(new Error("InsertCommentFailed", ex.Message));
             }
         }
