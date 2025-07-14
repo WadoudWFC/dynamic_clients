@@ -20,7 +20,9 @@ namespace MultipleHttpClient.Application.Dossier.Command
         [JsonIgnore] public int InternalLocalId { get; set; }
         public string AddressLocal { get; set; }
         public string Superficie { get; set; }
+        [NonNegative]
         public int PresenceSanitaire { get; set; }
+        [NonNegative]
         public decimal Prix { get; set; }
         public string Facade { get; set; }
         public string Latitude { get; set; }
@@ -36,10 +38,15 @@ namespace MultipleHttpClient.Application.Dossier.Command
         public string NomAgWfcProche { get; set; }
         public string DistBurWfcProche { get; set; }
         public string DistAgWfcProche { get; set; }
+        [NonNegative]
         public int Potentiel { get; set; }
+        [NonNegative]
         public int Pack { get; set; }
+        [NonNegative]
         public int FormeJuridique { get; set; }
+        [NonNegative]
         public int RegimeImposi { get; set; }
+        [NonNegative]
         public int ModeMandataire { get; set; }
         public string IdentificationFiscale { get; set; }
     }

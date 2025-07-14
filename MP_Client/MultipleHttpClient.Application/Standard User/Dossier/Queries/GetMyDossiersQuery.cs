@@ -8,7 +8,9 @@ namespace MultipleHttpClient.Application.Standard_User.Dossier.Queries
     {
         public Guid UserId { get; init; }
         public string RoleId { get; init; } = string.Empty;
+        [NonNegative]
         public int Take { get; init; } = 50;
+        [NonNegative]
         public int Skip { get; init; } = 0;
     }
 }

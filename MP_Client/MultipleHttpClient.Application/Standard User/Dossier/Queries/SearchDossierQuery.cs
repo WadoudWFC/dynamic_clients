@@ -18,7 +18,9 @@ namespace MultipleHttpClient.Application.Dossier.Queries
         public Guid? CommercialCuttingId { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
+        [NonNegative]
         public int Take { get; set; } = 10;
+        [NonNegative]
         public int Skip { get; set; } = 0;
         public string Field { get; set; } = "code";
         public string Order { get; set; } = "desc";
