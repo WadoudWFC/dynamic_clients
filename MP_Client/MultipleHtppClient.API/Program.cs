@@ -2,9 +2,11 @@ using FluentValidation;
 using Microsoft.OpenApi.Models;
 using MultipleHtppClient.API;
 using MultipleHtppClient.Infrastructure.HTTP.Extensions;
+using MultipleHttpClient.Application;
 using MultipleHttpClient.Application.Commons.Behavior;
 using MultipleHttpClient.Application.Extensions;
 using MultipleHttpClient.Application.Users.Validators;
+using MutipleHttpClient.Domain;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,8 +41,16 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-builder.Services.AddControllers();
-
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<GlobalNumericValidationFilter>();
+});
+builder.Services.AddScoped<GlobalNumericValidationFilter>();
+builder.Services.Configure<SecurityHeadersOptions>(options =>
+{
+    options.ForceHSTS = !builder.Environment.IsDevelopment();
+    options.ContentSecurityPolicy = "default-src 'self'; script-src 'self' 'unsafe-inline'";
+});
 // Add CORS configuration for Angular frontend
 builder.Services.AddCors(options =>
 {
@@ -58,19 +68,11 @@ builder.Services.AddCors(options =>
             .AllowCredentials()
             .SetIsOriginAllowedToAllowWildcardSubdomains();
     });
-
-
-    options.AddPolicy("AllowAll", policy =>
-    {
-        policy
-            .AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader();
-    });
 });
 
 builder.Services.AddApiHttpClients(builder.Configuration);
 builder.Services.AddApplicationService(builder.Configuration);
+// TO DO: Remove this service in production!
 builder.Services.AddSingleton<IUseHttpService, UseHttpService>();
 builder.Services.AddResponseCompressionConfiguration();
 
@@ -86,24 +88,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseMiddleware<GlobalExceptionMiddleware>();
-
+app.UseHsts();
+app.UseHttpsRedirection();
 app.UseCors("AllowAngularApp");
+app.UseMiddleware<SecurityHeadersMiddleware>();
+
 
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseCustomSecurityHeaders();
-app.UseHttpsRedirection();
-
-app.MapControllers();
-app.Use(async (context, next) =>
-{
-    context.Response.OnStarting(() =>
-    {
-        context.Response.Headers.Remove("Server");
-        context.Response.Headers.Remove("X-Powered-By");
-        return Task.CompletedTask;
-    });
-    await next();
-});
+// app.UseCustomSecurityHeaders();
 app.UseApiRouteSegregation();
+app.MapControllers();
+
 app.Run();

@@ -28,6 +28,11 @@ namespace MultipleHttpClient.Application.Dossier.Validators
             RuleFor(x => x.Ice)
                 .Length(15).When(x => !string.IsNullOrEmpty(x.Ice))
                 .WithMessage("ICE must be 15 characters");
+            RuleFor(x => x.PresenceSanitaire).InclusiveBetween(0, 1).WithMessage("PresenceSanitaire must be 0 or 1");
+
+            RuleFor(x => x.Potentiel).InclusiveBetween(0, 100).WithMessage("Potentiel must be between 0 and 100");
+
+            RuleFor(x => x.Pack).GreaterThanOrEqualTo(0).WithMessage("Pack must be non-negative");
         }
     }
 }
