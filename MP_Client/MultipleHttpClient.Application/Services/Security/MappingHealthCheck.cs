@@ -22,7 +22,7 @@ public class MappingHealthCheck : IHealthCheck
         try
         {
             // Test user ID mapping consistency
-            var testUserId = 999999; // Use a test ID that won't conflict
+            var testUserId = 999999;
             var guid1 = _idMappingService.GetGuidForUserId(testUserId);
             var guid2 = _idMappingService.GetGuidForUserId(testUserId);
 

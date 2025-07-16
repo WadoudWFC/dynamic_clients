@@ -33,7 +33,7 @@ public class SecurityHeadersMiddleware
         }
 
         // Optional: Add headers based on response status
-        AddResponseSpecificHeaders(context);
+        // AddResponseSpecificHeaders(context);
     }
 
     private void AddSecurityHeaders(HttpContext context)

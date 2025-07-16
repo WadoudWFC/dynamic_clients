@@ -65,8 +65,7 @@ builder.Services.AddCors(options =>
             )
             .AllowAnyMethod()
             .AllowAnyHeader()
-            .AllowCredentials()
-            .SetIsOriginAllowedToAllowWildcardSubdomains();
+            .AllowCredentials();
     });
 });
 
@@ -100,4 +99,4 @@ app.UseAuthorization();
 app.UseApiRouteSegregation();
 app.MapControllers();
 
-app.Run();
+await app.RunAsync();

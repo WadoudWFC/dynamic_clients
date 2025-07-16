@@ -36,7 +36,7 @@ public class HttpClientService : IHttpClientService
         _configuration = configurtions.Value;
         _tokenManager = tokenManager;
     }
-    public async Task<ApiResponse<TResponse>> SendAsync<TRequest, TResponse>(ApiRequest<TRequest> apiRequest, CancellationToken cancellationToken = default)
+    public async Task<ApiResponse<TResponse>> SendAsync<TRequest, TResponse>(ApiRequest<TRequest> apiRequest, CancellationToken cancellationToken = default) where TRequest : class
     {
         var apiName = apiRequest.ApiName ?? _configuration.DefaultApiName;
         var apiConfig = _configuration.Apis.FirstOrDefault(a => a.Name == apiName) ?? throw new ArgumentException($"No API configuration found for {apiName}");
@@ -72,7 +72,7 @@ public class HttpClientService : IHttpClientService
             }
         }
     }
-    public async Task<ApiResponse<Aglou10001Response<TResponse>>> SendNestedJsonAsync<TRequest, TResponse>(ApiRequest<TRequest> apiRequest)
+    public async Task<ApiResponse<Aglou10001Response<TResponse>>> SendNestedJsonAsync<TRequest, TResponse>(ApiRequest<TRequest> apiRequest) where TRequest : class
     {
         var rawResponse = await SendAsync<TRequest, Aglou10001Response<string>>(apiRequest);
 
@@ -117,7 +117,7 @@ public class HttpClientService : IHttpClientService
     {
         return new Uri(new Uri(BaseUrl), endpoint);
     }
-    private static HttpRequestMessage CreateFormHttpMessage<TRequest>(ApiRequest<TRequest> apiRequest, ApiConfig apiConfig)
+    private static HttpRequestMessage CreateFormHttpMessage<TRequest>(ApiRequest<TRequest> apiRequest, ApiConfig apiConfig) where TRequest : class
     {
         var requestMessage = new HttpRequestMessage(apiRequest.Method, BuildEndpointUrl(apiConfig.BaseUrl, apiRequest.Endpoint));
         var formContent = new MultipartFormDataContent();
@@ -150,14 +150,6 @@ public class HttpClientService : IHttpClientService
             }
         }
         return requestMessage;
-    }
-
-    private async Task ApplyAuthentication(HttpClient client, ApiConfig apiConfig)
-    {
-        if (apiConfig.AuthConfig is null || apiConfig.AuthConfig.AuthType == AuthenticationType.None) return;
-        var handler = _authenticationHandlers.FirstOrDefault(ah => ah.CanHandle(apiConfig.AuthConfig.AuthType));
-        if (handler is null) throw new InvalidOperationException($"No Authentication handler found for {apiConfig.AuthConfig.AuthType}");
-        await handler.AuthenticateAsync(client, apiConfig.AuthConfig);
     }
     private async Task ApplyApiKeyAuth(HttpClient client, ApiConfig apiConfig)
     {

@@ -96,19 +96,19 @@ namespace MultipleHttpClient.Application.Services.Security
 
         private static string GetApiType(int profileId) => profileId switch
         {
-            1 => "admin",           // Full admin access
-            2 => "regional_admin",  // Regional admin access  
-            3 => "standard",        // Standard user access only
-            _ => "restricted"       // No access
+            1 => "admin",
+            2 => "regional_admin",
+            3 => "standard",
+            _ => "restricted"
         };
 
 
         private static string GetAccessLevel(int profileId) => profileId switch
         {
-            1 => "full",            // Can access all admin endpoints
-            2 => "regional",        // Can access regional admin endpoints
-            3 => "limited",         // Can only access own data
-            _ => "none"             // No access
+            1 => "full",
+            2 => "regional",
+            3 => "limited",
+            _ => "none"
         };
 
 

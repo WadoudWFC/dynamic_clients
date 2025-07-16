@@ -42,12 +42,10 @@ public class ApiRouteSegregationMiddleware
             return;
         }
 
-        // Check if this route has access restrictions
         var restrictedRoute = RoutePermissions.FirstOrDefault(r => path.StartsWith(r.Key.ToLowerInvariant()));
 
         if (restrictedRoute.Key != null)
         {
-            // Get user's profile from JWT token
             var profileIdClaim = context.User?.FindFirst("internal_profile_id")?.Value;
 
             if (!int.TryParse(profileIdClaim, out int userProfileId))
@@ -56,7 +54,6 @@ public class ApiRouteSegregationMiddleware
                 return;
             }
 
-            // Check if user's profile is allowed for this route
             if (!restrictedRoute.Value.Contains(userProfileId))
             {
                 var allowedProfiles = string.Join(", ", restrictedRoute.Value);
@@ -70,7 +67,6 @@ public class ApiRouteSegregationMiddleware
             _logger.LogInformation("Access granted to {0} for user with profile {1}", path, userProfileId);
         }
 
-        // User is authorized for this route, continue to next middleware
         await _next(context);
     }
 

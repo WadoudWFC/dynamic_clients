@@ -1,0 +1,115 @@
+﻿C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Commons\Behavior\ApiRouteSegregationMiddleware.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Commons\Behavior\GlobalExceptionMiddleware.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Commons\Behavior\GlobalNumericValidationFilter.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Commons\Behavior\NonNegativeAttribute.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Commons\Behavior\SecurityHeadersMiddleware.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Commons\Behavior\ValidationBehavior.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Extensions\ApplicationExtensions.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Interfaces\Admin\IHttpAdminService.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Interfaces\IHttpManagementAglou.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Interfaces\Security\IAccountLockoutService.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Interfaces\Security\IJwtService.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Interfaces\Security\RoleSecurity.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Interfaces\Standard User\Dossier\IDossierAglouService.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Interfaces\Standard User\Dossier\IHttpDossierAglouService.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Interfaces\Standard User\Reference\IHttpReferenceAglouDataService.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Interfaces\Standard User\Reference\IReferenceAglouDataService.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Interfaces\Standard User\User\IHttpUserAglou.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Interfaces\Standard User\User\IUserAglouService.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Services\Admin\HttpAdminService.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Services\HttpManagementAglouService.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Services\Security\AccountLockoutService.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Services\Security\DeterministicIdMappingService.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Services\Security\DeterministicReferenceDataMappingService.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Services\Security\HybridMappingService.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Services\Security\JwtService.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Services\Security\JwtSettings.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Services\Security\MappingHealthCheck.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Services\Security\OwnershipAuthorizationAttribute.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Services\Security\RequireAdminAttribute.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Services\Security\RequireAdminOrRegionalAttribute.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Services\Security\RequireProfileAttribute.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Services\Standard User\Dossier\DossierAglouService.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Services\Standard User\Dossier\HttpDossierAglouService.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Services\Standard User\Reference\HttpReferenceAglouDataService.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Services\Standard User\Reference\ReferenceAglouDataService.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Services\Standard User\User\HttpUserAglouService.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Services\Standard User\User\UserAglouService.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Command\AddCommentRequest.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Command\InsertCommentCommand.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Command\InsertDossierCommand.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Command\UpdateDossierCommand.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Handlers\GetAllCommentsQueryHandler.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Handlers\GetAllDossierQueryHandler.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Handlers\GetCountsQueryHandler.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Handlers\GetDossierStatusQueryHandler.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Handlers\GetMyDossierIdsQueryHandler.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Handlers\GetMyDossiersDetailedQueryHandler.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Handlers\GetMyDossiersQueryHandler.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Handlers\InsertCommentCommandHandler.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Handlers\InsertDossierCommandHandler.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Handlers\LoadDossierQueryHandler.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Handlers\SearchDossierQueryHandler.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Handlers\SearchHistoryQueryHandler.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Handlers\UpdateDossierCommandHandler.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Queries\GetAllCommentsQuery.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Queries\GetAllDossierQuery.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Queries\GetCountsQuery.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Queries\GetDossierStatusQuery.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Queries\GetMyAllDossier.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Queries\GetMyDossierIdsQuery.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Queries\GetMyDossiersDetailedQuery.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Queries\GetMyDossiersQuery.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Queries\HistorySearchRequest.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Queries\LoadDossierQuery.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Queries\SearchDossierQuery.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Queries\SearchHistoryQuery.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Validators\GetAllCommentQueryValidator.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Validators\GetCountsQueryValidator.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Validators\GetMyDossierIdsQueryValidator.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Validators\GetMyDossiersDetailedQueryValidator.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Validators\GetMyDossiersQueryValidator.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Validators\InsertCommandCommandValidator.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Validators\InsertDossierCommandValidator.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Validators\SearchDossierQueryValidator.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Validators\SearchHistoryQueryValidator.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Dossier\Validators\UpdateDossierCommandValidator.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Reference\Handlers\GetActivitiesQueryHandler.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Reference\Handlers\GetAllCitiesQueryHandler.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Reference\Handlers\GetAllPacksQueryHandler.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Reference\Handlers\GetAllRegionsQueryHandler.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Reference\Handlers\GetArrondissementQueryHandler.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Reference\Handlers\GetCommercialCuttingQueryHandler.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Reference\Handlers\GetDemandsTypesQueryHandler.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Reference\Handlers\GetPartnerTypesQueryHandler.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Reference\Handlers\GetTypeBienQueryHandler.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Reference\Queries\GetAllActivitiesQuery.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Reference\Queries\GetAllCitiesQuery.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Reference\Queries\GetAllPackQuery.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Reference\Queries\GetAllRegionQuery.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Reference\Queries\GetArrondissementQuery.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Reference\Queries\GetCommercialCuttingQuery.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Reference\Queries\GetDemandTypesQuery.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Reference\Queries\GetPartnerTypesQuery.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Reference\Queries\GetTypeBienQuery.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Users\Commands\Can Try Login\CanTryLoginCommand.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Users\Commands\ForgetPassword\ForgetPasswordCommand.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Users\Commands\LoadUser\LoadUserCommand.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Users\Commands\Login\LoginCommand.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Users\Commands\Logout\LogoutCommand.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Users\Commands\Register Users\RegisterUserCommand.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Users\Commands\Update Password\UpdatePasswordCommand.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Users\Handlers\CanTryLoginCommandHandler.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Users\Handlers\ForgetPasswordCommandHandler.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Users\Handlers\GetUserCommandHandler.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Users\Handlers\LoginCommandHandler.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Users\Handlers\LogoutCommandHandler.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Users\Handlers\RegisterCommandHandler.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Users\Handlers\UpdatePasswordCommandHandler.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Users\Validators\CanTryLoginCommandValidator.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Users\Validators\ForgetPasswordCommandValidator.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Users\Validators\LoadUserCommandValidator.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Users\Validators\LoginCommandValidator.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Users\Validators\LogoutCommandValidator.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Users\Validators\RegisterUsersCommandValidator.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHttpClient.Application\Standard User\Users\Validators\UpdatePasswordCommandValidator.cs

@@ -163,32 +163,30 @@ public static class ApplicationExtensions
         return services;
     }
 
-    public static IApplicationBuilder UseCustomSecurityHeaders(this IApplicationBuilder builder)
-    {
-        return builder.Use(async (context, next) =>
-        {
-            context.Response.Headers["Content-Security-Policy"] =
-                "default-src 'self'; " +
-                "script-src 'self' 'unsafe-inline'; " +
-                "style-src 'self' 'unsafe-inline'; " +
-                "img-src 'self' data: https:; " +
-                "connect-src 'self'; " +
-                "frame-ancestors 'none';";
+    // public static IApplicationBuilder UseCustomSecurityHeaders(this IApplicationBuilder builder)
+    // {
+    //     return builder.Use(async (context, next) =>
+    //     {
+    //         context.Response.Headers["Content-Security-Policy"] =
+    //             "default-src 'self'; " +
+    //             "img-src 'self' data: https:; " +
+    //             "connect-src 'self'; " +
+    //             "frame-ancestors 'none';";
 
-            context.Response.Headers["X-Content-Type-Options"] = "nosniff";
-            context.Response.Headers["X-Frame-Options"] = "DENY";
-            context.Response.Headers["X-XSS-Protection"] = "1; mode=block";
-            context.Response.Headers["Referrer-Policy"] = "strict-origin-when-cross-origin";
-            context.Response.Headers["Permissions-Policy"] = "camera=(), microphone=(), location=()";
+    //         context.Response.Headers["X-Content-Type-Options"] = "nosniff";
+    //         context.Response.Headers["X-Frame-Options"] = "DENY";
+    //         context.Response.Headers["X-XSS-Protection"] = "1; mode=block";
+    //         context.Response.Headers["Referrer-Policy"] = "strict-origin-when-cross-origin";
+    //         context.Response.Headers["Permissions-Policy"] = "camera=(), microphone=(), location=()";
 
-            if (context.Request.IsHttps)
-            {
-                context.Response.Headers["Strict-Transport-Security"] = "max-age=63072000; includeSubDomains; preload";
-            }
+    //         if (context.Request.IsHttps)
+    //         {
+    //             context.Response.Headers["Strict-Transport-Security"] = "max-age=63072000; includeSubDomains; preload";
+    //         }
 
-            await next();
-        });
-    }
+    //         await next();
+    //     });
+    // }
     public static IApplicationBuilder UseApiRouteSegregation(this IApplicationBuilder builder)
     {
         return builder.UseMiddleware<ApiRouteSegregationMiddleware>();

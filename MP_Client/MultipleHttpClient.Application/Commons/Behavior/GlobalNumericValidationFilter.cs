@@ -31,7 +31,6 @@ public class GlobalNumericValidationFilter : IActionFilter
         {
             _logger.LogWarning("Numeric validation failed: {Message}", ex.Message);
 
-            // Short-circuit the pipeline - don't execute the action
             context.Result = new BadRequestObjectResult(new
             {
                 error = "VALIDATION_FAILED",
@@ -86,13 +85,11 @@ public class GlobalNumericValidationFilter : IActionFilter
                 throw new ValidationException($"Property '{propertyName}' {nonNegativeAttr.FormatErrorMessage(property.Name)}");
             }
 
-            // Check specific property names that should be non-negative
             if (IsKnownNumericProperty(property.Name) && IsNumericType(property.PropertyType))
             {
                 ValidateNumericValue(value, propertyName);
             }
 
-            // Recursively validate nested objects
             if (!IsNumericType(property.PropertyType) && !property.PropertyType.IsEnum &&
                 property.PropertyType != typeof(string) && property.PropertyType != typeof(DateTime))
             {
@@ -153,7 +150,6 @@ public class GlobalNumericValidationFilter : IActionFilter
 
     private static bool IsKnownNumericProperty(string propertyName)
     {
-        // List of property names that should never be negative
         var knownNumericProperties = new[]
         {
             "Take", "Skip", "Price", "Prix", "Quantity", "Amount", "Count",

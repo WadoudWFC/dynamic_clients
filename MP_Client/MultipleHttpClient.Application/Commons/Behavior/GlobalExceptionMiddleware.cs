@@ -50,7 +50,7 @@ namespace MultipleHttpClient.Application.Commons.Behavior
 
         private async Task HandleExceptionAsync(HttpContext context, Exception exception, string correlationId)
         {
-            context.Response.ContentType = "application/json";
+            // context.Response.ContentType = "application/json";
 
             var response = new ErrorResponse
             {
@@ -100,7 +100,6 @@ namespace MultipleHttpClient.Application.Commons.Behavior
                     break;
             }
 
-            // SECURITY: Only add technical details in development
             if (_environment.IsDevelopment())
             {
                 response.Details = exception.Message;
