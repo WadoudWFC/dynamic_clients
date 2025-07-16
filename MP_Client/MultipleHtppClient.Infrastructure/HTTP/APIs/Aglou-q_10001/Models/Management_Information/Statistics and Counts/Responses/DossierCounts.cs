@@ -12,5 +12,5 @@ public class DossierCounts
     [JsonPropertyName("TotalDossierEncours")]
     public int TotalPendingDossiers { get; set; }
     [JsonPropertyName("DebugInfo")]
-    public DebugInfo DebugInfo { get; set; }
+    public DebugInfo? DebugInfo { get; set; }
 }

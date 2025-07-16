@@ -17,5 +17,5 @@ public class DebugInfo
     [JsonPropertyName("CurrentStatusDistribution")]
     public List<object> CurrentStatusDistribution { get; set; } = new List<object>();
     [JsonPropertyName("FinalCounts")]
-    public FinalCounts FinalCounts { get; set; }
+    public FinalCounts? FinalCounts { get; set; }
 }

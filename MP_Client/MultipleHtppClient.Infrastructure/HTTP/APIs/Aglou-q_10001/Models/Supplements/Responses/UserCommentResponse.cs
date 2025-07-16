@@ -9,7 +9,7 @@ public class UserCommentResponse
     [JsonPropertyName("image")]
     public string? Image { get; set; }
     [JsonPropertyName("align")]
-    public string Align { get; set; }
+    public string? Align { get; set; }
     [JsonPropertyName("fullnam")]
-    public string FullName { get; set; }
+    public string? FullName { get; set; }
 }

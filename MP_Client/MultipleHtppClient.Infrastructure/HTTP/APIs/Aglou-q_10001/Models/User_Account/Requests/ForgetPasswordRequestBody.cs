@@ -5,6 +5,6 @@ namespace MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.User_
     public class ForgetPasswordRequestBody
     {
         [JsonPropertyName("mail")]
-        public string Mail { get; set; }
+        public string Mail { get; set; } = null!;
     }
 }

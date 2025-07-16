@@ -5,9 +5,9 @@ namespace MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Manag
 public class SearchDossierRequestBody
 { 
     [JsonPropertyName("user_id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
     [JsonPropertyName("id_role")]
-    public string RoleId { get; set; }
+    public string? RoleId { get; set; }
     [JsonPropertyName("appliquefilter")]
     public bool ApplyFilter { get; set; }
     [JsonPropertyName("Code")]

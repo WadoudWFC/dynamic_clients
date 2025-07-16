@@ -7,11 +7,11 @@ namespace MultipleHtppClient.Infrastructure.HTTP.APIs.Models.User_Account.Respon
 public class AglouUser
 {
     [JsonPropertyName("user_id")]
-    public string UserId { get; set; }
+    public string UserId { get; set; } = null!;
     [JsonPropertyName("nom")]
-    public string LastName { get; set; }
+    public string LastName { get; set; } = null!;
     [JsonPropertyName("prenom")]
-    public string FirstName { get; set; }
+    public string FirstName { get; set; } = null!;
     [JsonPropertyName("date_tent")]
     [JsonConverter(typeof(StringToDateTimeConverter))]
     public DateTime ConnectionTryDate { get; set; }

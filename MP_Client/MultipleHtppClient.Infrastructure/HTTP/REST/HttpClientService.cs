@@ -45,14 +45,13 @@ public class HttpClientService : IHttpClientService
         {
             try
             {
-                // await ApplyAuthentication(client, apiConfig);
                 if (apiRequest.RequiresApiKey)
                 {
                     await ApplyApiKeyAuth(client, apiConfig);
                 }
                 if (apiRequest.RequiresBearerToken)
                 {
-                    await ApplyBearerTokenAuth(client, apiConfig);
+                    await ApplyBearerTokenAuth(client);
                 }
                 ApplyHeaders(client, apiConfig, apiRequest);
                 _logger.LogDebug("Sending {0} request to {1}: {2}", apiRequest.Method, apiRequest.ApiName, apiRequest.Endpoint);
@@ -85,10 +84,7 @@ public class HttpClientService : IHttpClientService
 
         try
         {
-            // Deserialize the inner JSON
             var innerData = JsonSerializer.Deserialize<TResponse>(rawResponse.Data.Data, _jsonOptions);
-
-            // Reconstruct the response
             var finalResponse = new Aglou10001Response<TResponse>
             {
                 ResponseCode = rawResponse.Data.ResponseCode,
@@ -104,7 +100,7 @@ public class HttpClientService : IHttpClientService
         }
     }
 
-    private static HttpRequestMessage CreateHttpMessage<TRequest>(ApiRequest<TRequest> apiRequest, ApiConfig apiConfig)
+    private static HttpRequestMessage CreateHttpMessage<TRequest>(ApiRequest<TRequest> apiRequest, ApiConfig apiConfig) where TRequest : class
     {
         var requestMessage = new HttpRequestMessage(apiRequest.Method, BuildEndpointUrl(apiConfig.BaseUrl, apiRequest.Endpoint));
         if (apiRequest.Method != HttpMethod.Get && apiRequest.Data != null)
@@ -162,7 +158,7 @@ public class HttpClientService : IHttpClientService
             }
         }
     }
-    private Task ApplyBearerTokenAuth(HttpClient client, ApiConfig apiConfig)
+    private Task ApplyBearerTokenAuth(HttpClient client)
     {
         var token = _tokenManager.GetToken();
         if (!string.IsNullOrEmpty(token))
@@ -189,6 +185,7 @@ public class HttpClientService : IHttpClientService
         try
         {
             var rawJson = JsonSerializer.Deserialize<string>(content, _jsonOptions);
+            if (rawJson == null) return ApiResponse<TResponse>.Error("Response content is null", httpResponseMessage.StatusCode);
             var data = JsonSerializer.Deserialize<TResponse>(rawJson, _jsonOptions);
 
             return ApiResponse<TResponse>.Success(data, httpResponseMessage.StatusCode);
@@ -198,7 +195,7 @@ public class HttpClientService : IHttpClientService
             return ApiResponse<TResponse>.Error($"Failed to deserialize response: {ex.Message}\nResponse: {content}", httpResponseMessage.StatusCode);
         }
     }
-    private async Task<ApiResponse<TResponse>> ProcessResponseAsync<TResponse>(HttpResponseMessage formResponse)
+    private static async Task<ApiResponse<TResponse>> ProcessResponseAsync<TResponse>(HttpResponseMessage formResponse)
     {
         var content = await formResponse.Content.ReadAsStringAsync();
         if (!formResponse.IsSuccessStatusCode) return ApiResponse<TResponse>.Error(content, formResponse.StatusCode);

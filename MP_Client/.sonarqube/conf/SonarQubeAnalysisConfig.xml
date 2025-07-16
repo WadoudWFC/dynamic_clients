@@ -10,7 +10,7 @@
   <HasBeginStepCommandLineTruststorePassword>false</HasBeginStepCommandLineTruststorePassword>
   <SonarQubeHostUrl>http://localhost:9000</SonarQubeHostUrl>
   <SonarQubeVersion>25.4.0.105899</SonarQubeVersion>
-  <SonarProjectKey>Strangler-API</SonarProjectKey>
+  <SonarProjectKey>Strangler_Fig_API</SonarProjectKey>
   <AdditionalConfig>
     <ConfigSetting Id="BuildUri" />
     <ConfigSetting Id="TfsUri" />
@@ -140,7 +140,7 @@
     <Property Name="sonar.java.jvmframeworkconfig.activate">true</Property>
     <Property Name="sonar.updatecenter.url">https://downloads.sonarsource.com/sonarqube/update/update-center.properties</Property>
     <Property Name="sonar.core.id">147B411E-AZZYKO31GoqI-k7Uq0zK</Property>
-    <Property Name="sonar.core.startTime">7/15/2025 3:05:59 PM</Property>
+    <Property Name="sonar.core.startTime">7/16/2025 9:54:09 AM</Property>
   </ServerSettings>
   <LocalSettings>
     <Property Name="sonar.host.url">http://localhost:9000</Property>

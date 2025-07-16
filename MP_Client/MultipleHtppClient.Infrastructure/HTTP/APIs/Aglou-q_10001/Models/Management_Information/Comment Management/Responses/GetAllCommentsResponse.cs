@@ -18,5 +18,5 @@ public class GetAllCommentsResponse
     [JsonPropertyName("user_created")]
     public int UserCreatedId { get; set; }
     [JsonPropertyName("user")]
-    public UserCommentResponse User { get; set; }
+    public UserCommentResponse? User { get; set; }
 }

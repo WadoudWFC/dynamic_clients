@@ -6,15 +6,15 @@ namespace MultipleHtppClient.Infrastructure.HTTP.APIs.Models.User_Account.Respon
 public class AglouLoginResponse
 {
     [JsonPropertyName("XKestrel")]
-    public string BearerKey { get; set; }
+    public string BearerKey { get; set; } = null!;
     [JsonPropertyName("user_id")]
     public int UserId { get; set; }
     [JsonPropertyName("id_typepartenaire")]
     public string? PartnershipType { get; set; }
     [JsonPropertyName("nom")]
-    public string LastName { get; set; }
+    public string? LastName { get; set; }
     [JsonPropertyName("prenom")]
-    public string FirstName { get; set; }
+    public string? FirstName { get; set; }
     [JsonPropertyName("isupdatepassword")]
     [JsonConverter(typeof(StringToBoolConverter))]
     public bool IsPasswordUpdated { get; set; }
@@ -22,7 +22,7 @@ public class AglouLoginResponse
     [JsonConverter(typeof(StringToIntConverter))]
     public int UserRole { get; set; }
     [JsonPropertyName("role_label")]
-    public string RoleLabel { get; set; }
+    public string? RoleLabel { get; set; }
     [JsonPropertyName("type")]
     public string? Type { get; set; }
     [JsonPropertyName("id_decoupagecommercial")]

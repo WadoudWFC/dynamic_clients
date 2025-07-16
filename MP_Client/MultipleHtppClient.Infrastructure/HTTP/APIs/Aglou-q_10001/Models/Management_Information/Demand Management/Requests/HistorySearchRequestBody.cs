@@ -9,7 +9,7 @@ public class HistorySearchRequestBody
     [JsonPropertyName("id_dossier")]
     public int DossierId { get; set; }
     [JsonPropertyName("order")]
-    public string Order { get; set; }
+    public string? Order { get; set; }
     [JsonPropertyName("skip")]
     public int SkipNumber { get; set; }
     [JsonPropertyName("take")]

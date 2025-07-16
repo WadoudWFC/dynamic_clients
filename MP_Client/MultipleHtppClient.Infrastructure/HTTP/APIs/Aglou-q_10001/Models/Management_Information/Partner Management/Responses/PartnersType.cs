@@ -9,6 +9,6 @@ namespace MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Manag
         [JsonPropertyName("label")]
         public string Label { get; set; } = string.Empty;
         [JsonPropertyName("description")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
     }
 }
