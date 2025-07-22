@@ -10,7 +10,7 @@
   <HasBeginStepCommandLineTruststorePassword>false</HasBeginStepCommandLineTruststorePassword>
   <SonarQubeHostUrl>http://localhost:9000</SonarQubeHostUrl>
   <SonarQubeVersion>25.4.0.105899</SonarQubeVersion>
-  <SonarProjectKey>Strangler_Fig_API</SonarProjectKey>
+  <SonarProjectKey>Strangler_API</SonarProjectKey>
   <AdditionalConfig>
     <ConfigSetting Id="BuildUri" />
     <ConfigSetting Id="TfsUri" />

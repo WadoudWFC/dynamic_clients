@@ -10,8 +10,6 @@ namespace MultipleHttpClient.Application.Users.Handlers
     {
         private readonly IUserAglouService _userAglouService;
         private readonly ILogger<ForgetPasswordCommandHandler> _logger;
-
-        // Rate limiting tracking for password reset attempts
         private static readonly Dictionary<string, List<DateTime>> _passwordResetAttempts = new();
         private static readonly object _lockObject = new object();
         private const int MAX_RESET_ATTEMPTS = 3;
@@ -25,7 +23,6 @@ namespace MultipleHttpClient.Application.Users.Handlers
 
         public async Task<Result<SanitizedBasicResponse>> Handle(ForgetPasswordCommand request, CancellationToken cancellationToken)
         {
-            // Always return the same response regardless of email existence
             const string STANDARD_RESPONSE = "If the email address exists in our system, you will receive a password reset link shortly.";
 
             try
@@ -33,7 +30,6 @@ namespace MultipleHttpClient.Application.Users.Handlers
                 if (IsRateLimited(request.Email))
                 {
                     _logger.LogWarning("Password reset rate limit exceeded for email: {0}", request.Email);
-                    // Still return standard message to avoid enumeration
                     return Result<SanitizedBasicResponse>.Success(new SanitizedBasicResponse(true, STANDARD_RESPONSE));
                 }
                 TrackPasswordResetAttempt(request.Email);
@@ -67,7 +63,6 @@ namespace MultipleHttpClient.Application.Users.Handlers
                 var attempts = _passwordResetAttempts[email];
                 var cutoff = DateTime.UtcNow.AddMinutes(-RESET_WINDOW_MINUTES);
 
-                // Remove old attempts
                 attempts.RemoveAll(a => a < cutoff);
 
                 return attempts.Count >= MAX_RESET_ATTEMPTS;

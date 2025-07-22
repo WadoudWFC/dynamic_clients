@@ -25,7 +25,7 @@ public class AglouUser
     [JsonConverter(typeof(StringToBoolConverter))]
     public bool IsPasswordUpdated { get; set; }
     [JsonPropertyName("password")]
-    public string Password { get; set; }
+    public string Password { get; set; } = null!;
     [JsonPropertyName("date_updatepassword")]
     [JsonConverter(typeof(StringToDateTimeConverter))]
     public DateTime LastPasswordMoficationDate { get; set; }

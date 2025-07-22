@@ -40,7 +40,6 @@ namespace MultipleHttpClient.Application.Commons.Behavior
             }
             catch (Exception ex)
             {
-                // SECURITY: Log full details server-side but sanitize client response
                 var correlationId = Guid.NewGuid().ToString("N")[..8];
                 _logger.LogError(ex, "Unhandled exception {0}: {1}", correlationId, ex.Message);
 
@@ -58,7 +57,6 @@ namespace MultipleHttpClient.Application.Commons.Behavior
                 Timestamp = DateTime.UtcNow
             };
 
-            // SECURITY: Categorize exceptions and provide safe responses
             switch (exception)
             {
                 case UnauthorizedAccessException:
@@ -112,7 +110,6 @@ namespace MultipleHttpClient.Application.Commons.Behavior
                 response.StackTrace = null;
                 response.InnerException = null;
 
-                // Only provide correlation ID for support
                 response.SupportMessage = $"Please provide this ID when contacting support: {correlationId}";
             }
 

@@ -78,6 +78,8 @@ public class ApiRouteSegregationMiddleware
                 "/api/user/cantrylogin",
                 "/api/user/forgetpassword",
                 "/api/user/register",
+                "/api/User/Logout",
+                "/api/User/GetCurrentUser",
                 "/swagger",
                 "/health"
             };

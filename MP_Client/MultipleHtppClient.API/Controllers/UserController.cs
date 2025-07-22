@@ -34,6 +34,7 @@ public class UserController : ControllerBase
     [RequireProfile(1, 2, 3)]
     public async Task<ActionResult<Result<SanitizedBasicResponse>>> UpdatePassword([FromBody] UpdatePasswordCommand command) => Ok(await _mediator.Send(command));
     [HttpPost("Logout")]
+    [Authorize]
     public async Task<ActionResult<Result<SanitizedBasicResponse>>> Logout([FromBody] LogoutCommand command) => Ok(await _mediator.Send(command));
     [HttpPost("ForgetPassword")]
     [EnableRateLimiting("passwordReset")]
