@@ -1,0 +1,16 @@
+﻿C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.API\Controllers\AdminController.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.API\Controllers\DossierController.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.API\Controllers\PresentationController.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.API\Controllers\ReferenceController.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.API\Controllers\UserController.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.API\Program.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.API\Services\IUseHttpService.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.API\Services\UseHttpService.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.API\obj\Debug\net8.0\MultipleHtppClient.API.GlobalUsings.g.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.API\obj\Debug\net8.0\.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.API\obj\Debug\net8.0\MultipleHtppClient.API.AssemblyInfo.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.API\obj\Debug\net8.0\MultipleHtppClient.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.API\appsettings.Development.json
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.API\appsettings.json
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.API\MultipleHtppClient.API.http
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.API\Properties\launchSettings.json
