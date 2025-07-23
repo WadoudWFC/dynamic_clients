@@ -72,7 +72,6 @@ builder.Services.AddCors(options =>
 builder.Services.AddApiHttpClients(builder.Configuration);
 builder.Services.AddApplicationService(builder.Configuration);
 // TO DO: Remove this service in production!
-builder.Services.AddSingleton<IUseHttpService, UseHttpService>();
 builder.Services.AddResponseCompressionConfiguration();
 
 // Validators
