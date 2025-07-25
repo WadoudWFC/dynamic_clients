@@ -68,7 +68,7 @@ builder.Services.AddCors(options =>
             .AllowCredentials();
     });
 });
-
+builder.Services.AddXssProtection();
 builder.Services.AddApiHttpClients(builder.Configuration);
 builder.Services.AddApplicationService(builder.Configuration);
 // TO DO: Remove this service in production!
@@ -90,7 +90,7 @@ app.UseHsts();
 app.UseHttpsRedirection();
 app.UseCors("AllowAngularApp");
 app.UseMiddleware<SecurityHeadersMiddleware>();
-
+app.UseXssProtection();
 
 app.UseAuthentication();
 app.UseAuthorization();
