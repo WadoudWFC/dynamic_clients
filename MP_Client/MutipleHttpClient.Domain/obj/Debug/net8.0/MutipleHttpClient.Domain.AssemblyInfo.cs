@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MutipleHttpClient.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+204095694554bb104dce7bf459e54fed4d3f6f73")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+17c309167c8b253005514e8ef9cfc41b98cc4baa")]
 [assembly: System.Reflection.AssemblyProductAttribute("MutipleHttpClient.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MutipleHttpClient.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

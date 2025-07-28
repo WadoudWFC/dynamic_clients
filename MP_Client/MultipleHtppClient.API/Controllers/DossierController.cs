@@ -27,7 +27,7 @@ namespace MultipleHtppClient.API.Controllers
         /// Get specific dossier - requires ownership or appropriate role
         /// </summary>
         [HttpGet("{dossierId}")]
-        [OwnershipAuthorization("dossierId", "dossier")]
+        [RequireProfile(1, 2)]
         public async Task<IActionResult> GetDossier(Guid dossierId)
         {
             var query = new LoadDossierQuery(dossierId);
@@ -91,7 +91,7 @@ namespace MultipleHtppClient.API.Controllers
         /// Get all dossiers - restricted to admins and regional admins
         /// </summary>
         [HttpGet]
-        [RequireAdminOrRegional]
+        [RequireProfile(1)]
         public async Task<IActionResult> GetAllDossiers([FromQuery] string? roleId)
         {
             var query = new GetAllDossierQuery

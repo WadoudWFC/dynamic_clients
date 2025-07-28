@@ -42,17 +42,17 @@ namespace MultipleHttpClient.Application.Services.Security
                     // External identifiers (visible to client)
                     new Claim("user_id", userGuid.ToString()),
                     new Claim("profile_id", profileGuid.ToString()),
-                    new Claim("email", email),
+                    new Claim("email", email), // To be removed!
                     new Claim("first_name", firstName),
                     new Claim("last_name", lastName),
                     
                     // Internal identifiers (hidden from client, used for authorization)
-                    new Claim("internal_user_id", internalUserId.ToString()),
-                    new Claim("internal_profile_id", profileId.ToString()),
+                    new Claim("internal_user_id", internalUserId.ToString()), // To be removed!
+                    new Claim("internal_profile_id", profileId.ToString()), // To be removed!
                     
                     // NEW: API type enforcement claims
-                    new Claim("api_type", GetApiType(profileId)),
-                    new Claim("access_level", GetAccessLevel(profileId)),
+                    new Claim("api_type", GetApiType(profileId)), // To be removed!
+                    new Claim("access_level", GetAccessLevel(profileId)), // To be removed!
                     
                     // Role-based claims for easy authorization
                     new Claim("role", GetRoleName(profileId)),

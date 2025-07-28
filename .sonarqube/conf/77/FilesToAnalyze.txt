@@ -1,0 +1,59 @@
+﻿C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Aglou10001Response.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Management_Information\Comment Management\Requests\GetAllCommentRequestBody.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Management_Information\Comment Management\Requests\InsertCommentRequestBody.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Management_Information\Comment Management\Responses\GetAllCommentsResponse.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Management_Information\Commercial Activities\Responses\ActivityNatureResponse.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Management_Information\Commercial Activities\Responses\CommercialCutting.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Management_Information\Demand Management\Requests\HistorySearchRequestBody.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Management_Information\Demand Management\Responses\DemandType.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Management_Information\Demand Management\Responses\HistroySearchResponse.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Management_Information\Dossier Management\Requests\InsertDossierFormBodyRequest.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Management_Information\Dossier Management\Requests\ProfileRoleRequestBody.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Management_Information\Dossier Management\Requests\SearchDossierRequestBody.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Management_Information\Dossier Management\Requests\UpdateDossierRequestBody.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Management_Information\Dossier Management\Responses\DossierAll.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Management_Information\Dossier Management\Responses\DossierSearchResponse.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Management_Information\Dossier Management\Responses\DossierStatus.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Management_Information\Gepgraphical Information\Responses\ArrondissementResponse.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Management_Information\Gepgraphical Information\Responses\RegionResponse.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Management_Information\Gepgraphical Information\Responses\VilleResponse.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Management_Information\Partner Management\Responses\Partner.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Management_Information\Partner Management\Responses\PartnersType.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Management_Information\Property Information\Responses\TypeBienResponse.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Management_Information\Statistics and Counts\Responses\DossierCounts.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Product.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Supplements\Requests\DossierCountRequest.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Supplements\Responses\Commentaire.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Supplements\Responses\DebugInfo.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Supplements\Responses\FinalCounts.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Supplements\Responses\HistoryItem.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Supplements\Responses\LoadDossierResponse.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Supplements\Responses\LocalDossier.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Supplements\Responses\LocalDossierData.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Supplements\Responses\PackResponse.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\Supplements\Responses\UserCommentResponse.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\User_Account\Requests\Aglou10001Requests.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\User_Account\Requests\ForgetPasswordRequestBody.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\User_Account\Requests\GetAllUsersRequestBody.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\User_Account\Requests\LogoutRequestBody.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\User_Account\Requests\RegisterUserRequestBody.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\User_Account\Requests\UpdatePasswordRequestBody.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\User_Account\Responses\AglouLoginResponse.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\User_Account\Responses\AglouUser.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\User_Account\Responses\GetAllUsersResponse.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\APIs\Aglou-q_10001\Models\User_Account\Responses\LoadUserResponse.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\Auth\ApiAuthConfig.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\Auth\ApiKeyAuthHandler.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\Auth\BearerTokenAuthHandler.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\Auth\TokenManager.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\Configurations\ApiConfig.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\Configurations\Configuration.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\Enums\AuthenticationType.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\Enums\Order.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\Extensions\HttpClientExtensions.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\Interfaces\IAuthenticationHandler.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\Interfaces\IHttpClientService.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\Interfaces\ITokenManager.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\REST\ApiRequest.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\REST\ApiResponse.cs
+C:\Users\A.Dihbaouri\Desktop\FV\dynamic_clients\MP_Client\MultipleHtppClient.Infrastructure\HTTP\REST\HttpClientService.cs

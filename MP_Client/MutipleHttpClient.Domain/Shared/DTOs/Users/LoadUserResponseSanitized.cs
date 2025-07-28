@@ -14,7 +14,7 @@ namespace MutipleHttpClient.Domain.Shared.DTOs.Users
             public object EntityId { get; init; }
             public int? DecoupageCommercialId { get; init; }
             public int? ParentUserId { get; init; }
-            public bool IsActive { get; init; }
+            public bool? IsActive { get; init; }
             public string? ImageUrl { get; init; }
             public object? Image { get; init; }
             [JsonIgnore]

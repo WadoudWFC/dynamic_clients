@@ -66,7 +66,7 @@ public static class ApplicationExtensions
             factory: _ => new SlidingWindowRateLimiterOptions()
             {
                 PermitLimit = 3,
-                Window = TimeSpan.FromMinutes(60),
+                Window = TimeSpan.FromMinutes(2),
                 QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
                 QueueLimit = 0
             }));
