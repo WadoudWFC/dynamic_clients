@@ -95,7 +95,7 @@ public class UserAglouService : IUserAglouService
         }
         UpdatePasswordRequestBody request = new UpdatePasswordRequestBody { Id = (int)userId, Password = command.NewPassword };
         var response = await _httpUserAglou.UpdatePasswordAsync(request);
-        if (!response.IsSuccess || response.Data?.Data == null)
+        if (!response.IsSuccess)
         {
             return Result<SanitizedBasicResponse>.Failure(new Error(Constants.UserFail, "Update password failed!"));
         }
