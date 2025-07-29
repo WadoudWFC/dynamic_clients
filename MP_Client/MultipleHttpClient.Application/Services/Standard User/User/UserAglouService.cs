@@ -93,16 +93,20 @@ public class UserAglouService : IUserAglouService
         {
             return Result<SanitizedBasicResponse>.Failure(new Error(Constants.UserFail, Constants.InvalidUser));
         }
-        UpdatePasswordRequestBody request = new UpdatePasswordRequestBody { Id = (int)userId, Password = command.NewPassword };
+        UpdatePasswordRequestBody request = new UpdatePasswordRequestBody
+        {
+            Id = (int)userId,
+            Password = command.NewPassword
+        };
         var response = await _httpUserAglou.UpdatePasswordAsync(request);
         if (!response.IsSuccess)
         {
-            return Result<SanitizedBasicResponse>.Failure(new Error(Constants.UserFail, "Update password failed!"));
+            return Result<SanitizedBasicResponse>.Failure(new Error(Constants.UserFail, "Password update failed!"));
         }
+
         var externalResponse = response.Data;
         return Result<SanitizedBasicResponse>.Success(new SanitizedBasicResponse(true, externalResponse.Message));
     }
-
     public async Task<Result<SanitizedBasicResponse>> RegisterUserAsync(RegisterUserCommand command)
     {
         RegisterUserRequestBody request = new RegisterUserRequestBody

@@ -1,40 +1,56 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
 using MultipleHttpClient.Application.Dossier.Command;
+using MultipleHttpClient.Application.Interfaces.User;
 using MutipleHttpClient.Domain;
 using MutipleHttpClient.Domain.Shared.DTOs.Dossier;
 
 namespace MultipleHttpClient.Application.Dossier.Handlers
 {
-    public class UpdateDossierCommandHandler : IRequestHandler<UpdateDossierCommand, Result<DossierUpdateResult>>
+    public class UpdatePasswordCommandHandler : IRequestHandler<UpdatePasswordCommand, Result<SanitizedBasicResponse>>
     {
-        private readonly IDossierAglouService _dossierService;
-        private readonly ILogger<UpdateDossierCommandHandler> _logger;
+        private readonly IUserAglouService _userAglouService;
+        private readonly ILogger<UpdatePasswordCommandHandler> _logger;
 
-        public UpdateDossierCommandHandler(IDossierAglouService dossierService, ILogger<UpdateDossierCommandHandler> logger)
+        public UpdatePasswordCommandHandler(IUserAglouService userAglouService, ILogger<UpdatePasswordCommandHandler> logger)
         {
-            _dossierService = dossierService;
+            _userAglouService = userAglouService;
             _logger = logger;
         }
 
-        public async Task<Result<DossierUpdateResult>> Handle(UpdateDossierCommand request, CancellationToken cancellationToken)
+        public async Task<Result<SanitizedBasicResponse>> Handle(UpdatePasswordCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                var result = await _dossierService.UpdateDossierAsync(request);
-                if (!result.IsSuccess || result.Value == null)
+                // SECURITY: Additional validation - ensure UserId is not Guid.Empty
+                if (request.UserId == Guid.Empty)
                 {
-                    _logger.LogError("[UpdateDossier]: Failed to update dossier {0}", request.DossierId);
-                    return Result<DossierUpdateResult>.Failure(new Error("UpdateDossierFailed", "Unable to update dossier"));
+                    _logger.LogError("SECURITY: Password update attempted with empty UserId");
+                    return Result<SanitizedBasicResponse>.Failure(
+                        new Error("SecurityError", "Invalid user identification"));
                 }
 
-                _logger.LogInformation("[UpdateDossier]: Successfully updated dossier {0}", request.DossierId);
-                return Result<DossierUpdateResult>.Success(result.Value);
+                // SECURITY: Log the password update attempt
+                _logger.LogInformation("Processing password update for user {UserId}", request.UserId);
+
+                var result = await _userAglouService.UpdatePasswordAsync(request);
+
+                if (!result.IsSuccess || result.Value == null)
+                {
+                    _logger.LogError("Password update failed for user {UserId}: {Error}",
+                        request.UserId, result.Error?.Message);
+                    return Result<SanitizedBasicResponse>.Failure(
+                        new Error("UpdatePasswordFailed", "Password update failed"));
+                }
+
+                _logger.LogInformation("Password update completed successfully for user {UserId}", request.UserId);
+                return Result<SanitizedBasicResponse>.Success(result.Value);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "[UpdateDossier]: Exception updating dossier {0}", request.DossierId);
-                return Result<DossierUpdateResult>.Failure(new Error("UpdateDossierFailed", ex.Message));
+                _logger.LogError(ex, "SECURITY: Exception during password update for user {UserId}", request.UserId);
+                return Result<SanitizedBasicResponse>.Failure(
+                    new Error("UpdatePasswordFailed", "An error occurred during password update"));
             }
         }
     }

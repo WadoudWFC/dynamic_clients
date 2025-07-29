@@ -70,6 +70,16 @@ public static class ApplicationExtensions
                 QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
                 QueueLimit = 0
             }));
+            options.AddPolicy("passwordUpdate", context => RateLimitPartition.GetSlidingWindowLimiter(
+            partitionKey: context.Request.Headers["X-Forwarded-For"].ToString() ??
+                         context.Connection.RemoteIpAddress?.ToString() ?? "unknown",
+            factory: _ => new SlidingWindowRateLimiterOptions()
+            {
+                PermitLimit = 5,      // 5 password updates
+                Window = TimeSpan.FromHours(1),  // per hour
+                QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                QueueLimit = 0
+            }));
         });
 
         // Enhanced JWT configuration

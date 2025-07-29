@@ -29,13 +29,35 @@ public class UserController : ControllerBase
     [EnableRateLimiting("login")]
     [HttpPost("CanTryLogin")]
     public async Task<ActionResult<Result<SanitizedUserResponse>>> CanTryLogin([FromBody] CanTryLoginCommand command) => Ok(await _mediator.Send(command));
-    [EnableRateLimiting("login")]
+    [EnableRateLimiting("passwordUpdate")]
     [HttpPost("UpdatePassword")]
     [RequireProfile(1, 2, 3)]
-    public async Task<ActionResult<Result<SanitizedBasicResponse>>> UpdatePassword([FromBody] UpdatePasswordCommand command) => Ok(await _mediator.Send(command));
+    public async Task<ActionResult<Result<SanitizedBasicResponse>>> UpdatePassword([FromBody] UpdatePasswordCommand command)
+    {
+        var authenticatedUserId = GetCurrentUserId();
+
+        if (authenticatedUserId == Guid.Empty)
+        {
+            return Unauthorized(new { error = "Invalid user context" });
+        }
+        var secureCommand = new UpdatePasswordCommand(authenticatedUserId, command.NewPassword);
+        var result = await _mediator.Send(secureCommand);
+        return Ok(result);
+    }
     [HttpPost("Logout")]
     [Authorize]
-    public async Task<ActionResult<Result<SanitizedBasicResponse>>> Logout([FromBody] LogoutCommand command) => Ok(await _mediator.Send(command));
+    public async Task<ActionResult<Result<SanitizedBasicResponse>>> Logout([FromBody] LogoutCommand command)
+    {
+        var authenticatedUserId = GetCurrentUserId();
+
+        if (command.UserId != authenticatedUserId)
+        {
+            return Forbid("Cannot logout other users");
+        }
+        var secureCommand = new LogoutCommand(authenticatedUserId);
+        var result = await _mediator.Send(secureCommand);
+        return Ok(result);
+    }
     [HttpPost("ForgetPassword")]
     [EnableRateLimiting("passwordReset")]
     public async Task<ActionResult<Result<SanitizedBasicResponse>>> ForgetPassword([FromBody] ForgetPasswordCommand command) => Ok(await _mediator.Send(command));
@@ -54,7 +76,22 @@ public class UserController : ControllerBase
     }
     [HttpPost("User")]
     [RequireAdminOrRegional]
-    public async Task<ActionResult<Result<LoadUserResponseSanitized>>> GetUserById([FromBody] LoadUserCommand command) => Ok(await _mediator.Send(command));
+    public async Task<ActionResult<Result<LoadUserResponseSanitized>>> GetUserById([FromBody] LoadUserCommand command)
+    {
+        var currentUserProfile = GetCurrentInternalProfileId();
+        var currentUserId = GetCurrentUserId();
+        if (command.UserId == currentUserId)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+        if (currentUserProfile != "1" && currentUserProfile != "2")
+        {
+            return Forbid("Insufficient permissions to access other users' data");
+        }
+        var adminResult = await _mediator.Send(command);
+        return Ok(adminResult);
+    }
     private Guid GetCurrentUserId()
     {
         var userIdClaim = User.FindFirst("user_id")?.Value;
