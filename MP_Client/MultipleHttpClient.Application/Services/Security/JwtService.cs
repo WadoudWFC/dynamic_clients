@@ -122,7 +122,7 @@ namespace MultipleHttpClient.Application.Services.Security
 
         private static bool IsValidProfileId(int profileId)
         {
-            var validProfiles = new[] { 1, 2, 3 };
+            var validProfiles = new[] { 1, 2, 3, 13, 14, 15, 16 };
             return validProfiles.Contains(profileId);
         }
 

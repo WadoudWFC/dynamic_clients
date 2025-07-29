@@ -145,7 +145,7 @@ namespace MultipleHttpClient.Application.Services.Security
             }
 
             // Standard users (Profile 3) can only access dossiers they created
-            if (profileId == 3)
+            if (profileId == 3 || profileId == 13)
             {
                 return ValidateUserDossierAccess(userId, dossierId, services);
             }
@@ -243,7 +243,7 @@ namespace MultipleHttpClient.Application.Services.Security
                 // Load dossier details to check ownership
                 var loadQuery = new LoadDossierQuery(dossierGuid);
                 var loadTask = dossierService.LoadDossierAsync(loadQuery);
-                loadTask.Wait(TimeSpan.FromSeconds(5)); 
+                loadTask.Wait(TimeSpan.FromSeconds(5));
 
                 if (!loadTask.IsCompletedSuccessfully || !loadTask.Result.IsSuccess)
                 {

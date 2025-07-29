@@ -16,7 +16,7 @@ public class ApiRouteSegregationMiddleware
 
             { "/api/v1/superadmin", new[] { 1 } },
 
-            { "/api/bff/v2", new[] {1,2, 3 } },
+            { "/api/bff/v2", new[] {1,2, 3,11,12,13,14,15,16 } },
             { "/api/user", new[] {1,2, 3 } }
         };
 
