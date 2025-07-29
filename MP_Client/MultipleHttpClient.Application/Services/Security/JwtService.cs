@@ -37,38 +37,46 @@ namespace MultipleHttpClient.Application.Services.Security
                 var userGuid = _idMappingService.GetGuidForUserId(internalUserId);
                 var profileGuid = _referenceDataMappingService.GetOrCreateGuidForReferenceId(profileId, Constants.Profile);
 
-                var claims = new List<Claim>
+                // SECURITY: Create commercial division GUID if exists
+                Guid? commercialDivisionGuid = null;
+                if (commercialDivisionId.HasValue)
                 {
-                    // External identifiers (visible to client)
-                    new Claim("user_id", userGuid.ToString()),
-                    new Claim("profile_id", profileGuid.ToString()),
-                    new Claim("email", email), // To be removed!
-                    new Claim("first_name", firstName),
-                    new Claim("last_name", lastName),
-                    
-                    // Internal identifiers (hidden from client, used for authorization)
-                    new Claim("internal_user_id", internalUserId.ToString()), // To be removed!
-                    new Claim("internal_profile_id", profileId.ToString()), // To be removed!
-                    
-                    // NEW: API type enforcement claims
-                    new Claim("api_type", GetApiType(profileId)), // To be removed!
-                    new Claim("access_level", GetAccessLevel(profileId)), // To be removed!
-                    
-                    // Role-based claims for easy authorization
-                    new Claim("role", GetRoleName(profileId)),
-                    new Claim("is_admin", (profileId == 1).ToString()),
-                    new Claim("is_regional_admin", (profileId == 2).ToString()),
-                    new Claim("is_standard_user", (profileId == 3).ToString()),
-                    
-                    // Additional context for authorization
-                    new Claim("is_active", isActive.ToString()),
-                    new Claim("commercial_division_id", commercialDivisionId?.ToString() ?? ""),
-                    new Claim("parent_user_id", parentUserId?.ToString() ?? ""),
-                    
-                    // Standard JWT claims
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                    new Claim(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64)
-                };
+                    commercialDivisionGuid = _referenceDataMappingService.GetOrCreateGuidForReferenceId(commercialDivisionId.Value, Constants.CommercialDivision);
+                }
+
+                // SECURITY: Create parent user GUID if exists
+                Guid? parentUserGuid = null;
+                if (parentUserId.HasValue)
+                {
+                    parentUserGuid = _idMappingService.GetGuidForUserId(parentUserId.Value);
+                }
+
+                var claims = new List<Claim>
+        {
+            // SECURE: Only external GUIDs (no internal IDs)
+            new Claim("user_id", userGuid.ToString()),
+            new Claim("profile_id", profileGuid.ToString()),
+            new Claim("email", email),
+            new Claim("first_name", firstName),
+            new Claim("last_name", lastName),
+            
+            // SECURE: Convert internal IDs to GUIDs
+            new Claim("commercial_division_id", commercialDivisionGuid?.ToString() ?? ""),
+            new Claim("parent_user_id", parentUserGuid?.ToString() ?? ""),
+            
+            // Role-based claims for authorization
+            new Claim("role", GetRoleName(profileId)),
+            new Claim("is_admin", (profileId == 1).ToString()),
+            new Claim("is_regional_admin", (profileId == 2).ToString()),
+            new Claim("is_standard_user", (profileId == 3).ToString()),
+            
+            // Additional context
+            new Claim("is_active", isActive.ToString()),
+            
+            // Standard JWT claims
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+            new Claim(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64)
+        };
 
                 var key = new SymmetricSecurityKey(Convert.FromBase64String(_jwtSettings.Secret));
                 var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -83,8 +91,8 @@ namespace MultipleHttpClient.Application.Services.Security
 
                 var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
 
-                _logger.LogInformation("JWT generated for user {0} with profile {1}, API type: {2}",
-                    email, profileId, GetApiType(profileId));
+                _logger.LogInformation("JWT generated for user {0} with profile {1}",
+                    email, profileId);
                 return tokenString;
             }
             catch (Exception ex)
@@ -93,7 +101,6 @@ namespace MultipleHttpClient.Application.Services.Security
                 throw new InvalidOperationException($"Failed to generate JWT token for user {internalUserId}: {ex.Message}", ex);
             }
         }
-
         private static string GetApiType(int profileId) => profileId switch
         {
             1 => "admin",

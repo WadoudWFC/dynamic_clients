@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.User_Account.Requests;
 using MultipleHttpClient.Application.Dossier.Queries;
+using MultipleHttpClient.Application.Interfaces.Dossier;
 using MutipleHttpClient.Domain;
 
 namespace MultipleHttpClient.Application.Services.Security
@@ -98,13 +100,38 @@ namespace MultipleHttpClient.Application.Services.Security
         {
             var services = context.HttpContext.RequestServices;
 
-            var internalUserId = GetInternalUserId(user);
-            var profileId = GetInternalProfileId(user);
-            var commercialDivisionId = GetCommercialDivisionId(user);
+            // SECURITY: Get user GUID from JWT (no internal IDs in JWT anymore)
+            var userGuidClaim = user.FindFirst("user_id")?.Value;
+            if (string.IsNullOrEmpty(userGuidClaim) || !Guid.TryParse(userGuidClaim, out var userGuid))
+            {
+                return false;
+            }
+
+            // SECURITY: Get profile GUID and convert to internal ID for business logic
+            var profileGuidClaim = user.FindFirst("profile_id")?.Value;
+            if (string.IsNullOrEmpty(profileGuidClaim) || !Guid.TryParse(profileGuidClaim, out var profileGuid))
+            {
+                return false;
+            }
+
+            // Convert GUIDs to internal IDs for business logic
+            var idMappingService = services.GetRequiredService<IIdMappingService>();
+            var referenceDataMappingService = services.GetRequiredService<IReferenceDataMappingService>();
+
+            var internalUserId = idMappingService.GetUserIdForGuid(userGuid);
+            var profileId = referenceDataMappingService.GetReferenceIdForGuid(profileGuid, Constants.Profile);
 
             if (internalUserId == null || profileId == null)
             {
                 return false;
+            }
+
+            // Get commercial division ID if present
+            int? commercialDivisionId = null;
+            var commercialDivisionGuidClaim = user.FindFirst("commercial_division_id")?.Value;
+            if (!string.IsNullOrEmpty(commercialDivisionGuidClaim) && Guid.TryParse(commercialDivisionGuidClaim, out var commercialDivisionGuid))
+            {
+                commercialDivisionId = referenceDataMappingService.GetReferenceIdForGuid(commercialDivisionGuid, Constants.CommercialDivision);
             }
 
             return resourceType.ToLower() switch
@@ -115,7 +142,6 @@ namespace MultipleHttpClient.Application.Services.Security
                 _ => false
             };
         }
-
         #region Ownership Validation Methods
 
         private bool ValidateUserOwnership(ClaimsPrincipal user, object resourceUserId)
@@ -230,39 +256,50 @@ namespace MultipleHttpClient.Application.Services.Security
         {
             try
             {
-                var dossierService = services.GetRequiredService<IDossierAglouService>();
+                var httpDossierService = services.GetRequiredService<IHttpDossierAglouService>();
+                var mappingService = services.GetRequiredService<IReferenceDataMappingService>();
                 var logger = services.GetService<ILogger<OwnershipAuthorizationAttribute>>();
 
-                // Convert dossier ID to GUID if it's not already
+                // Convert dossier GUID to internal ID
                 if (!Guid.TryParse(dossierId?.ToString(), out var dossierGuid))
                 {
                     logger?.LogWarning("Invalid dossier GUID format: {0}", dossierId);
                     return false;
                 }
 
-                // Load dossier details to check ownership
-                var loadQuery = new LoadDossierQuery(dossierGuid);
-                var loadTask = dossierService.LoadDossierAsync(loadQuery);
+                var internalDossierId = mappingService.GetReferenceIdForGuid(dossierGuid, Constants.Dossier);
+                if (internalDossierId == null)
+                {
+                    logger?.LogWarning("Could not find internal ID for dossier GUID {0}", dossierGuid);
+                    return false;
+                }
+
+                // Call the legacy API directly to get ownership info
+                var request = new LogoutRequestBody { Id = internalDossierId.Value };
+                var loadTask = httpDossierService.LoadDossierAsync(request);
                 loadTask.Wait(TimeSpan.FromSeconds(5));
 
-                if (!loadTask.IsCompletedSuccessfully || !loadTask.Result.IsSuccess)
+                if (!loadTask.IsCompletedSuccessfully || !loadTask.Result.IsSuccess || loadTask.Result.Data?.Data == null)
                 {
                     logger?.LogWarning("Failed to load dossier {0} for ownership validation", dossierGuid);
                     return false;
                 }
 
-                var dossierData = loadTask.Result.Value;
-                if (dossierData == null)
-                {
-                    return false;
-                }
+                var rawDossierData = loadTask.Result.Data.Data;
 
-                // Check if user created any comments on the dossier (indicates involvement)
-                var userHasComments = dossierData.Comments.Any(c => c.InternalUserCreatedId == userId);
+                // SECURITY: Check actual ownership
+                // Option 1: Check if user has comments (indicates involvement)
+                var hasComments = rawDossierData.Comments.Any(c => c.UserCreated == userId);
 
-                var hasAccess = userHasComments;
+                // SECURITY ENHANCEMENT: If your legacy API has actual ownership fields, use them:
+                // var isOwner = rawDossierData.CreatedByUserId == userId; // if this field exists
+                // var isAssigned = rawDossierData.AssignedToUserId == userId; // if this field exists
 
-                logger?.LogInformation("User dossier access validation for user {0}, dossier {1}: {2}", userId, dossierGuid, hasAccess);
+                // For now, using comments as ownership indicator
+                var hasAccess = hasComments;
+
+                logger?.LogInformation("User dossier access validation for user {0}, dossier {1}: hasComments={2}, hasAccess={3}",
+                    userId, dossierGuid, hasComments, hasAccess);
 
                 return hasAccess;
             }
@@ -273,7 +310,6 @@ namespace MultipleHttpClient.Application.Services.Security
                 return false;
             }
         }
-
         /// <summary>
         /// COMPLETE: Validate user created comment or owns the related dossier
         /// Uses GetAllCommentsAsync to find the comment and check ownership

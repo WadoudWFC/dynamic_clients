@@ -49,7 +49,7 @@ namespace MultipleHtppClient.Infrastructure.HTTP.APIs.Aglou_q_10001.Models.Manag
         [JsonPropertyName("genre")]
         public bool Gender { get; set; }
         [JsonPropertyName("statut")]
-        public string? Status { get; set; }
+        public bool? Status { get; set; }
         [JsonPropertyName("date_created")]
         public DateTime DateCreated { get; set; }
         [JsonPropertyName("date_updated")]
