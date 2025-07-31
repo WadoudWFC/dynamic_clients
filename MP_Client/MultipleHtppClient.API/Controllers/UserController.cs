@@ -29,8 +29,9 @@ public class UserController : ControllerBase
     [EnableRateLimiting("login")]
     [HttpPost("CanTryLogin")]
     public async Task<ActionResult<Result<SanitizedUserResponse>>> CanTryLogin([FromBody] CanTryLoginCommand command) => Ok(await _mediator.Send(command));
-    [EnableRateLimiting("passwordUpdate")]
     [HttpPost("UpdatePassword")]
+    [Authorize]
+    [EnableRateLimiting("passwordUpdate")]
     [RequireProfile(1, 2, 3)]
     public async Task<ActionResult<Result<SanitizedBasicResponse>>> UpdatePassword([FromBody] UpdatePasswordCommand command)
     {
@@ -75,6 +76,7 @@ public class UserController : ControllerBase
         return result.IsSuccess ? Ok(result.Value) : BadRequest(result.Error);
     }
     [HttpPost("User")]
+    [Authorize]
     [RequireAdminOrRegional]
     public async Task<ActionResult<Result<LoadUserResponseSanitized>>> GetUserById([FromBody] LoadUserCommand command)
     {
