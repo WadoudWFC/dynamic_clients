@@ -63,6 +63,7 @@ public class UserController : ControllerBase
     [EnableRateLimiting("passwordReset")]
     public async Task<ActionResult<Result<SanitizedBasicResponse>>> ForgetPassword([FromBody] ForgetPasswordCommand command) => Ok(await _mediator.Send(command));
     [HttpPost("Register")]
+    [EnableRateLimiting("login")]
     public async Task<ActionResult<Result<SanitizedBasicResponse>>> RegisterUser([FromBody] RegisterUserCommand command) => Ok(await _mediator.Send(command));
     [HttpGet("GetCurrentUser")]
     [Authorize]

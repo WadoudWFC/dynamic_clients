@@ -88,11 +88,12 @@ if (app.Environment.IsDevelopment())
 app.UseMiddleware<GlobalExceptionMiddleware>();
 app.UseHsts();
 app.UseHttpsRedirection();
-app.UseCors("AllowAngularApp");
 app.UseMiddleware<SecurityHeadersMiddleware>();
+app.UseCors("AllowAngularApp");
 app.UseXssProtection();
 
 app.UseAuthentication();
+app.UseRateLimiter();
 app.UseAuthorization();
 // app.UseCustomSecurityHeaders();
 app.UseApiRouteSegregation();
